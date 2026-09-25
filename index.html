@@ -2088,7 +2088,7 @@ function aiToggle(open){
   aiPanel.classList.toggle('open', open);
   aiOrb.setAttribute('aria-expanded', open);
   if(open){
-    if(!aiGreeted){ aiGreeted = true; aiAdd('bot', 'هلا! أنا مساعد Charlie Squad. اسألني عن الترتيب، أي عضو، تحدي الأسبوع، المهام، أو القوانين.'); }
+    if(!aiGreeted){ aiGreeted = true; aiAdd('bot', 'هلا . اسألني عن الترتيب، أي عضو، تحدي الأسبوع، المهام، أو القوانين.'); }
     setTimeout(()=> aiInput.focus(), 250);
   }
 }
