@@ -547,6 +547,16 @@
     .ai-orb::after{ display:none; }
     .ai-panel{ left:8px; right:8px; width:auto; bottom:calc(72px + env(safe-area-inset-bottom,0px)); height:min(520px, calc(100vh - 140px)); }
   }
+
+  /* ===== شريط التمرير ===== */
+  html{ scrollbar-width:thin; scrollbar-color:#3a3b41 var(--bg); }
+  ::-webkit-scrollbar{ width:8px; height:8px; }
+  ::-webkit-scrollbar-track{ background:var(--bg); }
+  ::-webkit-scrollbar-thumb{ background:#3a3b41; border-radius:8px; border:2px solid var(--bg); }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--stone-dim); }
+  ::-webkit-scrollbar-button{ display:none; height:0; }
+  ::-webkit-scrollbar-corner{ background:transparent; }
+  .ai-body, .modal-overlay{ scrollbar-color:#3a3b41 transparent; }
 </style>
 </head>
 <body>
