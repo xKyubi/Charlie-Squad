@@ -29,18 +29,29 @@
     --radius-badge: 4px;
   }
   *{box-sizing:border-box;}
-  html{margin:0;}
+  html{margin:0; background-color: var(--bg);}
   body{
     margin:0; position:relative; font-family:'Tajawal', sans-serif; color:var(--text);
+    background: transparent;
+    min-height: 100vh;
+  }
+  /* خلفية ثابتة بحجم الشاشة (ما تتكبر مع طول الصفحة) */
+  body::before{
+    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
     background-color: var(--bg);
     background-image:
-      linear-gradient(rgba(8,9,10,0.55), rgba(8,9,10,0.82)),
+      linear-gradient(rgba(8,9,10,0.45), rgba(8,9,10,0.80)),
       url("assets/Charlie.png"), url("Charlie.png");
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
+  }
+  /* الجوال (شاشة طولية): تبان الصورة كاملة بالعرض بدل ما تتكبر */
+  @media (max-aspect-ratio: 1/1){
+    body::before{
+      background-size: 100% 100%, 100% auto, 100% auto;
+      background-position: center, center top, center top;
+    }
   }
 
   @keyframes fadeUp{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
