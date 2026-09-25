@@ -502,7 +502,7 @@
   .empty-state{ text-align:center; padding:40px 20px; color:var(--text-dim); font-size:13.5px;}
 
   /* =====================================================================
-     نظام التقارير + مساعد السكواد (منقول ومتوافق مع ألوان Charlie)
+     مساعد السكواد (منقول ومتوافق مع ألوان Charlie)
      ===================================================================== */
   :root{
     --neon: var(--stone); --neon-dim: var(--stone-dim);
@@ -516,64 +516,7 @@
   .overview-btn.primary{ background:var(--stone); color:#161616; border-color:var(--stone); }
   .overview-btn.primary:hover{ background:#fff; border-color:#fff; }
   .card-actions{ margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
-  .report-badge{ position:absolute; top:14px; left:14px; font-size:11px; font-weight:700; color:#161616; background:var(--stone); padding:2px 10px; border-radius:999px; }
-  .report-intro{ margin:0 0 16px; padding:14px 16px; border-radius:var(--radius-md); background:rgba(255,255,255,0.04); border:1px solid var(--line); font-size:14.5px; line-height:1.9; }
-  .report-intro b{ color:var(--stone); }
-  .report-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:18px; }
-  .report-sign{ font-size:13px; color:var(--text-dim); }
-  .report-sign b{ color:var(--text); direction:ltr; unicode-bidi:isolate; }
   .modal-sub{ color:var(--text-dim); font-size:13.5px; text-align:center; margin:0 0 20px; }
-  .timeline.two{ grid-template-columns:repeat(2, 1fr); }
-  .re-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .re-field{ display:flex; flex-direction:column; gap:6px; min-width:0; }
-  .re-field.full{ grid-column:1 / -1; }
-  .re-label{ font-size:13px; font-weight:600; color:var(--muted); }
-  .re-label em{ color:var(--neon); font-style:normal; }
-  .re-input{ font-family:var(--f-ar); font-size:15px; color:var(--text); width:100%; background:var(--k1); border:1px solid var(--line-2); border-radius:12px; padding:10px 12px; outline:none; }
-  .re-input:focus{ border-color:var(--neon); }
-  .re-input.ltr{ direction:ltr; text-align:left; }
-  .re-input.bad{ border-color:var(--alert); }
-  .re-chips{ display:flex; flex-wrap:wrap; gap:6px; }
-  .re-chip{ font-family:var(--f-ar); font-size:13.5px; font-weight:600; color:var(--muted); cursor:pointer; background:var(--k1); border:1px solid var(--line-2); padding:6px 14px; border-radius:12px; }
-  .re-chip:hover{ color:var(--text); }
-  .re-chip[aria-checked="true"]{ color:var(--k0); background:var(--neon); border-color:var(--neon); }
-  .re-modes{ display:inline-flex; padding:4px; gap:4px; margin:20px 0 12px; background:var(--k1); border:1px solid var(--line); border-radius:10px; }
-  .re-modes button{ display:flex; align-items:center; gap:8px; border:0; cursor:pointer; background:transparent; color:var(--muted); font-family:var(--f-ar); font-size:14.5px; font-weight:600; padding:7px 16px; border-radius:7px; }
-  .re-modes button svg{ width:16px; height:16px; }
-  .re-modes button[aria-selected="true"]{ background:var(--neon); color:var(--k0); }
-  .re-editor-wrap{ border:1px solid var(--line-2); border-radius:10px; background:var(--k1); overflow:hidden; }
-  .re-editor-wrap:focus-within{ border-color:var(--neon); }
-  .re-editor-wrap.bad{ border-color:var(--alert); }
-  .re-toolbar{ display:flex; align-items:center; gap:2px; padding:6px; border-bottom:1px solid var(--line); background:var(--k2); overflow-x:auto; scrollbar-width:none; }
-  .re-toolbar::-webkit-scrollbar{ display:none; }
-  .re-tool{ flex-shrink:0; min-width:36px; height:36px; padding:0 8px; border-radius:7px; border:0; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; background:transparent; color:var(--text); font-family:var(--f-ar); font-size:13px; font-weight:600; }
-  .re-tool svg{ width:17px; height:17px; }
-  .re-tool:hover{ background:rgba(198,220,74,.1); }
-  .re-tool[aria-pressed="true"]{ background:var(--neon); color:var(--k0); }
-  .re-tool.tpl{ color:var(--neon); box-shadow:inset 0 0 0 1px var(--line-2); margin-inline-start:4px; }
-  .re-sep{ width:1px; height:22px; background:var(--line-2); margin:0 5px; flex-shrink:0; }
-  .re-editor{ min-height:220px; max-height:46vh; overflow-y:auto; padding:14px 16px; outline:none; font-size:15.5px; line-height:1.9; color:var(--text); word-wrap:break-word; }
-  .re-editor:empty::before{ content:attr(data-placeholder); color:var(--muted); pointer-events:none; }
-  .re-editor h3{ font-size:18px; font-weight:600; margin:10px 0 4px; color:var(--neon); }
-  .re-editor blockquote{ margin:8px 0; padding:4px 14px; border-right:3px solid var(--neon); background:rgba(198,220,74,.06); border-radius:6px; }
-  .re-editor ul, .re-editor ol{ margin:6px 0; padding-right:24px; padding-left:0; }
-  .re-editor hr{ border:0; height:2px; margin:14px 0; background:var(--neon-dim); }
-  .re-editor b, .re-editor strong{ color:#fff; }
-  .re-meta{ display:flex; justify-content:space-between; gap:10px; padding:8px 14px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
-  .re-meta .over{ color:var(--alert); font-weight:600; }
-  .re-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:18px; }
-  .re-msg{ font-size:13.5px; color:var(--muted); }
-  .re-msg.err{ color:#ff8a70; }
-  .re-actions{ display:flex; gap:8px; flex-wrap:wrap; }
-  .re-actions .overview-btn{ margin:0; }
-  .re-actions .overview-btn:disabled{ opacity:.5; cursor:default; }
-  .re-done{ text-align:center; padding:28px 10px 10px; }
-  .re-done .ok{ width:68px; height:68px; margin:0 auto 14px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--neon); color:var(--k0); }
-  .re-done .ok svg{ width:32px; height:32px; }
-  .re-done h3{ margin:0 0 6px; font-size:21px; }
-  .re-done p{ margin:0 auto 20px; color:var(--muted); max-width:44ch; }
-  .re-done .re-actions{ justify-content:center; }
-  .re-hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
   .ai-orb{ position:fixed; left:20px; bottom:calc(20px + env(safe-area-inset-bottom,0px)); z-index:60; height:52px; border-radius:999px; border:0; cursor:pointer; padding:0 18px 0 20px; gap:8px; background:var(--neon); color:var(--k0); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,.55); font-family:var(--f-ar); font-size:14.5px; font-weight:600; }
   .ai-orb::after{ content:"المساعد"; }
   .ai-orb svg{ width:22px; height:22px; }
@@ -606,15 +549,6 @@
   .ai-orb:hover{ background:#fff; }
   .msg.me{ color:#161616; }
   @media (max-width:760px){
-    .timeline.two{ grid-template-columns:1fr; }
-    .re-grid{ grid-template-columns:1fr; }
-    .re-modes{ display:flex; width:100%; }
-    .re-modes button{ flex:1; justify-content:center; }
-    .re-editor{ min-height:200px; }
-    .re-toolbar{ flex-wrap:wrap; overflow:visible; }
-    .re-sep{ display:none; }
-    .re-actions{ width:100%; }
-    .re-actions .overview-btn{ flex:1; }
     .ai-orb{ left:12px; bottom:calc(14px + env(safe-area-inset-bottom,0px)); width:50px; height:50px; padding:0; }
     .ai-orb::after{ display:none; }
     .ai-panel{ left:8px; right:8px; width:auto; bottom:calc(72px + env(safe-area-inset-bottom,0px)); height:min(520px, calc(100vh - 140px)); }
@@ -749,16 +683,6 @@
           <p>تم اعداد اللائحة التالية لضمان انضباط الاعضاء وسير العمل بفعالية داخل السكواد</p>
           <button class="overview-btn" type="button" id="btn-training-system">عرض النظام</button>
         </div>
-        <div class="overview-card">
-          <span class="report-badge">جديد</span>
-          <div class="overview-icon">📝</div>
-          <h3>نظام التقارير</h3>
-          <p>اكتب ملاحظاتك الميدانية والمخالفات أو أرفق رابط لها، وكل تقرير يعطيك نقاط.</p>
-          <div class="card-actions">
-            <button class="overview-btn primary" type="button" id="btn-report-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
-            <button class="overview-btn" type="button" id="btn-reports-system">عرض النظام</button>
-          </div>
-        </div>
       </div>
 
       <div class="fade-in" style="animation-delay:0.2s">
@@ -851,149 +775,22 @@
       <span class="mini"></span>
       <div>
         <h3>مساعد السكواد</h3>
-        <small id="ai-status">يعرف الترتيب والتحديات والمهام والقوانين</small>
+        <small id="ai-status">يرد من بيانات الشيت</small>
       </div>
       <button class="ai-close" id="ai-close" type="button" aria-label="إغلاق المساعد"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="ai-body" id="ai-body" aria-live="polite"></div>
     <div class="ai-suggest" id="ai-suggest">
-      <button type="button">مين الأول بالساعات؟</button>
-      <button type="button">وش تحدي الأسبوع؟</button>
-      <button type="button">وش المهام الحالية؟</button>
-      <button type="button">متى استخراج الفرقة؟</button>
-      <button type="button">وش نظام التقارير؟</button>
+      <button type="button">توب الساعات</button>
+      <button type="button">التحديات</button>
+      <button type="button">المهام</button>
+      <button type="button">مواعيد الاستخراج</button>
     </div>
     <form class="ai-form" id="ai-form" autocomplete="off">
-      <input id="ai-input" type="text" placeholder="اسأل عن السكواد…" aria-label="اكتب سؤالك" maxlength="500">
+      <input id="ai-input" type="text" placeholder="اكتب سؤالك…" aria-label="اكتب سؤالك" maxlength="500">
       <button type="submit" id="ai-send" aria-label="إرسال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
     </form>
   </section>
-
-  <!-- ===== مودال نظام التقارير ===== -->
-  <div class="modal-overlay" id="reports-modal">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="reports-title" style="max-width:820px;">
-      <button class="modal-close" id="reports-modal-close" type="button" aria-label="إغلاق">✕</button>
-      <h2 class="modal-title" id="reports-title">نظام التقارير</h2>
-      <div class="brand-underline" style="margin-bottom:18px;"><span></span><em>REPORTS SYSTEM</em><span></span></div>
-      <div class="report-intro">
-        السلام عليكم ورحمة الله وبركاته،<br>
-        حرصاً منا على تطوير المستوى الميداني ورفع كفاءة الفرقة الميدانية والعساكر أجمع، تم إنشاء <b>نظام التقارير</b>.
-      </div>
-      <div class="timeline two" id="reports-data">
-        <div class="timeline-card"><h4>هدف النظام</h4><p>إرفاق الملاحظات الميدانية ورصد المخالفات أو السلبيات التي تحتاج إلى تعديلها والتحسين منها، وذلك لرفع أداء الفرقة وتفادي الأخطاء في المستقبل.</p></div>
-        <div class="timeline-card"><h4>طريقة الاستفادة من التقارير</h4><p>سيتم مراجعة جميع التقارير المرفوعة بشكل دوري لمعرفة النقاط التي تحتاج إلى تحسين، وبناءً عليها سنقوم بعمل فرضيات وتدريبات ميدانية لضمان جاهزية الفرقة في مختلف الحالات.</p></div>
-        <div class="timeline-card"><h4>رفع التقرير اختياري، وله نقاط</h4><p>رفع التقرير ليس إجبارياً، ولكن من يقوم برفع التقارير سيتم إضافة نقاط له يتم تحديدها عن طريق المسؤولين.</p></div>
-        <div class="timeline-card"><h4>عندك استفسار أو مشكلة؟</h4><p>في حال كان عندك أي استفسار أو مشكلة، تواصل مع أحد مسؤولين الفرقة عن طريق الخاص.</p></div>
-      </div>
-      <div class="report-foot">
-        <span class="report-sign">صادر من <b>CharLie Leader</b> بتاريخ <b>9/12/2026</b></span>
-        <button type="button" class="overview-btn primary" id="btn-report-new-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== مودال إنشاء تقرير ===== -->
-  <div class="modal-overlay" id="report-editor-modal">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="re-title-h" style="max-width:860px;">
-      <button class="modal-close" id="re-close" type="button" aria-label="إغلاق">✕</button>
-      <h2 class="modal-title" id="re-title-h">إنشاء تقرير</h2>
-      <p class="modal-sub">اكتب تقريرك هنا أو أرفق رابط له. المسودة تنحفظ تلقائي.</p>
-
-      <form id="re-form" novalidate>
-        <div class="re-grid">
-          <label class="re-field">
-            <span class="re-label">اسمك <em>*</em></span>
-            <input class="re-input" id="re-name" list="re-names" maxlength="60" placeholder="اسمك بالسيرفر" autocomplete="off">
-            <datalist id="re-names"></datalist>
-          </label>
-          <label class="re-field">
-            <span class="re-label">عنوان التقرير <em>*</em></span>
-            <input class="re-input" id="re-title" maxlength="120" placeholder="مثال: ملاحظة على الانتشار بالمنطقة الشمالية" autocomplete="off">
-          </label>
-          <div class="re-field full">
-            <span class="re-label" id="re-type-label">نوع التقرير</span>
-            <div class="re-chips" id="re-type" role="radiogroup" aria-labelledby="re-type-label">
-              <button type="button" class="re-chip" role="radio" aria-checked="true">ملاحظة ميدانية</button>
-              <button type="button" class="re-chip" role="radio" aria-checked="false">رصد مخالفة</button>
-              <button type="button" class="re-chip" role="radio" aria-checked="false">اقتراح تحسين</button>
-              <button type="button" class="re-chip" role="radio" aria-checked="false">أخرى</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="re-modes" role="tablist">
-          <button type="button" role="tab" id="re-mode-write" aria-selected="true" aria-controls="re-pane-write">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>
-            اكتب التقرير
-          </button>
-          <button type="button" role="tab" id="re-mode-link" aria-selected="false" aria-controls="re-pane-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
-            أرفق رابط
-          </button>
-        </div>
-
-        <div id="re-pane-write" role="tabpanel" aria-labelledby="re-mode-write">
-          <div class="re-editor-wrap" id="re-editor-wrap">
-            <div class="re-toolbar" role="toolbar" aria-label="أدوات الكتابة">
-              <button type="button" class="re-tool" data-cmd="bold" title="عريض (Ctrl+B)" aria-label="عريض" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h6a3.5 3.5 0 0 1 0 7H7zM7 12h7a3.5 3.5 0 0 1 0 7H7z"/></svg></button>
-              <button type="button" class="re-tool" data-cmd="italic" title="مائل (Ctrl+I)" aria-label="مائل" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M14 5h5M5 19h5M15 5l-6 14"/></svg></button>
-              <button type="button" class="re-tool" data-cmd="underline" title="تحته خط (Ctrl+U)" aria-label="تحته خط" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 4v7a5 5 0 0 0 10 0V4M5 20h14"/></svg></button>
-              <button type="button" class="re-tool" data-cmd="strikeThrough" title="يتوسطه خط" aria-label="يتوسطه خط" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h16M16 6.5A4 3 0 0 0 12 5c-2.5 0-4 1.3-4 3 0 1 .5 1.8 1.5 2.4M8 17.5A4.5 3 0 0 0 12 19c2.5 0 4-1.3 4-3"/></svg></button>
-              <span class="re-sep"></span>
-              <button type="button" class="re-tool" data-block="h3" title="عنوان فرعي" aria-label="عنوان فرعي" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 5v14M13 5v14M5 12h8M17 10l3-2v11"/></svg></button>
-              <button type="button" class="re-tool" data-block="blockquote" title="اقتباس / ملاحظة مميزة" aria-label="اقتباس" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 7H6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v3l3-3V9a2 2 0 0 0-1-2zM20 7h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v3l3-3V9a2 2 0 0 0-1-2z" opacity=".9"/></svg></button>
-              <button type="button" class="re-tool" data-cmd="insertUnorderedList" title="قائمة نقاط" aria-label="قائمة نقاط" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 6h10M10 12h10M10 18h10"/><circle cx="5" cy="6" r="1.3" fill="currentColor"/><circle cx="5" cy="12" r="1.3" fill="currentColor"/><circle cx="5" cy="18" r="1.3" fill="currentColor"/></svg></button>
-              <button type="button" class="re-tool" data-cmd="insertOrderedList" title="قائمة مرقّمة" aria-label="قائمة مرقمة" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 6h10M10 12h10M10 18h10M4 5l1.5-1V9M3.8 14.5a1.3 1.3 0 1 1 2 1.2L4 18h2.2"/></svg></button>
-              <span class="re-sep"></span>
-              <button type="button" class="re-tool" data-act="hr" title="فاصل" aria-label="إضافة فاصل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 12h18"/><path d="M8 6h8M8 18h8" stroke-width="1.5" opacity=".5"/></svg></button>
-              <button type="button" class="re-tool" data-act="br" title="سطر فاضي" aria-label="إضافة سطر فاضي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7v4a3 3 0 0 0 3 3h13M16 10l4 4-4 4"/></svg></button>
-              <span class="re-sep"></span>
-              <button type="button" class="re-tool" data-cmd="undo" title="تراجع (Ctrl+Z)" aria-label="تراجع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h-7a4 4 0 0 0 0 8h9M15 7l-3-3M15 7l-3 3" transform="matrix(-1 0 0 1 24 0)"/></svg></button>
-              <button type="button" class="re-tool" data-cmd="redo" title="إعادة" aria-label="إعادة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h-7a4 4 0 0 0 0 8h9M15 7l-3-3M15 7l-3 3"/></svg></button>
-              <button type="button" class="re-tool" data-cmd="removeFormat" title="مسح التنسيق" aria-label="مسح التنسيق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 5h12M12 5l-3 14M4 20L20 4"/></svg></button>
-              <button type="button" class="re-tool tpl" data-act="tpl" title="إدراج قالب تقرير جاهز">قالب جاهز</button>
-            </div>
-            <div class="re-editor" id="re-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="نص التقرير"
-                 data-placeholder="اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز)."></div>
-            <div class="re-meta"><span id="re-draft-state">المسودة محفوظة</span><span id="re-count" class="num">0 / 3500</span></div>
-          </div>
-        </div>
-
-        <div id="re-pane-link" role="tabpanel" aria-labelledby="re-mode-link" hidden>
-          <div class="re-grid">
-            <label class="re-field full">
-              <span class="re-label">رابط التقرير <em>*</em></span>
-              <input class="re-input ltr" id="re-link" type="url" inputmode="url" maxlength="500" placeholder="https://…" autocomplete="off">
-            </label>
-            <label class="re-field full">
-              <span class="re-label">ملاحظة قصيرة (اختياري)</span>
-              <textarea class="re-input" id="re-link-note" rows="3" maxlength="600" placeholder="وش يحتوي الرابط؟ (فيديو، صور، مستند…)"></textarea>
-            </label>
-          </div>
-        </div>
-
-        <input class="re-hp" id="re-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-        <div class="re-foot">
-          <span class="re-msg" id="re-msg" role="status"></span>
-          <div class="re-actions">
-            <button type="button" class="overview-btn" id="re-copy">نسخ التقرير</button>
-            <button type="submit" class="overview-btn primary" id="re-submit">إرسال التقرير</button>
-          </div>
-        </div>
-      </form>
-
-      <div class="re-done" id="re-done" hidden>
-        <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
-        <h3 id="re-done-title">تم إرسال تقريرك</h3>
-        <p id="re-done-text">شكراً لك. بتراجعه القيادة وتنضاف لك النقاط.</p>
-        <div class="re-actions">
-          <button type="button" class="overview-btn" id="re-new">تقرير جديد</button>
-          <button type="button" class="overview-btn primary" id="re-done-close">تم</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 <script>
 const LOGO_PATHS = ["assets/logo.png", "logo.png"];
@@ -1782,330 +1579,6 @@ fetch(RULES_CSV_URL)
     rulesList.innerHTML = '<div class="empty-state">تعذّر تحميل القوانين من الشيت.</div>';
   });
 /* =====================================================================
-   نظام التقارير
-   REPORT_SUBMIT_URL = رابط Google Apps Script (Web App) اللي يحفظ التقرير بتبويب Report بالشيت.
-   لو فاضي: زر الإرسال ينسخ التقرير جاهز عشان يرسله العضو لمسؤول بالخاص.
-   ===================================================================== */
-const REPORT_SUBMIT_URL = "";
-
-const reportsModal = document.getElementById('reports-modal');
-(function(){
-  const openBtn = document.getElementById('btn-reports-system');
-  const closeBtn = document.getElementById('reports-modal-close');
-  const close = () => { reportsModal.classList.remove('active'); document.body.style.overflow = ''; };
-  openBtn.addEventListener('click', () => { reportsModal.classList.add('active'); document.body.style.overflow = 'hidden'; });
-  closeBtn.addEventListener('click', close);
-  reportsModal.addEventListener('click', e => { if(e.target === reportsModal) close(); });
-  document.addEventListener('keydown', e => { if(e.key === 'Escape' && reportsModal.classList.contains('active')) close(); });
-})();
-
-/* ---------- محرر التقارير ---------- */
-const RE_MAX = 3500;
-const RE_DRAFT_KEY = 'charlie-report-draft-v1';
-const reModal = document.getElementById('report-editor-modal');
-const reForm = document.getElementById('re-form');
-const reDone = document.getElementById('re-done');
-const reEditor = document.getElementById('re-editor');
-const reEditorWrap = document.getElementById('re-editor-wrap');
-const reName = document.getElementById('re-name');
-const reTitle = document.getElementById('re-title');
-const reLink = document.getElementById('re-link');
-const reLinkNote = document.getElementById('re-link-note');
-const reMsg = document.getElementById('re-msg');
-const reCount = document.getElementById('re-count');
-const reDraftState = document.getElementById('re-draft-state');
-const reSubmit = document.getElementById('re-submit');
-const reTypeWrap = document.getElementById('re-type');
-const reTabs = { write: document.getElementById('re-mode-write'), link: document.getElementById('re-mode-link') };
-const rePanes = { write: document.getElementById('re-pane-write'), link: document.getElementById('re-pane-link') };
-let reMode = 'write';
-
-document.getElementById('re-submit').textContent = REPORT_SUBMIT_URL ? 'إرسال التقرير' : 'نسخ وإرسال بالخاص';
-try{ document.execCommand('defaultParagraphSeparator', false, 'div'); document.execCommand('styleWithCSS', false, false); }catch(e){}
-
-function openReportEditor(){
-  document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
-  const dl = document.getElementById('re-names');
-  dl.innerHTML = (currentRoster || []).map(r => `<option value="${r.name.replace(/"/g, '&quot;')}"></option>`).join('');
-  reForm.hidden = false; reDone.hidden = true;
-  reModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => (reName.value ? reTitle : reName).focus(), 80);
-}
-function closeReportEditor(){
-  reModal.classList.remove('active');
-  document.body.style.overflow = '';
-  saveDraft();
-}
-document.getElementById('btn-report-new').addEventListener('click', openReportEditor);
-document.getElementById('btn-report-new-2').addEventListener('click', openReportEditor);
-document.getElementById('re-close').addEventListener('click', closeReportEditor);
-document.getElementById('re-done-close').addEventListener('click', closeReportEditor);
-reModal.addEventListener('click', e => { if(e.target === reModal) closeReportEditor(); });
-document.addEventListener('keydown', e => { if(e.key === 'Escape' && reModal.classList.contains('active')) closeReportEditor(); });
-
-/* نوع التقرير */
-reTypeWrap.addEventListener('click', e => {
-  const b = e.target.closest('.re-chip'); if(!b) return;
-  reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c === b));
-  saveDraft();
-});
-const reType = () => (reTypeWrap.querySelector('[aria-checked="true"]') || {}).textContent || 'أخرى';
-
-/* كتابة / رابط */
-function setMode(m){
-  reMode = m;
-  Object.keys(reTabs).forEach(k => { reTabs[k].setAttribute('aria-selected', k === m); rePanes[k].hidden = k !== m; });
-  setMsg('');
-  saveDraft();
-}
-reTabs.write.addEventListener('click', () => setMode('write'));
-reTabs.link.addEventListener('click', () => setMode('link'));
-
-/* أدوات الكتابة */
-const reToolbar = reEditorWrap.querySelector('.re-toolbar');
-reToolbar.addEventListener('mousedown', e => { if(e.target.closest('.re-tool')) e.preventDefault(); });
-function caretInEditor(){
-  const sel = window.getSelection();
-  if(sel.rangeCount && reEditor.contains(sel.getRangeAt(0).commonAncestorContainer)) return;
-  reEditor.focus();
-  const r = document.createRange(); r.selectNodeContents(reEditor); r.collapse(false);
-  sel.removeAllRanges(); sel.addRange(r);
-}
-function currentBlock(){
-  try{ return (document.queryCommandValue('formatBlock') || '').toLowerCase(); }catch(e){ return ''; }
-}
-const TEMPLATE_HTML =
-  '<h3>تفاصيل الموقف</h3>' +
-  '<div><b>الوقت:</b> </div><div><b>المكان:</b> </div><div><b>الأشخاص المعنيين:</b> </div>' +
-  '<hr>' +
-  '<h3>وصف الملاحظة / المخالفة</h3><div><br></div>' +
-  '<hr>' +
-  '<h3>الاقتراح للتحسين</h3><ul><li><br></li></ul>';
-
-reToolbar.addEventListener('click', e => {
-  const b = e.target.closest('.re-tool'); if(!b) return;
-  caretInEditor();
-  if(b.dataset.cmd){
-    document.execCommand(b.dataset.cmd, false, null);
-  } else if(b.dataset.block){
-    const tag = b.dataset.block;
-    document.execCommand('formatBlock', false, currentBlock() === tag ? 'div' : tag);
-  } else if(b.dataset.act === 'hr'){
-    ['insertUnorderedList','insertOrderedList'].forEach(c => { try{ if(document.queryCommandState(c)) document.execCommand(c, false, null); }catch(e){} });
-    if(['h3','blockquote'].includes(currentBlock())) document.execCommand('formatBlock', false, 'div');
-    document.execCommand('insertHorizontalRule', false, null);
-    document.execCommand('insertHTML', false, '<div><br></div>');
-  } else if(b.dataset.act === 'br'){
-    document.execCommand('insertHTML', false, '<div><br></div>');
-  } else if(b.dataset.act === 'tpl'){
-    document.execCommand('insertHTML', false, TEMPLATE_HTML);
-    /* ودّ المؤشر بعد (الوقت:) عشان يبدأ يكتب مباشرة */
-    const lbl = [...reEditor.querySelectorAll('b')].filter(x => x.textContent === 'الوقت:').pop();
-    if(lbl && lbl.parentNode){
-      const sp = document.createTextNode('\u00a0');
-      lbl.after(sp);
-      const r = document.createRange(); r.setStart(sp, 1); r.collapse(true);
-      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
-    }
-  }
-  reEditor.focus();
-  refreshTools(); onEditorChange();
-});
-function refreshTools(){
-  reToolbar.querySelectorAll('[data-cmd]').forEach(b => {
-    if(!b.hasAttribute('aria-pressed')) return;
-    let on = false; try{ on = document.queryCommandState(b.dataset.cmd); }catch(e){}
-    b.setAttribute('aria-pressed', on);
-  });
-  const blk = currentBlock();
-  reToolbar.querySelectorAll('[data-block]').forEach(b => b.setAttribute('aria-pressed', blk === b.dataset.block));
-}
-document.addEventListener('selectionchange', () => {
-  const sel = window.getSelection();
-  if(sel.rangeCount && reEditor.contains(sel.anchorNode)) refreshTools();
-});
-
-/* اللصق كنص عادي عشان ما يخرب التنسيق */
-reEditor.addEventListener('paste', e => {
-  e.preventDefault();
-  const text = (e.clipboardData || window.clipboardData).getData('text/plain');
-  document.execCommand('insertText', false, text);
-});
-reEditor.addEventListener('input', () => {
-  if(reEditor.innerHTML === '<br>' || reEditor.innerHTML === '<div><br></div>') reEditor.innerHTML = '';
-  onEditorChange();
-});
-
-/* ---------- تحويل المكتوب إلى صيغة ديسكورد ---------- */
-function wrapMd(inner, mark){
-  const m = inner.match(/^(\s*)([\s\S]*?)(\s*)$/);
-  return m[2] ? m[1] + mark + m[2] + mark + m[3] : inner;
-}
-function nodeToMd(node){
-  if(node.nodeType === 3) return node.nodeValue.replace(/\u00a0/g, ' ');
-  if(node.nodeType !== 1) return '';
-  const tag = node.tagName;
-  const kids = () => [...node.childNodes].map(nodeToMd).join('');
-  switch(tag){
-    case 'BR': return '\n';
-    case 'B': case 'STRONG': return wrapMd(kids(), '**');
-    case 'I': case 'EM': return wrapMd(kids(), '*');
-    case 'U': return wrapMd(kids(), '__');
-    case 'S': case 'STRIKE': case 'DEL': return wrapMd(kids(), '~~');
-    case 'HR': return '\n━━━━━━━━━━━━━━\n';
-    case 'H1': case 'H2': case 'H3': case 'H4': return '\n### ' + kids().trim() + '\n';
-    case 'BLOCKQUOTE': return '\n' + kids().trim().split('\n').map(l => '> ' + l).join('\n') + '\n';
-    case 'UL': return '\n' + [...node.children].map(li => '- ' + nodeToMd(li).trim()).join('\n') + '\n';
-    case 'OL': return '\n' + [...node.children].map((li, i) => (i + 1) + '. ' + nodeToMd(li).trim()).join('\n') + '\n';
-    case 'DIV': case 'P': { const c = kids(); return (c.endsWith('\n') ? c : c + '\n'); }
-    case 'SPAN': {
-      let c = kids(); const st = node.style || {};
-      if(/bold|[6-9]00/.test(st.fontWeight)) c = wrapMd(c, '**');
-      if(st.fontStyle === 'italic') c = wrapMd(c, '*');
-      return c;
-    }
-    default: return kids();
-  }
-}
-function editorMarkdown(){
-  return nodeToMd(reEditor).replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
-}
-function editorPlainLength(){ return reEditor.innerText.replace(/\s+/g, ' ').trim().length; }
-
-function buildReport(){
-  const now = new Date();
-  const date = now.toLocaleDateString('en-GB') + ' ' + now.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
-  const body = reMode === 'write'
-    ? editorMarkdown()
-    : '🔗 ' + reLink.value.trim() + (reLinkNote.value.trim() ? '\n' + reLinkNote.value.trim() : '');
-  const text =
-    `📋 **تقرير: ${reType()}**\n` +
-    `**العنوان:** ${reTitle.value.trim()}\n` +
-    `**رافع التقرير:** ${reName.value.trim()}\n` +
-    `**التاريخ:** ${date}\n` +
-    `━━━━━━━━━━━━━━\n` + body;
-  return {
-    name: reName.value.trim(), title: reTitle.value.trim(), type: reType(), mode: reMode,
-    content: reMode === 'write' ? body : reLinkNote.value.trim(),
-    link: reMode === 'link' ? reLink.value.trim() : '',
-    date, text, hp: document.getElementById('re-hp').value,
-  };
-}
-
-/* ---------- التحقق ---------- */
-function setMsg(t, err){ reMsg.textContent = t || ''; reMsg.classList.toggle('err', !!err); }
-function validate(){
-  [reName, reTitle, reLink].forEach(i => i.classList.remove('bad')); reEditorWrap.classList.remove('bad');
-  if(!reName.value.trim()){ reName.classList.add('bad'); reName.focus(); return 'اكتب اسمك.'; }
-  if(!reTitle.value.trim()){ reTitle.classList.add('bad'); reTitle.focus(); return 'اكتب عنوان للتقرير.'; }
-  if(reMode === 'write'){
-    const n = editorPlainLength();
-    if(n < 10){ reEditorWrap.classList.add('bad'); reEditor.focus(); return 'التقرير قصير، اكتب تفاصيل أكثر.'; }
-    if(editorMarkdown().length > RE_MAX){ reEditorWrap.classList.add('bad'); return 'التقرير طويل، اختصره شوي.'; }
-  } else {
-    let ok = false;
-    try{ const u = new URL(reLink.value.trim()); ok = u.protocol === 'https:' || u.protocol === 'http:'; }catch(e){}
-    if(!ok){ reLink.classList.add('bad'); reLink.focus(); return 'حط رابط صحيح يبدأ بـ https://'; }
-  }
-  return '';
-}
-
-/* ---------- المسودة ---------- */
-let _draftTimer = null;
-function onEditorChange(){
-  const len = editorMarkdown().length;
-  reCount.textContent = len + ' / ' + RE_MAX;
-  reCount.classList.toggle('over', len > RE_MAX);
-  reDraftState.textContent = 'جاري الحفظ…';
-  clearTimeout(_draftTimer); _draftTimer = setTimeout(saveDraft, 500);
-}
-function saveDraft(){
-  try{
-    localStorage.setItem(RE_DRAFT_KEY, JSON.stringify({
-      name:reName.value, title:reTitle.value, type:reType(), mode:reMode,
-      html:reEditor.innerHTML, link:reLink.value, note:reLinkNote.value,
-    }));
-    reDraftState.textContent = 'المسودة محفوظة';
-  }catch(e){ reDraftState.textContent = ''; }
-}
-function loadDraft(){
-  try{
-    const d = JSON.parse(localStorage.getItem(RE_DRAFT_KEY) || 'null');
-    if(!d) return;
-    reName.value = d.name || ''; reTitle.value = d.title || '';
-    reEditor.innerHTML = d.html || ''; reLink.value = d.link || ''; reLinkNote.value = d.note || '';
-    reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c.textContent === d.type));
-    if(!reTypeWrap.querySelector('[aria-checked="true"]')) reTypeWrap.querySelector('.re-chip').setAttribute('aria-checked', 'true');
-    setMode(d.mode === 'link' ? 'link' : 'write');
-  }catch(e){}
-  const len = editorMarkdown().length;
-  reCount.textContent = len + ' / ' + RE_MAX;
-}
-function clearDraft(keepName){
-  const nm = reName.value;
-  reForm.reset(); reEditor.innerHTML = '';
-  if(keepName) reName.value = nm;
-  reTypeWrap.querySelectorAll('.re-chip').forEach((c, i) => c.setAttribute('aria-checked', i === 0));
-  setMode('write'); setMsg('');
-  reCount.textContent = '0 / ' + RE_MAX;
-  saveDraft();
-}
-[reName, reTitle, reLink, reLinkNote].forEach(i => i.addEventListener('input', () => { i.classList.remove('bad'); clearTimeout(_draftTimer); _draftTimer = setTimeout(saveDraft, 500); }));
-loadDraft();
-
-/* ---------- نسخ / إرسال ---------- */
-async function copyText(t){
-  try{ await navigator.clipboard.writeText(t); return true; }
-  catch(e){
-    const ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.appendChild(ta); ta.select();
-    let ok = false; try{ ok = document.execCommand('copy'); }catch(_){}
-    ta.remove(); return ok;
-  }
-}
-function showDone(title, text){
-  document.getElementById('re-done-title').textContent = title;
-  document.getElementById('re-done-text').textContent = text;
-  reForm.hidden = true; reDone.hidden = false;
-}
-document.getElementById('re-copy').addEventListener('click', async () => {
-  const err = validate(); if(err){ setMsg(err, true); return; }
-  const ok = await copyText(buildReport().text);
-  setMsg(ok ? 'تم نسخ التقرير. تقدر تلصقه بالديسكورد مباشرة.' : 'ما قدرت أنسخ، جرّب مرة ثانية.', !ok);
-});
-document.getElementById('re-new').addEventListener('click', () => { clearDraft(true); reForm.hidden = false; reDone.hidden = true; reTitle.focus(); });
-
-reForm.addEventListener('submit', async e => {
-  e.preventDefault();
-  const err = validate(); if(err){ setMsg(err, true); return; }
-  const rep = buildReport();
-  if(rep.hp) return; /* فخ للبوتات */
-
-  if(!REPORT_SUBMIT_URL){
-    const ok = await copyText(rep.text);
-    if(!ok){ setMsg('ما قدرت أنسخ التقرير، استخدم زر النسخ.', true); return; }
-    clearDraft(true);
-    showDone('تم نسخ تقريرك', 'التقرير منسوخ بالتنسيق. الصقه وأرسله لأحد مسؤولين الفرقة بالخاص بالديسكورد.');
-    return;
-  }
-  reSubmit.disabled = true; setMsg('جاري الإرسال…');
-  try{
-    await fetch(REPORT_SUBMIT_URL, {
-      method:'POST', mode:'no-cors',
-      headers:{ 'Content-Type':'text/plain;charset=utf-8' },
-      body:JSON.stringify(rep),
-    });
-    clearDraft(true);
-    showDone('تم إرسال تقريرك', 'شكراً لك. بتراجعه القيادة وتنضاف لك النقاط اللي يحددها المسؤولين.');
-  }catch(err2){
-    setMsg('صار خطأ بالإرسال. تأكد من النت، أو انسخ التقرير وأرسله بالخاص.', true);
-  }finally{
-    reSubmit.disabled = false;
-  }
-});
-
-/* =====================================================================
    مساعد السكواد (ذكاء اصطناعي)
    - حط رابط الـ Cloudflare Worker في AI_ENDPOINT عشان يشتغل بـ Claude.
    - لو الرابط فاضي أو صار خطأ، يرد المساعد بنفسه من بيانات الشيت مباشرة.
@@ -2126,7 +1599,7 @@ function aiToggle(open){
   aiPanel.classList.toggle('open', open);
   aiOrb.setAttribute('aria-expanded', open);
   if(open){
-    if(!aiGreeted){ aiGreeted = true; aiAdd('bot', 'هلا . اسألني عن الترتيب، أي عضو، تحدي الأسبوع، المهام، أو القوانين.'); }
+    if(!aiGreeted){ aiGreeted = true; aiAdd('bot', 'حيّاك. اكتب اسم عضو أو اسأل عن الترتيب، التحديات، المهام، أو القوانين.'); }
     setTimeout(()=> aiInput.focus(), 250);
   }
 }
@@ -2220,9 +1693,6 @@ function buildSquadContext(){
   d.rules.forEach(r => L.push(`- [${r.category}] ${r.title}: ${r.desc}`));
   L.push('\n# نظام السكواد'); d.system.forEach(s => L.push('- ' + s));
   L.push('\n# مواعيد استخراج الفرقة: الاثنين والأربعاء والجمعة الساعة 3 مساءً');
-  L.push('\n# نظام التقارير (إعلان CharLie Leader بتاريخ 9/12/2026)');
-  document.querySelectorAll('#reports-data .timeline-card').forEach(c => L.push('- ' + c.querySelector('h4').textContent + ': ' + c.querySelector('p').textContent));
-  L.push('- طريقة رفع التقرير: من صفحة القوانين، كرت نظام التقارير، زر (إنشاء تقرير). يقدر العضو يكتب التقرير بأدوات التنسيق (عريض، عناوين، قوائم، فواصل، قالب جاهز) أو يرفق رابط.');
   L.push('\n# هرم القيادة (من الأعلى)');
   HIERARCHY_ORDER.forEach((tier,i) => L.push(`المستوى ${i+1}: ${tier.join('، ')}`));
   return L.join('\n').slice(0, 30000);
@@ -2239,7 +1709,7 @@ function answerLocal(q){
   const n = normAr(q);
   const has = (...w) => w.some(x => n.includes(normAr(x)));
 
-  if(!d.roster.length && !d.challenges.length && !d.tasks.length) return 'البيانات لسا تتحمّل من الشيت، جرّب بعد ثواني.';
+  if(!d.roster.length && !d.challenges.length && !d.tasks.length) return 'البيانات ما تحمّلت للحين، ثواني وجرّب.';
 
   const qWords = n.split(/\s+/);
   let member = [...d.roster].sort((a,b)=>b.name.length-a.name.length).find(r => n.includes(normAr(r.name)));
@@ -2273,10 +1743,6 @@ function answerLocal(q){
     const auth = [...document.querySelectorAll('#system-rules .timeline-card')].pop();
     return 'مواعيد استخراج الفرقة: الاثنين والأربعاء والجمعة الساعة 3 مساءً.' + (auth ? '\nالمصرّح لهم بالاستخراج: ' + auth.querySelector('p').textContent : '');
   }
-  if(has('تقرير','تقارير','بلاغ','مخالفه','ملاحظه')){
-    return 'نظام التقارير:\n' + [...document.querySelectorAll('#reports-data .timeline-card')].map(c => '• ' + c.querySelector('h4').textContent + ': ' + c.querySelector('p').textContent).join('\n')
-      + '\n\nتقدر تكتب تقريرك أو ترفق رابط من صفحة القوانين ← نظام التقارير ← (إنشاء تقرير).';
-  }
   if(has('قائد','ليدر','هرم','قياده','مسؤول')){
     return 'هرم القيادة:\n' + HIERARCHY_ORDER.map((t,i)=>`${i+1}. ${t.join('، ')}`).join('\n');
   }
@@ -2291,7 +1757,7 @@ function answerLocal(q){
   if(sys.length) return sys.slice(0,3).map(s => '• ' + s).join('\n');
   if(has('قانون','قوانين','نظام')) return 'أقسام القوانين: ' + [...new Set(d.rules.map(r=>r.category))].join('، ') + '\nاكتب كلمة من القانون اللي تبيه وأطلعه لك.';
 
-  return 'ما لقيت جواب لهالسؤال بالبيانات الحالية. جرّب تسأل عن: الترتيب بالساعات أو النقاط، اسم عضو، تحدي الأسبوع، المهام، مواعيد الاستخراج، أو قانون معيّن.';
+  return 'ما لقيت شي يطابق سؤالك. جرّب: اسم عضو، الساعات، النقاط، التحديات، المهام، الاستخراج، أو كلمة من قانون.';
 }
 
 </script>
