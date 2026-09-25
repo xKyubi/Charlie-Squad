@@ -536,15 +536,9 @@
   .msg.me{ align-self:flex-end; background:var(--neon); color:var(--k0); font-weight:600; }
   .msg.typing{ display:flex; gap:5px; align-items:center; }
   .msg.typing i{ width:6px; height:6px; border-radius:50%; background:var(--neon); }
-  .ai-suggest{ display:flex; gap:6px; flex-wrap:wrap; padding:0 14px 10px; }
+  .ai-suggest{ display:flex; gap:6px; flex-wrap:wrap; padding:10px 14px 14px; border-top:1px solid var(--line); }
   .ai-suggest button{ font-family:var(--f-ar); font-size:12.5px; font-weight:600; color:var(--text); background:var(--k3); border:1px solid var(--line); border-radius:12px; padding:4px 10px; cursor:pointer; }
   .ai-suggest button:hover{ color:var(--neon); border-color:var(--neon); }
-  .ai-form{ display:flex; gap:8px; padding:10px; border-top:1px solid var(--line); }
-  .ai-form input{ flex:1; min-width:0; font-family:var(--f-ar); font-size:14.5px; color:var(--text); background:var(--k2); border:1px solid var(--line-2); border-radius:10px; padding:9px 12px; outline:none; }
-  .ai-form input:focus{ border-color:var(--neon); }
-  .ai-form button{ width:42px; height:42px; flex-shrink:0; border-radius:10px; border:0; background:var(--neon); color:var(--k0); cursor:pointer; display:flex; align-items:center; justify-content:center; }
-  .ai-form button:disabled{ opacity:.4; cursor:default; }
-  .ai-form button svg{ width:18px; height:18px; transform:scaleX(-1); }
   .ai-orb{ color:#161616; }
   .ai-orb:hover{ background:#fff; }
   .msg.me{ color:#161616; }
@@ -786,10 +780,6 @@
       <button type="button">المهام</button>
       <button type="button">مواعيد الاستخراج</button>
     </div>
-    <form class="ai-form" id="ai-form" autocomplete="off">
-      <input id="ai-input" type="text" placeholder="اكتب سؤالك…" aria-label="اكتب سؤالك" maxlength="500">
-      <button type="submit" id="ai-send" aria-label="إرسال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
-    </form>
   </section>
 
 <script>
@@ -1588,9 +1578,6 @@ const AI_ENDPOINT = ""; // مثال: "https://charlie-ai.YOUR-NAME.workers.dev"
 const aiOrb = document.getElementById('ai-orb');
 const aiPanel = document.getElementById('ai-panel');
 const aiBody = document.getElementById('ai-body');
-const aiForm = document.getElementById('ai-form');
-const aiInput = document.getElementById('ai-input');
-const aiSend = document.getElementById('ai-send');
 const aiSuggest = document.getElementById('ai-suggest');
 const aiHistory = [];
 let aiGreeted = false, aiBusy = false;
@@ -1599,8 +1586,7 @@ function aiToggle(open){
   aiPanel.classList.toggle('open', open);
   aiOrb.setAttribute('aria-expanded', open);
   if(open){
-    if(!aiGreeted){ aiGreeted = true; aiAdd('bot', 'حيّاك. اكتب اسم عضو أو اسأل عن الترتيب، التحديات، المهام، أو القوانين.'); }
-    setTimeout(()=> aiInput.focus(), 250);
+    if(!aiGreeted){ aiGreeted = true; aiAdd('bot', 'حيّاك. اختار من الأسئلة تحت.'); }
   }
 }
 aiOrb.addEventListener('click', ()=> aiToggle(!aiPanel.classList.contains('open')));
@@ -1625,13 +1611,11 @@ function aiTyping(){
 }
 
 aiSuggest.querySelectorAll('button').forEach(b => b.addEventListener('click', ()=> aiAsk(b.textContent)));
-aiForm.addEventListener('submit', e => { e.preventDefault(); aiAsk(aiInput.value); });
 
 async function aiAsk(raw){
   const q = (raw || '').trim();
   if(!q || aiBusy) return;
-  aiBusy = true; aiSend.disabled = true;
-  aiInput.value = '';
+  aiBusy = true;
   aiAdd('me', q);
   aiHistory.push({ role:'user', content:q });
   const typing = aiTyping();
@@ -1651,7 +1635,7 @@ async function aiAsk(raw){
   typing.remove();
   aiAdd('bot', reply);
   aiHistory.push({ role:'assistant', content:reply });
-  aiBusy = false; aiSend.disabled = false;
+  aiBusy = false;
 }
 
 /* ---------- تجهيز بيانات السكواد كسياق للمساعد ---------- */
