@@ -2234,7 +2234,7 @@ function answerLocal(q){
     return d.tasks.map(t => `• ${t.title} — ${statusAr[t.status]} (${t.progress}%)${t.points ? ` | ${t.points} نقطة` : ''}${t.remaining ? `\nالمتبقي: ${t.remaining}` : ''}`).join('\n');
   }
   if(has('استخراج','موعد','مواعيد','متي')){
-    return 'مواعيد استخراج الفرقة: الاثنين والأربعاء والجمعة الساعة 3 مساءً.\nالمصرّح لهم بالاستخراج: abadi Abdullah و Nawaf Almutiri.';
+    return 'مواعيد استخراج الفرقة: الاثنين والأربعاء والجمعة الساعة 3 مساءً.\nالمصرّح لهم بالاستخراج: من هم برتبة اوفيسر 3 فما فوق.';
   }
   if(has('تقرير','تقارير','بلاغ','مخالفه','ملاحظه')){
     return 'نظام التقارير:\n' + [...document.querySelectorAll('#reports-data .timeline-card')].map(c => '• ' + c.querySelector('h4').textContent + ': ' + c.querySelector('p').textContent).join('\n')
