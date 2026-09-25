@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Delta Squad — Leaderboard</title>
+<title>Charli Squad — Leaderboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Tajawal:wght@400;500;700;900&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 <style>
@@ -495,9 +495,9 @@
 
   <nav class="nav fade-in">
     <div class="brand">
-      <img class="logo-img" alt="Delta Squad">
+      <img class="logo-img" alt="Charli Squad">
       <div>
-        <span>DELTA SQUAD</span>
+        <span>CHARLI SQUAD</span>
         <div class="brand-tag">TACTICAL UNIT</div>
       </div>
     </div>
@@ -519,7 +519,7 @@
       <span class="hero-corner tr"></span>
       <span class="hero-corner bl"></span>
       <span class="hero-corner br"></span>
-      <img class="emblem logo-img" alt="Delta Squad emblem">
+      <img class="emblem logo-img" alt="Charli Squad emblem">
       <h1 class="fade-in" style="animation-delay:0.1s">لوحة المتصدرين</h1>
       <div class="brand-underline fade-in" style="animation-delay:0.15s"><span></span><em>SQUAD BOARD</em><span></span></div>
       <p class="fade-in" style="animation-delay:0.2s">التوب حسب الساعات أو النقاط، مع تحدي الأسبوع الحالي.</p>
@@ -634,7 +634,7 @@
   </section>
 
   <footer class="footer">
-    <span>DELTA SQUAD</span>
+    <span>CHARLI SQUAD</span>
     <span>Made By : Kyubi.Abdulaziz</span>
   </footer>
 
@@ -643,7 +643,7 @@
     <div class="modal-box" style="max-width:960px;">
       <button class="modal-close" id="training-modal-close" type="button" aria-label="إغلاق">✕</button>
       <h2 class="modal-title">نظام السكواد</h2>
-      <div class="brand-underline" style="margin-bottom:26px;"><span></span><em>Delta Squad System</em><span></span></div>
+      <div class="brand-underline" style="margin-bottom:26px;"><span></span><em>Charli Squad System</em><span></span></div>
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-card">
@@ -799,10 +799,19 @@ if(btnHierarchy && hierarchyModal){
 }
 
 /* ---------- shared roster (loaded live from Google Sheet) ---------- */
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRUQsSt8Ge39wV1fPAssaQpSYqjju7sw_B9u-VMMIbIXq2daS-dvBY9DzwFQKSSs-BI5vJeM41Fl9p2/pub?gid=430321705&single=true&output=csv";
-const CHALLENGE_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRUQsSt8Ge39wV1fPAssaQpSYqjju7sw_B9u-VMMIbIXq2daS-dvBY9DzwFQKSSs-BI5vJeM41Fl9p2/pub?gid=1643908210&single=true&output=csv";
-const TASKS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRUQsSt8Ge39wV1fPAssaQpSYqjju7sw_B9u-VMMIbIXq2daS-dvBY9DzwFQKSSs-BI5vJeM41Fl9p2/pub?gid=352351439&single=true&output=csv";
-const RULES_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRUQsSt8Ge39wV1fPAssaQpSYqjju7sw_B9u-VMMIbIXq2daS-dvBY9DzwFQKSSs-BI5vJeM41Fl9p2/pub?gid=832726776&single=true&output=csv";
+/* ===== Charli Squad sheet ===== */
+const SHEET_PUB_ID = "2PACX-1vSthEiRO0EX4tFwdD94H_GzhPvRbYHDZ2rWdVo8MuhqLA8ORW5Jz_2Us_P58q4zpuJAyIrFQjzhOQ0S";
+const SHEET_GIDS = {
+  members:    "430321705",   // تبويب الأعضاء
+  challenges: "1643908210",  // تبويب التحديات
+  tasks:      "352351439",   // تبويب المهام
+  rules:      "832726776"    // تبويب القوانين
+};
+const sheetCsv = gid => `https://docs.google.com/spreadsheets/d/e/${SHEET_PUB_ID}/pub?gid=${gid}&single=true&output=csv`;
+const SHEET_CSV_URL = sheetCsv(SHEET_GIDS.members);
+const CHALLENGE_CSV_URL = sheetCsv(SHEET_GIDS.challenges);
+const TASKS_CSV_URL = sheetCsv(SHEET_GIDS.tasks);
+const RULES_CSV_URL = sheetCsv(SHEET_GIDS.rules);
 
 const MEMBER_PHOTOS = {
   "Nick Reyes": "assets/members/kyubi.jpg",
