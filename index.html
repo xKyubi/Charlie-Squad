@@ -2543,9 +2543,8 @@
             <input class="re-input" id="re-title" maxlength="120" placeholder="مثال: ملاحظة على الانتشار بالمنطقة الشمالية" data-i18n-ph="titlePh" autocomplete="off">
           </label>
           <label class="re-field">
-            <span class="re-label"><span data-i18n="did">يوزر ايدي الديسكورد</span> <small class="re-opt" data-i18n="didOpt">(اختياري — عشان يمنشنك)</small></span>
+            <span class="re-label"><span data-i18n="did">Copy ID</span> <em>*</em></span>
             <input class="re-input ltr" id="re-discord" inputmode="numeric" maxlength="20" placeholder="مثال: 123456789012345678" data-i18n-ph="didPh" autocomplete="off">
-            <small class="re-hint" data-i18n="didHint">من الديسكورد: الإعدادات ← متقدم ← فعّل وضع المطوّر، بعدين كليك يمين على اسمك ← نسخ معرّف المستخدم.</small>
           </label>
           <div class="re-field full">
             <span class="re-label" id="re-type-label" data-i18n="type">نوع التقرير</span>
@@ -3708,7 +3707,7 @@ const RE_I18N = {
     modeWrite:'اكتب التقرير', modeLink:'أرفق رابط', tpl:'قالب جاهز', editorPh:'اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز).',
     link:'رابط التقرير', note:'ملاحظة قصيرة (اختياري)', notePh:'وش يحتوي الرابط؟ (فيديو، صور، مستند…)', copy:'نسخ التقرير', send:'إرسال التقرير',
     newRep:'تقرير جديد', done:'تم', saved:'المسودة محفوظة', saving:'جاري الحفظ…',
-    eName:'اكتب اسمك.', did:'يوزر ايدي الديسكورد', didOpt:'(اختياري — عشان يمنشنك)', didPh:'مثال: 123456789012345678', didHint:'من الديسكورد: الإعدادات ← متقدم ← فعّل وضع المطوّر، بعدين كليك يمين على اسمك ← نسخ معرّف المستخدم.', eDid:'اليوزر ايدي لازم يكون أرقام بس (17 إلى 20 رقم).', fDid:'ديسكورد', eTitle:'اكتب عنوان للتقرير.', eShort:'التقرير قصير، اكتب تفاصيل أكثر.', eLong:'التقرير تعدى 4000 كلمة، اختصره شوي.', eLink:'حط رابط صحيح يبدأ بـ https://',
+    eName:'اكتب اسمك.', did:'Copy ID', eDidReq:'حط Copy ID حقك.', didPh:'مثال: 123456789012345678', didHint:'من الديسكورد: الإعدادات ← متقدم ← فعّل وضع المطوّر، بعدين كليك يمين على اسمك ← نسخ معرّف المستخدم.', eDid:'Copy ID لازم يكون أرقام بس (17 إلى 20 رقم).', fDid:'ديسكورد', eTitle:'اكتب عنوان للتقرير.', eShort:'التقرير قصير، اكتب تفاصيل أكثر.', eLong:'التقرير تعدى 4000 كلمة، اختصره شوي.', eLink:'حط رابط صحيح يبدأ بـ https://',
     copied:'تم نسخ التقرير. تقدر تلصقه بالديسكورد مباشرة.', copyFail:'ما قدرت أنسخ، جرّب مرة ثانية.', off:'الإرسال مو مفعّل، استخدم (نسخ التقرير) وأرسله لمسؤول بالخاص.',
     wait:s=>'انتظر ' + s + ' ثانية قبل تقرير ثاني.', sending:'جاري الإرسال…', fail:'ما انرسل التقرير. تأكد من اتصالك، أو انسخه وأرسله بالخاص.', eHook:'رابط الويب هوك غلط أو انحذف من الديسكورد. سوّ ويب هوك جديد وحط رابطه بالكود.', eRate:'الديسكورد رافض الطلبات مؤقتاً، جرّب بعد دقيقة.', eBad:'الديسكورد رفض محتوى التقرير.',
     okT:'وصل تقريرك', okX:'انرسل لروم المسؤولين، ويتراجع بأقرب وقت.', okXd:'انرسل بسرية تامة، والاطلاع عليه من القادات فقط.',
@@ -3720,7 +3719,7 @@ const RE_I18N = {
     modeWrite:'Write report', modeLink:'Attach link', tpl:'Template', editorPh:'Write your report here… use the tools above for bold, headings, lists and dividers, or press (Template).',
     link:'Report link', note:'Short note (optional)', notePh:'What does the link contain? (video, images, document…)', copy:'Copy report', send:'Send report',
     newRep:'New report', done:'Done', saved:'Draft saved', saving:'Saving…',
-    eName:'Enter your name.', did:'Discord user ID', didOpt:'(optional — to mention you)', didPh:'e.g. 123456789012345678', didHint:'In Discord: Settings → Advanced → enable Developer Mode, then right-click your name → Copy User ID.', eDid:'User ID must be digits only (17–20 digits).', fDid:'Discord', eTitle:'Enter a report title.', eShort:'Report is too short, add more details.', eLong:'Report is over 4,000 words, shorten it a bit.', eLink:'Enter a valid link starting with https://',
+    eName:'Enter your name.', did:'Copy ID', eDidReq:'Enter your Copy ID.', didPh:'e.g. 123456789012345678', didHint:'In Discord: Settings → Advanced → enable Developer Mode, then right-click your name → Copy User ID.', eDid:'User ID must be digits only (17–20 digits).', fDid:'Discord', eTitle:'Enter a report title.', eShort:'Report is too short, add more details.', eLong:'Report is over 4,000 words, shorten it a bit.', eLink:'Enter a valid link starting with https://',
     copied:'Report copied. You can paste it in Discord directly.', copyFail:'Could not copy, try again.', off:'Sending is disabled, use (Copy report) and DM an officer.',
     wait:s=>'Wait ' + s + ' seconds before another report.', sending:'Sending…', fail:'Report not sent. Check your connection, or copy it and DM an officer.', eHook:'Webhook link is wrong or was deleted in Discord. Create a new webhook and put its link in the code.', eRate:'Discord is rate-limiting, try again in a minute.', eBad:'Discord rejected the report content.',
     okT:'Report received', okX:'Sent to the officers room, it will be reviewed soon.', okXd:'Sent in full confidence — only leaders can view it.',
@@ -3972,7 +3971,8 @@ function validate(){
   if(!reName.value.trim()){ reName.classList.add('bad'); reName.focus(); return T('eName'); }
   if(!reTitle.value.trim()){ reTitle.classList.add('bad'); reTitle.focus(); return T('eTitle'); }
   const did = reDiscordId();
-  if(did && !/^\d{17,20}$/.test(did)){ reDiscord.classList.add('bad'); reDiscord.focus(); return T('eDid'); }
+  if(!did){ reDiscord.classList.add('bad'); reDiscord.focus(); return T('eDidReq'); }
+  if(!/^\d{17,20}$/.test(did)){ reDiscord.classList.add('bad'); reDiscord.focus(); return T('eDid'); }
   if(reMode === 'write'){
     const n = editorPlainLength();
     if(n < 10){ reEditorWrap.classList.add('bad'); reEditor.focus(); return T('eShort'); }
