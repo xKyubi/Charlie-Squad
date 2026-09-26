@@ -1483,6 +1483,18 @@
     .side-stat .side-l{ font-size:12px; }
     .side-ic{ grid-row:span 2; }
   }
+
+  /* ===== الشريط الجانبي على طرف اليمين، والمحتوى بالنص ===== */
+  @media (min-width:981px){
+    #sec-board .content{ max-width:none; padding-left:32px; padding-right:28px; }
+    .board-layout{ grid-template-columns: 300px minmax(0,1fr) 300px; gap:28px; }
+    .board-main{ width:100%; max-width:860px; margin-inline:auto; }
+    .board-layout::after{ content:""; } /* عمود فاضي يسار عشان المحتوى يبقى بالنص */
+  }
+  @media (min-width:981px) and (max-width:1320px){
+    .board-layout{ grid-template-columns: 290px minmax(0,1fr); }
+    .board-layout::after{ display:none; }
+  }
 </style>
 </head>
 <body>
