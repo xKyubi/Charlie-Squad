@@ -1966,7 +1966,7 @@
     padding:5px 12px; border-radius:7px; border:0; background:transparent; transition: all .15s ease; }
   .re-lang button[aria-pressed="true"]{ background:var(--stone); color:#10130a; }
   .re-en .modal-close{ left:16px !important; right:auto !important; }
-  .re-en .modal-title{ padding-left:190px; }
+  .site-en #report-editor-modal .modal-close{ left:16px !important; right:auto !important; }
   .re-lang{ direction:ltr; }
   .re-en, .re-en .re-input, .re-en .re-chip, .re-en .re-editor{ font-family:'Tajawal', system-ui, sans-serif; }
   .re-en .re-editor{ text-align:left; }
@@ -1979,17 +1979,83 @@
   .re-tgroup.disc .re-chip[aria-checked="true"]{ background:#e2503a !important; border-color:#e2503a !important; color:#fff !important; }
   .re-tgroup.disc .re-chip:not([aria-checked="true"]):hover{ border-color:#e2503a; color:#ff8a70; }
   .re-types.is-disc + * {}
+
+  /* ===== صفحة القوانين بعد نقل التقارير ===== */
+  .ov-grid{ grid-template-columns:1fr 1fr !important; grid-template-areas:"hie sch" "rul sch" !important; }
+  @media (max-width:560px){ .ov-grid{ grid-template-columns:1fr !important; grid-template-areas:"sch" "hie" "rul" !important; } }
+
+  /* ===== صفحة التقارير ===== */
+  .rp-content{ max-width:980px; }
+  .rp-hero{ position:relative; overflow:hidden; border-radius:18px; padding:34px 34px 30px; margin-bottom:18px;
+    background: radial-gradient(ellipse at 0% 100%, rgba(199,217,119,0.14), transparent 55%), linear-gradient(155deg, rgba(34,41,17,0.97), rgba(10,12,6,0.97));
+    border:1px solid rgba(199,217,119,0.2); box-shadow:0 18px 40px rgba(0,0,0,.45); }
+  .rp-wm{ position:absolute; left:-10px; bottom:-40px; color:rgba(199,217,119,0.05); pointer-events:none; }
+  .rp-wm svg{ width:230px; height:230px; }
+  .rp-hero-txt{ position:relative; max-width:560px; }
+  .rp-kicker{ display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:700; color:#9fd05a; padding:3px 11px; border-radius:20px; background:rgba(159,208,90,0.08); border:1px solid rgba(159,208,90,0.3); }
+  .rp-kicker i{ width:7px; height:7px; border-radius:50%; background:#9fd05a; box-shadow:0 0 8px #9fd05a; animation: blinkDot 1.6s ease-in-out infinite; }
+  .rp-hero h2{ margin:12px 0 8px; font-size:28px; font-weight:900; color:#f4f6e2; }
+  .rp-hero p{ margin:0; font-size:14.5px; line-height:1.8; color:var(--text-dim); }
+  .rp-routes{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:30px; }
+  .rp-route{ border-radius:14px; padding:18px 20px; background:linear-gradient(155deg, rgba(28,34,15,0.95), rgba(10,12,6,0.95)); border:1px solid rgba(199,217,119,0.14); }
+  .rp-route.disc{ border-color:rgba(226,80,58,0.3); background:linear-gradient(155deg, rgba(40,18,12,0.9), rgba(10,12,6,0.95)); }
+  .rp-r-h{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .rp-r-h b{ display:block; font-size:15.5px; font-weight:800; color:#f1f3de; }
+  .rp-r-h small{ font-size:12px; color:var(--text-dim); }
+  .rp-r-ic{ width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--stone); background:rgba(199,217,119,0.1); border:1px solid rgba(199,217,119,0.22); }
+  .rp-r-ic svg{ width:20px; height:20px; }
+  .rp-route.disc .rp-r-ic{ color:#ff8a70; background:rgba(226,80,58,0.1); border-color:rgba(226,80,58,0.3); }
+  .rp-route ul{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+  .rp-route li{ font-size:12.5px; font-weight:700; color:var(--stone); padding:4px 11px; border-radius:20px; background:rgba(199,217,119,0.06); border:1px solid rgba(199,217,119,0.2); }
+  .rp-route.disc li{ color:#ff8a70; background:rgba(226,80,58,0.06); border-color:rgba(226,80,58,0.28); }
+  .rp-steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:30px; }
+  .rp-step{ position:relative; border-radius:14px; padding:18px; background:rgba(0,0,0,0.3); border:1px solid rgba(199,217,119,0.1); }
+  .rp-step span{ font-family:'Orbitron',sans-serif; font-size:22px; font-weight:800; color:rgba(199,217,119,0.35); }
+  .rp-step b{ display:block; margin:6px 0 4px; font-size:15px; color:#f1f3de; }
+  .rp-step p{ margin:0; font-size:12.5px; line-height:1.7; color:var(--text-dim); }
+  @media (max-width:700px){ .rp-routes, .rp-steps{ grid-template-columns:1fr; } .rp-hero{ padding:24px 20px; } .rp-hero h2{ font-size:22px; } }
+  @media (max-width:900px){ .nav2 .nav-links a{ font-size:9.5px !important; padding:7px 2px !important; } }
+
+  /* ===== مبدّل لغة الموقع ===== */
+  .nav2{ position:sticky; }
+  .lang-sw{ position:absolute; left:24px; top:50%; transform:translateY(-50%); z-index:5; display:flex; padding:3px; border-radius:10px; direction:ltr;
+    background:rgba(0,0,0,0.4); border:1px solid rgba(199,217,119,0.2); }
+  .lang-sw button{ font-family:'Tajawal',sans-serif; font-size:12px; font-weight:800; cursor:pointer; color:var(--text-dim); padding:5px 12px; border-radius:7px; border:0; background:transparent; }
+  .lang-sw button[aria-pressed="true"]{ background:var(--stone); color:#10130a; }
+  @media (max-width:900px){
+    .lang-sw{ position:fixed; top:calc(10px + env(safe-area-inset-top,0px)); left:10px; transform:none; }
+  }
+  /* تعديلات الاتجاه للإنجليزي */
+  .site-en body{ font-family:'Tajawal', system-ui, sans-serif; }
+  .site-en .mb-card::before{ right:auto; left:0; border-radius:0 3px 3px 0; }
+  .site-en .hero-text, .site-en .ov, .site-en .ov-link, .site-en .sys-toc button{ text-align:left; }
+  .site-en .ov-num{ left:auto; right:18px; }
+  .site-en .mb-xl .mb-state, .site-en .mb-lg .mb-state{ left:auto; right:16px; }
+  .site-en .ch-barcode{ left:auto; right:10px; }
+  .site-en .ch-stub{ border-left:0; border-right:2px dashed rgba(199,217,119,0.22); }
+  .site-en .ch-main{ padding:18px 34px 16px 22px; }
+  .site-en .ov-go svg, .site-en .sys-nav svg{ transform:scaleX(-1); }
+  .site-en .ov-days li.next::before{ right:auto; left:-1px; }
+  .site-en .ai-orb{ left:auto !important; right:20px; }
+  .site-en .ai-panel{ left:auto !important; right:20px; }
+  @media (max-width:760px){ .site-en .ai-orb{ right:12px; } .site-en .ai-panel{ right:8px; left:8px !important; } }
+  .site-en .mi-close, .site-en .modal-close{ left:auto !important; right:12px !important; }
+  .site-en .mi-nick{ text-align:left; }
+  .site-en .msg.bot{ border-right:0; border-left:3px solid var(--gold); }
+  .site-en .side-panel::before, .site-en .ov::before{ }
 </style>
 </head>
 <body>
 
   <nav class="nav nav2 fade-in">
+    <div class="lang-sw" role="group" aria-label="Language"><button type="button" data-lang="ar" aria-pressed="true">عربي</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
     <div class="nav-links">
       <span class="nav-ind" aria-hidden="true"></span>
       <a class="active" data-section="board" href="#board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg><b>لوحة المتصدرين</b></a>
       <a data-section="members" href="#members"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg><b>الأعضاء</b></a>
       <a data-section="tasks" href="#tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h11M9 12h11M9 19h11"/><path d="M3.5 5l1.5 1.5L7.5 4M3.5 12l1.5 1.5 2.5-2.5M3.5 19l1.5 1.5 2.5-2.5"/></svg><b>المهام</b></a>
       <a data-section="rules" href="#rules"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 4.8-3.4 8.8-8 10-4.6-1.2-8-5.2-8-10v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b>القوانين</b></a>
+      <a data-section="reports" href="#reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><b>التقارير</b></a>
     </div>
   </nav>
 
@@ -2121,19 +2187,8 @@
     <div class="content">
 
       <div class="ov-grid fade-in" style="animation-delay:0.1s">
-        <div class="ov ov-rep">
-          <span class="ov-num">01</span>
-          <span class="ov-wm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
-          <div class="ov-top"><span class="ov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><span class="rp-badge ov-new">جديد</span></div>
-          <h3>نظام التقارير</h3>
-          <p>اكتب ملاحظاتك الميدانية والمخالفات أو أرفق رابط لها، وكل تقرير يعطيك نقاط.</p>
-          <div class="ov-actions">
-            <button class="ov-btn primary" type="button" id="btn-report-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
-            <button class="ov-btn" type="button" id="btn-reports-system">عرض النظام</button>
-          </div>
-        </div>
         <div class="ov ov-sch">
-          <span class="ov-num">02</span>
+          <span class="ov-num">01</span>
           <div class="ov-top"><span class="ov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span class="ov-ok"><i></i>موعد مؤكّد</span></div>
           <h3>موعد استخراج الفرقة</h3>
           <ul class="ov-days" id="ov-days">
@@ -2143,13 +2198,13 @@
           </ul>
         </div>
         <button class="ov ov-link" type="button" id="btn-hierarchy">
-          <span class="ov-num">03</span>
+          <span class="ov-num">02</span>
           <span class="ov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-4h12v4"/></svg></span>
           <span class="ov-txt"><span class="ov-h">هرم السكواد</span><span class="ov-s">التسلسل القيادي المسؤول عن إدارة السكواد.</span></span>
           <span class="ov-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></span>
         </button>
         <button class="ov ov-link" type="button" id="btn-training-system">
-          <span class="ov-num">04</span>
+          <span class="ov-num">03</span>
           <span class="ov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
           <span class="ov-txt"><span class="ov-h">قوانين السكواد</span><span class="ov-s">اللائحة اللي تضمن انضباط الأعضاء وسير العمل داخل السكواد.</span></span>
           <span class="ov-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></span>
@@ -2167,6 +2222,48 @@
 
     </div>
   </section>
+
+  <!-- ===== التقارير ===== -->
+  <section class="page" id="sec-reports">
+    <div class="page-hero fade-in">
+      <h1>التقارير</h1>
+      <div class="brand-underline"><span></span><em>REPORTS</em><span></span></div>
+      <p>ارفع ملاحظاتك الميدانية والمخالفات والشكاوى، وكل تقرير يعطيك نقاط.</p>
+    </div>
+    <div class="content rp-content">
+      <div class="rp-hero fade-in" style="animation-delay:.1s">
+        <span class="rp-wm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+        <div class="rp-hero-txt">
+          <span class="rp-kicker"><i></i>النظام شغال</span>
+          <h2>نظام التقارير</h2>
+          <p>اكتب ملاحظاتك الميدانية والمخالفات أو أرفق رابط لها، والتقرير يوصل مباشرة لروم المسؤولين بالديسكورد.</p>
+          <div class="ov-actions">
+            <button class="ov-btn primary" type="button" id="btn-report-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
+            <button class="ov-btn" type="button" id="btn-reports-system">عرض النظام</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="rp-routes fade-in" style="animation-delay:.18s">
+        <div class="rp-route">
+          <div class="rp-r-h"><span class="rp-r-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg></span><div><b>التقارير العامة</b><small>روم التقارير</small></div></div>
+          <ul><li>ملاحظة ميدانية</li><li>اقتراح تحسين</li><li>أخرى</li></ul>
+        </div>
+        <div class="rp-route disc">
+          <div class="rp-r-h"><span class="rp-r-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b>المخالفات والشكاوى</b><small>روم خاص وسري</small></div></div>
+          <ul><li>رصد مخالفة</li><li>شكوى</li></ul>
+        </div>
+      </div>
+
+      <div class="section-label fade-in" style="animation-delay:.24s">كيف يشتغل <span class="line"></span></div>
+      <div class="rp-steps fade-in" style="animation-delay:.28s">
+        <div class="rp-step"><span>01</span><b>اكتب التقرير</b><p>اختار النوع واكتب التفاصيل أو أرفق رابط.</p></div>
+        <div class="rp-step"><span>02</span><b>يوصل للمسؤولين</b><p>ينرسل مباشرة للروم المناسب بالديسكورد.</p></div>
+        <div class="rp-step"><span>03</span><b>تاخذ نقاط</b><p>المسؤولين يراجعونه ويضيفون لك النقاط.</p></div>
+      </div>
+    </div>
+  </section>
+
 
   <footer class="footer">
     <span>CHARLIE SQUAD</span>
@@ -2341,10 +2438,6 @@
   <!-- ===== مودال إنشاء تقرير ===== -->
   <div class="modal-overlay" id="report-editor-modal">
     <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="re-title-h" style="max-width:860px;">
-      <div class="re-lang" id="re-lang" role="group" aria-label="Language">
-        <button type="button" data-lang="ar" aria-pressed="true">عربي</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      </div>
       <button class="modal-close" id="re-close" type="button" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
       <h2 class="modal-title" id="re-title-h">إنشاء تقرير</h2>
       <p class="modal-sub" data-i18n="sub">اكتب تقريرك هنا أو أرفق رابط له. المسودة تنحفظ تلقائي.</p>
@@ -2467,7 +2560,7 @@ document.querySelectorAll('.logo-img').forEach(img => {
 /* ---------- navigation (with real URL hash routing) ---------- */
 const navLinks = document.querySelectorAll('.nav-links a');
 const pages = document.querySelectorAll('.page');
-const validSections = ['board','members','tasks','rules'];
+const validSections = ['board','members','tasks','rules','reports'];
 
 function showSection(target, updateHash){
   if(!validSections.includes(target)) target = 'board';
@@ -3330,7 +3423,7 @@ function aiTyping(){
   return m;
 }
 
-aiSuggest.querySelectorAll('button').forEach(b => b.addEventListener('click', ()=> aiAsk(b.textContent)));
+aiSuggest.querySelectorAll('button').forEach(b => { b.dataset.q = b.textContent.trim(); b.addEventListener('click', ()=> aiAsk(b.dataset.q)); });
 
 async function aiAsk(raw){
   const q = (raw || '').trim();
@@ -3449,7 +3542,7 @@ function answerLocal(q){
     return 'مواعيد استخراج الفرقة:\n' + days.join('\n') + (auth ? '\nالمصرّح لهم بالاستخراج: ' + auth.querySelector('p').textContent : '');
   }
   if(has('تقرير','تقارير','بلاغ')){
-    return 'من صفحة القوانين ← كرت نظام التقارير ← (رفع تقرير).\nتعبي اسمك والعنوان والتفاصيل، والتقرير يوصل مباشرة لروم المسؤولين بالديسكورد.';
+    return 'من صفحة التقارير (فوق بالقائمة) ← إنشاء تقرير.\nتعبي اسمك والعنوان والتفاصيل، والتقرير يوصل مباشرة لروم المسؤولين بالديسكورد.';
   }
   if(has('قائد','ليدر','هرم','قياده','مسؤول')){
     return 'هرم القيادة:\n' + HIERARCHY_ORDER.map((t,i)=>`${i+1}. ${t.join('، ')}`).join('\n');
@@ -3473,7 +3566,7 @@ function answerLocal(q){
    ===================================================================== */
 const REPORT_WEBHOOK = "https://discord.com/api/webhooks/1553218796062507011/1iveu1znqlxJcnztxiy28qsEOqTM997kpuyDd6q4jVpjKeqxtn3d5mXbHNwxDcrZy9Ky";
 /* ويب هوك خاص لـ (رصد مخالفة) و (شكوى) — حط رابطه هنا. إذا تركته فاضي تروح لنفس روم التقارير العامة */
-const REPORT_WEBHOOK_DISCIPLINE = "https://discord.com/api/webhooks/1553456817340813352/23VCZabif_dAwmsRuRm4AAO66PfXcM_Lv4dtVcxv-PDb771PdEEcVa5S7OM7mCOnwOLi";
+const REPORT_WEBHOOK_DISCIPLINE = "";
 const DISCIPLINE_TYPES = ['رصد مخالفة', 'شكوى'];
 
 /* ---------- لغة نظام التقارير ---------- */
@@ -3505,7 +3598,7 @@ const RE_I18N = {
     hdr:'Report', hTitle:'Title', hBy:'Submitted by', hDate:'Date' },
 };
 let reLang = 'ar';
-try{ reLang = localStorage.getItem(RE_LANG_KEY) === 'en' ? 'en' : 'ar'; }catch(e){}
+try{ reLang = localStorage.getItem('charlie-site-lang') === 'en' ? 'en' : 'ar'; }catch(e){}
 const T = (k, ...a) => { const v = (RE_I18N[reLang] || RE_I18N.ar)[k]; return typeof v === 'function' ? v(...a) : (v != null ? v : k); };
 function applyReLang(){
   const box = document.querySelector('#report-editor-modal .modal-box'); if(!box) return;
@@ -3515,14 +3608,9 @@ function applyReLang(){
   box.querySelectorAll('[data-i18n]').forEach(el => el.textContent = T(el.dataset.i18n));
   box.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = T(el.dataset.i18nPh));
   box.querySelectorAll('[data-i18n-dph]').forEach(el => el.dataset.placeholder = T(el.dataset.i18nDph));
-  box.querySelectorAll('#re-lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === reLang));
   const ds = document.getElementById('re-draft-state'); if(ds && ds.textContent) ds.textContent = T('saved');
 }
-document.getElementById('re-lang').addEventListener('click', e => {
-  const b = e.target.closest('button[data-lang]'); if(!b) return;
-  reLang = b.dataset.lang; try{ localStorage.setItem(RE_LANG_KEY, reLang); }catch(err){}
-  applyReLang();
-});
+
 
 /* ---------- محرر التقارير ---------- */
 const RE_MAX = 3500;
@@ -4223,6 +4311,163 @@ reForm.addEventListener('submit', async e => {
   document.addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('active')) close(); });
   $('ms-close').addEventListener('click', close);
   modal.addEventListener('click', e => { if(e.target === modal) close(); });
+})();
+</script>
+<script>
+/* =====================================================================
+   لغة الموقع (عربي / English) — تترجم كل نصوص الموقع الثابتة والمتولدة
+   بيانات الشيت (الأسماء، عناوين التحديات، القوانين) تبقى مثل ما هي
+   ===================================================================== */
+(function(){
+  const KEY = 'charlie-site-lang';
+  const D = {
+    'لوحة المتصدرين':'Leaderboard','الأعضاء':'Members','المهام':'Tasks','القوانين':'Rules','التقارير':'Reports',
+    'التوب حسب الساعات أو النقاط، مع تحدي الأسبوع الحالي.':'Top members by hours or points, plus this week\'s challenge.',
+    'الساعات':'Hours','النقاط':'Points','باقي الترتيب':'Rankings','تحدي الأسبوع':'Weekly Challenge',
+    'حالة الفرقة':'Squad Status','ساعات الفرقة':'Squad Hours','نقاط الفرقة':'Squad Points','متصل الحين':'Online now',
+    'التصفير القادم':'Next Reset','كل جمعة 12:00 صباحاً':'Every Friday 12:00 AM','الاستخراج القادم':'Next Deployment',
+    'يوم':'days','ساعة':'hrs','دقيقة':'min','ثانية':'sec','مساء':'PM','صباحاً':'AM',
+    'السبت':'Saturday','الأحد':'Sunday','الاثنين':'Monday','الثلاثاء':'Tuesday','الأربعاء':'Wednesday','الخميس':'Thursday','الجمعة':'Friday',
+    'الإنجاز':'Progress','الوقت المتبقي':'Time left','نقطة':'pts','تحدي نشط':'Active','انتهى التحدي':'Challenge Over','انتهى الوقت':'Time\'s up',
+    'قيد الانتظار':'Pending','قيد التنفيذ':'In progress','مكتملة':'Completed','منتهي':'Ended',
+    'قائمة أعضاء الفريق، رتبهم، وحالتهم الحالية.':'Squad roster, ranks and current status.','بحث عن عضو...':'Search member...',
+    'القائد':'Leader','نواب القائد':'Co-Leaders','الإدارة':'Management','متصل':'Online','غير متصل':'Offline',
+    'مهام الفريق الحالية وحالتها.':'Current squad tasks and their status.',
+    'قوانين وأنظمة الفريق الرسمية.':'Official squad rules and regulations.','موعد مؤكّد':'Confirmed','موعد استخراج الفرقة':'Squad Deployment Times',
+    'هرم السكواد':'Squad Hierarchy','التسلسل القيادي المسؤول عن إدارة السكواد.':'The chain of command that runs the squad.',
+    'قوانين السكواد':'Squad Code','اللائحة اللي تضمن انضباط الأعضاء وسير العمل داخل السكواد.':'The code that keeps members disciplined and the squad running.',
+    'الكل':'All','ميداني':'Field','انضباط':'Discipline','عامة':'General','ابحث عن قانون...':'Search rules...','القوانين / الكل':'Rules / All',
+    'ارفع ملاحظاتك الميدانية والمخالفات والشكاوى، وكل تقرير يعطيك نقاط.':'Submit field notes, violations and complaints — every report earns points.',
+    'النظام شغال':'System online','نظام التقارير':'Reports System',
+    'اكتب ملاحظاتك الميدانية والمخالفات أو أرفق رابط لها، والتقرير يوصل مباشرة لروم المسؤولين بالديسكورد.':'Write your field notes and violations or attach a link — reports go straight to the officers\' Discord room.',
+    'إنشاء تقرير':'New Report','عرض النظام':'View System','التقارير العامة':'General Reports','روم التقارير':'Reports room',
+    'المخالفات والشكاوى':'Violations & Complaints','روم خاص وسري':'Private, confidential room',
+    'ملاحظة ميدانية':'Field note','اقتراح تحسين':'Improvement idea','أخرى':'Other','رصد مخالفة':'Violation','شكوى':'Complaint',
+    'كيف يشتغل':'How it works','اكتب التقرير':'Write the report','اختار النوع واكتب التفاصيل أو أرفق رابط.':'Pick a type and write the details or attach a link.',
+    'يوصل للمسؤولين':'Officers receive it','ينرسل مباشرة للروم المناسب بالديسكورد.':'It\'s sent straight to the right Discord room.',
+    'تاخذ نقاط':'Earn points','المسؤولين يراجعونه ويضيفون لك النقاط.':'Officers review it and award your points.',
+    'نظام السكواد':'Squad System','السابق':'Previous','التالي':'Next','تم ✓':'Done ✓','تم':'Done',
+    'الالتزام بتسلسل القيادة':'Respect the chain of command','الالتزام التام بتعليمات الليدر والكو ليدر، وعدم تجاوز قرارات القيادة أثناء المباشرة.':'Fully follow the Leader and Co-Leaders, and never override command decisions during duty.',
+    'الاحترام والعمل الجماعي':'Respect & teamwork','يمنع التثبيط أو إثارة الخلافات والنزاعات الفردية بين أفراد السكواد الواحدة.':'No discouraging others or stirring up personal disputes between squad members.',
+    'انضباط التواجد والتحركات':'Presence & movement discipline','التحرك كوحدة واحدة أثناء تنفيذ المهام، وعدم الاستقلال الفردي دون إذن الليدر.':'Move as one unit during missions — no going solo without the Leader\'s permission.',
+    'بروتوكول التواصل والراديو':'Comms & radio protocol','الالتزام بنقل المعلومات بدقة وإيجاز في موجة الراديو، وتجنب التشتيت أو الأحاديث الجانبية.':'Relay information accurately and briefly on radio, and avoid distractions or side talk.',
+    'الجدية والانضباط الميداني':'Field seriousness & discipline','الالتزام التام أثناء المباشرات والمهمات، والابتعاد عن العشوائية أو الفوضى.':'Stay fully committed during duty and missions — no randomness or chaos.',
+    'المشاركة والمتابعة':'Participation & follow-up','الحرص على تسجيل التواجد الدائم، وإبلاغ القيادة في حال الاعتذار أو الغياب.':'Keep logging your presence, and inform command if you\'re excused or absent.',
+    'الأشخاص المصرح لهم باستخراج الفرقة':'Who may deploy the squad','من هم برتبة اوفيسر 3 فما فوق':'Officer 3 rank and above',
+    'هرم القيادة':'Chain of Command','هدف النظام':'Purpose',
+    'إرفاق الملاحظات الميدانية ورصد المخالفات أو السلبيات التي تحتاج إلى تعديلها والتحسين منها، وذلك لرفع أداء الفرقة وتفادي الأخطاء في المستقبل.':'Submit field notes and flag violations or weak points that need fixing, to raise squad performance and avoid future mistakes.',
+    'طريقة الاستفادة من التقارير':'How reports are used','سيتم مراجعة جميع التقارير المرفوعة بشكل دوري لمعرفة النقاط التي تحتاج إلى تحسين، وبناءً عليها سنقوم بعمل فرضيات وتدريبات ميدانية لضمان جاهزية الفرقة في مختلف الحالات.':'All reports are reviewed regularly to find what needs improving, and we build scenarios and field drills from them to keep the squad ready.',
+    'رفع التقرير اختياري، وله نقاط':'Reporting is optional — and earns points','رفع التقرير ليس إجبارياً، ولكن من يقوم برفع التقارير سيتم إضافة نقاط له يتم تحديدها عن طريق المسؤولين.':'Reporting isn\'t mandatory, but whoever submits reports gets points set by the officers.',
+    'عندك استفسار أو مشكلة؟':'Have a question or issue?','في حال كان عندك أي استفسار أو مشكلة، تواصل مع أحد مسؤولين الفرقة عن طريق الخاص.':'If you have any question or problem, DM one of the squad officers.',
+    'إعلان من قيادة Charlie Squad':'Announcement from Charlie Squad command','السلام عليكم ورحمة الله وبركاته،':'Greetings,',
+    'حرصاً منا على تطوير المستوى الميداني ورفع كفاءة الفرقة الميدانية والعساكر أجمع، تم إنشاء':'To develop our field level and raise the efficiency of the squad and all soldiers, we have launched the',
+    'بتاريخ':'Dated','صادر من':'Issued by','تم إرسال تقريرك':'Report sent','شكراً لك. بتراجعه القيادة وتنضاف لك النقاط.':'Thank you. Command will review it and add your points.',
+    'نسبة ساعاته من المتصدر':'Hours vs. top member','نسبة نقاطه من المتصدر':'Points vs. top member','بدون ترتيب':'Unranked',
+    'التفاصيل':'Details','المكافأة':'Reward','بدون نقاط':'No points','بدون وقت':'No deadline','بدون تفاصيل.':'No details.',
+    'مهمة':'Task','لا يوجد أعضاء مطابقين':'No matching members','لا توجد مهام في هذا القسم':'No tasks here','لا يوجد تحدي نشط حالياً':'No active challenge right now',
+    'لا توجد قوانين مطابقة':'No matching rules','لا توجد بيانات قيادة متاحة حالياً':'No command data available yet',
+    'مساعد السكواد':'Squad Assistant','حيّاك. اختار من الأسئلة تحت.':'Welcome! Pick a question below.',
+    'توب الساعات':'Top hours','توب النقاط':'Top points','كم نقاطي وساعاتي؟':'My points & hours?','التحديات':'Challenges','مواعيد الاستخراج':'Deployment times','كيف أرفع تقرير؟':'How do I report?',
+    'اختار اسمك:':'Pick your name:','دوّر اسمك...':'Find your name...','مو أنا؟ غيّر الاسم':'Not me? Change name',
+    'البيانات ما تحمّلت للحين، ثواني وجرّب.':'Data hasn\'t loaded yet, try again in a few seconds.',
+    'ما أحد مسجل ساعات لهالأسبوع للحين.':'Nobody has logged hours this week yet.','ما أحد عنده نقاط لهالأسبوع للحين.':'Nobody has points this week yet.',
+    'ما فيه تحدي نشط هالأسبوع.':'No active challenge this week.','ما فيه مهام حالياً.':'No tasks right now.',
+    'افتح مساعد السكواد':'Open squad assistant','إغلاق المساعد':'Close assistant','إغلاق':'Close',
+    'SQUAD LEADER':'SQUAD LEADER',
+    'ما لقيت شي يطابق سؤالك. جرّب: اسم عضو، الساعات، النقاط، التحديات، المهام، الاستخراج، أو كلمة من قانون.':'Couldn\'t find a match. Try: a member name, hours, points, challenges, tasks, deployment, or a rule keyword.',
+  };
+  const P = [
+    [/^التوب بالساعات:/m,'Top by hours:'],[/^التوب بالنقاط:/m,'Top by points:'],
+    [/الترتيب يتصفّر كل جمعة 12:00 صباحاً\./g,'Rankings reset every Friday at 12:00 AM.'],
+    [/النقاط تتصفّر كل جمعة 12:00 صباحاً\./g,'Points reset every Friday at 12:00 AM.'],
+    [/القادم · خلال أقل من ساعة/g,'Next · in under an hour'],[/القادم · بعد (\d+) يوم/g,'Next · in $1 days'],[/القادم · بعد (\d+) ساعة/g,'Next · in $1 hrs'],
+    [/^بعد (\d+) يوم$/,'in $1 days'],[/^بعد (\d+) ساعة$/,'in $1 hrs'],[/^خلال أقل من ساعة$/,'in under an hour'],
+    [/^مواعيد استخراج الفرقة:/m,'Squad deployment times:'],[/← القادم/g,'← next'],[/المصرّح لهم بالاستخراج:/g,'Authorized to deploy:'],
+    [/من هم برتبة اوفيسر 3 فما فوق/g,'Officer 3 rank and above'],
+    [/^من صفحة التقارير[\s\S]*$/,'Open the Reports page (top menu) → New Report.\nFill in your name, title and details, and the report goes straight to the officers\' Discord room.'],
+    [/ساعاتك:/g,'Your hours:'],[/نقاطك:/g,'Your points:'],[/الساعات:/g,'Hours:'],[/النقاط:/g,'Points:'],[/الرتبة:/g,'Rank:'],[/الحالة:/g,'Status:'],
+    [/غير متواجد/g,'offline'],[/متواجد/g,'online'],
+    [/باقي لك ([\d.,]+) ساعة وتتعدى (.+)\./g,'$1 more hours to pass $2.'],[/أنت الأول بالساعات/g,'You\'re #1 in hours'],
+    [/\(المركز (\d+)\)/g,'(Rank #$1)'],[/^المركز (\d+)$/,'Rank #$1'],
+    [/التقدم:/g,'Progress:'],[/المكافأة:/g,'Reward:'],[/المتبقي:/g,'Time left:'],[/(Time left: )انتهى/g,'$1ended'],
+    [/قيد التنفيذ/g,'in progress'],[/قيد الانتظار/g,'pending'],[/مكتملة/g,'completed'],
+    [/(\d[\d.,]*) ساعة/g,'$1 hrs'],[/(\d[\d.,]*) نقطة/g,'$1 pts'],[/(\d+) يوم/g,'$1d'],[/(\d+) دقيقة/g,'$1m'],
+    [/^صفحة (\d+)$/,'Page $1'],[/^القوانين \/ (.+)$/,'Rules / $1'],
+  ];
+  const ATTRS = ['placeholder','aria-label','title','data-placeholder'];
+  const AR = /[؀-ۿ]/;
+  let lang = 'ar'; try{ lang = localStorage.getItem(KEY) === 'en' ? 'en' : 'ar'; }catch(e){}
+  const origText = new Map(), origAttr = new Map();
+  let busy = false;
+  const SKIP = el => !el || el.closest('script,style,#report-editor-modal form, .lang-sw');
+
+  function tr(str){
+    const lead = str.match(/^\s*/)[0], trail = str.match(/\s*$/)[0], core = str.trim();
+    if(!core || !AR.test(core)) return null;
+    if(D[core] != null) return lead + D[core] + trail;
+    let out = core, hit = false;
+    for(const [re, rep] of P){ const n = out.replace(re, rep); if(n !== out){ out = n; hit = true; } }
+    if(!hit) return null;
+    out = out.replace(/(^|[\s(|:•])(قيد التنفيذ|قيد الانتظار|مكتملة|متصل|نقطة|ساعة)(?=$|[\s)|])/g, (m,a,b)=> a + (D[b] || b));
+    return lead + out + trail;
+  }
+  function doNode(n){
+    if(n.nodeType === 3){
+      if(SKIP(n.parentElement)) return;
+      const t = tr(n.nodeValue); if(t == null) return;
+      if(!origText.has(n)) origText.set(n, n.nodeValue);
+      n.nodeValue = t;
+    } else if(n.nodeType === 1){
+      if(SKIP(n)) return;
+      ATTRS.forEach(a => {
+        const v = n.getAttribute(a); if(!v) return;
+        const t = tr(v); if(t == null) return;
+        if(!origAttr.has(n)) origAttr.set(n, {});
+        const o = origAttr.get(n); if(!(a in o)) o[a] = v;
+        n.setAttribute(a, t);
+      });
+      const w = document.createTreeWalker(n, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+      let c; while((c = w.nextNode())){ if(c.nodeType === 3) doNode(c); else if(c !== n) ATTRS.forEach(a => { if(c.hasAttribute(a) && !SKIP(c)){ const v = c.getAttribute(a), t = tr(v); if(t != null){ if(!origAttr.has(c)) origAttr.set(c, {}); const o = origAttr.get(c); if(!(a in o)) o[a] = v; c.setAttribute(a, t); } } }); }
+    }
+  }
+  const mo = new MutationObserver(list => {
+    if(busy || lang !== 'en') return;
+    busy = true;
+    try{
+      list.forEach(m => {
+        if(m.type === 'characterData') doNode(m.target);
+        else if(m.type === 'attributes') doNode(m.target);
+        else m.addedNodes.forEach(doNode);
+      });
+    } finally { busy = false; }
+  });
+  function toEN(){
+    busy = true; try{ doNode(document.body); } finally { busy = false; }
+    mo.observe(document.body, { subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:ATTRS });
+  }
+  function toAR(){
+    mo.disconnect();
+    origText.forEach((v, n) => { if(n.isConnected) n.nodeValue = v; }); origText.clear();
+    origAttr.forEach((o, el) => { Object.keys(o).forEach(a => el.setAttribute(a, o[a])); }); origAttr.clear();
+  }
+  function setDir(){
+    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl');
+    document.documentElement.classList.toggle('site-en', lang === 'en');
+    document.querySelectorAll('.lang-sw button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
+    if(typeof reLang !== 'undefined'){ try{ reLang = lang; localStorage.setItem('charlie-report-lang', lang); applyReLang(); }catch(e){} }
+    window.dispatchEvent(new Event('resize'));
+  }
+  window.setSiteLang = function(l){
+    l = l === 'en' ? 'en' : 'ar'; if(l === lang) return;
+    lang = l; try{ localStorage.setItem(KEY, lang); }catch(e){}
+    if(lang === 'en'){ setDir(); toEN(); } else { toAR(); setDir(); }
+  };
+  document.querySelectorAll('.lang-sw').forEach(sw => sw.addEventListener('click', e => {
+    const b = e.target.closest('button[data-lang]'); if(b) window.setSiteLang(b.dataset.lang);
+  }));
+  setDir();
+  if(lang === 'en') toEN();
 })();
 </script>
 </body>
