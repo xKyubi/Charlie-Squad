@@ -1728,6 +1728,27 @@
     0%,100%{ text-shadow: 0 0 6px rgba(245,215,110,.8), 0 0 14px rgba(226,198,91,.55), 0 0 24px rgba(226,198,91,.3); }
     50%{ text-shadow: 0 0 8px rgba(255,230,140,1), 0 0 20px rgba(226,198,91,.85), 0 0 38px rgba(226,198,91,.55); }
   }
+
+  /* ===== الشعار جنب العنوان ===== */
+  .hero-row{ position:relative; z-index:1; display:flex; align-items:center; justify-content:center; gap:34px; max-width:900px; margin:0 auto; }
+  .hero-text{ text-align:right; }
+  .hero-text .brand-underline{ justify-content:flex-start; }
+  .hero-text p{ margin:0 !important; }
+  .hero .emblem-stage{ width:150px; height:150px; margin:0 !important; flex-shrink:0; animation:none !important; position:relative;
+    display:flex; align-items:center; justify-content:center; }
+  .emblem-frame{ position:absolute; inset:0; border-radius:34px; transform:rotate(45deg) scale(.82);
+    background: radial-gradient(circle at 50% 40%, rgba(199,217,119,0.16), rgba(10,12,5,0.85) 70%);
+    border:1.5px solid rgba(199,217,119,0.35);
+    box-shadow: 0 0 0 6px rgba(199,217,119,0.05), 0 0 40px rgba(199,217,119,0.15), inset 0 0 30px rgba(0,0,0,.6); }
+  .hero .emblem-stage img.emblem{ position:relative; width:128px !important; height:128px !important; transform:none !important; filter:none !important;
+    animation: fadeUp .7s ease forwards !important; font-size:0; color:transparent; }
+  @media (max-width:640px){
+    .hero-row{ flex-direction:column; gap:18px; }
+    .hero-text{ text-align:center; }
+    .hero-text .brand-underline{ justify-content:center; }
+    .hero .emblem-stage{ width:120px; height:120px; }
+    .hero .emblem-stage img.emblem{ width:100px !important; height:100px !important; }
+  }
 </style>
 </head>
 <body>
@@ -1761,9 +1782,14 @@
       <span class="hero-corner tr"></span>
       <span class="hero-corner bl"></span>
       <span class="hero-corner br"></span>
-      <div class="emblem-stage"><img class="emblem logo-img" alt="Charlie Squad emblem"></div>
+      <div class="hero-row">
+        <div class="emblem-stage"><span class="emblem-frame"></span><img class="emblem logo-img" alt="Charlie Squad emblem"></div>
+        <div class="hero-text">
       <h1 class="fade-in" style="animation-delay:0.1s">لوحة المتصدرين</h1>
       <div class="brand-underline fade-in" style="animation-delay:0.15s"><span></span><em>SQUAD BOARD</em><span></span></div>
+      <p class="fade-in" style="animation-delay:0.2s">التوب حسب الساعات أو النقاط، مع تحدي الأسبوع الحالي.</p>
+        </div>
+      </div>
     </section>
 
     <div class="content">
