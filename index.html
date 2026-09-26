@@ -2043,6 +2043,20 @@
   .site-en .mi-nick{ text-align:left; }
   .site-en .msg.bot{ border-right:0; border-left:3px solid var(--gold); }
   .site-en .side-panel::before, .site-en .ov::before{ }
+
+  /* ===== صفحة التقارير (مبسطة) ===== */
+  .rp-top{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:6px 0 16px; color:var(--text-dim); font-size:13.5px; }
+  .rp-route{ cursor:pointer; padding:26px 24px !important; transition: border-color .15s ease, box-shadow .15s ease; }
+  .rp-route:hover{ border-color:rgba(199,217,119,0.4); box-shadow:0 0 0 1px rgba(199,217,119,0.2), 0 16px 34px rgba(0,0,0,.45); }
+  .rp-route.disc:hover{ border-color:rgba(226,80,58,0.55); box-shadow:0 0 0 1px rgba(226,80,58,0.25), 0 16px 34px rgba(0,0,0,.45); }
+  .rp-route .rp-r-h b{ font-size:18px; }
+  .rp-r-ic{ width:48px !important; height:48px !important; }
+  .rp-opts{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .rp-opts button{ font-family:'Tajawal',sans-serif; font-size:14px; font-weight:800; cursor:pointer; color:var(--stone);
+    padding:9px 16px; border-radius:10px; background:rgba(199,217,119,0.07); border:1px solid rgba(199,217,119,0.25); transition: all .15s ease; }
+  .rp-opts button:hover{ background:var(--stone); color:#10130a; border-color:var(--stone); }
+  .rp-route.disc .rp-opts button{ color:#ff8a70; background:rgba(226,80,58,0.07); border-color:rgba(226,80,58,0.3); }
+  .rp-route.disc .rp-opts button:hover{ background:#e2503a; color:#fff; border-color:#e2503a; }
 </style>
 </head>
 <body>
@@ -2054,8 +2068,8 @@
       <a class="active" data-section="board" href="#board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg><b>لوحة المتصدرين</b></a>
       <a data-section="members" href="#members"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg><b>الأعضاء</b></a>
       <a data-section="tasks" href="#tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h11M9 12h11M9 19h11"/><path d="M3.5 5l1.5 1.5L7.5 4M3.5 12l1.5 1.5 2.5-2.5M3.5 19l1.5 1.5 2.5-2.5"/></svg><b>المهام</b></a>
-      <a data-section="rules" href="#rules"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 4.8-3.4 8.8-8 10-4.6-1.2-8-5.2-8-10v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b>القوانين</b></a>
       <a data-section="reports" href="#reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><b>التقارير</b></a>
+      <a data-section="rules" href="#rules"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 4.8-3.4 8.8-8 10-4.6-1.2-8-5.2-8-10v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b>القوانين</b></a>
     </div>
   </nav>
 
@@ -2231,36 +2245,22 @@
       <p>ارفع ملاحظاتك الميدانية والمخالفات والشكاوى، وكل تقرير يعطيك نقاط.</p>
     </div>
     <div class="content rp-content">
-      <div class="rp-hero fade-in" style="animation-delay:.1s">
-        <span class="rp-wm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
-        <div class="rp-hero-txt">
-          <span class="rp-kicker"><i></i>النظام شغال</span>
-          <h2>نظام التقارير</h2>
-          <p>اكتب ملاحظاتك الميدانية والمخالفات أو أرفق رابط لها، والتقرير يوصل مباشرة لروم المسؤولين بالديسكورد.</p>
-          <div class="ov-actions">
-            <button class="ov-btn primary" type="button" id="btn-report-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
-            <button class="ov-btn" type="button" id="btn-reports-system">عرض النظام</button>
-          </div>
-        </div>
+      <div class="rp-top fade-in" style="animation-delay:.08s">
+        <span>اختار نوع التقرير وبيفتح لك نظام التقرير مباشرة</span>
+        <button class="ov-btn" type="button" id="btn-reports-system">عرض النظام</button>
+        <button type="button" id="btn-report-new" hidden></button>
       </div>
-
       <div class="rp-routes fade-in" style="animation-delay:.18s">
-        <div class="rp-route">
+        <div class="rp-route" data-rtype="ملاحظة ميدانية">
           <div class="rp-r-h"><span class="rp-r-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg></span><div><b>التقارير العامة</b><small>روم التقارير</small></div></div>
-          <ul><li>ملاحظة ميدانية</li><li>اقتراح تحسين</li><li>أخرى</li></ul>
+          <div class="rp-opts"><button type="button" data-rtype="ملاحظة ميدانية">ملاحظة ميدانية</button><button type="button" data-rtype="اقتراح تحسين">اقتراح تحسين</button><button type="button" data-rtype="أخرى">أخرى</button></div>
         </div>
-        <div class="rp-route disc">
+        <div class="rp-route disc" data-rtype="رصد مخالفة">
           <div class="rp-r-h"><span class="rp-r-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b>المخالفات والشكاوى</b><small>روم خاص وسري</small></div></div>
-          <ul><li>رصد مخالفة</li><li>شكوى</li></ul>
+          <div class="rp-opts"><button type="button" data-rtype="رصد مخالفة">رصد مخالفة</button><button type="button" data-rtype="شكوى">شكوى</button></div>
         </div>
       </div>
 
-      <div class="section-label fade-in" style="animation-delay:.24s">كيف يشتغل <span class="line"></span></div>
-      <div class="rp-steps fade-in" style="animation-delay:.28s">
-        <div class="rp-step"><span>01</span><b>اكتب التقرير</b><p>اختار النوع واكتب التفاصيل أو أرفق رابط.</p></div>
-        <div class="rp-step"><span>02</span><b>يوصل للمسؤولين</b><p>ينرسل مباشرة للروم المناسب بالديسكورد.</p></div>
-        <div class="rp-step"><span>03</span><b>تاخذ نقاط</b><p>المسؤولين يراجعونه ويضيفون لك النقاط.</p></div>
-      </div>
     </div>
   </section>
 
@@ -3293,7 +3293,7 @@ fetch(TASKS_CSV_URL)
   .then(res => { if(!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
   .then(text => {
     const rows = parseCSV(text);
-    const tasks = sheetRowsToTasks(rows);
+    const tasks = sheetRowsToTasks(rows).filter(t => t.status !== 'pending');
     window.squadTasks = tasks;
     renderTasks(tasks);
     startTaskCountdowns(tasks);
@@ -4374,6 +4374,7 @@ reForm.addEventListener('submit', async e => {
     'ما فيه تحدي نشط هالأسبوع.':'No active challenge this week.','ما فيه مهام حالياً.':'No tasks right now.',
     'افتح مساعد السكواد':'Open squad assistant','إغلاق المساعد':'Close assistant','إغلاق':'Close',
     'SQUAD LEADER':'SQUAD LEADER',
+    'اختار نوع التقرير وبيفتح لك نظام التقرير مباشرة':'Pick a report type to open the report form',
     'ما لقيت شي يطابق سؤالك. جرّب: اسم عضو، الساعات، النقاط، التحديات، المهام، الاستخراج، أو كلمة من قانون.':'Couldn\'t find a match. Try: a member name, hours, points, challenges, tasks, deployment, or a rule keyword.',
   };
   const P = [
@@ -4468,6 +4469,20 @@ reForm.addEventListener('submit', async e => {
   }));
   setDir();
   if(lang === 'en') toEN();
+})();
+</script>
+<script>
+/* ===== صفحة التقارير: الضغط على النوع يفتح نظام التقرير ===== */
+(function(){
+  const page = document.getElementById('sec-reports'); if(!page) return;
+  page.addEventListener('click', e => {
+    const el = e.target.closest && e.target.closest('[data-rtype]'); if(!el || !page.contains(el)) return;
+    const type = el.dataset.rtype;
+    openReportEditor();
+    const wrap = document.getElementById('re-type');
+    const chip = wrap && wrap.querySelector(`.re-chip[data-type="${type}"]`);
+    if(chip) chip.click();
+  });
 })();
 </script>
 </body>
