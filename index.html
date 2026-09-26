@@ -2586,7 +2586,7 @@
             </div>
             <div class="re-editor" id="re-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="نص التقرير"
                  data-placeholder="اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز)." data-i18n-dph="editorPh"></div>
-            <div class="re-meta"><span id="re-draft-state">المسودة محفوظة</span><span id="re-count" class="num">0 / 5,000 كلمة</span></div>
+            <div class="re-meta"><span id="re-draft-state">المسودة محفوظة</span><span id="re-count" class="num">0 / 4,000 كلمة</span></div>
           </div>
         </div>
 
@@ -3677,7 +3677,7 @@ function answerLocal(q){
 /* =====================================================================
    نظام التقارير — محرر + ويب هوك ديسكورد (روم المسؤولين)
    ===================================================================== */
-const REPORT_WEBHOOK = "https://discord.com/api/webhooks/1553218796062507011/1iveu1znqlxJcnztxiy28qsEOqTM997kpuyDd6q4jVpjKeqxtn3d5mXbHNwxDcrZy9Ky";
+const REPORT_WEBHOOK = "https://discord.com/api/webhooks/1553294885702860880/5Kknc4q4IcpXGTm0XivUwHrZdWcCu8TJWHXWcN5Ox79HTfw7YFyE6QVHuuUG67bYcJwb";
 /* ويب هوك خاص لـ (رصد مخالفة) و (شكوى) — حط رابطه هنا. إذا تركته فاضي تروح لنفس روم التقارير العامة */
 const REPORT_WEBHOOK_DISCIPLINE = "https://discord.com/api/webhooks/1553456817340813352/23VCZabif_dAwmsRuRm4AAO66PfXcM_Lv4dtVcxv-PDb771PdEEcVa5S7OM7mCOnwOLi";
 const DISCIPLINE_TYPES = ['رصد مخالفة', 'شكوى'];
@@ -3691,7 +3691,7 @@ const RE_I18N = {
     modeWrite:'اكتب التقرير', modeLink:'أرفق رابط', tpl:'قالب جاهز', editorPh:'اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز).',
     link:'رابط التقرير', note:'ملاحظة قصيرة (اختياري)', notePh:'وش يحتوي الرابط؟ (فيديو، صور، مستند…)', copy:'نسخ التقرير', send:'إرسال التقرير',
     newRep:'تقرير جديد', done:'تم', saved:'المسودة محفوظة', saving:'جاري الحفظ…',
-    eName:'اكتب اسمك.', eTitle:'اكتب عنوان للتقرير.', eShort:'التقرير قصير، اكتب تفاصيل أكثر.', eLong:'التقرير تعدى 5000 كلمة، اختصره شوي.', eLink:'حط رابط صحيح يبدأ بـ https://',
+    eName:'اكتب اسمك.', eTitle:'اكتب عنوان للتقرير.', eShort:'التقرير قصير، اكتب تفاصيل أكثر.', eLong:'التقرير تعدى 4000 كلمة، اختصره شوي.', eLink:'حط رابط صحيح يبدأ بـ https://',
     copied:'تم نسخ التقرير. تقدر تلصقه بالديسكورد مباشرة.', copyFail:'ما قدرت أنسخ، جرّب مرة ثانية.', off:'الإرسال مو مفعّل، استخدم (نسخ التقرير) وأرسله لمسؤول بالخاص.',
     wait:s=>'انتظر ' + s + ' ثانية قبل تقرير ثاني.', sending:'جاري الإرسال…', fail:'ما انرسل التقرير. تأكد من اتصالك، أو انسخه وأرسله بالخاص.', eHook:'رابط الويب هوك غلط أو انحذف من الديسكورد. سوّ ويب هوك جديد وحط رابطه بالكود.', eRate:'الديسكورد رافض الطلبات مؤقتاً، جرّب بعد دقيقة.', eBad:'الديسكورد رفض محتوى التقرير.',
     okT:'وصل تقريرك', okX:'انرسل لروم المسؤولين، ويتراجع بأقرب وقت.', okXd:'انرسل بسرية تامة، والاطلاع عليه من القادات فقط.',
@@ -3703,7 +3703,7 @@ const RE_I18N = {
     modeWrite:'Write report', modeLink:'Attach link', tpl:'Template', editorPh:'Write your report here… use the tools above for bold, headings, lists and dividers, or press (Template).',
     link:'Report link', note:'Short note (optional)', notePh:'What does the link contain? (video, images, document…)', copy:'Copy report', send:'Send report',
     newRep:'New report', done:'Done', saved:'Draft saved', saving:'Saving…',
-    eName:'Enter your name.', eTitle:'Enter a report title.', eShort:'Report is too short, add more details.', eLong:'Report is over 5,000 words, shorten it a bit.', eLink:'Enter a valid link starting with https://',
+    eName:'Enter your name.', eTitle:'Enter a report title.', eShort:'Report is too short, add more details.', eLong:'Report is over 4,000 words, shorten it a bit.', eLink:'Enter a valid link starting with https://',
     copied:'Report copied. You can paste it in Discord directly.', copyFail:'Could not copy, try again.', off:'Sending is disabled, use (Copy report) and DM an officer.',
     wait:s=>'Wait ' + s + ' seconds before another report.', sending:'Sending…', fail:'Report not sent. Check your connection, or copy it and DM an officer.', eHook:'Webhook link is wrong or was deleted in Discord. Create a new webhook and put its link in the code.', eRate:'Discord is rate-limiting, try again in a minute.', eBad:'Discord rejected the report content.',
     okT:'Report received', okX:'Sent to the officers room, it will be reviewed soon.', okXd:'Sent in full confidence — only leaders can view it.',
@@ -3727,10 +3727,13 @@ function applyReLang(){
 
 
 /* ---------- محرر التقارير ---------- */
-const RE_MAX = 5000; /* حد الكلمات */
+const RE_MAX = 4000; /* حد الكلمات */
 const reWords = () => { const t = (reEditor.innerText || '').trim(); return t ? t.split(/\s+/).length : 0; };
 const reCountTxt = n => n.toLocaleString('en-US') + ' / ' + RE_MAX.toLocaleString('en-US') + (reLang === 'en' ? ' words' : ' كلمة');
-const RE_DRAFT_KEY = 'charlie-report-draft-v2';
+const RE_DRAFT_BASE = 'charlie-report-draft-v3';
+let reGroup = 'general';   /* كل قسم (عام / مخالفات وشكاوى) له مسودة منفصلة */
+const draftKey = () => RE_DRAFT_BASE + '::' + reGroup;
+try{ const old = localStorage.getItem('charlie-report-draft-v2'); if(old && !localStorage.getItem(RE_DRAFT_BASE + '::general')){ localStorage.setItem(RE_DRAFT_BASE + '::general', old); } localStorage.removeItem('charlie-report-draft-v2'); }catch(e){}
 const reModal = document.getElementById('report-editor-modal');
 const reForm = document.getElementById('re-form');
 const reDone = document.getElementById('re-done');
@@ -3968,9 +3971,11 @@ function onEditorChange(){
   reDraftState.textContent = T('saving');
   clearTimeout(_draftTimer); _draftTimer = setTimeout(saveDraft, 500);
 }
+let _noSave = false;
 function saveDraft(){
+  if(_noSave) return;
   try{
-    localStorage.setItem(RE_DRAFT_KEY, JSON.stringify({
+    localStorage.setItem(draftKey(), JSON.stringify({
       name:reName.value, title:reTitle.value, type:reType(), mode:reMode,
       html:reEditor.innerHTML, link:reLink.value, note:reLinkNote.value,
     }));
@@ -3979,22 +3984,37 @@ function saveDraft(){
 }
 function loadDraft(){
   try{
-    const d = JSON.parse(localStorage.getItem(RE_DRAFT_KEY) || 'null');
+    const d = JSON.parse(localStorage.getItem(draftKey()) || 'null');
     if(!d) return;
-    reName.value = d.name || ''; reTitle.value = d.title || '';
+    reName.value = d.name || reName.value || ''; reTitle.value = d.title || '';
     reEditor.innerHTML = d.html || ''; reLink.value = d.link || ''; reLinkNote.value = d.note || '';
     reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c.dataset.type === d.type));
-    if(!reTypeWrap.querySelector('[aria-checked="true"]')) reTypeWrap.querySelector('.re-chip').setAttribute('aria-checked', 'true');
+    if(!reTypeWrap.querySelector('[aria-checked="true"]')) firstChip().setAttribute('aria-checked', 'true');
     setMode(d.mode === 'link' ? 'link' : 'write');
   }catch(e){}
+  reCount.textContent = reCountTxt(reWords());
+}
+function firstChip(){ return reTypeWrap.querySelector(reGroup === 'disc' ? '.re-tgroup.disc .re-chip' : '.re-tgroup:not(.disc) .re-chip'); }
+/* التبديل بين مسودة التقارير العامة ومسودة المخالفات والشكاوى */
+function switchReportGroup(g){
+  if(g === reGroup) return;
+  clearTimeout(_draftTimer); saveDraft();
+  const nm = reName.value;
+  reGroup = g;
+  reForm.reset(); reEditor.innerHTML = ''; reName.value = nm;
+  const fc = firstChip(); reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c === fc));
+  _noSave = true; try{ setMode('write'); setMsg(''); } finally { _noSave = false; }
+  loadDraft();
+  reTypeWrap.classList.toggle('is-disc', reGroup === 'disc');
   reCount.textContent = reCountTxt(reWords());
 }
 function clearDraft(keepName){
   const nm = reName.value;
   reForm.reset(); reEditor.innerHTML = '';
   if(keepName) reName.value = nm;
-  reTypeWrap.querySelectorAll('.re-chip').forEach((c, i) => c.setAttribute('aria-checked', i === 0));
-  reTypeWrap.classList.remove('is-disc');
+  const fc = firstChip();
+  reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c === fc));
+  reTypeWrap.classList.toggle('is-disc', reGroup === 'disc');
   setMode('write'); setMsg('');
   reCount.textContent = reCountTxt(0);
   saveDraft();
@@ -4674,8 +4694,9 @@ reForm.addEventListener('submit', async e => {
   page.addEventListener('click', e => {
     const el = e.target.closest && e.target.closest('[data-rtype]'); if(!el || !page.contains(el)) return;
     const type = el.dataset.rtype;
-    openReportEditor();
     const disc = ['رصد مخالفة','شكوى'].includes(type);
+    switchReportGroup(disc ? 'disc' : 'general');
+    openReportEditor();
     document.getElementById('re-type').setAttribute('data-only', disc ? 'disc' : 'general');
     const wrap = document.getElementById('re-type');
     const chip = wrap && wrap.querySelector(`.re-chip[data-type="${type}"]`);
