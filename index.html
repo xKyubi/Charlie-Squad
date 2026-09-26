@@ -1509,6 +1509,76 @@
   .challenge.ch-ticket.task-ended > *:not(.challenge-lock-overlay){ filter: grayscale(1) !important; opacity:.4 !important; }
   .ch-stamp.st-wait{ color:#e2b85b; border-color:#e2b85b; background:rgba(226,184,91,0.06); }
   .ch-stamp.st-wait .challenge-lock-title{ color:#e2b85b; text-shadow:none; }
+
+  /* =====================================================
+     ===== نظام السكواد: صفحات =====
+     ===================================================== */
+  .sys-modal{ padding:30px 26px 26px !important; border-radius:16px !important;
+    background: radial-gradient(ellipse at 100% 0%, rgba(199,217,119,0.08), transparent 55%), linear-gradient(160deg, #161b0b, #090b05) !important;
+    border:1px solid rgba(199,217,119,0.16) !important; }
+  #system-rules{ display:none !important; }
+  .sys-book{ display:grid; grid-template-columns: 250px 1fr; gap:20px; }
+  .sys-toc{ display:flex; flex-direction:column; gap:6px; }
+  .sys-toc button{
+    display:flex; align-items:center; gap:10px; text-align:right; width:100%; cursor:pointer;
+    font-family:'Tajawal',sans-serif; font-size:13px; font-weight:700; color:var(--text-dim);
+    padding:10px 12px; border-radius:10px; background:transparent; border:1px solid transparent; transition: all .15s ease;
+  }
+  .sys-toc button span{ font-family:'Orbitron',sans-serif; font-size:10.5px; color:rgba(199,217,119,0.4); min-width:22px; }
+  .sys-toc button:hover{ background:rgba(199,217,119,0.05); color:var(--text); }
+  .sys-toc button.seen span{ color:var(--stone-dim); }
+  .sys-toc button.on{ background:linear-gradient(90deg, rgba(199,217,119,0.16), rgba(199,217,119,0.03)); border-color:rgba(199,217,119,0.3); color:#f1f3de; }
+  .sys-toc button.on span{ color:var(--gold); }
+  .sys-stage{ display:flex; flex-direction:column; min-width:0; }
+  .sys-pages{ position:relative; min-height:340px; border-radius:14px; overflow:hidden;
+    background: repeating-linear-gradient(0deg, rgba(199,217,119,0.02) 0 1px, transparent 1px 30px), linear-gradient(160deg, rgba(30,36,16,0.9), rgba(10,12,6,0.9));
+    border:1px solid rgba(199,217,119,0.14); }
+  .sys-page{ position:absolute; inset:0; padding:34px 36px; display:flex; flex-direction:column; opacity:0; pointer-events:none;
+    transform: translateX(-40px); transition: opacity .35s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
+  .sys-page.from-l{ transform: translateX(40px); }
+  .sys-page.on{ opacity:1; pointer-events:auto; transform:none; }
+  .sys-page:not(.on).from-l{ transform: translateX(40px); }
+  .sys-num{ font-family:'Orbitron',sans-serif; font-size:13px; font-weight:800; color:var(--gold); letter-spacing:2px; direction:ltr; align-self:flex-end; }
+  .sys-num small{ color:var(--stone-dim); font-size:11px; margin-left:4px; }
+  .sys-ic{ width:74px; height:74px; border-radius:20px; display:flex; align-items:center; justify-content:center; margin:6px 0 20px; color:var(--stone);
+    background: linear-gradient(160deg, rgba(199,217,119,0.22), rgba(199,217,119,0.04)); border:1px solid rgba(199,217,119,0.3);
+    box-shadow: 0 10px 26px rgba(0,0,0,.45), 0 0 30px rgba(199,217,119,0.08); }
+  .sys-ic svg{ width:36px; height:36px; }
+  .sys-page h3{ font-size:26px; font-weight:900; margin:0 0 14px; color:#f4f6e2; line-height:1.35;
+    text-shadow: 0 2px 0 rgba(0,0,0,.5); }
+  .sys-page p{ font-size:16.5px; line-height:2; color:#c3c9a4; margin:0; max-width:520px; }
+  .sys-wm{ position:absolute; left:18px; bottom:-38px; font-family:'Orbitron',sans-serif; font-size:170px; font-weight:800; line-height:1;
+    color:transparent; -webkit-text-stroke:1.5px rgba(199,217,119,0.08); pointer-events:none; }
+  .sys-ctrl{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:16px; }
+  .sys-nav{ display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-family:'Tajawal',sans-serif; font-size:13.5px; font-weight:800;
+    padding:10px 18px; border-radius:10px; color:var(--stone); background:rgba(199,217,119,0.06); border:1px solid rgba(199,217,119,0.25); transition: all .15s ease; }
+  .sys-nav svg{ width:16px; height:16px; }
+  .sys-nav:hover:not(:disabled){ background:rgba(199,217,119,0.14); }
+  .sys-nav:disabled{ opacity:.3; cursor:default; }
+  .sys-nav.next{ background:linear-gradient(160deg, #dbee8a, #b3c663); color:#10130a; border-color:transparent; box-shadow:0 4px 0 #5f6b2a; }
+  .sys-nav.next:active{ transform:translateY(3px); box-shadow:0 1px 0 #5f6b2a; }
+  .sys-nav.next.done{ background:linear-gradient(160deg, #b8e67a, #7fb33d); }
+  .sys-nav.next:hover:not(:disabled){ background:linear-gradient(160deg, #eef8b8, #c7d977); }
+  .sys-nav.next.done:hover{ background:linear-gradient(160deg, #cdf09a, #93c64f); }
+  .sys-dots{ min-width:0; }
+  .sys-dots{ display:flex; gap:6px; flex:1; justify-content:center; }
+  .sys-dots button{ width:26px; height:5px; border-radius:5px; border:0; padding:0; cursor:pointer; background:rgba(199,217,119,0.14); transition: all .25s ease; }
+  .sys-dots button.seen{ background:rgba(199,217,119,0.45); }
+  .sys-dots button.on{ width:44px; background:var(--gold); box-shadow:0 0 10px rgba(199,217,119,.5); }
+  @media (max-width:760px){
+    .sys-book{ grid-template-columns:1fr; }
+    .sys-toc{ display:none; }
+    .sys-pages{ min-height:380px; }
+    .sys-page{ padding:24px 22px; }
+    .sys-page h3{ font-size:21px; }
+    .sys-page p{ font-size:15px; }
+    .sys-ic{ width:62px; height:62px; }
+    .sys-wm{ font-size:120px; bottom:-24px; }
+    .sys-nav{ padding:9px 12px; font-size:12.5px; }
+    .sys-dots{ gap:4px; }
+    .sys-dots button{ width:8px; } .sys-dots button.on{ width:20px; }
+    .sys-ctrl{ gap:8px; }
+  }
 </style>
 </head>
 <body>
@@ -1708,11 +1778,12 @@
 
   <!-- ===== مودال نظام التدريب (تايم لاين المراحل) ===== -->
   <div class="modal-overlay" id="training-modal">
-    <div class="modal-box" style="max-width:960px;">
+    <div class="modal-box sys-modal" style="max-width:980px;">
       <button class="modal-close" id="training-modal-close" type="button" aria-label="إغلاق">✕</button>
       <h2 class="modal-title">نظام السكواد</h2>
       <div class="brand-underline" style="margin-bottom:26px;"><span></span><em>Charlie Squad System</em><span></span></div>
-      <div class="timeline" id="system-rules">
+      <div class="sys-book" id="sys-book"></div>
+      <div class="timeline" id="system-rules" hidden>
         <div class="timeline-item">
           <div class="timeline-card">
             <h4><span class="timeline-marker">1</span>الالتزام بتسلسل القيادة</h4>
@@ -3348,6 +3419,72 @@ reForm.addEventListener('submit', async e => {
     document.getElementById('side-deploy').innerHTML = `${d ? d.textContent : ''} <b>${t ? t.innerHTML : ''}</b>`;
     if(tag) document.getElementById('side-deploy-in').textContent = tag.textContent.replace('القادم · ','');
   }
+})();
+</script>
+<script>
+/* ===== نظام السكواد: عرض صفحات ===== */
+(function(){
+  const src = document.getElementById('system-rules'), book = document.getElementById('sys-book');
+  if(!src || !book) return;
+  const I = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+  const icons = [
+    I('<rect x="9" y="2.5" width="6" height="5" rx="1"/><rect x="2.5" y="16.5" width="6" height="5" rx="1"/><rect x="15.5" y="16.5" width="6" height="5" rx="1"/><path d="M12 7.5v4.5M5.5 16.5V12h13v4.5"/>'),
+    I('<path d="M8 11l3-3a2.5 2.5 0 0 1 3.5 0L20 13.5"/><path d="M3 12l4.5 4.5a2 2 0 0 0 2.8 0l1.2-1.2M14 16l1 1a2 2 0 0 0 2.8 0l2.2-2.2M3 12l3-3 3 1M20 13.5l1-1-4-5-3 1"/>'),
+    I('<path d="M12 2.5v19M2.5 12h19M12 2.5l-3 3M12 2.5l3 3M12 21.5l-3-3M12 21.5l3-3M2.5 12l3-3M2.5 12l3 3M21.5 12l-3-3M21.5 12l-3 3"/><circle cx="12" cy="12" r="2.5"/>'),
+    I('<rect x="6" y="7" width="12" height="15" rx="2"/><path d="M9 7V2.5M9.5 12h5M9.5 15.5h5M9.5 19h2"/>'),
+    I('<path d="M12 2.5l8 3v6c0 4.8-3.4 8.8-8 10-4.6-1.2-8-5.2-8-10v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>'),
+    I('<rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M8.5 15l2.5 2.5 4.5-5"/>'),
+    I('<circle cx="8" cy="15" r="5"/><path d="M11.5 11.5L21 2M17 6l3 3M14.5 8.5l2 2"/>'),
+  ];
+  const pages = [...src.querySelectorAll('.timeline-card')].map(c => {
+    const h = c.querySelector('h4'); const num = h.querySelector('.timeline-marker');
+    return { title: (num ? h.lastChild.textContent : h.textContent).trim(), text: c.querySelector('p').textContent.trim() };
+  });
+  const N = pages.length, p2 = n => String(n).padStart(2,'0');
+  book.innerHTML = `
+    <nav class="sys-toc">${pages.map((pg,i)=>`<button type="button" data-i="${i}"><span>${p2(i+1)}</span>${pg.title}</button>`).join('')}</nav>
+    <div class="sys-stage">
+      <div class="sys-pages">${pages.map((pg,i)=>`
+        <article class="sys-page" data-i="${i}">
+          <div class="sys-num">${p2(i+1)}<small>/ ${p2(N)}</small></div>
+          <div class="sys-ic">${icons[i % icons.length]}</div>
+          <h3>${pg.title}</h3>
+          <p>${pg.text}</p>
+          <span class="sys-wm">${p2(i+1)}</span>
+        </article>`).join('')}
+      </div>
+      <div class="sys-ctrl">
+        <button type="button" class="sys-nav prev" aria-label="السابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>السابق</button>
+        <div class="sys-dots">${pages.map((_,i)=>`<button type="button" data-i="${i}" aria-label="صفحة ${i+1}"></button>`).join('')}</div>
+        <button type="button" class="sys-nav next" aria-label="التالي">التالي<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+      </div>
+    </div>`;
+  const pgs = [...book.querySelectorAll('.sys-page')], toc = [...book.querySelectorAll('.sys-toc button')], dots = [...book.querySelectorAll('.sys-dots button')];
+  const prev = book.querySelector('.prev'), next = book.querySelector('.next');
+  let cur = 0;
+  function go(i){
+    i = Math.max(0, Math.min(N-1, i)); const dir = i >= cur ? 1 : -1; cur = i;
+    pgs.forEach((el,k)=>{ el.classList.toggle('on', k===i); el.classList.toggle('from-l', k===i && dir<0); });
+    toc.forEach((el,k)=>{ el.classList.toggle('on', k===i); el.classList.toggle('seen', k<i); });
+    dots.forEach((el,k)=>{ el.classList.toggle('on', k===i); el.classList.toggle('seen', k<i); });
+    prev.disabled = i===0;
+    next.innerHTML = i===N-1 ? 'تم ✓' : 'التالي<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>';
+    next.classList.toggle('done', i===N-1);
+  }
+  prev.onclick = () => go(cur-1);
+  next.onclick = () => { if(cur === N-1){ const c = document.getElementById('training-modal-close'); if(c) c.click(); } else go(cur+1); };
+  toc.concat(dots).forEach(b => b.onclick = () => go(+b.dataset.i));
+  const modal = document.getElementById('training-modal');
+  document.addEventListener('keydown', e => {
+    if(!modal || !modal.classList.contains('active')) return;
+    if(e.key === 'ArrowLeft') go(cur+1); else if(e.key === 'ArrowRight') go(cur-1);
+  });
+  let sx = null;
+  book.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive:true });
+  book.addEventListener('touchend', e => { if(sx == null) return; const dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx) > 45) go(cur + (dx > 0 ? 1 : -1)); sx = null; }, { passive:true });
+  const openBtn = document.getElementById('btn-training-system');
+  if(openBtn) openBtn.addEventListener('click', () => go(0));
+  go(0);
 })();
 </script>
 </body>
