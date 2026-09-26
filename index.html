@@ -2105,6 +2105,21 @@
   #report-editor-modal .modal-box:has(#re-type.is-disc) .modal-close{ color:#ff8a70; border-color:rgba(226,80,58,0.4); }
 
   @media (max-width:900px){ .nav2 .nav-links a{ font-size:9px !important; } .nav2 .nav-links a svg{ width:18px; height:18px; } }
+
+  /* ===== نظام التقارير (صفحات) ===== */
+  #reports-modal{ align-items:center; }
+  #reports-modal .sys-modal{ margin:auto !important; }
+  #reports-modal .modal-title{ text-align:center; }
+  #reports-modal .rp-sign-only{ justify-content:flex-start; margin-top:14px; }
+  .sys-page.disc .sys-ic{ color:#ff8a70; background:linear-gradient(160deg, rgba(226,80,58,0.25), rgba(226,80,58,0.05)); border-color:rgba(226,80,58,0.4); }
+  .sys-page.disc h3{ color:#ff8a70; }
+  .sys-page.disc::after{ content:"CONFIDENTIAL"; position:absolute; top:34px; left:36px; font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:3px;
+    color:#e2503a; border:2px solid #e2503a; padding:4px 10px; border-radius:4px; transform:rotate(-6deg); opacity:.8; }
+  .sys-page.disc::after{ top:30px; left:130px; }
+  #reports-data, #btn-report-new-2, #reports-modal .report-intro{ display:none !important; }
+  .sys-toc button.disc{ color:#ff8a70; }
+  .sys-toc button.disc.on{ background:linear-gradient(90deg, rgba(226,80,58,0.18), rgba(226,80,58,0.03)); border-color:rgba(226,80,58,0.4); }
+  .site-en .sys-page.disc::after{ left:auto; right:130px; }
 </style>
 </head>
 <body>
@@ -2317,7 +2332,7 @@
           <div class="rp-opts"><button type="button" data-rtype="ملاحظة ميدانية">ملاحظة ميدانية</button><button type="button" data-rtype="اقتراح تحسين">اقتراح تحسين</button><button type="button" data-rtype="أخرى">أخرى</button></div>
         </div>
         <div class="rp-route disc" data-rtype="رصد مخالفة">
-          <div class="rp-r-h"><span class="rp-r-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b>المخالفات والشكاوى</b><small>روم خاص وسري</small></div></div>
+          <div class="rp-r-h"><span class="rp-r-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b>المخالفات والشكاوى</b><small>خاص وسري · الاطلاع عليه من القادات فقط</small></div></div>
           <div class="rp-opts"><button type="button" data-rtype="رصد مخالفة">رصد مخالفة</button><button type="button" data-rtype="شكوى">شكوى</button></div>
         </div>
       </div>
@@ -2328,7 +2343,7 @@
 
   <footer class="footer">
     <span>CHARLIE SQUAD</span>
-    <span>Made By :SHOKMAN</span>
+    <span>Made By : SHOKMAN.Kyubi</span>
   </footer>
 
 
@@ -2475,23 +2490,24 @@
 
   <!-- ===== مودال نظام التقارير ===== -->
   <div class="modal-overlay" id="reports-modal">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="reports-title" style="max-width:820px;">
+    <div class="modal-box sys-modal" role="dialog" aria-modal="true" aria-labelledby="reports-title" style="max-width:980px;">
       <button class="modal-close" id="reports-modal-close" type="button" aria-label="إغلاق">✕</button>
       <h2 class="modal-title" id="reports-title">نظام التقارير</h2>
       <p class="modal-sub">إعلان من قيادة Charlie Squad</p>
-      <div class="report-intro">
+      <div class="sys-book" id="rp-book"></div>
+      <div class="report-intro" hidden>
         السلام عليكم ورحمة الله وبركاته،<br>
         حرصاً منا على تطوير المستوى الميداني ورفع كفاءة الفرقة الميدانية والعساكر أجمع، تم إنشاء <b>نظام التقارير</b>.
       </div>
-      <div class="timeline two" id="reports-data">
+      <div class="timeline two" id="reports-data" hidden>
         <div class="timeline-card"><h4>هدف النظام</h4><p>إرفاق الملاحظات الميدانية ورصد المخالفات أو السلبيات التي تحتاج إلى تعديلها والتحسين منها، وذلك لرفع أداء الفرقة وتفادي الأخطاء في المستقبل.</p></div>
         <div class="timeline-card"><h4>طريقة الاستفادة من التقارير</h4><p>سيتم مراجعة جميع التقارير المرفوعة بشكل دوري لمعرفة النقاط التي تحتاج إلى تحسين، وبناءً عليها سنقوم بعمل فرضيات وتدريبات ميدانية لضمان جاهزية الفرقة في مختلف الحالات.</p></div>
         <div class="timeline-card"><h4>رفع التقرير اختياري، وله نقاط</h4><p>رفع التقرير ليس إجبارياً، ولكن من يقوم برفع التقارير سيتم إضافة نقاط له يتم تحديدها عن طريق المسؤولين.</p></div>
         <div class="timeline-card"><h4>عندك استفسار أو مشكلة؟</h4><p>في حال كان عندك أي استفسار أو مشكلة، تواصل مع أحد مسؤولين الفرقة عن طريق الخاص.</p></div>
       </div>
-      <div class="report-foot">
+      <div class="report-foot rp-sign-only">
         <span class="report-sign">صادر من <b>CharLie Leader</b> بتاريخ <b>9/12/2026</b></span>
-        <button type="button" class="overview-btn primary" id="btn-report-new-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
+        <button type="button" class="overview-btn primary" id="btn-report-new-2" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
       </div>
     </div>
   </div>
@@ -2526,7 +2542,7 @@
                 </div>
               </div>
               <div class="re-tgroup disc">
-                <span class="re-tg-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="gDisc">مخالفات وشكاوى · روم خاص</span></span>
+                <span class="re-tg-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="gDisc">مخالفات وشكاوى · خاص وسري، الاطلاع عليه من القادات فقط</span></span>
                 <div class="re-chips">
                   <button type="button" class="re-chip" role="radio" aria-checked="false" data-type="رصد مخالفة" data-i18n="tViolation">رصد مخالفة</button>
                   <button type="button" class="re-chip" role="radio" aria-checked="false" data-type="شكوى" data-i18n="tComplaint">شكوى</button>
@@ -2934,7 +2950,7 @@ function renderPodium(data, unit){
 
 function renderBoard(data, unit){
   const rest = data.slice(3);
-  const max = data.length ? Math.max(...data.map(o=>o.value)) : 1;
+  const max = Math.max(1, ...data.map(o=>o.value));
   boardEl.innerHTML = '';
   rest.forEach((o,i)=>{
     const row = document.createElement('div');
@@ -3160,8 +3176,8 @@ let currentRoster = [];
 
 function initFromMembers(membersData){
   currentRoster = getRoster(membersData);
-  const dataHours = currentRoster.filter(r=>r.hours > 0).map(r=>({idx:r.idx, name:r.name, photo:r.photo, value:r.hours})).sort((a,b)=>b.value-a.value);
-  const dataPoints = currentRoster.filter(r=>r.points > 0).map(r=>({idx:r.idx, name:r.name, photo:r.photo, value:r.points})).sort((a,b)=>b.value-a.value);
+  const dataHours = currentRoster.map(r=>({idx:r.idx, name:r.name, photo:r.photo, value:Number(r.hours)||0})).sort((a,b)=>b.value-a.value);
+  const dataPoints = currentRoster.map(r=>({idx:r.idx, name:r.name, photo:r.photo, value:Number(r.points)||0})).sort((a,b)=>b.value-a.value);
 
   function show(data, unit){ const top10 = data.slice(0,10); renderPodium(top10, unit); renderBoard(top10, unit); }
 
@@ -3670,7 +3686,7 @@ const DISCIPLINE_TYPES = ['رصد مخالفة', 'شكوى'];
 const RE_LANG_KEY = 'charlie-report-lang';
 const RE_I18N = {
   ar:{ h:'إنشاء تقرير', sub:'اكتب تقريرك هنا أو أرفق رابط له. المسودة تنحفظ تلقائي.', name:'اسمك', namePh:'اسمك بالسيرفر', title:'عنوان التقرير',
-    titlePh:'مثال: ملاحظة على الانتشار بالمنطقة الشمالية', type:'نوع التقرير', gGeneral:'تقارير عامة', gDisc:'مخالفات وشكاوى · روم خاص',
+    titlePh:'مثال: ملاحظة على الانتشار بالمنطقة الشمالية', type:'نوع التقرير', gGeneral:'تقارير عامة', gDisc:'مخالفات وشكاوى · خاص وسري، الاطلاع عليه من القادات فقط',
     tField:'ملاحظة ميدانية', tSuggest:'اقتراح تحسين', tOther:'أخرى', tViolation:'رصد مخالفة', tComplaint:'شكوى',
     modeWrite:'اكتب التقرير', modeLink:'أرفق رابط', tpl:'قالب جاهز', editorPh:'اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز).',
     link:'رابط التقرير', note:'ملاحظة قصيرة (اختياري)', notePh:'وش يحتوي الرابط؟ (فيديو، صور، مستند…)', copy:'نسخ التقرير', send:'إرسال التقرير',
@@ -3678,11 +3694,11 @@ const RE_I18N = {
     eName:'اكتب اسمك.', eTitle:'اكتب عنوان للتقرير.', eShort:'التقرير قصير، اكتب تفاصيل أكثر.', eLong:'التقرير طويل، اختصره شوي.', eLink:'حط رابط صحيح يبدأ بـ https://',
     copied:'تم نسخ التقرير. تقدر تلصقه بالديسكورد مباشرة.', copyFail:'ما قدرت أنسخ، جرّب مرة ثانية.', off:'الإرسال مو مفعّل، استخدم (نسخ التقرير) وأرسله لمسؤول بالخاص.',
     wait:s=>'انتظر ' + s + ' ثانية قبل تقرير ثاني.', sending:'جاري الإرسال…', fail:'ما انرسل التقرير. تأكد من اتصالك، أو انسخه وأرسله بالخاص.',
-    okT:'وصل تقريرك', okX:'انرسل لروم المسؤولين، ويتراجع بأقرب وقت.', okXd:'انرسل للروم الخاص بالمخالفات والشكاوى، ويتراجع بسرية.',
+    okT:'وصل تقريرك', okX:'انرسل لروم المسؤولين، ويتراجع بأقرب وقت.', okXd:'انرسل بسرية تامة، والاطلاع عليه من القادات فقط.',
     fBy:'رافع التقرير', fType:'النوع', fLink:'الرابط', noDesc:'بدون وصف', foot:'Charlie Squad • نظام التقارير', footD:'Charlie Squad • المخالفات والشكاوى',
     hdr:'تقرير', hTitle:'العنوان', hBy:'رافع التقرير', hDate:'التاريخ' },
   en:{ h:'New Report', sub:'Write your report here or attach a link. Your draft saves automatically.', name:'Your name', namePh:'Your in-game name', title:'Report title',
-    titlePh:'e.g. Note on the north sector deployment', type:'Report type', gGeneral:'General reports', gDisc:'Violations & complaints · private room',
+    titlePh:'e.g. Note on the north sector deployment', type:'Report type', gGeneral:'General reports', gDisc:'Violations & complaints · private & confidential, leaders only',
     tField:'Field note', tSuggest:'Improvement idea', tOther:'Other', tViolation:'Violation', tComplaint:'Complaint',
     modeWrite:'Write report', modeLink:'Attach link', tpl:'Template', editorPh:'Write your report here… use the tools above for bold, headings, lists and dividers, or press (Template).',
     link:'Report link', note:'Short note (optional)', notePh:'What does the link contain? (video, images, document…)', copy:'Copy report', send:'Send report',
@@ -3690,7 +3706,7 @@ const RE_I18N = {
     eName:'Enter your name.', eTitle:'Enter a report title.', eShort:'Report is too short, add more details.', eLong:'Report is too long, shorten it a bit.', eLink:'Enter a valid link starting with https://',
     copied:'Report copied. You can paste it in Discord directly.', copyFail:'Could not copy, try again.', off:'Sending is disabled, use (Copy report) and DM an officer.',
     wait:s=>'Wait ' + s + ' seconds before another report.', sending:'Sending…', fail:'Report not sent. Check your connection, or copy it and DM an officer.',
-    okT:'Report received', okX:'Sent to the officers room, it will be reviewed soon.', okXd:'Sent to the private violations & complaints room, reviewed confidentially.',
+    okT:'Report received', okX:'Sent to the officers room, it will be reviewed soon.', okXd:'Sent in full confidence — only leaders can view it.',
     fBy:'Submitted by', fType:'Type', fLink:'Link', noDesc:'No description', foot:'Charlie Squad • Reports', footD:'Charlie Squad • Violations & Complaints',
     hdr:'Report', hTitle:'Title', hBy:'Submitted by', hDate:'Date' },
 };
@@ -4473,6 +4489,10 @@ reForm.addEventListener('submit', async e => {
     'ما فيه تحدي نشط هالأسبوع.':'No active challenge this week.','ما فيه مهام حالياً.':'No tasks right now.',
     'افتح مساعد السكواد':'Open squad assistant','إغلاق المساعد':'Close assistant','إغلاق':'Close',
     'SQUAD LEADER':'SQUAD LEADER',
+    'خاص وسري · الاطلاع عليه من القادات فقط':'Private & confidential · leaders only',
+    'المقدمة':'Introduction','سرية المخالفات والشكاوى':'Confidential violations & complaints',
+    'تقارير رصد المخالفات والشكاوى خاصة وسرية، وما يطلع عليها إلا القادات فقط. اسمك وتفاصيل تقريرك ما تنعرض لأي عضو ثاني.':'Violation and complaint reports are private and confidential — only leaders can see them. Your name and report details are never shown to other members.',
+    'السلام عليكم ورحمة الله وبركاته، حرصاً منا على تطوير المستوى الميداني ورفع كفاءة الفرقة الميدانية والعساكر أجمع، تم إنشاء نظام التقارير.':'Greetings. To develop our field level and raise the efficiency of the squad and all soldiers, we have launched the Reports System.',
     'تحديات الأسبوع':'Weekly Challenges','تحديات هالأسبوع، الوقت المتبقي، ونقاط كل تحدي.':'This week\'s challenges, time left and points for each.',
     'مقفلة':'Locked','مهمة سرية':'Classified task','تنفتح بعد إنجاز':'Unlocks after completing','تنفتح بعد المهام اللي قبلها':'Unlocks after the previous tasks',
     'اختار نوع التقرير وبيفتح لك نظام التقرير مباشرة':'Pick a report type to open the report form',
@@ -4635,6 +4655,74 @@ reForm.addEventListener('submit', async e => {
     const chip = wrap && wrap.querySelector(`.re-chip[data-type="${type}"]`);
     if(chip) chip.click();
   });
+})();
+</script>
+<script>
+/* ===== نظام التقارير: عرض صفحات مثل نظام السكواد ===== */
+(function(){
+  const book = document.getElementById('rp-book'), src = document.getElementById('reports-data');
+  if(!book || !src) return;
+  const I = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+  const pages = [
+    { title:'المقدمة', text:'السلام عليكم ورحمة الله وبركاته، حرصاً منا على تطوير المستوى الميداني ورفع كفاءة الفرقة الميدانية والعساكر أجمع، تم إنشاء نظام التقارير.',
+      ic:I('<path d="M3 11l15-6v14L3 13z"/><path d="M7 12.5V18a2 2 0 0 0 4 0v-3.5"/>') },
+    ...[...src.querySelectorAll('.timeline-card')].map(c => ({ title:c.querySelector('h4').textContent.trim(), text:c.querySelector('p').textContent.trim() })),
+    { title:'سرية المخالفات والشكاوى', text:'تقارير رصد المخالفات والشكاوى خاصة وسرية، وما يطلع عليها إلا القادات فقط. اسمك وتفاصيل تقريرك ما تنعرض لأي عضو ثاني.',
+      ic:I('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.3" fill="currentColor"/>'), disc:true },
+  ];
+  const icons = [null,
+    I('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/>'),
+    I('<path d="M3 12h4l3-8 4 16 3-8h4"/>'),
+    I('<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>'),
+    I('<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/>'),
+  ];
+  pages.forEach((p,i) => { if(!p.ic) p.ic = icons[i] || icons[1]; });
+  const N = pages.length, p2 = n => String(n).padStart(2,'0');
+  book.innerHTML = `
+    <nav class="sys-toc">${pages.map((pg,i)=>`<button type="button" data-i="${i}" class="${pg.disc?'disc':''}"><span>${p2(i+1)}</span>${pg.title}</button>`).join('')}</nav>
+    <div class="sys-stage">
+      <div class="sys-pages">${pages.map((pg,i)=>`
+        <article class="sys-page ${pg.disc?'disc':''}" data-i="${i}">
+          <div class="sys-num">${p2(i+1)}<small>/ ${p2(N)}</small></div>
+          <div class="sys-ic">${pg.ic}</div>
+          <h3>${pg.title}</h3>
+          <p>${pg.text}</p>
+          <span class="sys-wm">${p2(i+1)}</span>
+        </article>`).join('')}
+      </div>
+      <div class="sys-ctrl">
+        <button type="button" class="sys-nav prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>السابق</button>
+        <div class="sys-dots">${pages.map((_,i)=>`<button type="button" data-i="${i}" aria-label="${i+1}"></button>`).join('')}</div>
+        <button type="button" class="sys-nav next">التالي</button>
+      </div>
+    </div>`;
+  const pgs = [...book.querySelectorAll('.sys-page')], toc = [...book.querySelectorAll('.sys-toc button')], dots = [...book.querySelectorAll('.sys-dots button')];
+  const prev = book.querySelector('.prev'), next = book.querySelector('.next');
+  const ARR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>';
+  let cur = 0;
+  function go(i){
+    i = Math.max(0, Math.min(N-1, i)); const dir = i >= cur ? 1 : -1; cur = i;
+    pgs.forEach((el,k)=>{ el.classList.toggle('on', k===i); el.classList.toggle('from-l', k===i && dir<0); });
+    toc.forEach((el,k)=>{ el.classList.toggle('on', k===i); el.classList.toggle('seen', k<i); });
+    dots.forEach((el,k)=>{ el.classList.toggle('on', k===i); el.classList.toggle('seen', k<i); });
+    prev.disabled = i===0;
+    next.innerHTML = i===N-1 ? 'تم ✓' : 'التالي' + ARR;
+    next.classList.toggle('done', i===N-1);
+  }
+  prev.onclick = () => go(cur-1);
+  next.onclick = () => { if(cur === N-1) document.getElementById('reports-modal-close').click(); else go(cur+1); };
+  toc.concat(dots).forEach(b => b.onclick = () => go(+b.dataset.i));
+  const modal = document.getElementById('reports-modal');
+  document.addEventListener('keydown', e => {
+    if(!modal.classList.contains('active')) return;
+    const rtl = document.documentElement.dir !== 'ltr';
+    if(e.key === 'ArrowLeft') go(cur + (rtl ? 1 : -1)); else if(e.key === 'ArrowRight') go(cur + (rtl ? -1 : 1));
+  });
+  let sx = null;
+  book.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive:true });
+  book.addEventListener('touchend', e => { if(sx == null) return; const dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx) > 45) go(cur + (dx > 0 ? 1 : -1)); sx = null; }, { passive:true });
+  const ob = document.getElementById('btn-reports-system'); if(ob) ob.addEventListener('click', () => go(0));
+  go(0);
 })();
 </script>
 </body>
