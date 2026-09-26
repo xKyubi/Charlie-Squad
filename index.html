@@ -1377,6 +1377,51 @@
     .mb-lg .mb-stats, .mb-md .mb-stats{ grid-column:1 / -1; justify-content:flex-start; gap:18px; padding-top:10px; border-top:1px solid rgba(199,217,119,0.1); }
     .mb-lg .mb-stats span, .mb-md .mb-stats span{ flex-direction:row; gap:5px; align-items:baseline; }
   }
+
+  /* ===== ترتيب: القائد لحاله فوق + تكبير بطاقات الأعضاء ===== */
+  .mb-leader .mb-gh, .mb-leader .mb-list{ max-width:620px; margin-inline:auto; }
+  .mb-list.mb-xl{ grid-template-columns:1fr; }
+  .mb-xl .mb-card{
+    padding:24px 26px; gap:20px; border-radius:16px; border-color:color-mix(in srgb, var(--acc) 40%, transparent);
+    background: radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--acc) 18%, transparent), transparent 60%), linear-gradient(155deg, rgba(34,40,17,0.97), rgba(10,12,6,0.97));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--acc) 12%, transparent), 0 18px 40px rgba(0,0,0,.5);
+  }
+  .mb-xl .mb-card::before{ width:4px; }
+  .mb-xl .mb-av{ width:96px; height:96px; border-radius:20px; font-size:30px; box-shadow:0 0 0 3px var(--acc), 0 0 24px color-mix(in srgb, var(--acc) 30%, transparent); }
+  .mb-xl .mb-name{ font-size:21px; }
+  .mb-xl .mb-rank{ font-size:12px; padding:2px 12px; }
+  .mb-xl .mb-nick{ font-size:13px; }
+  .mb-xl .mb-stats{ gap:22px; }
+  .mb-xl .mb-stats b{ font-size:22px; }
+  .mb-xl .mb-stats small{ font-size:11.5px; }
+  .mb-xl .mb-state{ display:block; position:absolute; top:12px; left:16px; font-size:11px; font-weight:700; color:var(--text-dim); }
+  .mb-xl .is-on .mb-state{ color:#9fd05a; }
+  .mb-leader .mb-gh{ justify-content:center; }
+  .mb-leader .mb-line{ display:none; }
+
+  .mb-list.mb-lg{ grid-template-columns:repeat(auto-fill, minmax(340px,1fr)); gap:14px; }
+  .mb-list.mb-md{ grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:14px; }
+  .mb-list.mb-sm{ grid-template-columns:repeat(auto-fill, minmax(360px,1fr)); gap:12px; }
+  .mb-sm .mb-card{ padding:14px 16px; gap:14px; border-radius:12px; }
+  .mb-sm .mb-av{ width:54px; height:54px; border-radius:13px; font-size:18px; }
+  .mb-sm .mb-name{ font-size:15px; }
+  .mb-sm .mb-rank{ font-size:11px; }
+  .mb-sm .mb-nick{ font-size:12.5px; }
+  .mb-sm .mb-stats b{ font-size:15px; }
+  .mb-sm .mb-stats small{ font-size:11px; }
+  .mb-sm .mb-stats span:last-child{ display:flex; }
+  .mb-md .mb-name, .mb-lg .mb-name{ font-size:16px; }
+  .mb-card.is-off{ opacity:.7; }
+  @keyframes fadeUpDim{ from{ opacity:0; translate:0 14px; } to{ opacity:.7; translate:0 0; } }
+
+  @media (max-width:600px){
+    .mb-list.mb-lg, .mb-list.mb-md, .mb-list.mb-sm{ grid-template-columns:1fr; }
+    .mb-xl .mb-card{ grid-template-columns:auto 1fr; padding:20px; }
+    .mb-xl .mb-av{ width:76px; height:76px; font-size:24px; }
+    .mb-xl .mb-name{ font-size:18px; }
+    .mb-xl .mb-stats{ grid-column:1 / -1; justify-content:flex-start; padding-top:12px; border-top:1px solid rgba(199,217,119,0.12); }
+    .mb-xl .mb-stats span{ flex-direction:row; gap:5px; align-items:baseline; }
+  }
 </style>
 </head>
 <body>
@@ -2233,7 +2278,8 @@ function renderMembers(list){
   }
   const tierOf = r => { r = String(r||'').toLowerCase(); return (/leader/.test(r) && !/co/.test(r)) ? 'r-leader' : /co/.test(r) ? 'r-co' : /manag/.test(r) ? 'r-mgmt' : 'r-member'; };
   const groups = [
-    { key:'lead', title:'القيادة', en:'COMMAND', tiers:['r-leader','r-co'], cls:'mb-lg' },
+    { key:'leader', title:'القائد', en:'SQUAD LEADER', tiers:['r-leader'], cls:'mb-xl' },
+    { key:'co', title:'نواب القائد', en:'CO-LEADERS', tiers:['r-co'], cls:'mb-lg' },
     { key:'mgmt', title:'الإدارة', en:'MANAGEMENT', tiers:['r-mgmt'], cls:'mb-md' },
     { key:'mem',  title:'الأعضاء', en:'OPERATORS', tiers:['r-member'], cls:'mb-sm' },
   ];
@@ -2256,7 +2302,7 @@ function renderMembers(list){
         ${avatar(m)}
         <div class="mb-body">
           <div class="mb-name">${m.name}</div>
-          <div class="mb-meta"><span class="mb-rank">${m.rank}</span><span class="mb-nick">${m.nick || ''}</span></div>
+          <div class="mb-meta"><span class="mb-rank">${m.rank}</span><span class="mb-nick">${(m.nick && String(m.nick).toLowerCase()!=='null') ? m.nick : ''}</span></div>
         </div>
         <div class="mb-stats">
           <span><b>${fmt(m.hours)}</b><small>ساعة</small></span>
