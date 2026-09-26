@@ -559,33 +559,85 @@
   ::-webkit-scrollbar-corner{ background:transparent; }
   .ai-body, .modal-overlay{ scrollbar-color:#3a3b41 transparent; }
 
-  /* ===== نظام التقارير (ديسكورد) ===== */
+  /* ===== نظام التقارير (محرر + ديسكورد) ===== */
   .rp-badge{ position:absolute; top:14px; left:14px; font-size:11px; font-weight:700; color:#161616; background:var(--stone); padding:2px 10px; border-radius:999px; }
-  .rp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .rp-field{ display:flex; flex-direction:column; gap:6px; min-width:0; }
-  .rp-field.full{ grid-column:1 / -1; }
-  .rp-label{ font-size:13px; font-weight:700; color:var(--text-dim); }
-  .rp-label em{ color:var(--stone); font-style:normal; }
-  .rp-input{ font-family:'Tajawal',sans-serif; font-size:14.5px; color:var(--text); width:100%; background:var(--k1); border:1px solid var(--line-2); border-radius:var(--radius-md); padding:10px 12px; outline:none; }
-  .rp-input:focus{ border-color:var(--stone); }
-  .rp-input.bad{ border-color:var(--alert); }
-  .rp-input.ltr{ direction:ltr; text-align:left; }
-  textarea.rp-input{ resize:vertical; min-height:170px; line-height:1.8; }
-  .rp-chips{ display:flex; flex-wrap:wrap; gap:6px; }
-  .rp-chip{ font-family:'Tajawal',sans-serif; font-size:13px; font-weight:700; color:var(--text-dim); cursor:pointer; background:var(--k1); border:1px solid var(--line-2); padding:6px 14px; border-radius:var(--radius-sm); }
-  .rp-chip:hover{ color:var(--text); }
-  .rp-chip[aria-checked="true"]{ color:#161616; background:var(--stone); border-color:var(--stone); }
-  .rp-count{ font-size:11.5px; color:var(--text-dim); text-align:left; direction:ltr; }
-  .rp-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:18px; }
-  .rp-msg{ font-size:13px; color:var(--text-dim); }
-  .rp-msg.err{ color:#ff8a70; }
-  .rp-hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
-  .rp-done{ text-align:center; padding:24px 10px 6px; }
-  .rp-done .ok{ width:62px; height:62px; margin:0 auto 12px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--stone); color:#161616; font-size:28px; }
-  .rp-done h3{ margin:0 0 6px; font-size:19px; }
-  .rp-done p{ margin:0 auto 18px; color:var(--text-dim); font-size:14px; }
+  .report-intro{ margin:0 0 16px; padding:14px 16px; border-radius:var(--radius-md); background:rgba(255,255,255,0.04); border:1px solid var(--line); font-size:14.5px; line-height:1.9; }
+  .report-intro b{ color:var(--stone); }
+  .report-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:18px; }
+  .report-sign{ font-size:13px; color:var(--text-dim); }
+  .report-sign b{ color:var(--text); direction:ltr; unicode-bidi:isolate; }
+  .timeline.two{ grid-template-columns:repeat(2, 1fr); }
+  #reports-modal .timeline-card h4{ font-size:14px; }
+  #reports-modal .timeline-card p{ font-size:13px; }
+  @media (max-width:760px){ .timeline.two{ grid-template-columns:1fr; } .report-foot .overview-btn{ flex:1; } }
   .overview-btn:disabled{ opacity:.5; cursor:default; }
-  @media (max-width:760px){ .rp-grid{ grid-template-columns:1fr; } .rp-foot .overview-btn{ flex:1; } }
+  #report-editor-modal .modal-title{ text-align:right; font-family:'Tajawal',sans-serif; font-weight:900; font-size:24px; margin:0 0 6px; padding-left:44px; }
+  #report-editor-modal .modal-sub{ text-align:right; margin:0 0 22px; }
+  #report-editor-modal .modal-close{ border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; }
+  #report-editor-modal .modal-close svg{ width:15px; height:15px; }
+  #report-editor-modal .overview-btn{ border-radius:999px; padding:10px 22px; font-size:13.5px; }
+  #report-editor-modal .overview-btn.ghost{ background:transparent; color:var(--text); border-color:var(--line-2); }
+  .re-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .re-field{ display:flex; flex-direction:column; gap:6px; min-width:0; }
+  .re-field.full{ grid-column:1 / -1; }
+  .re-label{ font-size:13px; font-weight:600; color:var(--muted); }
+  .re-label em{ color:var(--neon); font-style:normal; }
+  .re-input{ font-family:var(--f-ar); font-size:15px; color:var(--text); width:100%; background:var(--k1); border:1px solid var(--line-2); border-radius:12px; padding:10px 12px; outline:none; }
+  .re-input:focus{ border-color:var(--neon); }
+  .re-input.ltr{ direction:ltr; text-align:left; }
+  .re-input.bad{ border-color:var(--alert); }
+  .re-chips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .re-chip{ font-family:var(--f-ar); font-size:13.5px; font-weight:600; color:var(--muted); cursor:pointer; background:var(--k1); border:1px solid var(--line-2); padding:6px 14px; border-radius:12px; }
+  .re-chip:hover{ color:var(--text); }
+  .re-chip[aria-checked="true"]{ color:var(--k0); background:var(--neon); border-color:var(--neon); }
+  .re-modes{ display:inline-flex; padding:4px; gap:4px; margin:20px 0 12px; background:var(--k1); border:1px solid var(--line); border-radius:10px; }
+  .re-modes button{ display:flex; align-items:center; gap:8px; border:0; cursor:pointer; background:transparent; color:var(--muted); font-family:var(--f-ar); font-size:14.5px; font-weight:600; padding:7px 16px; border-radius:7px; }
+  .re-modes button svg{ width:16px; height:16px; }
+  .re-modes button[aria-selected="true"]{ background:var(--neon); color:var(--k0); }
+  .re-editor-wrap{ border:1px solid var(--line-2); border-radius:10px; background:var(--k1); overflow:hidden; }
+  .re-editor-wrap:focus-within{ border-color:var(--neon); }
+  .re-editor-wrap.bad{ border-color:var(--alert); }
+  .re-toolbar{ display:flex; align-items:center; gap:2px; padding:6px; border-bottom:1px solid var(--line); background:var(--k2); overflow-x:auto; scrollbar-width:none; }
+  .re-toolbar::-webkit-scrollbar{ display:none; }
+  .re-tool{ flex-shrink:0; min-width:36px; height:36px; padding:0 8px; border-radius:7px; border:0; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; background:transparent; color:var(--text); font-family:var(--f-ar); font-size:13px; font-weight:600; }
+  .re-tool svg{ width:17px; height:17px; }
+  .re-tool:hover{ background:rgba(198,220,74,.1); }
+  .re-tool[aria-pressed="true"]{ background:var(--neon); color:var(--k0); }
+  .re-tool.tpl{ color:var(--neon); box-shadow:inset 0 0 0 1px var(--line-2); margin-inline-start:4px; }
+  .re-sep{ width:1px; height:22px; background:var(--line-2); margin:0 5px; flex-shrink:0; }
+  .re-editor{ min-height:220px; max-height:46vh; overflow-y:auto; padding:14px 16px; outline:none; font-size:15.5px; line-height:1.9; color:var(--text); word-wrap:break-word; }
+  .re-editor:empty::before{ content:attr(data-placeholder); color:var(--muted); pointer-events:none; }
+  .re-editor h3{ font-size:18px; font-weight:600; margin:10px 0 4px; color:var(--neon); }
+  .re-editor blockquote{ margin:8px 0; padding:4px 14px; border-right:3px solid var(--neon); background:rgba(198,220,74,.06); border-radius:6px; }
+  .re-editor ul, .re-editor ol{ margin:6px 0; padding-right:24px; padding-left:0; }
+  .re-editor hr{ border:0; height:2px; margin:14px 0; background:var(--neon-dim); }
+  .re-editor b, .re-editor strong{ color:#fff; }
+  .re-meta{ display:flex; justify-content:space-between; gap:10px; padding:8px 14px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
+  .re-meta .over{ color:var(--alert); font-weight:600; }
+  .re-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:18px; }
+  .re-msg{ font-size:13.5px; color:var(--muted); }
+  .re-msg.err{ color:#ff8a70; }
+  .re-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .re-actions .overview-btn{ margin:0; }
+  .re-actions .overview-btn:disabled{ opacity:.5; cursor:default; }
+  .re-done{ text-align:center; padding:28px 10px 10px; }
+  .re-done .ok{ width:68px; height:68px; margin:0 auto 14px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--neon); color:var(--k0); }
+  .re-done .ok svg{ width:32px; height:32px; }
+  .re-done h3{ margin:0 0 6px; font-size:21px; }
+  .re-done p{ margin:0 auto 20px; color:var(--muted); max-width:44ch; }
+  .re-done .re-actions{ justify-content:center; }
+  .re-hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+  .re-editor h1{ font-size:19px; } .re-editor h2{ font-size:17px; } .re-editor h3{ font-size:16px; }
+  @media (max-width:760px){
+    .re-grid{ grid-template-columns:1fr; }
+    .re-modes{ display:flex; width:100%; }
+    .re-modes button{ flex:1; justify-content:center; }
+    .re-editor{ min-height:200px; }
+    .re-toolbar{ flex-wrap:wrap; overflow:visible; }
+    .re-sep{ display:none; }
+    .re-actions{ width:100%; }
+    .re-actions .overview-btn{ flex:1; }
+  }
 </style>
 </head>
 <body>
@@ -720,8 +772,11 @@
           <span class="rp-badge">جديد</span>
           <div class="overview-icon">📝</div>
           <h3>نظام التقارير</h3>
-          <p>عندك ملاحظة أو موقف صار؟ ارفعه هنا ويوصل للمسؤولين مباشرة.</p>
-          <button class="overview-btn primary" type="button" id="btn-report">رفع تقرير</button>
+          <p>اكتب ملاحظاتك الميدانية والمخالفات أو أرفق رابط لها، وكل تقرير يعطيك نقاط.</p>
+          <div class="card-actions">
+            <button class="overview-btn primary" type="button" id="btn-report-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
+            <button class="overview-btn" type="button" id="btn-reports-system">عرض النظام</button>
+          </div>
         </div>
       </div>
 
@@ -829,53 +884,128 @@
     </div>
   </section>
 
-  <!-- ===== مودال رفع تقرير ===== -->
-  <div class="modal-overlay" id="report-modal">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="rp-h" style="max-width:720px;">
-      <button class="modal-close" id="rp-close" type="button" aria-label="إغلاق">✕</button>
-      <h2 class="modal-title" id="rp-h">رفع تقرير</h2>
-      <p class="modal-sub">التقرير يوصل لروم المسؤولين بالديسكورد، ومحد غيرهم يشوفه.</p>
-      <form id="rp-form" novalidate>
-        <div class="rp-grid">
-          <label class="rp-field">
-            <span class="rp-label">اسمك <em>*</em></span>
-            <input class="rp-input" id="rp-name" list="rp-names" maxlength="60" placeholder="اختر اسمك" autocomplete="off">
-            <datalist id="rp-names"></datalist>
+  <!-- ===== مودال نظام التقارير ===== -->
+  <div class="modal-overlay" id="reports-modal">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="reports-title" style="max-width:820px;">
+      <button class="modal-close" id="reports-modal-close" type="button" aria-label="إغلاق">✕</button>
+      <h2 class="modal-title" id="reports-title">نظام التقارير</h2>
+      <p class="modal-sub">إعلان من قيادة Charlie Squad</p>
+      <div class="report-intro">
+        السلام عليكم ورحمة الله وبركاته،<br>
+        حرصاً منا على تطوير المستوى الميداني ورفع كفاءة الفرقة الميدانية والعساكر أجمع، تم إنشاء <b>نظام التقارير</b>.
+      </div>
+      <div class="timeline two" id="reports-data">
+        <div class="timeline-card"><h4>هدف النظام</h4><p>إرفاق الملاحظات الميدانية ورصد المخالفات أو السلبيات التي تحتاج إلى تعديلها والتحسين منها، وذلك لرفع أداء الفرقة وتفادي الأخطاء في المستقبل.</p></div>
+        <div class="timeline-card"><h4>طريقة الاستفادة من التقارير</h4><p>سيتم مراجعة جميع التقارير المرفوعة بشكل دوري لمعرفة النقاط التي تحتاج إلى تحسين، وبناءً عليها سنقوم بعمل فرضيات وتدريبات ميدانية لضمان جاهزية الفرقة في مختلف الحالات.</p></div>
+        <div class="timeline-card"><h4>رفع التقرير اختياري، وله نقاط</h4><p>رفع التقرير ليس إجبارياً، ولكن من يقوم برفع التقارير سيتم إضافة نقاط له يتم تحديدها عن طريق المسؤولين.</p></div>
+        <div class="timeline-card"><h4>عندك استفسار أو مشكلة؟</h4><p>في حال كان عندك أي استفسار أو مشكلة، تواصل مع أحد مسؤولين الفرقة عن طريق الخاص.</p></div>
+      </div>
+      <div class="report-foot">
+        <span class="report-sign">صادر من <b>CharLie Leader</b> بتاريخ <b>9/12/2026</b></span>
+        <button type="button" class="overview-btn primary" id="btn-report-new-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== مودال إنشاء تقرير ===== -->
+  <div class="modal-overlay" id="report-editor-modal">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="re-title-h" style="max-width:860px;">
+      <button class="modal-close" id="re-close" type="button" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <h2 class="modal-title" id="re-title-h">إنشاء تقرير</h2>
+      <p class="modal-sub">اكتب تقريرك هنا أو أرفق رابط له. المسودة تنحفظ تلقائي.</p>
+
+      <form id="re-form" novalidate>
+        <div class="re-grid">
+          <label class="re-field">
+            <span class="re-label">اسمك <em>*</em></span>
+            <input class="re-input" id="re-name" list="re-names" maxlength="60" placeholder="اسمك بالسيرفر" autocomplete="off">
+            <datalist id="re-names"></datalist>
           </label>
-          <label class="rp-field">
-            <span class="rp-label">العنوان <em>*</em></span>
-            <input class="rp-input" id="rp-title" maxlength="100" placeholder="عنوان مختصر" autocomplete="off">
+          <label class="re-field">
+            <span class="re-label">عنوان التقرير <em>*</em></span>
+            <input class="re-input" id="re-title" maxlength="120" placeholder="مثال: ملاحظة على الانتشار بالمنطقة الشمالية" autocomplete="off">
           </label>
-          <div class="rp-field full">
-            <span class="rp-label" id="rp-type-l">النوع</span>
-            <div class="rp-chips" id="rp-type" role="radiogroup" aria-labelledby="rp-type-l">
-              <button type="button" class="rp-chip" role="radio" aria-checked="true">ملاحظة</button>
-              <button type="button" class="rp-chip" role="radio" aria-checked="false">مخالفة</button>
-              <button type="button" class="rp-chip" role="radio" aria-checked="false">اقتراح</button>
-              <button type="button" class="rp-chip" role="radio" aria-checked="false">أخرى</button>
+          <div class="re-field full">
+            <span class="re-label" id="re-type-label">نوع التقرير</span>
+            <div class="re-chips" id="re-type" role="radiogroup" aria-labelledby="re-type-label">
+              <button type="button" class="re-chip" role="radio" aria-checked="true">ملاحظة ميدانية</button>
+              <button type="button" class="re-chip" role="radio" aria-checked="false">رصد مخالفة</button>
+              <button type="button" class="re-chip" role="radio" aria-checked="false">اقتراح تحسين</button>
+              <button type="button" class="re-chip" role="radio" aria-checked="false">أخرى</button>
             </div>
           </div>
-          <label class="rp-field full">
-            <span class="rp-label">التفاصيل <em>*</em></span>
-            <textarea class="rp-input" id="rp-body" maxlength="1800" placeholder="وش صار؟ متى؟ وين؟ ومين الأطراف؟"></textarea>
-            <span class="rp-count" id="rp-count">0 / 1800</span>
-          </label>
-          <label class="rp-field full">
-            <span class="rp-label">رابط (اختياري)</span>
-            <input class="rp-input ltr" id="rp-link" type="url" maxlength="400" placeholder="https://" autocomplete="off">
-          </label>
         </div>
-        <input class="rp-hp" id="rp-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="rp-foot">
-          <span class="rp-msg" id="rp-msg" role="status"></span>
-          <button type="submit" class="overview-btn primary" id="rp-send">إرسال</button>
+
+        <div class="re-modes" role="tablist">
+          <button type="button" role="tab" id="re-mode-write" aria-selected="true" aria-controls="re-pane-write">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>
+            اكتب التقرير
+          </button>
+          <button type="button" role="tab" id="re-mode-link" aria-selected="false" aria-controls="re-pane-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+            أرفق رابط
+          </button>
+        </div>
+
+        <div id="re-pane-write" role="tabpanel" aria-labelledby="re-mode-write">
+          <div class="re-editor-wrap" id="re-editor-wrap">
+            <div class="re-toolbar" role="toolbar" aria-label="أدوات الكتابة">
+              <button type="button" class="re-tool" data-cmd="bold" title="عريض (Ctrl+B)" aria-label="عريض" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h6a3.5 3.5 0 0 1 0 7H7zM7 12h7a3.5 3.5 0 0 1 0 7H7z"/></svg></button>
+              <button type="button" class="re-tool" data-cmd="italic" title="مائل (Ctrl+I)" aria-label="مائل" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M14 5h5M5 19h5M15 5l-6 14"/></svg></button>
+              <button type="button" class="re-tool" data-cmd="underline" title="تحته خط (Ctrl+U)" aria-label="تحته خط" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 4v7a5 5 0 0 0 10 0V4M5 20h14"/></svg></button>
+              <button type="button" class="re-tool" data-cmd="strikeThrough" title="يتوسطه خط" aria-label="يتوسطه خط" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12h16M16 6.5A4 3 0 0 0 12 5c-2.5 0-4 1.3-4 3 0 1 .5 1.8 1.5 2.4M8 17.5A4.5 3 0 0 0 12 19c2.5 0 4-1.3 4-3"/></svg></button>
+              <span class="re-sep"></span>
+              <button type="button" class="re-tool" data-block="h3" title="عنوان فرعي" aria-label="عنوان فرعي" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 5v14M13 5v14M5 12h8M17 10l3-2v11"/></svg></button>
+              <button type="button" class="re-tool" data-block="blockquote" title="اقتباس / ملاحظة مميزة" aria-label="اقتباس" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 7H6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v3l3-3V9a2 2 0 0 0-1-2zM20 7h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v3l3-3V9a2 2 0 0 0-1-2z" opacity=".9"/></svg></button>
+              <button type="button" class="re-tool" data-cmd="insertUnorderedList" title="قائمة نقاط" aria-label="قائمة نقاط" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 6h10M10 12h10M10 18h10"/><circle cx="5" cy="6" r="1.3" fill="currentColor"/><circle cx="5" cy="12" r="1.3" fill="currentColor"/><circle cx="5" cy="18" r="1.3" fill="currentColor"/></svg></button>
+              <button type="button" class="re-tool" data-cmd="insertOrderedList" title="قائمة مرقّمة" aria-label="قائمة مرقمة" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 6h10M10 12h10M10 18h10M4 5l1.5-1V9M3.8 14.5a1.3 1.3 0 1 1 2 1.2L4 18h2.2"/></svg></button>
+              <span class="re-sep"></span>
+              <button type="button" class="re-tool" data-act="hr" title="فاصل" aria-label="إضافة فاصل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 12h18"/><path d="M8 6h8M8 18h8" stroke-width="1.5" opacity=".5"/></svg></button>
+              <button type="button" class="re-tool" data-act="br" title="سطر فاضي" aria-label="إضافة سطر فاضي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7v4a3 3 0 0 0 3 3h13M16 10l4 4-4 4"/></svg></button>
+              <span class="re-sep"></span>
+              <button type="button" class="re-tool" data-cmd="undo" title="تراجع (Ctrl+Z)" aria-label="تراجع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h-7a4 4 0 0 0 0 8h9M15 7l-3-3M15 7l-3 3" transform="matrix(-1 0 0 1 24 0)"/></svg></button>
+              <button type="button" class="re-tool" data-cmd="redo" title="إعادة" aria-label="إعادة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h-7a4 4 0 0 0 0 8h9M15 7l-3-3M15 7l-3 3"/></svg></button>
+              <button type="button" class="re-tool" data-cmd="removeFormat" title="مسح التنسيق" aria-label="مسح التنسيق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 5h12M12 5l-3 14M4 20L20 4"/></svg></button>
+              <button type="button" class="re-tool tpl" data-act="tpl" title="إدراج قالب تقرير جاهز">قالب جاهز</button>
+            </div>
+            <div class="re-editor" id="re-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="نص التقرير"
+                 data-placeholder="اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز)."></div>
+            <div class="re-meta"><span id="re-draft-state">المسودة محفوظة</span><span id="re-count" class="num">0 / 3500</span></div>
+          </div>
+        </div>
+
+        <div id="re-pane-link" role="tabpanel" aria-labelledby="re-mode-link" hidden>
+          <div class="re-grid">
+            <label class="re-field full">
+              <span class="re-label">رابط التقرير <em>*</em></span>
+              <input class="re-input ltr" id="re-link" type="url" inputmode="url" maxlength="500" placeholder="https://…" autocomplete="off">
+            </label>
+            <label class="re-field full">
+              <span class="re-label">ملاحظة قصيرة (اختياري)</span>
+              <textarea class="re-input" id="re-link-note" rows="3" maxlength="600" placeholder="وش يحتوي الرابط؟ (فيديو، صور، مستند…)"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <input class="re-hp" id="re-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="re-foot">
+          <span class="re-msg" id="re-msg" role="status"></span>
+          <div class="re-actions">
+            <button type="button" class="overview-btn ghost" id="re-copy">نسخ التقرير</button>
+            <button type="submit" class="overview-btn primary" id="re-submit">إرسال التقرير</button>
+          </div>
         </div>
       </form>
-      <div class="rp-done" id="rp-done" hidden>
-        <div class="ok">✓</div>
-        <h3>وصل تقريرك</h3>
-        <p>انرسل للمسؤولين، ويتراجع بأقرب وقت.</p>
-        <button type="button" class="overview-btn primary" id="rp-done-close">تم</button>
+
+      <div class="re-done" id="re-done" hidden>
+        <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+        <h3 id="re-done-title">تم إرسال تقريرك</h3>
+        <p id="re-done-text">شكراً لك. بتراجعه القيادة وتنضاف لك النقاط.</p>
+        <div class="re-actions">
+          <button type="button" class="overview-btn ghost" id="re-new">تقرير جديد</button>
+          <button type="button" class="overview-btn primary" id="re-done-close">تم</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1813,124 +1943,343 @@ function answerLocal(q){
 }
 
 /* =====================================================================
-   نظام التقارير → ويب هوك ديسكورد (روم المسؤولين)
+   نظام التقارير — محرر + ويب هوك ديسكورد (روم المسؤولين)
    ===================================================================== */
-const REPORT_WEBHOOK = "https://discord.com/api/webhooks/1553218796062507011/1iveu1znqlxJcnztxiy28qsEOqTM997kpuyDd6q4jVpjKeqxtn3d5mXbHNwxDcrZy9Ky"; // حط رابط الويب هوك هنا: https://discord.com/api/webhooks/...
-const RP_COOLDOWN_MS = 2 * 60 * 1000;   // دقيقتين بين كل تقرير والثاني
-const RP_DRAFT_KEY = 'charlie-rp-draft';
-const RP_LAST_KEY  = 'charlie-rp-last';
+const REPORT_WEBHOOK = "https://discord.com/api/webhooks/1553218796062507011/1iveu1znqlxJcnztxiy28qsEOqTM997kpuyDd6q4jVpjKeqxtn3d5mXbHNwxDcrZy9Ky";
 
-const rpModal = document.getElementById('report-modal');
-const rpForm  = document.getElementById('rp-form');
-const rpDone  = document.getElementById('rp-done');
-const rpName  = document.getElementById('rp-name');
-const rpTitle = document.getElementById('rp-title');
-const rpBody  = document.getElementById('rp-body');
-const rpLink  = document.getElementById('rp-link');
-const rpType  = document.getElementById('rp-type');
-const rpMsg   = document.getElementById('rp-msg');
-const rpSend  = document.getElementById('rp-send');
-const rpCount = document.getElementById('rp-count');
+/* ---------- محرر التقارير ---------- */
+const RE_MAX = 3500;
+const RE_DRAFT_KEY = 'charlie-report-draft-v2';
+const reModal = document.getElementById('report-editor-modal');
+const reForm = document.getElementById('re-form');
+const reDone = document.getElementById('re-done');
+const reEditor = document.getElementById('re-editor');
+const reEditorWrap = document.getElementById('re-editor-wrap');
+const reName = document.getElementById('re-name');
+const reTitle = document.getElementById('re-title');
+const reLink = document.getElementById('re-link');
+const reLinkNote = document.getElementById('re-link-note');
+const reMsg = document.getElementById('re-msg');
+const reCount = document.getElementById('re-count');
+const reDraftState = document.getElementById('re-draft-state');
+const reSubmit = document.getElementById('re-submit');
+const reTypeWrap = document.getElementById('re-type');
+const reTabs = { write: document.getElementById('re-mode-write'), link: document.getElementById('re-mode-link') };
+const rePanes = { write: document.getElementById('re-pane-write'), link: document.getElementById('re-pane-link') };
+let reMode = 'write';
 
-function rpOpen(){
-  document.getElementById('rp-names').innerHTML =
-    (currentRoster || []).map(r => `<option value="${String(r.name).replace(/"/g,'&quot;')}"></option>`).join('');
-  rpForm.hidden = false; rpDone.hidden = true; rpSetMsg('');
-  rpModal.classList.add('active'); document.body.style.overflow = 'hidden';
-  setTimeout(() => (rpName.value ? rpTitle : rpName).focus(), 80);
+try{ document.execCommand('defaultParagraphSeparator', false, 'div'); document.execCommand('styleWithCSS', false, false); }catch(e){}
+
+function openReportEditor(){
+  document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+  const dl = document.getElementById('re-names');
+  dl.innerHTML = (currentRoster || []).map(r => `<option value="${r.name.replace(/"/g, '&quot;')}"></option>`).join('');
+  reForm.hidden = false; reDone.hidden = true;
+  reModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => (reName.value ? reTitle : reName).focus(), 80);
 }
-function rpClose(){ rpModal.classList.remove('active'); document.body.style.overflow = ''; rpSaveDraft(); }
-document.getElementById('btn-report').addEventListener('click', rpOpen);
-document.getElementById('rp-close').addEventListener('click', rpClose);
-document.getElementById('rp-done-close').addEventListener('click', rpClose);
-rpModal.addEventListener('click', e => { if(e.target === rpModal) rpClose(); });
-document.addEventListener('keydown', e => { if(e.key === 'Escape' && rpModal.classList.contains('active')) rpClose(); });
+function closeReportEditor(){
+  reModal.classList.remove('active');
+  document.body.style.overflow = '';
+  saveDraft();
+}
+document.getElementById('btn-report-new').addEventListener('click', openReportEditor);
+document.getElementById('btn-report-new-2').addEventListener('click', openReportEditor);
 
-rpType.addEventListener('click', e => {
-  const b = e.target.closest('.rp-chip'); if(!b) return;
-  rpType.querySelectorAll('.rp-chip').forEach(c => c.setAttribute('aria-checked', c === b));
-  rpSaveDraft();
+/* مودال عرض نظام التقارير */
+const reportsModal = document.getElementById('reports-modal');
+(function(){
+  const close = () => { reportsModal.classList.remove('active'); document.body.style.overflow = ''; };
+  document.getElementById('btn-reports-system').addEventListener('click', () => { reportsModal.classList.add('active'); document.body.style.overflow = 'hidden'; });
+  document.getElementById('reports-modal-close').addEventListener('click', close);
+  reportsModal.addEventListener('click', e => { if(e.target === reportsModal) close(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && reportsModal.classList.contains('active')) close(); });
+})();
+document.getElementById('re-close').addEventListener('click', closeReportEditor);
+document.getElementById('re-done-close').addEventListener('click', closeReportEditor);
+reModal.addEventListener('click', e => { if(e.target === reModal) closeReportEditor(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && reModal.classList.contains('active')) closeReportEditor(); });
+
+/* نوع التقرير */
+reTypeWrap.addEventListener('click', e => {
+  const b = e.target.closest('.re-chip'); if(!b) return;
+  reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c === b));
+  saveDraft();
 });
-const rpTypeVal = () => (rpType.querySelector('[aria-checked="true"]') || {}).textContent || 'أخرى';
+const reType = () => (reTypeWrap.querySelector('[aria-checked="true"]') || {}).textContent || 'أخرى';
 
-function rpSetMsg(t, err){ rpMsg.textContent = t || ''; rpMsg.classList.toggle('err', !!err); }
-function rpUpdateCount(){ rpCount.textContent = rpBody.value.length + ' / 1800'; }
-
-function rpSaveDraft(){
-  try{ localStorage.setItem(RP_DRAFT_KEY, JSON.stringify({ name:rpName.value, title:rpTitle.value, body:rpBody.value, link:rpLink.value, type:rpTypeVal() })); }catch(e){}
+/* كتابة / رابط */
+function setMode(m){
+  reMode = m;
+  Object.keys(reTabs).forEach(k => { reTabs[k].setAttribute('aria-selected', k === m); rePanes[k].hidden = k !== m; });
+  setMsg('');
+  saveDraft();
 }
-function rpLoadDraft(){
-  try{
-    const d = JSON.parse(localStorage.getItem(RP_DRAFT_KEY) || 'null'); if(!d) return;
-    rpName.value = d.name || ''; rpTitle.value = d.title || ''; rpBody.value = d.body || ''; rpLink.value = d.link || '';
-    rpType.querySelectorAll('.rp-chip').forEach(c => c.setAttribute('aria-checked', c.textContent === d.type));
-    if(!rpType.querySelector('[aria-checked="true"]')) rpType.querySelector('.rp-chip').setAttribute('aria-checked','true');
-  }catch(e){}
-  rpUpdateCount();
-}
-[rpName, rpTitle, rpBody, rpLink].forEach(i => i.addEventListener('input', () => { i.classList.remove('bad'); if(i === rpBody) rpUpdateCount(); rpSaveDraft(); }));
-rpLoadDraft();
+reTabs.write.addEventListener('click', () => setMode('write'));
+reTabs.link.addEventListener('click', () => setMode('link'));
 
-function rpValidate(){
-  [rpName, rpTitle, rpBody, rpLink].forEach(i => i.classList.remove('bad'));
-  if(!rpName.value.trim()){ rpName.classList.add('bad'); rpName.focus(); return 'اكتب اسمك.'; }
-  if(!rpTitle.value.trim()){ rpTitle.classList.add('bad'); rpTitle.focus(); return 'اكتب عنوان.'; }
-  if(rpBody.value.trim().length < 15){ rpBody.classList.add('bad'); rpBody.focus(); return 'زِد التفاصيل شوي.'; }
-  const l = rpLink.value.trim();
-  if(l){ let ok = false; try{ const u = new URL(l); ok = /^https?:$/.test(u.protocol); }catch(e){}
-    if(!ok){ rpLink.classList.add('bad'); rpLink.focus(); return 'الرابط غير صحيح، لازم يبدأ بـ https://'; } }
+/* أدوات الكتابة */
+const reToolbar = reEditorWrap.querySelector('.re-toolbar');
+reToolbar.addEventListener('mousedown', e => { if(e.target.closest('.re-tool')) e.preventDefault(); });
+function caretInEditor(){
+  const sel = window.getSelection();
+  if(sel.rangeCount && reEditor.contains(sel.getRangeAt(0).commonAncestorContainer)) return;
+  reEditor.focus();
+  const r = document.createRange(); r.selectNodeContents(reEditor); r.collapse(false);
+  sel.removeAllRanges(); sel.addRange(r);
+}
+function currentBlock(){
+  try{ return (document.queryCommandValue('formatBlock') || '').toLowerCase(); }catch(e){ return ''; }
+}
+const TEMPLATE_HTML =
+  '<h3>تفاصيل الموقف</h3>' +
+  '<div><b>الوقت:</b> </div><div><b>المكان:</b> </div><div><b>الأشخاص المعنيين:</b> </div>' +
+  '<hr>' +
+  '<h3>وصف الملاحظة / المخالفة</h3><div><br></div>' +
+  '<hr>' +
+  '<h3>الاقتراح للتحسين</h3><ul><li><br></li></ul>';
+
+reToolbar.addEventListener('click', e => {
+  const b = e.target.closest('.re-tool'); if(!b) return;
+  caretInEditor();
+  if(b.dataset.cmd){
+    document.execCommand(b.dataset.cmd, false, null);
+  } else if(b.dataset.block){
+    const tag = b.dataset.block;
+    document.execCommand('formatBlock', false, currentBlock() === tag ? 'div' : tag);
+  } else if(b.dataset.act === 'hr'){
+    ['insertUnorderedList','insertOrderedList'].forEach(c => { try{ if(document.queryCommandState(c)) document.execCommand(c, false, null); }catch(e){} });
+    if(['h3','blockquote'].includes(currentBlock())) document.execCommand('formatBlock', false, 'div');
+    document.execCommand('insertHorizontalRule', false, null);
+    document.execCommand('insertHTML', false, '<div><br></div>');
+  } else if(b.dataset.act === 'br'){
+    document.execCommand('insertHTML', false, '<div><br></div>');
+  } else if(b.dataset.act === 'tpl'){
+    document.execCommand('insertHTML', false, TEMPLATE_HTML);
+    /* ودّ المؤشر بعد (الوقت:) عشان يبدأ يكتب مباشرة */
+    const lbl = [...reEditor.querySelectorAll('b')].filter(x => x.textContent === 'الوقت:').pop();
+    if(lbl && lbl.parentNode){
+      const sp = document.createTextNode('\u00a0');
+      lbl.after(sp);
+      const r = document.createRange(); r.setStart(sp, 1); r.collapse(true);
+      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    }
+  }
+  reEditor.focus();
+  refreshTools(); onEditorChange();
+});
+function refreshTools(){
+  reToolbar.querySelectorAll('[data-cmd]').forEach(b => {
+    if(!b.hasAttribute('aria-pressed')) return;
+    let on = false; try{ on = document.queryCommandState(b.dataset.cmd); }catch(e){}
+    b.setAttribute('aria-pressed', on);
+  });
+  const blk = currentBlock();
+  reToolbar.querySelectorAll('[data-block]').forEach(b => b.setAttribute('aria-pressed', blk === b.dataset.block));
+}
+document.addEventListener('selectionchange', () => {
+  const sel = window.getSelection();
+  if(sel.rangeCount && reEditor.contains(sel.anchorNode)) refreshTools();
+});
+
+/* اللصق كنص عادي عشان ما يخرب التنسيق */
+reEditor.addEventListener('paste', e => {
+  e.preventDefault();
+  const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+  document.execCommand('insertText', false, text);
+});
+reEditor.addEventListener('input', () => {
+  if(reEditor.innerHTML === '<br>' || reEditor.innerHTML === '<div><br></div>') reEditor.innerHTML = '';
+  onEditorChange();
+});
+
+/* ---------- تحويل المكتوب إلى صيغة ديسكورد ---------- */
+function wrapMd(inner, mark){
+  const m = inner.match(/^(\s*)([\s\S]*?)(\s*)$/);
+  return m[2] ? m[1] + mark + m[2] + mark + m[3] : inner;
+}
+function nodeToMd(node){
+  if(node.nodeType === 3) return node.nodeValue.replace(/\u00a0/g, ' ');
+  if(node.nodeType !== 1) return '';
+  const tag = node.tagName;
+  const kids = () => [...node.childNodes].map(nodeToMd).join('');
+  switch(tag){
+    case 'BR': return '\n';
+    case 'B': case 'STRONG': return wrapMd(kids(), '**');
+    case 'I': case 'EM': return wrapMd(kids(), '*');
+    case 'U': return wrapMd(kids(), '__');
+    case 'S': case 'STRIKE': case 'DEL': return wrapMd(kids(), '~~');
+    case 'HR': return '\n━━━━━━━━━━━━━━\n';
+    case 'H1': case 'H2': case 'H3': case 'H4': return '\n### ' + kids().trim() + '\n';
+    case 'BLOCKQUOTE': return '\n' + kids().trim().split('\n').map(l => '> ' + l).join('\n') + '\n';
+    case 'UL': return '\n' + [...node.children].map(li => '- ' + nodeToMd(li).trim()).join('\n') + '\n';
+    case 'OL': return '\n' + [...node.children].map((li, i) => (i + 1) + '. ' + nodeToMd(li).trim()).join('\n') + '\n';
+    case 'DIV': case 'P': { const c = kids(); return (c.endsWith('\n') ? c : c + '\n'); }
+    case 'SPAN': {
+      let c = kids(); const st = node.style || {};
+      if(/bold|[6-9]00/.test(st.fontWeight)) c = wrapMd(c, '**');
+      if(st.fontStyle === 'italic') c = wrapMd(c, '*');
+      return c;
+    }
+    default: return kids();
+  }
+}
+function editorMarkdown(){
+  return nodeToMd(reEditor).replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+function editorPlainLength(){ return reEditor.innerText.replace(/\s+/g, ' ').trim().length; }
+
+function buildReport(){
+  const now = new Date();
+  const date = now.toLocaleDateString('en-GB') + ' ' + now.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+  const body = reMode === 'write'
+    ? editorMarkdown()
+    : '🔗 ' + reLink.value.trim() + (reLinkNote.value.trim() ? '\n' + reLinkNote.value.trim() : '');
+  const text =
+    `📋 **تقرير: ${reType()}**\n` +
+    `**العنوان:** ${reTitle.value.trim()}\n` +
+    `**رافع التقرير:** ${reName.value.trim()}\n` +
+    `**التاريخ:** ${date}\n` +
+    `━━━━━━━━━━━━━━\n` + body;
+  return {
+    name: reName.value.trim(), title: reTitle.value.trim(), type: reType(), mode: reMode,
+    content: reMode === 'write' ? body : reLinkNote.value.trim(),
+    link: reMode === 'link' ? reLink.value.trim() : '',
+    date, text, hp: document.getElementById('re-hp').value,
+  };
+}
+
+/* ---------- التحقق ---------- */
+function setMsg(t, err){ reMsg.textContent = t || ''; reMsg.classList.toggle('err', !!err); }
+function validate(){
+  [reName, reTitle, reLink].forEach(i => i.classList.remove('bad')); reEditorWrap.classList.remove('bad');
+  if(!reName.value.trim()){ reName.classList.add('bad'); reName.focus(); return 'اكتب اسمك.'; }
+  if(!reTitle.value.trim()){ reTitle.classList.add('bad'); reTitle.focus(); return 'اكتب عنوان للتقرير.'; }
+  if(reMode === 'write'){
+    const n = editorPlainLength();
+    if(n < 10){ reEditorWrap.classList.add('bad'); reEditor.focus(); return 'التقرير قصير، اكتب تفاصيل أكثر.'; }
+    if(editorMarkdown().length > RE_MAX){ reEditorWrap.classList.add('bad'); return 'التقرير طويل، اختصره شوي.'; }
+  } else {
+    let ok = false;
+    try{ const u = new URL(reLink.value.trim()); ok = u.protocol === 'https:' || u.protocol === 'http:'; }catch(e){}
+    if(!ok){ reLink.classList.add('bad'); reLink.focus(); return 'حط رابط صحيح يبدأ بـ https://'; }
+  }
   return '';
 }
 
-/* يمنع المنشن (@everyone وغيره) داخل النص */
-const rpSafe = t => String(t).replace(/@/g, '@\u200b');
+/* ---------- المسودة ---------- */
+let _draftTimer = null;
+function onEditorChange(){
+  const len = editorMarkdown().length;
+  reCount.textContent = len + ' / ' + RE_MAX;
+  reCount.classList.toggle('over', len > RE_MAX);
+  reDraftState.textContent = 'جاري الحفظ…';
+  clearTimeout(_draftTimer); _draftTimer = setTimeout(saveDraft, 500);
+}
+function saveDraft(){
+  try{
+    localStorage.setItem(RE_DRAFT_KEY, JSON.stringify({
+      name:reName.value, title:reTitle.value, type:reType(), mode:reMode,
+      html:reEditor.innerHTML, link:reLink.value, note:reLinkNote.value,
+    }));
+    reDraftState.textContent = 'المسودة محفوظة';
+  }catch(e){ reDraftState.textContent = ''; }
+}
+function loadDraft(){
+  try{
+    const d = JSON.parse(localStorage.getItem(RE_DRAFT_KEY) || 'null');
+    if(!d) return;
+    reName.value = d.name || ''; reTitle.value = d.title || '';
+    reEditor.innerHTML = d.html || ''; reLink.value = d.link || ''; reLinkNote.value = d.note || '';
+    reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c.textContent === d.type));
+    if(!reTypeWrap.querySelector('[aria-checked="true"]')) reTypeWrap.querySelector('.re-chip').setAttribute('aria-checked', 'true');
+    setMode(d.mode === 'link' ? 'link' : 'write');
+  }catch(e){}
+  const len = editorMarkdown().length;
+  reCount.textContent = len + ' / ' + RE_MAX;
+}
+function clearDraft(keepName){
+  const nm = reName.value;
+  reForm.reset(); reEditor.innerHTML = '';
+  if(keepName) reName.value = nm;
+  reTypeWrap.querySelectorAll('.re-chip').forEach((c, i) => c.setAttribute('aria-checked', i === 0));
+  setMode('write'); setMsg('');
+  reCount.textContent = '0 / ' + RE_MAX;
+  saveDraft();
+}
+[reName, reTitle, reLink, reLinkNote].forEach(i => i.addEventListener('input', () => { i.classList.remove('bad'); clearTimeout(_draftTimer); _draftTimer = setTimeout(saveDraft, 500); }));
+loadDraft();
 
-const RP_COLORS = { 'ملاحظة':0xD9D9DA, 'مخالفة':0xB3312A, 'اقتراح':0x6FAE6F, 'أخرى':0x8F9095 };
+/* ---------- نسخ / إرسال ---------- */
+async function copyText(t){
+  try{ await navigator.clipboard.writeText(t); return true; }
+  catch(e){
+    const ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    let ok = false; try{ ok = document.execCommand('copy'); }catch(_){}
+    ta.remove(); return ok;
+  }
+}
+function showDone(title, text){
+  document.getElementById('re-done-title').textContent = title;
+  document.getElementById('re-done-text').textContent = text;
+  reForm.hidden = true; reDone.hidden = false;
+}
+document.getElementById('re-copy').addEventListener('click', async () => {
+  const err = validate(); if(err){ setMsg(err, true); return; }
+  const ok = await copyText(buildReport().text);
+  setMsg(ok ? 'تم نسخ التقرير. تقدر تلصقه بالديسكورد مباشرة.' : 'ما قدرت أنسخ، جرّب مرة ثانية.', !ok);
+});
+document.getElementById('re-new').addEventListener('click', () => { clearDraft(true); reForm.hidden = false; reDone.hidden = true; reTitle.focus(); });
 
-rpForm.addEventListener('submit', async e => {
+/* ---------- الإرسال لروم المسؤولين (ويب هوك ديسكورد) ---------- */
+const RE_COOLDOWN_MS = 2 * 60 * 1000;
+const RE_LAST_KEY = 'charlie-report-last';
+const reSafe = t => String(t).replace(/@/g, '@\u200b');   /* يمنع @everyone وأي منشن */
+const RE_COLORS = { 'ملاحظة ميدانية':0xD9D9DA, 'رصد مخالفة':0xB3312A, 'اقتراح تحسين':0x6FAE6F, 'أخرى':0x8F9095 };
+
+reForm.addEventListener('submit', async e => {
   e.preventDefault();
-  if(document.getElementById('rp-hp').value) return;           // فخ البوتات
-  const err = rpValidate(); if(err){ rpSetMsg(err, true); return; }
-  if(!REPORT_WEBHOOK){ rpSetMsg('نظام التقارير مو مفعّل حالياً.', true); return; }
+  const err = validate(); if(err){ setMsg(err, true); return; }
+  const rep = buildReport();
+  if(rep.hp) return; /* فخ للبوتات */
+  if(!REPORT_WEBHOOK){ setMsg('الإرسال مو مفعّل، استخدم (نسخ التقرير) وأرسله لمسؤول بالخاص.', true); return; }
 
-  let last = 0; try{ last = +localStorage.getItem(RP_LAST_KEY) || 0; }catch(e){}
-  const wait = RP_COOLDOWN_MS - (Date.now() - last);
-  if(wait > 0){ rpSetMsg('انتظر ' + Math.ceil(wait / 1000) + ' ثانية قبل تقرير ثاني.', true); return; }
+  let last = 0; try{ last = +localStorage.getItem(RE_LAST_KEY) || 0; }catch(e){}
+  const wait = RE_COOLDOWN_MS - (Date.now() - last);
+  if(wait > 0){ setMsg('انتظر ' + Math.ceil(wait / 1000) + ' ثانية قبل تقرير ثاني.', true); return; }
 
-  const type = rpTypeVal();
   const fields = [
-    { name:'رافع التقرير', value:rpSafe(rpName.value.trim()).slice(0,256), inline:true },
-    { name:'النوع', value:type, inline:true },
+    { name:'رافع التقرير', value:reSafe(rep.name).slice(0,256), inline:true },
+    { name:'النوع', value:rep.type, inline:true },
   ];
-  if(rpLink.value.trim()) fields.push({ name:'الرابط', value:rpLink.value.trim().slice(0,400) });
+  if(rep.mode === 'link') fields.push({ name:'الرابط', value:rep.link.slice(0,1000) });
 
   const payload = {
     username:'Charlie Reports',
     allowed_mentions:{ parse:[] },
     embeds:[{
-      title:'📋 ' + rpSafe(rpTitle.value.trim()).slice(0,240),
-      description:rpSafe(rpBody.value.trim()).slice(0,1800),
-      color:RP_COLORS[type] || 0xD9D9DA,
+      title:'📋 ' + reSafe(rep.title).slice(0,240),
+      description:reSafe(rep.content || 'بدون وصف').slice(0,4000),
+      color:RE_COLORS[rep.type] || 0xD9D9DA,
       fields,
       footer:{ text:'Charlie Squad • نظام التقارير' },
       timestamp:new Date().toISOString(),
     }],
   };
 
-  rpSend.disabled = true; rpSetMsg('جاري الإرسال…');
+  reSubmit.disabled = true; setMsg('جاري الإرسال…');
   try{
     const res = await fetch(REPORT_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(payload) });
     if(!res.ok) throw new Error('HTTP ' + res.status);
-    try{ localStorage.setItem(RP_LAST_KEY, String(Date.now())); }catch(e){}
-    const keepName = rpName.value;
-    rpForm.reset(); rpName.value = keepName;
-    rpType.querySelectorAll('.rp-chip').forEach((c,i) => c.setAttribute('aria-checked', i === 0));
-    rpUpdateCount(); rpSaveDraft();
-    rpForm.hidden = true; rpDone.hidden = false;
+    try{ localStorage.setItem(RE_LAST_KEY, String(Date.now())); }catch(e){}
+    clearDraft(true);
+    showDone('وصل تقريرك', 'انرسل لروم المسؤولين، ويتراجع بأقرب وقت.');
   }catch(err2){
-    rpSetMsg('ما انرسل التقرير. تأكد من اتصالك وجرّب مرة ثانية.', true);
+    setMsg('ما انرسل التقرير. تأكد من اتصالك، أو انسخه وأرسله بالخاص.', true);
   }finally{
-    rpSend.disabled = false;
+    reSubmit.disabled = false;
   }
 });
 
