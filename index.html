@@ -2057,6 +2057,28 @@
   .rp-opts button:hover{ background:var(--stone); color:#10130a; border-color:var(--stone); }
   .rp-route.disc .rp-opts button{ color:#ff8a70; background:rgba(226,80,58,0.07); border-color:rgba(226,80,58,0.3); }
   .rp-route.disc .rp-opts button:hover{ background:#e2503a; color:#fff; border-color:#e2503a; }
+
+  /* ===== التقرير: قسم واحد حسب الاختيار ===== */
+  #re-type[data-only="disc"] .re-tgroup:not(.disc), #re-type[data-only="general"] .re-tgroup.disc{ display:none; }
+
+  /* ===== المهام المقفلة ===== */
+  .task-locked{ cursor:not-allowed !important; }
+  .task-locked .ch-stub{ background: repeating-linear-gradient(135deg, rgba(0,0,0,0.25) 0 6px, rgba(199,217,119,0.03) 6px 12px) !important; }
+  .tl-lock{ width:84px; height:84px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--stone-dim);
+    background: radial-gradient(circle at 35% 30%, #1d2410, #090b05 75%); border:1.5px dashed rgba(199,217,119,0.3); box-shadow: inset 0 2px 10px rgba(0,0,0,.7); }
+  .tl-lock svg{ width:34px; height:34px; animation: tlPulse 2.4s ease-in-out infinite; }
+  @keyframes tlPulse{ 0%,100%{ opacity:.55; } 50%{ opacity:1; filter:drop-shadow(0 0 8px rgba(199,217,119,.5)); } }
+  .tl-title{ color:var(--text-dim) !important; letter-spacing:.5px; }
+  .tl-redact{ display:flex; flex-direction:column; gap:7px; margin:4px 0 14px; }
+  .tl-redact i{ display:block; height:11px; border-radius:4px; background: linear-gradient(90deg, rgba(199,217,119,0.12), rgba(199,217,119,0.05)); }
+  .tl-next{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:10px 12px; border-radius:10px; background:rgba(0,0,0,0.3); border:1px solid rgba(199,217,119,0.12); }
+  .tl-lbl{ font-size:12.5px; color:var(--text-dim); font-weight:700; }
+  .tl-lbl b{ font-family:'Orbitron',sans-serif; font-size:11px; color:var(--gold); letter-spacing:1.5px; margin-inline-start:4px; }
+  .tl-bar{ flex:1; min-width:90px; height:6px; border-radius:6px; background:rgba(199,217,119,0.08); overflow:hidden; }
+  .tl-bar i{ display:block; height:100%; border-radius:6px; background:linear-gradient(90deg, #6f7c35, #dbee8a); }
+  .tl-left{ font-family:'Orbitron',sans-serif; font-size:12px; font-weight:800; color:#e2b85b; }
+  .tl-shake{ animation: tlShake .4s ease; }
+  @keyframes tlShake{ 0%,100%{ translate:0 0; } 20%{ translate:-6px 0; } 40%{ translate:6px 0; } 60%{ translate:-4px 0; } 80%{ translate:3px 0; } }
 </style>
 </head>
 <body>
@@ -3179,6 +3201,31 @@ function renderTasks(list){
   }
   list.forEach((t,i)=>{
     const card = document.createElement('div');
+    if(t.locked){
+      const bl = list[t.blocker] || {};
+      const blCode = 'TSK-' + String((t.blocker||0)+1).padStart(2,'0');
+      const left = Math.max(0, 100 - (Number(bl.progress)||0));
+      const direct = t.blocker === i - 1;
+      card.className = 'challenge ch-ticket task-t task-locked';
+      card.style.animationDelay = (i*0.06) + 's';
+      card.innerHTML = `
+        <div class="ch-stub"><div class="tl-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.3" fill="currentColor"/></svg></div></div>
+        <div class="ch-main">
+          <div class="ch-head">
+            <span class="ch-code">TSK-${String(i+1).padStart(2,'0')}</span>
+            <span class="ch-live st-pending"><i></i>مقفلة</span>
+          </div>
+          <h3 class="tl-title">مهمة سرية</h3>
+          <div class="tl-redact"><i style="width:82%"></i><i style="width:58%"></i></div>
+          <div class="tl-next">
+            <span class="tl-lbl">${direct ? 'تنفتح بعد إنجاز' : 'تنفتح بعد المهام اللي قبلها'} <b>${blCode}</b></span>
+            ${direct ? `<div class="tl-bar"><i style="width:${Number(bl.progress)||0}%"></i></div><span class="tl-left">باقي ${left}%</span>` : ''}
+          </div>
+        </div>
+        <span class="ch-barcode"></span>`;
+      tasksList.appendChild(card);
+      return;
+    }
     card.className = 'challenge ch-ticket task-t status-' + t.status;
     card.style.animationDelay = (i*0.06) + 's';
     card.innerHTML = `
@@ -3213,7 +3260,7 @@ function renderTasks(list){
   list.forEach((t,i)=>{
     const fill = document.getElementById('task-fill-'+i);
     const pct = document.getElementById('task-pct-'+i);
-    if(!fill || !pct) return;
+    if(!fill || !pct || t.locked) return;
     if(t.progress <= 0){ pct.textContent = '0%'; return; }
     setTimeout(()=>{
       fill.style.width = t.progress + '%';
@@ -3227,9 +3274,7 @@ function renderTasks(list){
   });
 
   /* القفل يعتمد فقط على status: pending = مقفولة، progress و done تطلعان عادي */
-  list.forEach((t,i)=>{
-    if(t.status === 'pending') lockTaskCard(i);
-  });
+  /* المقفلة تنعرض كبطاقة سرية بدل الختم */
 }
 
 function lockTaskCard(i){
@@ -3293,8 +3338,21 @@ fetch(TASKS_CSV_URL)
   .then(res => { if(!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
   .then(text => {
     const rows = parseCSV(text);
-    const tasks = sheetRowsToTasks(rows).filter(t => t.status !== 'pending');
-    window.squadTasks = tasks;
+    const tasks = sheetRowsToTasks(rows);
+    /* المهام قيد الانتظار تنقفل، وتنفتح لحالها لما كل اللي قبلها تكتمل */
+    let allDoneBefore = true;
+    tasks.forEach((t, i) => {
+      if(t.status === 'pending'){
+        if(allDoneBefore){ t.status = 'progress'; t.unlocked = true; }
+        else {
+          t.locked = true;
+          let b = i - 1; while(b > 0 && tasks[b].status === 'done') b--;
+          t.blocker = b;
+        }
+      }
+      if(t.status !== 'done') allDoneBefore = false;
+    });
+    window.squadTasks = tasks.filter(t => !t.locked);
     renderTasks(tasks);
     startTaskCountdowns(tasks);
   })
@@ -3636,6 +3694,7 @@ let reMode = 'write';
 try{ document.execCommand('defaultParagraphSeparator', false, 'div'); document.execCommand('styleWithCSS', false, false); }catch(e){}
 
 function openReportEditor(){
+  document.getElementById('re-type').removeAttribute('data-only');
   document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
   const dl = document.getElementById('re-names');
   dl.innerHTML = (currentRoster || []).map(r => `<option value="${r.name.replace(/"/g, '&quot;')}"></option>`).join('');
@@ -4306,6 +4365,7 @@ reForm.addEventListener('submit', async e => {
   document.addEventListener('click', e => {
     if(!e.target.closest) return;
     const card = e.target.closest('.ch-ticket');
+    if(card && card.classList.contains('task-locked')){ card.classList.remove('tl-shake'); void card.offsetWidth; card.classList.add('tl-shake'); return; }
     if(card && !modal.contains(card)) open(card);
   });
   document.addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('active')) close(); });
@@ -4374,6 +4434,7 @@ reForm.addEventListener('submit', async e => {
     'ما فيه تحدي نشط هالأسبوع.':'No active challenge this week.','ما فيه مهام حالياً.':'No tasks right now.',
     'افتح مساعد السكواد':'Open squad assistant','إغلاق المساعد':'Close assistant','إغلاق':'Close',
     'SQUAD LEADER':'SQUAD LEADER',
+    'مقفلة':'Locked','مهمة سرية':'Classified task','تنفتح بعد إنجاز':'Unlocks after completing','تنفتح بعد المهام اللي قبلها':'Unlocks after the previous tasks',
     'اختار نوع التقرير وبيفتح لك نظام التقرير مباشرة':'Pick a report type to open the report form',
     'ما لقيت شي يطابق سؤالك. جرّب: اسم عضو، الساعات، النقاط، التحديات، المهام، الاستخراج، أو كلمة من قانون.':'Couldn\'t find a match. Try: a member name, hours, points, challenges, tasks, deployment, or a rule keyword.',
   };
@@ -4393,7 +4454,7 @@ reForm.addEventListener('submit', async e => {
     [/التقدم:/g,'Progress:'],[/المكافأة:/g,'Reward:'],[/المتبقي:/g,'Time left:'],[/(Time left: )انتهى/g,'$1ended'],
     [/قيد التنفيذ/g,'in progress'],[/قيد الانتظار/g,'pending'],[/مكتملة/g,'completed'],
     [/(\d[\d.,]*) ساعة/g,'$1 hrs'],[/(\d[\d.,]*) نقطة/g,'$1 pts'],[/(\d+) يوم/g,'$1d'],[/(\d+) دقيقة/g,'$1m'],
-    [/^صفحة (\d+)$/,'Page $1'],[/^القوانين \/ (.+)$/,'Rules / $1'],
+    [/^صفحة (\d+)$/,'Page $1'],[/^باقي (\d+)%$/,'$1% to go'],[/^القوانين \/ (.+)$/,'Rules / $1'],
   ];
   const ATTRS = ['placeholder','aria-label','title','data-placeholder'];
   const AR = /[؀-ۿ]/;
@@ -4412,12 +4473,61 @@ reForm.addEventListener('submit', async e => {
     out = out.replace(/(^|[\s(|:•])(قيد التنفيذ|قيد الانتظار|مكتملة|متصل|نقطة|ساعة)(?=$|[\s)|])/g, (m,a,b)=> a + (D[b] || b));
     return lead + out + trail;
   }
+  /* ===== ترجمة آلية لبيانات الشيت (التحديات، المهام، القوانين، ردود المساعد) ===== */
+  const MT_KEY = 'charlie-mt-v1';
+  let mtCache = {}; try{ mtCache = JSON.parse(localStorage.getItem(MT_KEY) || '{}') || {}; }catch(e){ mtCache = {}; }
+  const mtWait = new Map();   /* النص العربي -> العقد اللي تنتظره */
+  let mtTimer = null, mtSaveTimer = null;
+  function mtSave(){ clearTimeout(mtSaveTimer); mtSaveTimer = setTimeout(()=>{ try{ localStorage.setItem(MT_KEY, JSON.stringify(mtCache)); }catch(e){} }, 400); }
+  async function mtFetch(text){
+    const url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=ar&tl=en&dt=t&q=' + encodeURIComponent(text);
+    const r = await fetch(url); if(!r.ok) throw new Error('mt ' + r.status);
+    const j = await r.json();
+    return (j && j[0] ? j[0].map(x => x && x[0] ? x[0] : '').join('') : '').trim();
+  }
+  function mtApply(src, out){
+    const list = mtWait.get(src) || []; mtWait.delete(src);
+    if(lang !== 'en') return;
+    busy = true;
+    try{
+      list.forEach(({ node, from }) => {
+        if(!node.isConnected || node.nodeValue !== from) return;
+        if(!origText.has(node)) origText.set(node, from);
+        const lead = from.match(/^\s*/)[0], trail = from.match(/\s*$/)[0];
+        node.nodeValue = lead + out + trail;
+      });
+    } finally { busy = false; }
+  }
+  async function mtRun(){
+    const jobs = [...mtWait.keys()];
+    const q = jobs.slice(); const workers = [];
+    for(let w = 0; w < 4; w++) workers.push((async () => {
+      while(q.length){
+        const src = q.shift();
+        if(mtCache[src]){ mtApply(src, mtCache[src]); continue; }
+        try{ const out = await mtFetch(src); if(out){ mtCache[src] = out; mtSave(); mtApply(src, out); } else mtWait.delete(src); }
+        catch(e){ mtWait.delete(src); }
+      }
+    })());
+    await Promise.all(workers);
+  }
+  function mtQueue(node){
+    const from = node.nodeValue, core = from.trim();
+    if(!core || !AR.test(core)) return;
+    if(mtCache[core]){ mtWait.set(core, [{ node, from }]); mtApply(core, mtCache[core]); return; }
+    if(!mtWait.has(core)) mtWait.set(core, []);
+    mtWait.get(core).push({ node, from });
+    clearTimeout(mtTimer); mtTimer = setTimeout(mtRun, 120);
+  }
   function doNode(n){
     if(n.nodeType === 3){
       if(SKIP(n.parentElement)) return;
-      const t = tr(n.nodeValue); if(t == null) return;
-      if(!origText.has(n)) origText.set(n, n.nodeValue);
-      n.nodeValue = t;
+      const t = tr(n.nodeValue);
+      if(t != null){
+        if(!origText.has(n)) origText.set(n, n.nodeValue);
+        n.nodeValue = t;
+      }
+      if(AR.test(n.nodeValue)) mtQueue(n);
     } else if(n.nodeType === 1){
       if(SKIP(n)) return;
       ATTRS.forEach(a => {
@@ -4447,7 +4557,7 @@ reForm.addEventListener('submit', async e => {
     mo.observe(document.body, { subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:ATTRS });
   }
   function toAR(){
-    mo.disconnect();
+    mo.disconnect(); mtWait.clear();
     origText.forEach((v, n) => { if(n.isConnected) n.nodeValue = v; }); origText.clear();
     origAttr.forEach((o, el) => { Object.keys(o).forEach(a => el.setAttribute(a, o[a])); }); origAttr.clear();
   }
@@ -4479,6 +4589,8 @@ reForm.addEventListener('submit', async e => {
     const el = e.target.closest && e.target.closest('[data-rtype]'); if(!el || !page.contains(el)) return;
     const type = el.dataset.rtype;
     openReportEditor();
+    const disc = ['رصد مخالفة','شكوى'].includes(type);
+    document.getElementById('re-type').setAttribute('data-only', disc ? 'disc' : 'general');
     const wrap = document.getElementById('re-type');
     const chip = wrap && wrap.querySelector(`.re-chip[data-type="${type}"]`);
     if(chip) chip.click();
