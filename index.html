@@ -1495,6 +1495,20 @@
     .board-layout{ grid-template-columns: 290px minmax(0,1fr); }
     .board-layout::after{ display:none; }
   }
+
+  /* ===== المهام بنفس شكل تذكرة التحدي ===== */
+  #tasks-list{ gap:16px; }
+  .ch-live.st-progress{ color:#e2b85b; background:rgba(226,184,91,0.08); border-color:rgba(226,184,91,0.3); }
+  .ch-live.st-progress i{ background:#e2b85b; box-shadow:0 0 8px #e2b85b; }
+  .ch-live.st-done{ color:#9fd05a; }
+  .ch-live.st-done i{ animation:none; }
+  .ch-live.st-pending{ color:var(--text-dim); background:rgba(152,161,115,0.08); border-color:rgba(152,161,115,0.3); }
+  .ch-live.st-pending i{ background:var(--text-dim); box-shadow:none; animation:none; }
+  .ch-ticket.status-done .ch-ring{ background: conic-gradient(from -90deg, #9fd05a, #c7ef7a calc(var(--p) * 1%), rgba(199,217,119,0.08) 0); box-shadow:0 0 26px rgba(159,208,90,0.25); }
+  .ch-ticket.status-done{ border-color: rgba(159,208,90,0.35); }
+  .challenge.ch-ticket.task-ended > *:not(.challenge-lock-overlay){ filter: grayscale(1) !important; opacity:.4 !important; }
+  .ch-stamp.st-wait{ color:#e2b85b; border-color:#e2b85b; background:rgba(226,184,91,0.06); }
+  .ch-stamp.st-wait .challenge-lock-title{ color:#e2b85b; text-shadow:none; }
 </style>
 </head>
 <body>
@@ -2504,27 +2518,30 @@ function renderTasks(list){
   }
   list.forEach((t,i)=>{
     const card = document.createElement('div');
-    card.className = 'task-card status-' + t.status;
+    card.className = 'challenge ch-ticket task-t status-' + t.status;
     card.style.animationDelay = (i*0.06) + 's';
     card.innerHTML = `
-      <div class="task-top">
-        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-          ${t.points ? `<span class="challenge-tag" style="color:var(--warn); border-color:var(--warn);">🏆 ${t.points.toLocaleString()} نقطة</span>` : ''}
-          ${t.due ? `<span class="challenge-countdown-badge" id="task-countdown-${i}">--:--:--</span>` : ''}
+      <div class="ch-stub">
+        <div class="ch-ring"><div class="ch-ring-in"><span class="challenge-pct" id="task-pct-${i}">0%</span><small>الإنجاز</small></div></div>
+        <div class="task-progress-fill" id="task-fill-${i}" style="display:none"></div>
+      </div>
+      <div class="ch-main">
+        <div class="ch-head">
+          <span class="ch-code">TSK-${String(i+1).padStart(2,'0')}</span>
+          <span class="ch-live st-${t.status}"><i></i>${statusLabel[t.status]}</span>
         </div>
-        <span class="task-status ${t.status}">${statusLabel[t.status]}</span>
+        <h3>${t.title}</h3>
+        <p>${t.desc}</p>
+        <div class="ch-foot">
+          ${t.due ? `<div class="ch-timer"><small>الوقت المتبقي</small><span class="challenge-countdown-badge" id="task-countdown-${i}">--:--:--</span></div>` : ''}
+          ${t.points ? `<div class="ch-points"><span class="ch-medal"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v3a5 5 0 0 1-10 0V3zm-3 1h3v2a3 3 0 0 1-3-2zm13 0h3a3 3 0 0 1-3 2V4zM10.5 13h3v3h2.5v2h-8v-2h2.5z"/></svg></span><b>${t.points.toLocaleString()}</b><small>نقطة</small></div>` : ''}
+        </div>
       </div>
-      <h3 class="task-title">${t.title}</h3>
-      <p class="task-desc">${t.desc}</p>
-      <div class="task-bottom">
-        <div class="task-progress-wrap"><div class="task-progress-fill" id="task-fill-${i}" style="width:0%"></div></div>
-        <span class="challenge-pct" id="task-pct-${i}">0%</span>
-      </div>
+      <span class="ch-barcode"></span>
       <div class="challenge-lock-overlay" id="task-lock-${i}">
-        <span class="tape t1"></span>
-        <span class="tape t2"></span>
-        <div class="challenge-lock-badge">
+        <div class="challenge-lock-badge ch-stamp st-wait">
           <span class="challenge-lock-title">قيد الانتظار</span>
+          <em>AWAITING ORDERS</em>
         </div>
       </div>
     `;
@@ -2539,6 +2556,7 @@ function renderTasks(list){
     if(t.progress <= 0){ pct.textContent = '0%'; return; }
     setTimeout(()=>{
       fill.style.width = t.progress + '%';
+      const tc = fill.closest('.ch-ticket'); if(tc) tc.style.setProperty('--p', Math.max(0, Math.min(100, Number(t.progress)||0)));
       let cur = 0;
       const timer = setInterval(()=>{
         cur++; pct.textContent = cur + '%';
@@ -2555,7 +2573,7 @@ function renderTasks(list){
 
 function lockTaskCard(i){
   const overlay = document.getElementById('task-lock-' + i);
-  const card = overlay ? overlay.closest('.task-card') : null;
+  const card = overlay ? overlay.closest('.ch-ticket, .task-card') : null;
   setTimeout(()=>{
     if(card) card.classList.add('task-ended');
     if(overlay) overlay.classList.add('show');
