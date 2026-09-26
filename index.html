@@ -1215,6 +1215,168 @@
   .member-card::after, .member-card:hover::after{ transition:none !important; }
   .pod-slot.first .pod-avatar{ animation:none !important; }
   .row:hover{ box-shadow:none !important; }
+
+  /* =====================================================
+     ===== كروت صفحة القوانين (تصميم جديد) =====
+     ===================================================== */
+  .ov-grid{
+    display:grid; gap:14px; margin-bottom:36px;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    grid-template-areas: "rep rep sch" "hie rul sch";
+  }
+  .ov-rep{ grid-area:rep; } .ov-sch{ grid-area:sch; }
+  #btn-hierarchy{ grid-area:hie; } #btn-training-system{ grid-area:rul; }
+  .ov{
+    position:relative; overflow:hidden; text-align:right; font-family:'Tajawal',sans-serif; color:var(--text);
+    border-radius:12px; border:1px solid rgba(199,217,119,0.14);
+    background: linear-gradient(155deg, rgba(30,36,16,0.96), rgba(11,13,6,0.96));
+    padding:20px 22px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 12px 28px rgba(0,0,0,0.45);
+  }
+  .ov::before{ content:""; position:absolute; top:0; right:22px; left:22px; height:1px;
+    background: linear-gradient(90deg, transparent, rgba(219,238,138,0.55), transparent); }
+  .ov h3{ font-size:17px; font-weight:800; margin:0 0 6px; color:#f1f3de; }
+  .ov p{ font-size:13px; line-height:1.7; color:var(--text-dim); margin:0; }
+  .ov-num{ position:absolute; top:14px; left:18px; font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:2px; color:rgba(199,217,119,0.35); }
+  .ov-top{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .ov-ic{
+    width:44px; height:44px; flex-shrink:0; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    color:var(--stone); background: linear-gradient(160deg, rgba(199,217,119,0.18), rgba(199,217,119,0.04));
+    border:1px solid rgba(199,217,119,0.22);
+  }
+  .ov-ic svg{ width:22px; height:22px; }
+  .ov-new{ position:static !important; }
+  .ov-ok{ display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:700; color:#9fd05a;
+    padding:3px 10px; border-radius:20px; background:rgba(159,208,90,0.08); border:1px solid rgba(159,208,90,0.28); }
+  .ov-ok i{ width:6px; height:6px; border-radius:50%; background:#9fd05a; }
+
+  /* التقارير: كرت عريض */
+  .ov-rep{ padding:24px 26px; background:
+      radial-gradient(ellipse at 0% 100%, rgba(199,217,119,0.12), transparent 55%),
+      linear-gradient(155deg, rgba(34,41,17,0.97), rgba(11,13,6,0.97)); }
+  .ov-rep h3{ font-size:21px; }
+  .ov-rep p{ max-width:440px; font-size:13.5px; }
+  .ov-wm{ position:absolute; left:-18px; bottom:-26px; color:rgba(199,217,119,0.035); pointer-events:none; }
+  .ov-wm svg{ width:170px; height:170px; }
+  .ov-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:18px; }
+  .ov-btn{
+    display:inline-flex; align-items:center; gap:7px; font-family:'Tajawal',sans-serif; font-size:13px; font-weight:800;
+    padding:9px 18px; border-radius:8px; cursor:pointer; color:var(--stone);
+    background:rgba(199,217,119,0.06); border:1px solid rgba(199,217,119,0.25);
+    transition: background .15s ease, color .15s ease;
+  }
+  .ov-btn svg{ width:14px; height:14px; }
+  .ov-btn:hover{ background:rgba(199,217,119,0.14); }
+  .ov-btn.primary{ background: linear-gradient(160deg, #dbee8a, #b3c663); color:#10130a; border-color:transparent; box-shadow:0 4px 0 #5f6b2a; }
+  .ov-btn.primary:hover{ background: linear-gradient(160deg, #eef8b8, #c7d977); }
+  .ov-btn.primary:active{ transform:translateY(3px); box-shadow:0 1px 0 #5f6b2a; }
+
+  /* المواعيد: قائمة أيام */
+  .ov-days{ list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .ov-days li{
+    position:relative; display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    padding:11px 14px; border-radius:9px; background:rgba(0,0,0,0.28); border:1px solid rgba(199,217,119,0.08);
+  }
+  .ov-days .d{ font-weight:800; font-size:14px; }
+  .ov-days .t{ font-family:'Orbitron',sans-serif; font-size:14px; font-weight:600; color:var(--gold); direction:ltr; }
+  .ov-days .t small{ font-family:'Tajawal',sans-serif; font-size:11px; color:var(--text-dim); font-weight:500; }
+  .ov-days li.next{ background:linear-gradient(90deg, rgba(199,217,119,0.16), rgba(199,217,119,0.04)); border-color:rgba(199,217,119,0.4); }
+  .ov-days li.next::before{ content:""; position:absolute; right:-1px; top:10px; bottom:10px; width:3px; border-radius:3px; background:var(--gold); }
+  .ov-next{ width:100%; font-size:11px; font-weight:700; color:#9fd05a; }
+
+  /* الهرم والقوانين: كروت رابط أفقية */
+  .ov-link{ display:flex; align-items:center; gap:14px; cursor:pointer; padding:18px 20px; transition: border-color .15s ease, background .15s ease; }
+  .ov-link:hover{ border-color:rgba(199,217,119,0.4); background: linear-gradient(155deg, rgba(38,46,19,0.97), rgba(13,16,7,0.97)); }
+  .ov-link .ov-num{ top:auto; bottom:12px; }
+  .ov-txt{ flex:1; min-width:0; display:block; }
+  .ov-h{ display:block; font-size:15.5px; font-weight:800; color:#f1f3de; margin-bottom:3px; }
+  .ov-s{ display:block; font-size:12.5px; line-height:1.6; color:var(--text-dim); }
+  .ov-go{ width:34px; height:34px; flex-shrink:0; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:#10130a; background:var(--stone); transition: background .15s ease; }
+  .ov-go svg{ width:16px; height:16px; }
+  .ov-link:hover .ov-go{ background:#eef8b8; }
+
+  @media (max-width:860px){
+    .ov-grid{ grid-template-columns:1fr 1fr; grid-template-areas:"rep rep" "sch sch" "hie rul"; }
+  }
+  @media (max-width:560px){
+    .ov-grid{ grid-template-columns:1fr; grid-template-areas:"rep" "sch" "hie" "rul"; }
+    .ov-rep h3{ font-size:18px; }
+  }
+
+  /* =====================================================
+     ===== الأعضاء: مقسمين حسب الرتبة (تصميم جديد) =====
+     ===================================================== */
+  .members-grid{ display:block !important; }
+  .mb-group{ margin-bottom:30px; }
+  .mb-gh{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .mb-gh h4{ margin:0; font-size:16px; font-weight:800; color:#f1f3de; }
+  .mb-gh em{ font-style:normal; font-family:'Orbitron',sans-serif; font-size:10px; letter-spacing:3px; color:var(--stone-dim); }
+  .mb-count{ font-family:'Orbitron',sans-serif; font-size:11px; font-weight:700; color:#10130a; background:var(--stone); border-radius:20px; padding:1px 9px; }
+  .mb-line{ flex:1; height:1px; background:linear-gradient(90deg, rgba(199,217,119,0.25), transparent); }
+
+  .mb-list{ display:grid; gap:12px; }
+  .mb-list.mb-lg{ grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); }
+  .mb-list.mb-md{ grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); }
+  .mb-list.mb-sm{ grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); gap:10px; }
+
+  .mb-card{
+    --acc:#8fa048;
+    position:relative; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px;
+    padding:12px 14px; border-radius:12px; overflow:hidden;
+    background: linear-gradient(155deg, rgba(28,34,15,0.96), rgba(10,12,6,0.96));
+    border:1px solid rgba(199,217,119,0.12);
+    opacity:0; animation: fadeUp .35s ease forwards;
+  }
+  .mb-card::before{ content:""; position:absolute; top:12px; bottom:12px; right:0; width:3px; border-radius:3px 0 0 3px; background:var(--acc); }
+  .mb-card.r-leader{ --acc:#e2c65b; } .mb-card.r-co{ --acc:#c7d977; } .mb-card.r-mgmt{ --acc:#c09a52; }
+  .mb-card.is-off{ opacity:.55; animation-name: fadeUpDim; }
+  @keyframes fadeUpDim{ from{ opacity:0; translate:0 14px; } to{ opacity:.55; translate:0 0; } }
+
+  .mb-av{
+    position:relative; width:46px; height:46px; border-radius:12px; overflow:hidden; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:16px; color:var(--acc);
+    background: radial-gradient(circle at 35% 30%, #262e11, #0c0f06 80%);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--acc) 55%, transparent);
+  }
+  .mb-av img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .mb-card.is-on .mb-av::after{ content:""; position:absolute; bottom:3px; left:3px; width:9px; height:9px; border-radius:50%; background:#9fd05a; box-shadow:0 0 0 2px #0c0f06; z-index:2; }
+  .mb-body{ min-width:0; }
+  .mb-name{ font-size:14px; font-weight:800; color:#f1f3de; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .mb-meta{ display:flex; align-items:center; gap:8px; margin-top:4px; min-width:0; }
+  .mb-rank{ font-family:'Oswald',sans-serif; font-size:10.5px; letter-spacing:1px; color:var(--acc);
+    padding:1px 8px; border-radius:20px; background:color-mix(in srgb, var(--acc) 12%, transparent); border:1px solid color-mix(in srgb, var(--acc) 35%, transparent); white-space:nowrap; }
+  .mb-nick{ font-size:11.5px; color:var(--text-dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; direction:ltr; }
+  .mb-stats{ display:flex; gap:12px; }
+  .mb-stats span{ display:flex; flex-direction:column; align-items:center; line-height:1.15; }
+  .mb-stats b{ font-family:'Orbitron',sans-serif; font-size:13px; color:var(--gold); }
+  .mb-stats small{ font-size:10px; color:var(--text-dim); }
+  .mb-state{ display:none; }
+
+  /* القيادة: كروت أكبر */
+  .mb-lg .mb-card{ padding:18px 18px; gap:16px; border-color:color-mix(in srgb, var(--acc) 25%, transparent);
+    background: radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--acc) 12%, transparent), transparent 60%), linear-gradient(155deg, rgba(30,36,16,0.97), rgba(10,12,6,0.97)); }
+  .mb-lg .mb-av{ width:68px; height:68px; border-radius:16px; font-size:22px; }
+  .mb-lg .mb-name{ font-size:16px; }
+  .mb-lg .mb-stats b{ font-size:16px; }
+  .mb-lg .mb-state{ display:block; position:absolute; top:10px; left:12px; font-size:10.5px; font-weight:700; color:var(--text-dim); }
+  .mb-lg .is-on .mb-state{ color:#9fd05a; }
+  .mb-md .mb-av{ width:52px; height:52px; }
+
+  /* الأعضاء العاديين: مختصر */
+  .mb-sm .mb-card{ padding:10px 12px; gap:10px; border-radius:10px; }
+  .mb-sm .mb-av{ width:40px; height:40px; border-radius:10px; font-size:14px; }
+  .mb-sm .mb-name{ font-size:13px; }
+  .mb-sm .mb-stats span:last-child{ display:none; }
+
+  @media (max-width:600px){
+    .mb-list.mb-lg, .mb-list.mb-md, .mb-list.mb-sm{ grid-template-columns:1fr; }
+    .mb-lg .mb-av{ width:56px; height:56px; }
+    .mb-lg .mb-card, .mb-md .mb-card{ grid-template-columns:auto 1fr; }
+    .mb-lg .mb-stats, .mb-md .mb-stats{ grid-column:1 / -1; justify-content:flex-start; gap:18px; padding-top:10px; border-top:1px solid rgba(199,217,119,0.1); }
+    .mb-lg .mb-stats span, .mb-md .mb-stats span{ flex-direction:row; gap:5px; align-items:baseline; }
+  }
 </style>
 </head>
 <body>
@@ -1329,37 +1491,40 @@
     </div>
     <div class="content">
 
-      <div class="overview-grid fade-in" style="animation-delay:0.1s">
-        <div class="overview-card">
-          <span class="overview-badge"><span class="dot"></span> موعد مؤكّد</span>
-          <div class="overview-icon">📅</div>
-          <h3>موعد استخراج الفرقة</h3>
-          <p>السبت 4 مساء</p>
-          <p>الاثنين 10 مساء</p>
-          <p> الخميس 4 مساء</p>
-        </div>
-        <div class="overview-card">
-          <div class="overview-icon">🏛️</div>
-          <h3>هرم السكواد</h3>
-          <p>التسلسل القيادي المسؤول عن إدارة السكواد .</p>
-          <button class="overview-btn" type="button" id="btn-hierarchy">عرض الهرم الكامل</button>
-        </div>
-        <div class="overview-card">
-          <div class="overview-icon">🎯</div>
-          <h3>قوانين السكواد</h3>
-          <p>تم اعداد اللائحة التالية لضمان انضباط الاعضاء وسير العمل بفعالية داخل السكواد</p>
-          <button class="overview-btn" type="button" id="btn-training-system">عرض النظام</button>
-        </div>
-        <div class="overview-card">
-          <span class="rp-badge">جديد</span>
-          <div class="overview-icon">📝</div>
+      <div class="ov-grid fade-in" style="animation-delay:0.1s">
+        <div class="ov ov-rep">
+          <span class="ov-num">01</span>
+          <span class="ov-wm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+          <div class="ov-top"><span class="ov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><span class="rp-badge ov-new">جديد</span></div>
           <h3>نظام التقارير</h3>
           <p>اكتب ملاحظاتك الميدانية والمخالفات أو أرفق رابط لها، وكل تقرير يعطيك نقاط.</p>
-          <div class="card-actions">
-            <button class="overview-btn primary" type="button" id="btn-report-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
-            <button class="overview-btn" type="button" id="btn-reports-system">عرض النظام</button>
+          <div class="ov-actions">
+            <button class="ov-btn primary" type="button" id="btn-report-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>إنشاء تقرير</button>
+            <button class="ov-btn" type="button" id="btn-reports-system">عرض النظام</button>
           </div>
         </div>
+        <div class="ov ov-sch">
+          <span class="ov-num">02</span>
+          <div class="ov-top"><span class="ov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span class="ov-ok"><i></i>موعد مؤكّد</span></div>
+          <h3>موعد استخراج الفرقة</h3>
+          <ul class="ov-days" id="ov-days">
+            <li data-dow="6" data-h="16"><span class="d">السبت</span><span class="t">4:00 <small>مساء</small></span></li>
+            <li data-dow="1" data-h="22"><span class="d">الاثنين</span><span class="t">10:00 <small>مساء</small></span></li>
+            <li data-dow="4" data-h="16"><span class="d">الخميس</span><span class="t">4:00 <small>مساء</small></span></li>
+          </ul>
+        </div>
+        <button class="ov ov-link" type="button" id="btn-hierarchy">
+          <span class="ov-num">03</span>
+          <span class="ov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-4h12v4"/></svg></span>
+          <span class="ov-txt"><span class="ov-h">هرم السكواد</span><span class="ov-s">التسلسل القيادي المسؤول عن إدارة السكواد.</span></span>
+          <span class="ov-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></span>
+        </button>
+        <button class="ov ov-link" type="button" id="btn-training-system">
+          <span class="ov-num">04</span>
+          <span class="ov-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="ov-txt"><span class="ov-h">قوانين السكواد</span><span class="ov-s">اللائحة اللي تضمن انضباط الأعضاء وسير العمل داخل السكواد.</span></span>
+          <span class="ov-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></span>
+        </button>
       </div>
 
       <div class="fade-in" style="animation-delay:0.2s">
@@ -2066,28 +2231,42 @@ function renderMembers(list){
     membersGrid.innerHTML = '<div class="empty-state">لا يوجد أعضاء مطابقين</div>';
     return;
   }
-  list.forEach((m)=>{
-    const i = m.idx;
-    const card = document.createElement('div');
-    const rk = String(m.rank||'').toLowerCase();
-    const tier = /leader/.test(rk) && !/co/.test(rk) ? 'r-leader' : /co/.test(rk) ? 'r-co' : /manag/.test(rk) ? 'r-mgmt' : 'r-member';
-    const stripes = tier==='r-leader'?3:tier==='r-co'?2:tier==='r-mgmt'?2:1;
-    card.className = 'member-card ' + tier + (m.photo ? ' has-photo' : '');
-    card.style.animationDelay = (i*0.05) + 's';
-    if(m.photo) card.style.backgroundImage = `url('${m.photo}')`;
-    card.innerHTML = `
-      ${m.photo ? '' : `<div class="av"><span class="hex-id">${initials(m.name)}</span></div>`}
-      <span class="mc-serial">#${String((m.idx ?? i)+1).padStart(2,'0')}</span>
-      <span class="mc-chev">${'<i></i>'.repeat(stripes)}</span>
-      <span class="status-dot ${m.status}"></span>
-      <span class="mc-scan"></span>
-      <div class="member-info">
-        <div class="member-name">${m.name}</div>
-        <span class="rank-badge">${m.rank}</span>
-        <div class="member-nick"><span class="mc-state ${m.status}">${m.status==='online'?'ONLINE':'OFFLINE'}</span>${m.nick}</div>
-      </div>
-    `;
-    membersGrid.appendChild(card);
+  const tierOf = r => { r = String(r||'').toLowerCase(); return (/leader/.test(r) && !/co/.test(r)) ? 'r-leader' : /co/.test(r) ? 'r-co' : /manag/.test(r) ? 'r-mgmt' : 'r-member'; };
+  const groups = [
+    { key:'lead', title:'القيادة', en:'COMMAND', tiers:['r-leader','r-co'], cls:'mb-lg' },
+    { key:'mgmt', title:'الإدارة', en:'MANAGEMENT', tiers:['r-mgmt'], cls:'mb-md' },
+    { key:'mem',  title:'الأعضاء', en:'OPERATORS', tiers:['r-member'], cls:'mb-sm' },
+  ];
+  const fmt = n => (Number(n)||0).toLocaleString('en-US', { maximumFractionDigits:1 });
+  const avatar = m => `<span class="mb-av">${initials(m.name)}${m.photo ? `<img src="${m.photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}</span>`;
+  let delay = 0;
+  groups.forEach(g=>{
+    const items = list.filter(m => g.tiers.includes(tierOf(m.rank)))
+      .sort((a,b)=> (g.tiers.indexOf(tierOf(a.rank)) - g.tiers.indexOf(tierOf(b.rank))) || (b.hours - a.hours));
+    if(!items.length) return;
+    const sec = document.createElement('section');
+    sec.className = 'mb-group mb-' + g.key;
+    sec.innerHTML = `<header class="mb-gh"><h4>${g.title}</h4><em>${g.en}</em><span class="mb-count">${items.length}</span><span class="mb-line"></span></header><div class="mb-list ${g.cls}"></div>`;
+    const wrap = sec.querySelector('.mb-list');
+    items.forEach(m=>{
+      const card = document.createElement('div');
+      card.className = 'mb-card ' + tierOf(m.rank) + ' ' + (m.status === 'online' ? 'is-on' : 'is-off');
+      card.style.animationDelay = (delay++ * 0.035) + 's';
+      card.innerHTML = `
+        ${avatar(m)}
+        <div class="mb-body">
+          <div class="mb-name">${m.name}</div>
+          <div class="mb-meta"><span class="mb-rank">${m.rank}</span><span class="mb-nick">${m.nick || ''}</span></div>
+        </div>
+        <div class="mb-stats">
+          <span><b>${fmt(m.hours)}</b><small>ساعة</small></span>
+          <span><b>${fmt(m.points)}</b><small>نقطة</small></span>
+        </div>
+        <span class="mb-state">${m.status === 'online' ? 'متصل' : 'غير متصل'}</span>
+      `;
+      wrap.appendChild(card);
+    });
+    membersGrid.appendChild(sec);
   });
 }
 
@@ -2949,6 +3128,30 @@ reForm.addEventListener('submit', async e => {
     el.classList.add('tilting');
   }, { passive:true });
   document.addEventListener('mouseleave', function(){ if(cur){ reset(cur); cur = null; } });
+})();
+</script>
+<script>
+/* ===== تمييز موعد الاستخراج القادم ===== */
+(function(){
+  const box = document.getElementById('ov-days'); if(!box) return;
+  const items = [...box.querySelectorAll('li')];
+  const now = new Date();
+  let best = null, bestDiff = Infinity;
+  items.forEach(li=>{
+    const dow = +li.dataset.dow, h = +li.dataset.h;
+    const t = new Date(now); t.setHours(h,0,0,0);
+    let add = (dow - now.getDay() + 7) % 7; t.setDate(t.getDate() + add);
+    if(t <= now) t.setDate(t.getDate() + 7);
+    const diff = t - now; if(diff < bestDiff){ bestDiff = diff; best = li; }
+  });
+  if(best){
+    best.classList.add('next');
+    const hrs = Math.floor(bestDiff/3600000), d = Math.floor(hrs/24);
+    const tag = document.createElement('span'); tag.className = 'ov-next';
+    tag.textContent = d >= 1 ? `القادم · بعد ${d} يوم` : `القادم · بعد ${hrs} ساعة`;
+    if(d === 0 && hrs < 1) tag.textContent = 'القادم · خلال أقل من ساعة';
+    best.appendChild(tag);
+  }
 })();
 </script>
 </body>
