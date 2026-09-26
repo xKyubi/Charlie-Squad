@@ -1205,6 +1205,16 @@
     .ch-barcode{ left:7px; width:9px; }
     .ch-stamp .challenge-lock-title{ font-size:19px; }
   }
+
+  /* ===== بدون حركة على صور وبطاقات اللاعبين (أداء أفضل) ===== */
+  .member-card, .member-card:hover, .pod-slot, .pod-slot:hover, .pod-avatar, .pod-slot:hover .pod-avatar,
+  .hier-node:hover .hex-avatar, .hex-avatar, .member-card:hover .hex-id, .row:hover, .officer .av{
+    transform:none !important; transition:none !important; will-change:auto !important;
+  }
+  .member-card:hover .mc-scan{ animation:none !important; }
+  .member-card::after, .member-card:hover::after{ transition:none !important; }
+  .pod-slot.first .pod-avatar{ animation:none !important; }
+  .row:hover{ box-shadow:none !important; }
 </style>
 </head>
 <body>
@@ -2907,7 +2917,7 @@ reForm.addEventListener('submit', async e => {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var touch = window.matchMedia && window.matchMedia('(hover: none)').matches;
   if(reduce || touch) return;
-  var SEL = '.overview-card, .member-card, .task-card, .challenge, .pod-slot';
+  var SEL = '.overview-card, .task-card, .challenge';
   var MAX = 9;
   var cur = null;
   function prep(el){
