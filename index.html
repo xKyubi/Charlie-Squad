@@ -1770,6 +1770,32 @@
     .nav2{ padding:0 !important; min-height:0 !important; border:0 !important; box-shadow:none !important; background:none !important; }
     .nav2::after{ display:none; }
   }
+
+  /* ===== المساعد: اختيار الاسم ===== */
+  .ai-pick{ width:100%; max-width:100% !important; }
+  .ai-pick-q{ display:block; width:100%; margin:8px 0; padding:8px 10px; border-radius:8px; border:1px solid rgba(199,217,119,0.25);
+    background:#070804; color:var(--text); font-family:'Tajawal',sans-serif; font-size:13px; outline:none; }
+  .ai-pick-q:focus{ border-color:var(--stone); }
+  .ai-pick-list{ display:flex; flex-wrap:wrap; gap:6px; max-height:190px; overflow-y:auto; }
+  .ai-pick-list button, .ai-me-change{ font-family:'Tajawal',sans-serif; font-size:12.5px; font-weight:700; cursor:pointer; color:var(--stone);
+    padding:5px 10px; border-radius:20px; background:rgba(199,217,119,0.07); border:1px solid rgba(199,217,119,0.25); white-space:nowrap; }
+  .ai-pick-list button:hover, .ai-me-change:hover{ background:rgba(199,217,119,0.18); }
+  .ai-me-change{ margin-top:8px; font-size:11.5px; color:var(--text-dim); }
+  .ai-suggest button[data-act="me"]{ grid-column:1 / -1; background:linear-gradient(90deg, rgba(199,217,119,0.18), rgba(199,217,119,0.05)) !important; color:#eef5c4 !important; border-color:rgba(199,217,119,0.4) !important; }
+
+  .ai-suggest button:last-child:nth-child(odd){ grid-column:auto; }
+
+  /* ===== الشعار: يدور ويطفو ===== */
+  .hero .emblem-stage{ perspective:700px; animation: emFloat 4.5s ease-in-out infinite !important; }
+  .hero .emblem-stage img.emblem{ transform-style:preserve-3d; animation: emSpin 7s cubic-bezier(.45,.05,.55,.95) infinite !important;
+    filter: drop-shadow(0 8px 14px rgba(0,0,0,.6)) drop-shadow(0 0 10px rgba(199,217,119,.25)) !important; }
+  .hero .emblem-frame{ animation: emFrame 16s linear infinite; }
+  @keyframes emSpin{ 0%{ transform: rotateY(0deg); } 100%{ transform: rotateY(360deg); } }
+  @keyframes emFloat{ 0%,100%{ translate:0 0; } 50%{ translate:0 -10px; } }
+  @keyframes emFrame{ from{ transform: rotate(45deg) scale(.82); } to{ transform: rotate(405deg) scale(.82); } }
+  @media (prefers-reduced-motion: reduce){
+    .hero .emblem-stage, .hero .emblem-stage img.emblem, .hero .emblem-frame{ animation:none !important; }
+  }
 </style>
 </head>
 <body>
@@ -2072,6 +2098,7 @@
     <div class="ai-suggest" id="ai-suggest">
       <button type="button">توب الساعات</button>
       <button type="button">توب النقاط</button>
+      <button type="button" data-act="me">كم نقاطي وساعاتي؟</button>
       <button type="button">التحديات</button>
       <button type="button">المهام</button>
       <button type="button">مواعيد الاستخراج</button>
@@ -3800,6 +3827,58 @@ reForm.addEventListener('submit', async e => {
   });
   $('mi-close').addEventListener('click', close);
   modal.addEventListener('click', e => { if(e.target === modal) close(); });
+})();
+</script>
+<script>
+/* ===== المساعد: كم نقاطي وساعاتي ===== */
+(function(){
+  const sug = document.getElementById('ai-suggest'), body = document.getElementById('ai-body');
+  if(!sug || !body) return;
+  const KEY = 'charlie-me';
+  const fmt = n => (Number(n)||0).toLocaleString('en-US', { maximumFractionDigits:1 });
+  const roster = () => (typeof currentRoster !== 'undefined' ? currentRoster : []);
+  function say(who, text){ const m = document.createElement('div'); m.className = 'msg ' + who; m.textContent = text; body.appendChild(m); body.scrollTop = body.scrollHeight; return m; }
+  function report(m){
+    const list = roster();
+    const byH = list.filter(r=>r.hours>0).sort((a,b)=>b.hours-a.hours), byP = list.filter(r=>r.points>0).sort((a,b)=>b.points-a.points);
+    const hr = byH.findIndex(r=>r.name===m.name)+1, pr = byP.findIndex(r=>r.name===m.name)+1;
+    let t = `${m.name}\nساعاتك: ${fmt(m.hours)} ساعة${hr ? ` (المركز ${hr})` : ''}\nنقاطك: ${fmt(m.points)} نقطة${pr ? ` (المركز ${pr})` : ''}`;
+    if(hr > 1){ const up = byH[hr-2]; t += `\n\nباقي لك ${fmt(up.hours - m.hours)} ساعة وتتعدى ${up.name}.`; }
+    else if(hr === 1) t += `\n\nأنت الأول بالساعات 🔥`;
+    const m2 = say('bot', t);
+    const ch = document.createElement('button'); ch.type = 'button'; ch.className = 'ai-me-change'; ch.textContent = 'مو أنا؟ غيّر الاسم';
+    ch.onclick = () => { try{ localStorage.removeItem(KEY); }catch(e){} picker(); };
+    m2.appendChild(document.createElement('br')); m2.appendChild(ch);
+  }
+  function picker(){
+    const list = roster();
+    if(!list.length){ say('bot', 'البيانات ما تحمّلت للحين، ثواني وجرّب.'); return; }
+    const wrap = say('bot', 'اختار اسمك:');
+    wrap.classList.add('ai-pick');
+    const q = document.createElement('input'); q.type = 'text'; q.placeholder = 'دوّر اسمك...'; q.className = 'ai-pick-q';
+    const box = document.createElement('div'); box.className = 'ai-pick-list';
+    function draw(){
+      const v = q.value.trim().toLowerCase();
+      box.innerHTML = '';
+      list.filter(r => !v || r.name.toLowerCase().includes(v) || String(r.nick||'').toLowerCase().includes(v))
+        .sort((a,b)=>a.name.localeCompare(b.name)).forEach(r=>{
+          const b = document.createElement('button'); b.type = 'button'; b.textContent = r.name;
+          b.onclick = () => { try{ localStorage.setItem(KEY, r.name); }catch(e){} wrap.remove(); say('me', r.name); report(r); };
+          box.appendChild(b);
+        });
+    }
+    q.oninput = draw; draw();
+    wrap.appendChild(q); wrap.appendChild(box);
+    body.scrollTop = body.scrollHeight;
+  }
+  sug.addEventListener('click', e => {
+    const b = e.target.closest('button[data-act="me"]'); if(!b) return;
+    e.stopImmediatePropagation(); e.preventDefault();
+    say('me', b.textContent);
+    let saved = null; try{ saved = localStorage.getItem(KEY); }catch(err){}
+    const m = saved && roster().find(r => r.name === saved);
+    if(m) report(m); else picker();
+  }, true);
 })();
 </script>
 </body>
