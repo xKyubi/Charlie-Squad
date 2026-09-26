@@ -666,14 +666,15 @@
       <p>قوانين وأنظمة الفريق الرسمية.</p>
     </div>
     <div class="content">
+
       <div class="overview-grid fade-in" style="animation-delay:0.1s">
         <div class="overview-card">
           <span class="overview-badge"><span class="dot"></span> موعد مؤكّد</span>
           <div class="overview-icon">📅</div>
           <h3>موعد استخراج الفرقة</h3>
-          <p>الاثنين 9 مساء</p>
-          <p>الاربعاء 4 مساء</p>
-          <p>الجمعة 10 مساء</p>
+          <p>الاثنين 3 مساء</p>
+          <p>الاربعاء 3 مساء</p>
+          <p>الجمعة 3 مساء</p>
         </div>
         <div class="overview-card">
           <div class="overview-icon">🏛️</div>
@@ -703,7 +704,7 @@
 
   <footer class="footer">
     <span>CHARLIE SQUAD</span>
-    <span>Made By : SHOKMAN,KYUBI</span>
+    <span>Made By : Kyubi.Abdulaziz</span>
   </footer>
 
   <!-- ===== مودال نظام التدريب (تايم لاين المراحل) ===== -->
@@ -752,7 +753,7 @@
         <div class="timeline-item">
           <div class="timeline-card">
             <h4><span class="timeline-marker">7</span>الأشخاص المصرح لهم باستخراج الفرقة</h4>
-            <p>من هم برتبة اوفيسر 3 فما فوق</p>
+            <p>abadi Abdullah — Nawaf Almutiri</p>
           </div>
         </div>
       </div>
@@ -785,7 +786,7 @@
     </div>
     <div class="ai-body" id="ai-body" aria-live="polite"></div>
     <div class="ai-suggest" id="ai-suggest">
-      <button type="button">اعلى عدد الساعات</button>
+      <button type="button">توب الساعات</button>
       <button type="button">التحديات</button>
       <button type="button">المهام</button>
       <button type="button">مواعيد الاستخراج</button>
@@ -844,9 +845,9 @@ const hierarchyModalClose = document.getElementById('hierarchy-modal-close');
 const hierarchyTreeEl = document.getElementById('hierarchy-tree');
 
 const HIERARCHY_ORDER = [
-  ['Muqrin Fahad', 'abadi Abdullah'],
-  ['Nawaf Almutiri'],
-  ['Mohammed Alotaibi', 'Yousef Binadnan', 'Dafallah ibrahim'],
+  ['MAKHDUR SHICHI'],
+  ['Mohammed Nawaf','Saad Almuhanna','Saqer Beklley'],
+  ['Saif Almutiri','Suliet Alsls'],
 ];
 
 function renderHierarchy(){
@@ -917,8 +918,8 @@ const MEMBER_PHOTOS = {
 "Suliet Alsls": "assets/sulietalsls.jpg",
 "Mjeed Al-Shahrani": "assets/ZaRo.jpg",
 "Fahad Abdullah": "assets/fahdd.jpg",
-"Sultan Fahad": "assets/usltan.jpg",
-"Fahad AlSubie": "assets/Moścow.jpg",
+"Sultan Fahad": "assets/sultan.jpg",
+"Fahad AlSubie": "assets/Moscow.jpg",
 "Mohammed AlDosari": "assets/NM7.jpg",
 "Abdullah Alfallaj": "assets/NKSTR.jpg",
 "Suliman Abdulaziz": "assets/iSly.jpg",
@@ -949,7 +950,7 @@ const MEMBER_PHOTOS = {
 "Frank Lewis": "assets/Yazeed.jpg",
 "RAKAN ALSHAHRANI": "assets/Dont.jpg",
 "David Walker": "assets/slom.jpg",
-"TNA ALSHAMMARI": "assets/i6na.jpg",
+"TNA ALSHAMMARI": "assets/i6na.jpg"
 };
 
 function initials(name){ return (name||'').trim().split(' ').map(w=>w[0]).slice(0,2).join(''); }
@@ -1681,7 +1682,7 @@ function buildSquadContext(){
   const d = squadData();
   const L = [];
   L.push('الوقت الحالي: ' + new Date().toLocaleString('en-GB'));
-  L.push('الترتيب يتصفّر كل جمعة الساعة 12:00 ليلا مع الشوون.');
+  L.push('الترتيب يتصفّر كل جمعة الساعة 3:00 صباحاً.');
   L.push('\n# الأعضاء (الاسم | الرتبة | الحالة | الساعات | النقاط)');
   d.roster.forEach(r => L.push(`- ${r.name} | ${r.rank} | ${r.status === 'online' ? 'متواجد' : 'غير متواجد'} | ${r.hours} | ${r.points}`));
   L.push('\n# ترتيب الساعات'); d.byHours.slice(0,10).forEach((r,i)=> L.push(`${i+1}. ${r.name} — ${r.hours.toFixed(1)} ساعة`));
