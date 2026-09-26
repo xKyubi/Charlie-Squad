@@ -1957,6 +1957,28 @@
     .hc-info{ padding:24px 6px 10px; }
     .hc-th em{ display:none; }
   }
+
+  /* ===== نظام التقارير: اللغة + تقسيم الأنواع ===== */
+  #report-editor-modal .modal-box{ position:relative; }
+  .re-lang{ position:absolute; top:16px; left:60px; z-index:3; display:flex; padding:3px; border-radius:10px;
+    background:rgba(0,0,0,0.35); border:1px solid rgba(199,217,119,0.18); }
+  .re-lang button{ font-family:'Tajawal',sans-serif; font-size:12px; font-weight:800; cursor:pointer; color:var(--text-dim);
+    padding:5px 12px; border-radius:7px; border:0; background:transparent; transition: all .15s ease; }
+  .re-lang button[aria-pressed="true"]{ background:var(--stone); color:#10130a; }
+  .re-en .modal-close{ left:16px !important; right:auto !important; }
+  .re-en .modal-title{ padding-left:190px; }
+  .re-lang{ direction:ltr; }
+  .re-en, .re-en .re-input, .re-en .re-chip, .re-en .re-editor{ font-family:'Tajawal', system-ui, sans-serif; }
+  .re-en .re-editor{ text-align:left; }
+  .re-types{ display:flex; flex-wrap:wrap; gap:12px; }
+  .re-tgroup{ flex:1 1 280px; padding:10px 12px 12px; border-radius:12px; background:rgba(0,0,0,0.22); border:1px solid rgba(199,217,119,0.12); }
+  .re-tg-h{ display:flex; align-items:center; gap:6px; font-size:11.5px; font-weight:700; color:var(--text-dim); margin-bottom:8px; }
+  .re-tg-h svg{ width:13px; height:13px; }
+  .re-tgroup.disc{ border-color:rgba(226,80,58,0.3); background:linear-gradient(135deg, rgba(226,80,58,0.07), rgba(0,0,0,0.22)); }
+  .re-tgroup.disc .re-tg-h{ color:#ff8a70; }
+  .re-tgroup.disc .re-chip[aria-checked="true"]{ background:#e2503a !important; border-color:#e2503a !important; color:#fff !important; }
+  .re-tgroup.disc .re-chip:not([aria-checked="true"]):hover{ border-color:#e2503a; color:#ff8a70; }
+  .re-types.is-disc + * {}
 </style>
 </head>
 <body>
@@ -2319,28 +2341,43 @@
   <!-- ===== مودال إنشاء تقرير ===== -->
   <div class="modal-overlay" id="report-editor-modal">
     <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="re-title-h" style="max-width:860px;">
+      <div class="re-lang" id="re-lang" role="group" aria-label="Language">
+        <button type="button" data-lang="ar" aria-pressed="true">عربي</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
       <button class="modal-close" id="re-close" type="button" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
       <h2 class="modal-title" id="re-title-h">إنشاء تقرير</h2>
-      <p class="modal-sub">اكتب تقريرك هنا أو أرفق رابط له. المسودة تنحفظ تلقائي.</p>
+      <p class="modal-sub" data-i18n="sub">اكتب تقريرك هنا أو أرفق رابط له. المسودة تنحفظ تلقائي.</p>
 
       <form id="re-form" novalidate>
         <div class="re-grid">
           <label class="re-field">
-            <span class="re-label">اسمك <em>*</em></span>
-            <input class="re-input" id="re-name" list="re-names" maxlength="60" placeholder="اسمك بالسيرفر" autocomplete="off">
+            <span class="re-label"><span data-i18n="name">اسمك</span> <em>*</em></span>
+            <input class="re-input" id="re-name" list="re-names" maxlength="60" placeholder="اسمك بالسيرفر" data-i18n-ph="namePh" autocomplete="off">
             <datalist id="re-names"></datalist>
           </label>
           <label class="re-field">
-            <span class="re-label">عنوان التقرير <em>*</em></span>
-            <input class="re-input" id="re-title" maxlength="120" placeholder="مثال: ملاحظة على الانتشار بالمنطقة الشمالية" autocomplete="off">
+            <span class="re-label"><span data-i18n="title">عنوان التقرير</span> <em>*</em></span>
+            <input class="re-input" id="re-title" maxlength="120" placeholder="مثال: ملاحظة على الانتشار بالمنطقة الشمالية" data-i18n-ph="titlePh" autocomplete="off">
           </label>
           <div class="re-field full">
-            <span class="re-label" id="re-type-label">نوع التقرير</span>
-            <div class="re-chips" id="re-type" role="radiogroup" aria-labelledby="re-type-label">
-              <button type="button" class="re-chip" role="radio" aria-checked="true">ملاحظة ميدانية</button>
-              <button type="button" class="re-chip" role="radio" aria-checked="false">رصد مخالفة</button>
-              <button type="button" class="re-chip" role="radio" aria-checked="false">اقتراح تحسين</button>
-              <button type="button" class="re-chip" role="radio" aria-checked="false">أخرى</button>
+            <span class="re-label" id="re-type-label" data-i18n="type">نوع التقرير</span>
+            <div class="re-types" id="re-type" role="radiogroup" aria-labelledby="re-type-label">
+              <div class="re-tgroup">
+                <span class="re-tg-h" data-i18n="gGeneral">تقارير عامة</span>
+                <div class="re-chips">
+                  <button type="button" class="re-chip" role="radio" aria-checked="true" data-type="ملاحظة ميدانية" data-i18n="tField">ملاحظة ميدانية</button>
+                  <button type="button" class="re-chip" role="radio" aria-checked="false" data-type="اقتراح تحسين" data-i18n="tSuggest">اقتراح تحسين</button>
+                  <button type="button" class="re-chip" role="radio" aria-checked="false" data-type="أخرى" data-i18n="tOther">أخرى</button>
+                </div>
+              </div>
+              <div class="re-tgroup disc">
+                <span class="re-tg-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="gDisc">مخالفات وشكاوى · روم خاص</span></span>
+                <div class="re-chips">
+                  <button type="button" class="re-chip" role="radio" aria-checked="false" data-type="رصد مخالفة" data-i18n="tViolation">رصد مخالفة</button>
+                  <button type="button" class="re-chip" role="radio" aria-checked="false" data-type="شكوى" data-i18n="tComplaint">شكوى</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2348,11 +2385,11 @@
         <div class="re-modes" role="tablist">
           <button type="button" role="tab" id="re-mode-write" aria-selected="true" aria-controls="re-pane-write">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>
-            اكتب التقرير
+            <span data-i18n="modeWrite">اكتب التقرير</span>
           </button>
           <button type="button" role="tab" id="re-mode-link" aria-selected="false" aria-controls="re-pane-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
-            أرفق رابط
+            <span data-i18n="modeLink">أرفق رابط</span>
           </button>
         </div>
 
@@ -2375,10 +2412,10 @@
               <button type="button" class="re-tool" data-cmd="undo" title="تراجع (Ctrl+Z)" aria-label="تراجع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h-7a4 4 0 0 0 0 8h9M15 7l-3-3M15 7l-3 3" transform="matrix(-1 0 0 1 24 0)"/></svg></button>
               <button type="button" class="re-tool" data-cmd="redo" title="إعادة" aria-label="إعادة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h-7a4 4 0 0 0 0 8h9M15 7l-3-3M15 7l-3 3"/></svg></button>
               <button type="button" class="re-tool" data-cmd="removeFormat" title="مسح التنسيق" aria-label="مسح التنسيق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 5h12M12 5l-3 14M4 20L20 4"/></svg></button>
-              <button type="button" class="re-tool tpl" data-act="tpl" title="إدراج قالب تقرير جاهز">قالب جاهز</button>
+              <button type="button" class="re-tool tpl" data-act="tpl" title="إدراج قالب تقرير جاهز" data-i18n="tpl">قالب جاهز</button>
             </div>
             <div class="re-editor" id="re-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="نص التقرير"
-                 data-placeholder="اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز)."></div>
+                 data-placeholder="اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز)." data-i18n-dph="editorPh"></div>
             <div class="re-meta"><span id="re-draft-state">المسودة محفوظة</span><span id="re-count" class="num">0 / 3500</span></div>
           </div>
         </div>
@@ -2386,12 +2423,12 @@
         <div id="re-pane-link" role="tabpanel" aria-labelledby="re-mode-link" hidden>
           <div class="re-grid">
             <label class="re-field full">
-              <span class="re-label">رابط التقرير <em>*</em></span>
+              <span class="re-label"><span data-i18n="link">رابط التقرير</span> <em>*</em></span>
               <input class="re-input ltr" id="re-link" type="url" inputmode="url" maxlength="500" placeholder="https://…" autocomplete="off">
             </label>
             <label class="re-field full">
-              <span class="re-label">ملاحظة قصيرة (اختياري)</span>
-              <textarea class="re-input" id="re-link-note" rows="3" maxlength="600" placeholder="وش يحتوي الرابط؟ (فيديو، صور، مستند…)"></textarea>
+              <span class="re-label" data-i18n="note">ملاحظة قصيرة (اختياري)</span>
+              <textarea class="re-input" id="re-link-note" rows="3" maxlength="600" placeholder="وش يحتوي الرابط؟ (فيديو، صور، مستند…)" data-i18n-ph="notePh"></textarea>
             </label>
           </div>
         </div>
@@ -2401,8 +2438,8 @@
         <div class="re-foot">
           <span class="re-msg" id="re-msg" role="status"></span>
           <div class="re-actions">
-            <button type="button" class="overview-btn ghost" id="re-copy">نسخ التقرير</button>
-            <button type="submit" class="overview-btn primary" id="re-submit">إرسال التقرير</button>
+            <button type="button" class="overview-btn ghost" id="re-copy" data-i18n="copy">نسخ التقرير</button>
+            <button type="submit" class="overview-btn primary" id="re-submit" data-i18n="send">إرسال التقرير</button>
           </div>
         </div>
       </form>
@@ -2412,8 +2449,8 @@
         <h3 id="re-done-title">تم إرسال تقريرك</h3>
         <p id="re-done-text">شكراً لك. بتراجعه القيادة وتنضاف لك النقاط.</p>
         <div class="re-actions">
-          <button type="button" class="overview-btn ghost" id="re-new">تقرير جديد</button>
-          <button type="button" class="overview-btn primary" id="re-done-close">تم</button>
+          <button type="button" class="overview-btn ghost" id="re-new" data-i18n="newRep">تقرير جديد</button>
+          <button type="button" class="overview-btn primary" id="re-done-close" data-i18n="done">تم</button>
         </div>
       </div>
     </div>
@@ -3434,7 +3471,58 @@ function answerLocal(q){
 /* =====================================================================
    نظام التقارير — محرر + ويب هوك ديسكورد (روم المسؤولين)
    ===================================================================== */
-const REPORT_WEBHOOK = "https://discord.com/api/webhooks/1553294888215388170/9Z6KTo1iqq4VGOlweLGRP2b4S6aKzrcdOrKujxVZwJtYuReSq-VbIN9l9wI667EbWSb7";
+const REPORT_WEBHOOK = "https://discord.com/api/webhooks/1553218796062507011/1iveu1znqlxJcnztxiy28qsEOqTM997kpuyDd6q4jVpjKeqxtn3d5mXbHNwxDcrZy9Ky";
+/* ويب هوك خاص لـ (رصد مخالفة) و (شكوى) — حط رابطه هنا. إذا تركته فاضي تروح لنفس روم التقارير العامة */
+const REPORT_WEBHOOK_DISCIPLINE = "https://discord.com/api/webhooks/1553456817340813352/23VCZabif_dAwmsRuRm4AAO66PfXcM_Lv4dtVcxv-PDb771PdEEcVa5S7OM7mCOnwOLi";
+const DISCIPLINE_TYPES = ['رصد مخالفة', 'شكوى'];
+
+/* ---------- لغة نظام التقارير ---------- */
+const RE_LANG_KEY = 'charlie-report-lang';
+const RE_I18N = {
+  ar:{ h:'إنشاء تقرير', sub:'اكتب تقريرك هنا أو أرفق رابط له. المسودة تنحفظ تلقائي.', name:'اسمك', namePh:'اسمك بالسيرفر', title:'عنوان التقرير',
+    titlePh:'مثال: ملاحظة على الانتشار بالمنطقة الشمالية', type:'نوع التقرير', gGeneral:'تقارير عامة', gDisc:'مخالفات وشكاوى · روم خاص',
+    tField:'ملاحظة ميدانية', tSuggest:'اقتراح تحسين', tOther:'أخرى', tViolation:'رصد مخالفة', tComplaint:'شكوى',
+    modeWrite:'اكتب التقرير', modeLink:'أرفق رابط', tpl:'قالب جاهز', editorPh:'اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز).',
+    link:'رابط التقرير', note:'ملاحظة قصيرة (اختياري)', notePh:'وش يحتوي الرابط؟ (فيديو، صور، مستند…)', copy:'نسخ التقرير', send:'إرسال التقرير',
+    newRep:'تقرير جديد', done:'تم', saved:'المسودة محفوظة', saving:'جاري الحفظ…',
+    eName:'اكتب اسمك.', eTitle:'اكتب عنوان للتقرير.', eShort:'التقرير قصير، اكتب تفاصيل أكثر.', eLong:'التقرير طويل، اختصره شوي.', eLink:'حط رابط صحيح يبدأ بـ https://',
+    copied:'تم نسخ التقرير. تقدر تلصقه بالديسكورد مباشرة.', copyFail:'ما قدرت أنسخ، جرّب مرة ثانية.', off:'الإرسال مو مفعّل، استخدم (نسخ التقرير) وأرسله لمسؤول بالخاص.',
+    wait:s=>'انتظر ' + s + ' ثانية قبل تقرير ثاني.', sending:'جاري الإرسال…', fail:'ما انرسل التقرير. تأكد من اتصالك، أو انسخه وأرسله بالخاص.',
+    okT:'وصل تقريرك', okX:'انرسل لروم المسؤولين، ويتراجع بأقرب وقت.', okXd:'انرسل للروم الخاص بالمخالفات والشكاوى، ويتراجع بسرية.',
+    fBy:'رافع التقرير', fType:'النوع', fLink:'الرابط', noDesc:'بدون وصف', foot:'Charlie Squad • نظام التقارير', footD:'Charlie Squad • المخالفات والشكاوى',
+    hdr:'تقرير', hTitle:'العنوان', hBy:'رافع التقرير', hDate:'التاريخ' },
+  en:{ h:'New Report', sub:'Write your report here or attach a link. Your draft saves automatically.', name:'Your name', namePh:'Your in-game name', title:'Report title',
+    titlePh:'e.g. Note on the north sector deployment', type:'Report type', gGeneral:'General reports', gDisc:'Violations & complaints · private room',
+    tField:'Field note', tSuggest:'Improvement idea', tOther:'Other', tViolation:'Violation', tComplaint:'Complaint',
+    modeWrite:'Write report', modeLink:'Attach link', tpl:'Template', editorPh:'Write your report here… use the tools above for bold, headings, lists and dividers, or press (Template).',
+    link:'Report link', note:'Short note (optional)', notePh:'What does the link contain? (video, images, document…)', copy:'Copy report', send:'Send report',
+    newRep:'New report', done:'Done', saved:'Draft saved', saving:'Saving…',
+    eName:'Enter your name.', eTitle:'Enter a report title.', eShort:'Report is too short, add more details.', eLong:'Report is too long, shorten it a bit.', eLink:'Enter a valid link starting with https://',
+    copied:'Report copied. You can paste it in Discord directly.', copyFail:'Could not copy, try again.', off:'Sending is disabled, use (Copy report) and DM an officer.',
+    wait:s=>'Wait ' + s + ' seconds before another report.', sending:'Sending…', fail:'Report not sent. Check your connection, or copy it and DM an officer.',
+    okT:'Report received', okX:'Sent to the officers room, it will be reviewed soon.', okXd:'Sent to the private violations & complaints room, reviewed confidentially.',
+    fBy:'Submitted by', fType:'Type', fLink:'Link', noDesc:'No description', foot:'Charlie Squad • Reports', footD:'Charlie Squad • Violations & Complaints',
+    hdr:'Report', hTitle:'Title', hBy:'Submitted by', hDate:'Date' },
+};
+let reLang = 'ar';
+try{ reLang = localStorage.getItem(RE_LANG_KEY) === 'en' ? 'en' : 'ar'; }catch(e){}
+const T = (k, ...a) => { const v = (RE_I18N[reLang] || RE_I18N.ar)[k]; return typeof v === 'function' ? v(...a) : (v != null ? v : k); };
+function applyReLang(){
+  const box = document.querySelector('#report-editor-modal .modal-box'); if(!box) return;
+  box.setAttribute('dir', reLang === 'en' ? 'ltr' : 'rtl'); box.setAttribute('lang', reLang);
+  box.classList.toggle('re-en', reLang === 'en');
+  document.getElementById('re-title-h').textContent = T('h');
+  box.querySelectorAll('[data-i18n]').forEach(el => el.textContent = T(el.dataset.i18n));
+  box.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = T(el.dataset.i18nPh));
+  box.querySelectorAll('[data-i18n-dph]').forEach(el => el.dataset.placeholder = T(el.dataset.i18nDph));
+  box.querySelectorAll('#re-lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === reLang));
+  const ds = document.getElementById('re-draft-state'); if(ds && ds.textContent) ds.textContent = T('saved');
+}
+document.getElementById('re-lang').addEventListener('click', e => {
+  const b = e.target.closest('button[data-lang]'); if(!b) return;
+  reLang = b.dataset.lang; try{ localStorage.setItem(RE_LANG_KEY, reLang); }catch(err){}
+  applyReLang();
+});
 
 /* ---------- محرر التقارير ---------- */
 const RE_MAX = 3500;
@@ -3494,9 +3582,11 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape' && reModal.cla
 reTypeWrap.addEventListener('click', e => {
   const b = e.target.closest('.re-chip'); if(!b) return;
   reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c === b));
+  reTypeWrap.classList.toggle('is-disc', DISCIPLINE_TYPES.includes(b.dataset.type));
   saveDraft();
 });
-const reType = () => (reTypeWrap.querySelector('[aria-checked="true"]') || {}).textContent || 'أخرى';
+const reType = () => { const c = reTypeWrap.querySelector('[aria-checked="true"]'); return (c && c.dataset.type) || 'أخرى'; };
+const reTypeLabel = () => { const c = reTypeWrap.querySelector('[aria-checked="true"]'); return c ? c.textContent.trim() : T('tOther'); };
 
 /* كتابة / رابط */
 function setMode(m){
@@ -3528,6 +3618,13 @@ const TEMPLATE_HTML =
   '<h3>وصف الملاحظة / المخالفة</h3><div><br></div>' +
   '<hr>' +
   '<h3>الاقتراح للتحسين</h3><ul><li><br></li></ul>';
+const TEMPLATE_HTML_EN =
+  '<h3>Situation details</h3>' +
+  '<div><b>Time:</b> </div><div><b>Location:</b> </div><div><b>People involved:</b> </div>' +
+  '<hr>' +
+  '<h3>Description of the note / violation</h3><div><br></div>' +
+  '<hr>' +
+  '<h3>Suggested improvement</h3><ul><li><br></li></ul>';
 
 reToolbar.addEventListener('click', e => {
   const b = e.target.closest('.re-tool'); if(!b) return;
@@ -3545,9 +3642,9 @@ reToolbar.addEventListener('click', e => {
   } else if(b.dataset.act === 'br'){
     document.execCommand('insertHTML', false, '<div><br></div>');
   } else if(b.dataset.act === 'tpl'){
-    document.execCommand('insertHTML', false, TEMPLATE_HTML);
+    document.execCommand('insertHTML', false, reLang === 'en' ? TEMPLATE_HTML_EN : TEMPLATE_HTML);
     /* ودّ المؤشر بعد (الوقت:) عشان يبدأ يكتب مباشرة */
-    const lbl = [...reEditor.querySelectorAll('b')].filter(x => x.textContent === 'الوقت:').pop();
+    const lbl = [...reEditor.querySelectorAll('b')].filter(x => x.textContent === 'الوقت:' || x.textContent === 'Time:').pop();
     if(lbl && lbl.parentNode){
       const sp = document.createTextNode('\u00a0');
       lbl.after(sp);
@@ -3626,10 +3723,10 @@ function buildReport(){
     ? editorMarkdown()
     : '🔗 ' + reLink.value.trim() + (reLinkNote.value.trim() ? '\n' + reLinkNote.value.trim() : '');
   const text =
-    `📋 **تقرير: ${reType()}**\n` +
-    `**العنوان:** ${reTitle.value.trim()}\n` +
-    `**رافع التقرير:** ${reName.value.trim()}\n` +
-    `**التاريخ:** ${date}\n` +
+    `📋 **${T('hdr')}: ${reTypeLabel()}**\n` +
+    `**${T('hTitle')}:** ${reTitle.value.trim()}\n` +
+    `**${T('hBy')}:** ${reName.value.trim()}\n` +
+    `**${T('hDate')}:** ${date}\n` +
     `━━━━━━━━━━━━━━\n` + body;
   return {
     name: reName.value.trim(), title: reTitle.value.trim(), type: reType(), mode: reMode,
@@ -3643,16 +3740,16 @@ function buildReport(){
 function setMsg(t, err){ reMsg.textContent = t || ''; reMsg.classList.toggle('err', !!err); }
 function validate(){
   [reName, reTitle, reLink].forEach(i => i.classList.remove('bad')); reEditorWrap.classList.remove('bad');
-  if(!reName.value.trim()){ reName.classList.add('bad'); reName.focus(); return 'اكتب اسمك.'; }
-  if(!reTitle.value.trim()){ reTitle.classList.add('bad'); reTitle.focus(); return 'اكتب عنوان للتقرير.'; }
+  if(!reName.value.trim()){ reName.classList.add('bad'); reName.focus(); return T('eName'); }
+  if(!reTitle.value.trim()){ reTitle.classList.add('bad'); reTitle.focus(); return T('eTitle'); }
   if(reMode === 'write'){
     const n = editorPlainLength();
-    if(n < 10){ reEditorWrap.classList.add('bad'); reEditor.focus(); return 'التقرير قصير، اكتب تفاصيل أكثر.'; }
-    if(editorMarkdown().length > RE_MAX){ reEditorWrap.classList.add('bad'); return 'التقرير طويل، اختصره شوي.'; }
+    if(n < 10){ reEditorWrap.classList.add('bad'); reEditor.focus(); return T('eShort'); }
+    if(editorMarkdown().length > RE_MAX){ reEditorWrap.classList.add('bad'); return T('eLong'); }
   } else {
     let ok = false;
     try{ const u = new URL(reLink.value.trim()); ok = u.protocol === 'https:' || u.protocol === 'http:'; }catch(e){}
-    if(!ok){ reLink.classList.add('bad'); reLink.focus(); return 'حط رابط صحيح يبدأ بـ https://'; }
+    if(!ok){ reLink.classList.add('bad'); reLink.focus(); return T('eLink'); }
   }
   return '';
 }
@@ -3663,7 +3760,7 @@ function onEditorChange(){
   const len = editorMarkdown().length;
   reCount.textContent = len + ' / ' + RE_MAX;
   reCount.classList.toggle('over', len > RE_MAX);
-  reDraftState.textContent = 'جاري الحفظ…';
+  reDraftState.textContent = T('saving');
   clearTimeout(_draftTimer); _draftTimer = setTimeout(saveDraft, 500);
 }
 function saveDraft(){
@@ -3672,7 +3769,7 @@ function saveDraft(){
       name:reName.value, title:reTitle.value, type:reType(), mode:reMode,
       html:reEditor.innerHTML, link:reLink.value, note:reLinkNote.value,
     }));
-    reDraftState.textContent = 'المسودة محفوظة';
+    reDraftState.textContent = T('saved');
   }catch(e){ reDraftState.textContent = ''; }
 }
 function loadDraft(){
@@ -3681,7 +3778,7 @@ function loadDraft(){
     if(!d) return;
     reName.value = d.name || ''; reTitle.value = d.title || '';
     reEditor.innerHTML = d.html || ''; reLink.value = d.link || ''; reLinkNote.value = d.note || '';
-    reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c.textContent === d.type));
+    reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c.dataset.type === d.type));
     if(!reTypeWrap.querySelector('[aria-checked="true"]')) reTypeWrap.querySelector('.re-chip').setAttribute('aria-checked', 'true');
     setMode(d.mode === 'link' ? 'link' : 'write');
   }catch(e){}
@@ -3693,12 +3790,15 @@ function clearDraft(keepName){
   reForm.reset(); reEditor.innerHTML = '';
   if(keepName) reName.value = nm;
   reTypeWrap.querySelectorAll('.re-chip').forEach((c, i) => c.setAttribute('aria-checked', i === 0));
+  reTypeWrap.classList.remove('is-disc');
   setMode('write'); setMsg('');
   reCount.textContent = '0 / ' + RE_MAX;
   saveDraft();
 }
 [reName, reTitle, reLink, reLinkNote].forEach(i => i.addEventListener('input', () => { i.classList.remove('bad'); clearTimeout(_draftTimer); _draftTimer = setTimeout(saveDraft, 500); }));
 loadDraft();
+applyReLang();
+reTypeWrap.classList.toggle('is-disc', DISCIPLINE_TYPES.includes(reType()));
 
 /* ---------- نسخ / إرسال ---------- */
 async function copyText(t){
@@ -3718,7 +3818,7 @@ function showDone(title, text){
 document.getElementById('re-copy').addEventListener('click', async () => {
   const err = validate(); if(err){ setMsg(err, true); return; }
   const ok = await copyText(buildReport().text);
-  setMsg(ok ? 'تم نسخ التقرير. تقدر تلصقه بالديسكورد مباشرة.' : 'ما قدرت أنسخ، جرّب مرة ثانية.', !ok);
+  setMsg(ok ? T('copied') : T('copyFail'), !ok);
 });
 document.getElementById('re-new').addEventListener('click', () => { clearDraft(true); reForm.hidden = false; reDone.hidden = true; reTitle.focus(); });
 
@@ -3726,47 +3826,49 @@ document.getElementById('re-new').addEventListener('click', () => { clearDraft(t
 const RE_COOLDOWN_MS = 2 * 60 * 1000;
 const RE_LAST_KEY = 'charlie-report-last';
 const reSafe = t => String(t).replace(/@/g, '@\u200b');   /* يمنع @everyone وأي منشن */
-const RE_COLORS = { 'ملاحظة ميدانية':0xC7D977, 'رصد مخالفة':0xA8341F, 'اقتراح تحسين':0x7A9C2E, 'أخرى':0x7A8A3A };
+const RE_COLORS = { 'ملاحظة ميدانية':0xC7D977, 'رصد مخالفة':0xA8341F, 'شكوى':0xD9822B, 'اقتراح تحسين':0x7A9C2E, 'أخرى':0x7A8A3A };
 
 reForm.addEventListener('submit', async e => {
   e.preventDefault();
   const err = validate(); if(err){ setMsg(err, true); return; }
   const rep = buildReport();
   if(rep.hp) return; /* فخ للبوتات */
-  if(!REPORT_WEBHOOK){ setMsg('الإرسال مو مفعّل، استخدم (نسخ التقرير) وأرسله لمسؤول بالخاص.', true); return; }
+  const isDisc = DISCIPLINE_TYPES.includes(rep.type);
+  const HOOK = (isDisc && REPORT_WEBHOOK_DISCIPLINE) ? REPORT_WEBHOOK_DISCIPLINE : REPORT_WEBHOOK;
+  if(!HOOK){ setMsg(T('off'), true); return; }
 
   let last = 0; try{ last = +localStorage.getItem(RE_LAST_KEY) || 0; }catch(e){}
   const wait = RE_COOLDOWN_MS - (Date.now() - last);
-  if(wait > 0){ setMsg('انتظر ' + Math.ceil(wait / 1000) + ' ثانية قبل تقرير ثاني.', true); return; }
+  if(wait > 0){ setMsg(T('wait', Math.ceil(wait / 1000)), true); return; }
 
   const fields = [
-    { name:'رافع التقرير', value:reSafe(rep.name).slice(0,256), inline:true },
-    { name:'النوع', value:rep.type, inline:true },
+    { name:T('fBy'), value:reSafe(rep.name).slice(0,256), inline:true },
+    { name:T('fType'), value:reTypeLabel(), inline:true },
   ];
-  if(rep.mode === 'link') fields.push({ name:'الرابط', value:rep.link.slice(0,1000) });
+  if(rep.mode === 'link') fields.push({ name:T('fLink'), value:rep.link.slice(0,1000) });
 
   const payload = {
-    username:'Charlie Reports',
+    username: isDisc ? 'Charlie Discipline' : 'Charlie Reports',
     allowed_mentions:{ parse:[] },
     embeds:[{
-      title:'📋 ' + reSafe(rep.title).slice(0,240),
-      description:reSafe(rep.content || 'بدون وصف').slice(0,4000),
+      title:(isDisc ? (rep.type === 'شكوى' ? '📨 ' : '🚨 ') : '📋 ') + reSafe(rep.title).slice(0,240),
+      description:reSafe(rep.content || T('noDesc')).slice(0,4000),
       color:RE_COLORS[rep.type] || 0xC7D977,
       fields,
-      footer:{ text:'Charlie Squad • نظام التقارير' },
+      footer:{ text: isDisc ? T('footD') : T('foot') },
       timestamp:new Date().toISOString(),
     }],
   };
 
-  reSubmit.disabled = true; setMsg('جاري الإرسال…');
+  reSubmit.disabled = true; setMsg(T('sending'));
   try{
-    const res = await fetch(REPORT_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(payload) });
+    const res = await fetch(HOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(payload) });
     if(!res.ok) throw new Error('HTTP ' + res.status);
     try{ localStorage.setItem(RE_LAST_KEY, String(Date.now())); }catch(e){}
     clearDraft(true);
-    showDone('وصل تقريرك', 'انرسل لروم المسؤولين، ويتراجع بأقرب وقت.');
+    showDone(T('okT'), isDisc ? T('okXd') : T('okX'));
   }catch(err2){
-    setMsg('ما انرسل التقرير. تأكد من اتصالك، أو انسخه وأرسله بالخاص.', true);
+    setMsg(T('fail'), true);
   }finally{
     reSubmit.disabled = false;
   }
