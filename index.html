@@ -2079,6 +2079,32 @@
   .tl-left{ font-family:'Orbitron',sans-serif; font-size:12px; font-weight:800; color:#e2b85b; }
   .tl-shake{ animation: tlShake .4s ease; }
   @keyframes tlShake{ 0%,100%{ translate:0 0; } 20%{ translate:-6px 0; } 40%{ translate:6px 0; } 60%{ translate:-4px 0; } 80%{ translate:3px 0; } }
+
+  /* ===== نموذج رصد المخالفة / الشكوى: ثيم أحمر ===== */
+  #report-editor-modal .modal-box:has(#re-type.is-disc){
+    --neon:#ff6a4d; --neon-dim:#c0503a; --stone:#ff6a4d; --stone-dim:#c0503a; --gold:#ff8a70; --olive:#7a2416; --olive-light:#a8341f;
+    --line:rgba(226,80,58,0.22); --line-2:rgba(226,80,58,0.38);
+    background: radial-gradient(ellipse at 100% 0%, rgba(226,80,58,0.16), transparent 55%), linear-gradient(170deg, #1e0f0b, #0b0605) !important;
+    border-color: rgba(226,80,58,0.45) !important;
+    box-shadow: 0 0 0 1px rgba(226,80,58,0.15), 0 24px 60px rgba(0,0,0,.7), 0 0 50px rgba(226,80,58,0.12) !important;
+  }
+  #report-editor-modal .modal-box:has(#re-type.is-disc)::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:4px; border-radius:inherit;
+    background: repeating-linear-gradient(-45deg, #e2503a 0 12px, #1a0906 12px 24px); opacity:.85;
+  }
+  #report-editor-modal .modal-box:has(#re-type.is-disc) .modal-title{ color:#ff8a70 !important; text-shadow:0 0 18px rgba(226,80,58,.35); }
+  #report-editor-modal .modal-box:has(#re-type.is-disc) .re-input,
+  #report-editor-modal .modal-box:has(#re-type.is-disc) .re-editor-wrap,
+  #report-editor-modal .modal-box:has(#re-type.is-disc) .re-modes{ background:#120806 !important; }
+  #report-editor-modal .modal-box:has(#re-type.is-disc) .re-input:focus{ box-shadow: 0 0 0 2px rgba(226,80,58,0.25) !important; }
+  #report-editor-modal .modal-box:has(#re-type.is-disc) .overview-btn.primary{
+    background: linear-gradient(160deg, #ff7a5c, #e2503a) !important; color:#fff !important; border-color:#e2503a !important; box-shadow:0 4px 0 #7a2416 !important; }
+  #report-editor-modal .modal-box:has(#re-type.is-disc) .overview-btn.ghost, #report-editor-modal .modal-box:has(#re-type.is-disc) #re-copy{ color:#ff8a70 !important; border-color:rgba(226,80,58,0.45) !important; }
+  #report-editor-modal .modal-box:has(#re-type.is-disc) .re-modes button[aria-selected="true"],
+  #report-editor-modal .modal-box:has(#re-type.is-disc) .re-tool[aria-pressed="true"]{ color:#fff !important; }
+  #report-editor-modal .modal-box:has(#re-type.is-disc) .modal-close{ color:#ff8a70; border-color:rgba(226,80,58,0.4); }
+
+  @media (max-width:900px){ .nav2 .nav-links a{ font-size:9px !important; } .nav2 .nav-links a svg{ width:18px; height:18px; } }
 </style>
 </head>
 <body>
@@ -2087,10 +2113,11 @@
     <div class="lang-sw" role="group" aria-label="Language"><button type="button" data-lang="ar" aria-pressed="true">عربي</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
     <div class="nav-links">
       <span class="nav-ind" aria-hidden="true"></span>
-      <a class="active" data-section="board" href="#board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg><b>لوحة المتصدرين</b></a>
-      <a data-section="members" href="#members"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg><b>الأعضاء</b></a>
+            <a class="active" data-section="board" href="#board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg><b>لوحة المتصدرين</b></a>
+      <a data-section="challenges" href="#challenges"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 6.5L21 10l-5 4.5L17.5 21 12 17.5 6.5 21 8 14.5 3 10l6.5-1.5z"/></svg><b>التحديات</b></a>
       <a data-section="tasks" href="#tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h11M9 12h11M9 19h11"/><path d="M3.5 5l1.5 1.5L7.5 4M3.5 12l1.5 1.5 2.5-2.5M3.5 19l1.5 1.5 2.5-2.5"/></svg><b>المهام</b></a>
       <a data-section="reports" href="#reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><b>التقارير</b></a>
+      <a data-section="members" href="#members"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg><b>الأعضاء</b></a>
       <a data-section="rules" href="#rules"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 4.8-3.4 8.8-8 10-4.6-1.2-8-5.2-8-10v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b>القوانين</b></a>
     </div>
   </nav>
@@ -2169,8 +2196,6 @@
       <div class="section-label fade-in" style="animation-delay:0.5s">باقي الترتيب <span class="line"></span></div>
       <div class="board" id="board"></div>
 
-      <div class="section-label fade-in" style="animation-delay:0.6s">تحدي الأسبوع <span class="line"></span></div>
-      <div id="challenge-list" style="display:flex; flex-direction:column; gap:16px; margin-bottom:20px;"></div>
       </div>
       </div>
       <div class="wings-divider fade-in" style="animation-delay:0.7s">
@@ -2181,6 +2206,20 @@
         </svg>
       </div>
 
+    </div>
+  </section>
+
+
+  <!-- ===== تحديات الأسبوع ===== -->
+  <section class="page" id="sec-challenges">
+    <div class="page-hero fade-in">
+      <h1>تحديات الأسبوع</h1>
+      <div class="brand-underline"><span></span><em>WEEKLY CHALLENGES</em><span></span></div>
+      <p>تحديات هالأسبوع، الوقت المتبقي، ونقاط كل تحدي.</p>
+    </div>
+    <div class="content" style="max-width:900px;">
+      <div class="section-label fade-in" style="animation-delay:0.1s">التحديات <span class="line"></span></div>
+      <div id="challenge-list" style="display:flex; flex-direction:column; gap:16px; margin-bottom:20px;"></div>
     </div>
   </section>
 
@@ -2582,7 +2621,7 @@ document.querySelectorAll('.logo-img').forEach(img => {
 /* ---------- navigation (with real URL hash routing) ---------- */
 const navLinks = document.querySelectorAll('.nav-links a');
 const pages = document.querySelectorAll('.page');
-const validSections = ['board','members','tasks','rules','reports'];
+const validSections = ['board','challenges','members','tasks','rules','reports'];
 
 function showSection(target, updateHash){
   if(!validSections.includes(target)) target = 'board';
@@ -4434,6 +4473,7 @@ reForm.addEventListener('submit', async e => {
     'ما فيه تحدي نشط هالأسبوع.':'No active challenge this week.','ما فيه مهام حالياً.':'No tasks right now.',
     'افتح مساعد السكواد':'Open squad assistant','إغلاق المساعد':'Close assistant','إغلاق':'Close',
     'SQUAD LEADER':'SQUAD LEADER',
+    'تحديات الأسبوع':'Weekly Challenges','تحديات هالأسبوع، الوقت المتبقي، ونقاط كل تحدي.':'This week\'s challenges, time left and points for each.',
     'مقفلة':'Locked','مهمة سرية':'Classified task','تنفتح بعد إنجاز':'Unlocks after completing','تنفتح بعد المهام اللي قبلها':'Unlocks after the previous tasks',
     'اختار نوع التقرير وبيفتح لك نظام التقرير مباشرة':'Pick a report type to open the report form',
     'ما لقيت شي يطابق سؤالك. جرّب: اسم عضو، الساعات، النقاط، التحديات، المهام، الاستخراج، أو كلمة من قانون.':'Couldn\'t find a match. Try: a member name, hours, points, challenges, tasks, deployment, or a rule keyword.',
