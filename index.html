@@ -1583,6 +1583,10 @@
   /* نافذة نظام السكواد بنص الشاشة */
   #training-modal .sys-modal{ margin:auto !important; }
   #training-modal{ padding-top:20px; padding-bottom:20px; }
+
+  /* بدون ساعات ونقاط في بطاقات الأعضاء */
+  .mb-card{ grid-template-columns:auto 1fr !important; }
+  .mb-stats{ display:none !important; }
 </style>
 </head>
 <body>
@@ -2114,46 +2118,6 @@ const RULES_CSV_URL = sheetCsv(SHEET_GIDS.rules);
 
 const MEMBER_PHOTOS = {
   "MAKHDUR SHICHI": "assets/members/MH.jpg",
-  "Mohammed Nawaf": "assets/members/Mohammed.jpg",
-  "Saad Almuhanna": "assets/members/Saad.jpg",
-  "Saqer Beklley": "assets/members/Ex.jpg",
-  "Saif Almutiri": "assets/members/MH.jpg",
-  "Saif Almutiri": "assets/members/SAIF.jpg",
-  "Suliet Alsls": "assets/members/99ar.jpg",
-  "Mjeed Al-Shahrani": "assets/members/ZaRo.jpg",
-  "Fahad Abdullah": "assets/members/fahdd.jpg",
-  "Sultan Fahad": "assets/members/usltan.jpg",
-  "Fahad AlSubie": "assets/members/Moscow.jpg",
-  "Mohammed AlDosari": "assets/members/NM7.jpg",
-  "Abdullah Alfallaj": "assets/members/NKSTR.jpg",
-  "Suliman Abdulaziz": "assets/members/iSly.jpg",
-  "Ali Mubarak": "assets/members/ALI.jpg",
-  "philip martin": "assets/members/floxr.jpg",
-  "Fahad AlHarthi": "assets/members/xHaK.jpg",
-  "Ghed Saud": "assets/members/Ghed.jpg",
-  "Munthir Ali": "assets/members/Munthir.jpg",
-  "Ali Ahmed": "assets/members/KOBE.jpg",
-  "Schmeichel Kasper": "assets/members/SHOKMAN.jpg",
-  "Bander Khalid": "assets/members/NotMe.jpg",
-  "Badr almulla": "assets/members/almulla.jpg",
-  "Naif Almutairi": "assets/members/HGJI.jpg",
-  "Faisal AlMutairi": "assets/members/DP7l.jpg",
-  "Lucas Alberto": "assets/members/Chamander.jpg",
-  "Aziz Alshammari": "assets/members/AIN.jpg",
-  "TNA ALSHAMMARI": "assets/members/i6na.jpg",
-  "Abdulmalik Al-Mutairi": "assets/members/Abdulmalik.jpg",
-  "Rias Asiri": "assets/members/ZAX.jpg",
-  "Aziz Alotaibi": "assets/members/i3zo.jpg",
-  "Mohammed Almqws": "assets/members/null.jpg",
-  "Abdulrahman Jaber": "assets/members/Bone.jpg",
-  "Abdullah JASSAR": "assets/members/Abdullah.jpg",
-  "Fahad Alanzi": "assets/members/2ck.jpg",
-  "Mtrek AlQahtani": "assets/members/FHQQ.jpg",
-  "Mohammed Almerri": "assets/members/Shgardii.jpg",
-  "Fahad AlQahtani": "assets/members/fahad.jpg",
-  "Frank Lewis": "assets/members/Yazeed.jpg",
-  "RAKAN ALSHAHRANI": "assets/members/Dont.jpg",
-  "David Walker": "assets/members/slom.jpg"
 };
 
 function initials(name){ return (name||'').trim().split(' ').map(w=>w[0]).slice(0,2).join(''); }
@@ -2536,10 +2500,6 @@ function renderMembers(list){
         <div class="mb-body">
           <div class="mb-name">${m.name}</div>
           <div class="mb-meta"><span class="mb-rank">${m.rank}</span><span class="mb-nick">${(m.nick && String(m.nick).toLowerCase()!=='null') ? m.nick : ''}</span></div>
-        </div>
-        <div class="mb-stats">
-          <span><b>${fmt(m.hours)}</b><small>ساعة</small></span>
-          <span><b>${fmt(m.points)}</b><small>نقطة</small></span>
         </div>
         <span class="mb-state">${m.status === 'online' ? 'متصل' : 'غير متصل'}</span>
       `;
