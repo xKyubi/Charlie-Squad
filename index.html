@@ -786,7 +786,7 @@
     </div>
     <div class="ai-body" id="ai-body" aria-live="polite"></div>
     <div class="ai-suggest" id="ai-suggest">
-      <button type="button">توب الساعات</button>
+      <button type="button">اعلى عدد الساعات</button>
       <button type="button">التحديات</button>
       <button type="button">المهام</button>
       <button type="button">مواعيد الاستخراج</button>
@@ -1682,7 +1682,7 @@ function buildSquadContext(){
   const d = squadData();
   const L = [];
   L.push('الوقت الحالي: ' + new Date().toLocaleString('en-GB'));
-  L.push('الترتيب يتصفّر كل جمعة الساعة 3:00 صباحاً.');
+  L.push('الترتيب يتصفّر كل جمعة الساعة 12:00 ليلا مع الشوون.');
   L.push('\n# الأعضاء (الاسم | الرتبة | الحالة | الساعات | النقاط)');
   d.roster.forEach(r => L.push(`- ${r.name} | ${r.rank} | ${r.status === 'online' ? 'متواجد' : 'غير متواجد'} | ${r.hours} | ${r.points}`));
   L.push('\n# ترتيب الساعات'); d.byHours.slice(0,10).forEach((r,i)=> L.push(`${i+1}. ${r.name} — ${r.hours.toFixed(1)} ساعة`));
