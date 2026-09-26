@@ -1656,6 +1656,78 @@
     .nav2 .brand span{ font-size:12px !important; letter-spacing:1.5px !important; }
     .brand-logo{ width:38px; height:38px; }
   }
+
+  /* =====================================================
+     ===== بطاقة معلومات العضو =====
+     ===================================================== */
+  .mb-card{ cursor:pointer; transition: border-color .15s ease, background .15s ease; }
+  .mb-card:hover{ border-color: color-mix(in srgb, var(--acc) 55%, transparent) !important; }
+  .mb-card:focus-visible{ outline:2px solid var(--stone); outline-offset:2px; }
+  #member-modal{ align-items:center; }
+  .mi-box{
+    --acc:#8fa048; position:relative; width:100%; max-width:440px; margin:auto; border-radius:22px; overflow:hidden;
+    background: linear-gradient(170deg, #171c0b, #080a04);
+    border:1px solid color-mix(in srgb, var(--acc) 40%, transparent);
+    box-shadow: 0 30px 70px rgba(0,0,0,.75), 0 0 0 1px rgba(0,0,0,.4), 0 0 40px color-mix(in srgb, var(--acc) 12%, transparent);
+    animation: miIn .45s cubic-bezier(.2,.85,.25,1) both;
+  }
+  .mi-box.r-leader{ --acc:#e2c65b; } .mi-box.r-co{ --acc:#c7d977; } .mi-box.r-mgmt{ --acc:#c09a52; }
+  @keyframes miIn{ from{ opacity:0; transform: perspective(1000px) rotateX(14deg) translateY(30px) scale(.95); } to{ opacity:1; transform:none; } }
+  .mi-cover{ height:110px;
+    background:
+      repeating-linear-gradient(135deg, rgba(0,0,0,0.18) 0 2px, transparent 2px 12px),
+      radial-gradient(ellipse at 70% 0%, color-mix(in srgb, var(--acc) 55%, transparent), transparent 70%),
+      linear-gradient(160deg, color-mix(in srgb, var(--acc) 30%, #10130a), #0c0f06); }
+  .mi-close{ position:absolute; top:12px; left:12px; z-index:3; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,0.15);
+    background:rgba(0,0,0,0.45); color:#eee; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .mi-close svg{ width:15px; height:15px; }
+  .mi-close:hover{ background:rgba(0,0,0,0.7); }
+  .mi-head{ display:flex; align-items:flex-end; gap:16px; padding:0 22px; margin-top:-52px; position:relative; z-index:2; }
+  .mi-av{ position:relative; width:110px; height:110px; flex-shrink:0; border-radius:26px; overflow:hidden;
+    display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:36px; color:var(--acc);
+    background: radial-gradient(circle at 35% 30%, #262e11, #0a0c05 80%);
+    box-shadow: 0 0 0 4px #10130a, 0 0 0 6px var(--acc), 0 14px 30px rgba(0,0,0,.6); }
+  .mi-av img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .mi-av i.on{ position:absolute; bottom:8px; left:8px; width:14px; height:14px; border-radius:50%; background:#9fd05a; box-shadow:0 0 0 3px #10130a, 0 0 10px #9fd05a; z-index:2; }
+  .mi-id{ min-width:0; padding-bottom:6px; }
+  .mi-id h3{ margin:0 0 7px; font-size:21px; font-weight:900; color:#f4f6e2; line-height:1.25; word-break:break-word; }
+  .mi-tags{ display:flex; gap:6px; flex-wrap:wrap; }
+  .mi-rank{ font-family:'Oswald',sans-serif; font-size:11.5px; letter-spacing:1px; color:var(--acc); padding:2px 10px; border-radius:20px;
+    background:color-mix(in srgb, var(--acc) 12%, transparent); border:1px solid color-mix(in srgb, var(--acc) 40%, transparent); }
+  .mi-state{ font-size:11.5px; font-weight:700; padding:2px 10px; border-radius:20px; }
+  .mi-state.on{ color:#9fd05a; background:rgba(159,208,90,0.1); border:1px solid rgba(159,208,90,0.3); }
+  .mi-state.off{ color:var(--text-dim); background:rgba(152,161,115,0.08); border:1px solid rgba(152,161,115,0.25); }
+  .mi-nick{ margin-top:6px; font-size:12.5px; color:var(--text-dim); direction:ltr; text-align:right; }
+  .mi-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:22px 22px 0; }
+  .mi-stat{ padding:14px 14px 12px; border-radius:14px; background:rgba(0,0,0,0.3); border:1px solid rgba(199,217,119,0.1); text-align:center; }
+  .mi-stat small{ display:block; font-size:12px; color:var(--text-dim); }
+  .mi-stat b{ display:block; margin:4px 0 3px; font-family:'Orbitron',sans-serif; font-size:26px; font-weight:800; color:var(--gold);
+    text-shadow: 0 2px 0 #4b522b, 0 0 14px rgba(199,217,119,.25); direction:ltr; }
+  .mi-stat em{ font-style:normal; font-size:11.5px; font-weight:700; color:#9fd05a; }
+  .mi-bars{ padding:16px 22px 4px; display:flex; flex-direction:column; gap:10px; }
+  .mi-bar span{ display:block; font-size:11.5px; color:var(--text-dim); margin-bottom:5px; }
+  .mi-bar div{ height:7px; border-radius:7px; background:rgba(199,217,119,0.08); overflow:hidden; }
+  .mi-bar i{ display:block; height:100%; width:0; border-radius:7px; background:linear-gradient(90deg, color-mix(in srgb, var(--acc) 50%, #3a4209), var(--acc));
+    transition: width 1s cubic-bezier(.2,.8,.2,1); }
+  .mi-foot{ display:flex; justify-content:space-between; padding:14px 22px 16px; margin-top:12px; border-top:1px dashed rgba(199,217,119,0.14);
+    font-family:'Orbitron',sans-serif; font-size:9.5px; letter-spacing:2px; color:var(--stone-dim); direction:ltr; }
+  @media (max-width:480px){
+    .mi-head{ flex-direction:column; align-items:center; text-align:center; }
+    .mi-id{ text-align:center; } .mi-tags{ justify-content:center; } .mi-nick{ text-align:center; }
+    .mi-av{ width:96px; height:96px; }
+  }
+
+  /* عناوين الأقسام الإنجليزية بالأبيض */
+  .mb-gh em{ color:#ffffff !important; opacity:.9; }
+
+  /* SQUAD LEADER ذهبي متوهج */
+  .mb-leader .mb-gh em{ color:#f5d76e !important; opacity:1; font-weight:700;
+    text-shadow: 0 0 6px rgba(245,215,110,.9), 0 0 14px rgba(226,198,91,.7), 0 0 28px rgba(226,198,91,.45);
+    animation: goldGlow 2.4s ease-in-out infinite; }
+  @keyframes goldGlow{
+    0%,100%{ text-shadow: 0 0 6px rgba(245,215,110,.8), 0 0 14px rgba(226,198,91,.55), 0 0 24px rgba(226,198,91,.3); }
+    50%{ text-shadow: 0 0 8px rgba(255,230,140,1), 0 0 20px rgba(226,198,91,.85), 0 0 38px rgba(226,198,91,.55); }
+  }
 </style>
 </head>
 <body>
@@ -1677,7 +1749,6 @@
     </div>
     <div class="nav-meta">
       <span class="nav-chip on"><i></i><b id="nav-online">—</b> متصل</span>
-      <span class="nav-chip clock" id="nav-clock">--:--</span>
     </div>
   </nav>
 
@@ -1858,6 +1929,31 @@
     <span>Made By : SHOKMAN.Kyubi</span>
   </footer>
 
+
+  <!-- ===== بطاقة معلومات العضو ===== -->
+  <div class="modal-overlay" id="member-modal">
+    <div class="mi-box" role="dialog" aria-modal="true" aria-labelledby="mi-name">
+      <button class="mi-close" id="mi-close" type="button" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="mi-cover"></div>
+      <div class="mi-head">
+        <div class="mi-av" id="mi-av"></div>
+        <div class="mi-id">
+          <h3 id="mi-name"></h3>
+          <div class="mi-tags"><span class="mi-rank" id="mi-rank"></span><span class="mi-state" id="mi-state"></span></div>
+          <div class="mi-nick" id="mi-nick"></div>
+        </div>
+      </div>
+      <div class="mi-grid">
+        <div class="mi-stat"><small>الساعات</small><b id="mi-hours">0</b><em id="mi-hours-rank"></em></div>
+        <div class="mi-stat"><small>النقاط</small><b id="mi-points">0</b><em id="mi-points-rank"></em></div>
+      </div>
+      <div class="mi-bars">
+        <div class="mi-bar"><span>نسبة ساعاته من المتصدر</span><div><i id="mi-hbar"></i></div></div>
+        <div class="mi-bar"><span>نسبة نقاطه من المتصدر</span><div><i id="mi-pbar"></i></div></div>
+      </div>
+      <div class="mi-foot"><span id="mi-serial"></span><span>CHARLIE SQUAD · ID CARD</span></div>
+    </div>
+  </div>
   <!-- ===== مودال نظام التدريب (تايم لاين المراحل) ===== -->
   <div class="modal-overlay" id="training-modal">
     <div class="modal-box sys-modal" style="max-width:980px;">
@@ -2608,6 +2704,7 @@ function renderMembers(list){
     items.forEach(m=>{
       const card = document.createElement('div');
       card.className = 'mb-card ' + tierOf(m.rank) + ' ' + (m.status === 'online' ? 'is-on' : 'is-off');
+      card.dataset.idx = m.idx; card.tabIndex = 0; card.setAttribute('role','button');
       card.style.animationDelay = (delay++ * 0.035) + 's';
       card.innerHTML = `
         ${avatar(m)}
@@ -3627,6 +3724,47 @@ reForm.addEventListener('submit', async e => {
   const c = document.getElementById('nav-clock');
   function tick(){ if(c) c.textContent = new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' }); }
   tick(); setInterval(tick, 15000);
+})();
+</script>
+<script>
+/* ===== بطاقة معلومات العضو ===== */
+(function(){
+  const modal = document.getElementById('member-modal'); if(!modal) return;
+  const $ = id => document.getElementById(id);
+  const tierOf = r => { r = String(r||'').toLowerCase(); return (/leader/.test(r) && !/co/.test(r)) ? 'r-leader' : /co/.test(r) ? 'r-co' : /manag/.test(r) ? 'r-mgmt' : 'r-member'; };
+  const fmt = n => (Number(n)||0).toLocaleString('en-US', { maximumFractionDigits:1 });
+  function open(idx){
+    const list = (typeof currentRoster !== 'undefined') ? currentRoster : [];
+    const m = list.find(r => String(r.idx) === String(idx)); if(!m) return;
+    const byH = [...list].filter(r=>r.hours>0).sort((a,b)=>b.hours-a.hours), byP = [...list].filter(r=>r.points>0).sort((a,b)=>b.points-a.points);
+    const hr = byH.findIndex(r=>r.idx===m.idx)+1, pr = byP.findIndex(r=>r.idx===m.idx)+1;
+    const maxH = byH[0] ? byH[0].hours : 0, maxP = byP[0] ? byP[0].points : 0;
+    const box = modal.querySelector('.mi-box');
+    box.className = 'mi-box ' + tierOf(m.rank);
+    $('mi-av').innerHTML = `<span>${initials(m.name)}</span>${m.photo ? `<img src="${m.photo}" alt="" onerror="this.remove()">` : ''}${m.status==='online' ? '<i class="on"></i>' : ''}`;
+    $('mi-name').textContent = m.name;
+    $('mi-rank').textContent = m.rank || '';
+    $('mi-state').textContent = m.status === 'online' ? 'متصل' : 'غير متصل';
+    $('mi-state').className = 'mi-state ' + (m.status === 'online' ? 'on' : 'off');
+    const nick = (m.nick && String(m.nick).toLowerCase() !== 'null') ? m.nick : '';
+    $('mi-nick').textContent = nick ? '@' + nick : '';
+    $('mi-hours').textContent = fmt(m.hours);
+    $('mi-points').textContent = fmt(m.points);
+    $('mi-hours-rank').textContent = hr ? `المركز ${hr}` : 'بدون ترتيب';
+    $('mi-points-rank').textContent = pr ? `المركز ${pr}` : 'بدون ترتيب';
+    $('mi-serial').textContent = '#' + String(m.idx + 1).padStart(3,'0');
+    $('mi-hbar').style.width = '0'; $('mi-pbar').style.width = '0';
+    modal.classList.add('active'); document.body.style.overflow = 'hidden';
+    setTimeout(()=>{ $('mi-hbar').style.width = (maxH ? m.hours/maxH*100 : 0) + '%'; $('mi-pbar').style.width = (maxP ? m.points/maxP*100 : 0) + '%'; }, 120);
+  }
+  function close(){ modal.classList.remove('active'); document.body.style.overflow = ''; }
+  document.addEventListener('click', e => { const c = e.target.closest && e.target.closest('.mb-card'); if(c) open(c.dataset.idx); });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('active')) close();
+    if((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('mb-card')){ e.preventDefault(); open(document.activeElement.dataset.idx); }
+  });
+  $('mi-close').addEventListener('click', close);
+  modal.addEventListener('click', e => { if(e.target === modal) close(); });
 })();
 </script>
 </body>
