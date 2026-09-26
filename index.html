@@ -2586,7 +2586,7 @@
             </div>
             <div class="re-editor" id="re-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="نص التقرير"
                  data-placeholder="اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز)." data-i18n-dph="editorPh"></div>
-            <div class="re-meta"><span id="re-draft-state">المسودة محفوظة</span><span id="re-count" class="num">0 / 3500</span></div>
+            <div class="re-meta"><span id="re-draft-state">المسودة محفوظة</span><span id="re-count" class="num">0 / 5,000 كلمة</span></div>
           </div>
         </div>
 
@@ -3691,9 +3691,9 @@ const RE_I18N = {
     modeWrite:'اكتب التقرير', modeLink:'أرفق رابط', tpl:'قالب جاهز', editorPh:'اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز).',
     link:'رابط التقرير', note:'ملاحظة قصيرة (اختياري)', notePh:'وش يحتوي الرابط؟ (فيديو، صور، مستند…)', copy:'نسخ التقرير', send:'إرسال التقرير',
     newRep:'تقرير جديد', done:'تم', saved:'المسودة محفوظة', saving:'جاري الحفظ…',
-    eName:'اكتب اسمك.', eTitle:'اكتب عنوان للتقرير.', eShort:'التقرير قصير، اكتب تفاصيل أكثر.', eLong:'التقرير طويل، اختصره شوي.', eLink:'حط رابط صحيح يبدأ بـ https://',
+    eName:'اكتب اسمك.', eTitle:'اكتب عنوان للتقرير.', eShort:'التقرير قصير، اكتب تفاصيل أكثر.', eLong:'التقرير تعدى 5000 كلمة، اختصره شوي.', eLink:'حط رابط صحيح يبدأ بـ https://',
     copied:'تم نسخ التقرير. تقدر تلصقه بالديسكورد مباشرة.', copyFail:'ما قدرت أنسخ، جرّب مرة ثانية.', off:'الإرسال مو مفعّل، استخدم (نسخ التقرير) وأرسله لمسؤول بالخاص.',
-    wait:s=>'انتظر ' + s + ' ثانية قبل تقرير ثاني.', sending:'جاري الإرسال…', fail:'ما انرسل التقرير. تأكد من اتصالك، أو انسخه وأرسله بالخاص.',
+    wait:s=>'انتظر ' + s + ' ثانية قبل تقرير ثاني.', sending:'جاري الإرسال…', fail:'ما انرسل التقرير. تأكد من اتصالك، أو انسخه وأرسله بالخاص.', eHook:'رابط الويب هوك غلط أو انحذف من الديسكورد. سوّ ويب هوك جديد وحط رابطه بالكود.', eRate:'الديسكورد رافض الطلبات مؤقتاً، جرّب بعد دقيقة.', eBad:'الديسكورد رفض محتوى التقرير.',
     okT:'وصل تقريرك', okX:'انرسل لروم المسؤولين، ويتراجع بأقرب وقت.', okXd:'انرسل بسرية تامة، والاطلاع عليه من القادات فقط.',
     fBy:'رافع التقرير', fType:'النوع', fLink:'الرابط', noDesc:'بدون وصف', foot:'Charlie Squad • نظام التقارير', footD:'Charlie Squad • المخالفات والشكاوى',
     hdr:'تقرير', hTitle:'العنوان', hBy:'رافع التقرير', hDate:'التاريخ' },
@@ -3703,9 +3703,9 @@ const RE_I18N = {
     modeWrite:'Write report', modeLink:'Attach link', tpl:'Template', editorPh:'Write your report here… use the tools above for bold, headings, lists and dividers, or press (Template).',
     link:'Report link', note:'Short note (optional)', notePh:'What does the link contain? (video, images, document…)', copy:'Copy report', send:'Send report',
     newRep:'New report', done:'Done', saved:'Draft saved', saving:'Saving…',
-    eName:'Enter your name.', eTitle:'Enter a report title.', eShort:'Report is too short, add more details.', eLong:'Report is too long, shorten it a bit.', eLink:'Enter a valid link starting with https://',
+    eName:'Enter your name.', eTitle:'Enter a report title.', eShort:'Report is too short, add more details.', eLong:'Report is over 5,000 words, shorten it a bit.', eLink:'Enter a valid link starting with https://',
     copied:'Report copied. You can paste it in Discord directly.', copyFail:'Could not copy, try again.', off:'Sending is disabled, use (Copy report) and DM an officer.',
-    wait:s=>'Wait ' + s + ' seconds before another report.', sending:'Sending…', fail:'Report not sent. Check your connection, or copy it and DM an officer.',
+    wait:s=>'Wait ' + s + ' seconds before another report.', sending:'Sending…', fail:'Report not sent. Check your connection, or copy it and DM an officer.', eHook:'Webhook link is wrong or was deleted in Discord. Create a new webhook and put its link in the code.', eRate:'Discord is rate-limiting, try again in a minute.', eBad:'Discord rejected the report content.',
     okT:'Report received', okX:'Sent to the officers room, it will be reviewed soon.', okXd:'Sent in full confidence — only leaders can view it.',
     fBy:'Submitted by', fType:'Type', fLink:'Link', noDesc:'No description', foot:'Charlie Squad • Reports', footD:'Charlie Squad • Violations & Complaints',
     hdr:'Report', hTitle:'Title', hBy:'Submitted by', hDate:'Date' },
@@ -3722,11 +3722,14 @@ function applyReLang(){
   box.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = T(el.dataset.i18nPh));
   box.querySelectorAll('[data-i18n-dph]').forEach(el => el.dataset.placeholder = T(el.dataset.i18nDph));
   const ds = document.getElementById('re-draft-state'); if(ds && ds.textContent) ds.textContent = T('saved');
+  try{ reCount.textContent = reCountTxt(reWords()); }catch(e){}
 }
 
 
 /* ---------- محرر التقارير ---------- */
-const RE_MAX = 3500;
+const RE_MAX = 5000; /* حد الكلمات */
+const reWords = () => { const t = (reEditor.innerText || '').trim(); return t ? t.split(/\s+/).length : 0; };
+const reCountTxt = n => n.toLocaleString('en-US') + ' / ' + RE_MAX.toLocaleString('en-US') + (reLang === 'en' ? ' words' : ' كلمة');
 const RE_DRAFT_KEY = 'charlie-report-draft-v2';
 const reModal = document.getElementById('report-editor-modal');
 const reForm = document.getElementById('re-form');
@@ -3947,7 +3950,7 @@ function validate(){
   if(reMode === 'write'){
     const n = editorPlainLength();
     if(n < 10){ reEditorWrap.classList.add('bad'); reEditor.focus(); return T('eShort'); }
-    if(editorMarkdown().length > RE_MAX){ reEditorWrap.classList.add('bad'); return T('eLong'); }
+    if(reWords() > RE_MAX){ reEditorWrap.classList.add('bad'); return T('eLong'); }
   } else {
     let ok = false;
     try{ const u = new URL(reLink.value.trim()); ok = u.protocol === 'https:' || u.protocol === 'http:'; }catch(e){}
@@ -3959,8 +3962,8 @@ function validate(){
 /* ---------- المسودة ---------- */
 let _draftTimer = null;
 function onEditorChange(){
-  const len = editorMarkdown().length;
-  reCount.textContent = len + ' / ' + RE_MAX;
+  const len = reWords();
+  reCount.textContent = reCountTxt(len);
   reCount.classList.toggle('over', len > RE_MAX);
   reDraftState.textContent = T('saving');
   clearTimeout(_draftTimer); _draftTimer = setTimeout(saveDraft, 500);
@@ -3984,8 +3987,7 @@ function loadDraft(){
     if(!reTypeWrap.querySelector('[aria-checked="true"]')) reTypeWrap.querySelector('.re-chip').setAttribute('aria-checked', 'true');
     setMode(d.mode === 'link' ? 'link' : 'write');
   }catch(e){}
-  const len = editorMarkdown().length;
-  reCount.textContent = len + ' / ' + RE_MAX;
+  reCount.textContent = reCountTxt(reWords());
 }
 function clearDraft(keepName){
   const nm = reName.value;
@@ -3994,7 +3996,7 @@ function clearDraft(keepName){
   reTypeWrap.querySelectorAll('.re-chip').forEach((c, i) => c.setAttribute('aria-checked', i === 0));
   reTypeWrap.classList.remove('is-disc');
   setMode('write'); setMsg('');
-  reCount.textContent = '0 / ' + RE_MAX;
+  reCount.textContent = reCountTxt(0);
   saveDraft();
 }
 [reName, reTitle, reLink, reLinkNote].forEach(i => i.addEventListener('input', () => { i.classList.remove('bad'); clearTimeout(_draftTimer); _draftTimer = setTimeout(saveDraft, 500); }));
@@ -4054,7 +4056,7 @@ reForm.addEventListener('submit', async e => {
     allowed_mentions:{ parse:[] },
     embeds:[{
       title:(isDisc ? (rep.type === 'شكوى' ? '📨 ' : '🚨 ') : '📋 ') + reSafe(rep.title).slice(0,240),
-      description:reSafe(rep.content || T('noDesc')).slice(0,4000),
+      description: (function(){ const d = reSafe(rep.content || T('noDesc')); return d.length > 3900 ? d.slice(0, 3700) + '\n\n… ' + (reLang === 'en' ? '(full report in the attached file)' : '(التقرير كامل بالملف المرفق)') : d; })(),
       color:RE_COLORS[rep.type] || 0xC7D977,
       fields,
       footer:{ text: isDisc ? T('footD') : T('foot') },
@@ -4064,13 +4066,37 @@ reForm.addEventListener('submit', async e => {
 
   reSubmit.disabled = true; setMsg(T('sending'));
   try{
-    const res = await fetch(HOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(payload) });
-    if(!res.ok) throw new Error('HTTP ' + res.status);
+    /* يترسل كـ multipart (طلب بسيط بدون preflight) عشان يشتغل من أي متصفح */
+    const long = (rep.content || '').length > 3900;
+    const makeFD = () => {
+      const fd = new FormData();
+      fd.append('payload_json', JSON.stringify(long ? Object.assign({}, payload, { attachments:[{ id:0, filename:'report.md' }] }) : payload));
+      if(long) fd.append('files[0]', new Blob([rep.text], { type:'text/markdown' }), 'report.md');
+      return fd;
+    };
+    let res = null;
+    try{
+      res = await fetch(HOOK + (HOOK.includes('?') ? '&' : '?') + 'wait=true', { method:'POST', body:makeFD() });
+    }catch(netErr){
+      /* المتصفح منع قراءة الرد (CORS/إضافة حظر) — نرسل بدون قراءة الرد */
+      await fetch(HOOK, { method:'POST', body:makeFD(), mode:'no-cors' });
+      res = { ok:true, status:0 };
+    }
+    if(!res.ok){
+      let msg = ''; try{ const j = await res.json(); msg = j && j.message ? j.message : ''; }catch(e){}
+      const e = new Error('HTTP ' + res.status); e.status = res.status; e.dmsg = msg; throw e;
+    }
     try{ localStorage.setItem(RE_LAST_KEY, String(Date.now())); }catch(e){}
     clearDraft(true);
     showDone(T('okT'), isDisc ? T('okXd') : T('okX'));
   }catch(err2){
-    setMsg(T('fail'), true);
+    const st = err2 && err2.status;
+    const why = st === 404 || st === 401 ? T('eHook')
+              : st === 429 ? T('eRate')
+              : st === 400 ? T('eBad') + (err2.dmsg ? ' (' + err2.dmsg + ')' : '')
+              : T('fail');
+    setMsg(why + (st ? ' [' + st + ']' : ''), true);
+    try{ console.error('Report webhook error', st, err2 && err2.dmsg); }catch(e){}
   }finally{
     reSubmit.disabled = false;
   }
