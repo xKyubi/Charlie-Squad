@@ -1422,6 +1422,67 @@
     .mb-xl .mb-stats{ grid-column:1 / -1; justify-content:flex-start; padding-top:12px; border-top:1px solid rgba(199,217,119,0.12); }
     .mb-xl .mb-stats span{ flex-direction:row; gap:5px; align-items:baseline; }
   }
+
+  /* =====================================================
+     ===== لوحة المتصدرين: شريط جانبي يمين =====
+     ===================================================== */
+  #sec-board .content{ max-width:1180px; }
+  .board-layout{ display:grid; grid-template-columns: 290px 1fr; gap:26px; align-items:start; margin-top:8px; }
+  .board-main{ min-width:0; }
+  .board-side{ position:sticky; top:86px; display:flex; flex-direction:column; gap:14px; }
+  .side-panel{
+    position:relative; border-radius:14px; padding:16px 16px 14px; overflow:hidden;
+    background: linear-gradient(160deg, rgba(30,36,16,0.95), rgba(9,11,5,0.95));
+    border:1px solid rgba(199,217,119,0.14);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.45);
+  }
+  .side-panel::before{ content:""; position:absolute; top:0; right:16px; left:16px; height:1px; background:linear-gradient(90deg, transparent, rgba(219,238,138,.55), transparent); }
+  .side-head{ display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+  .side-head h4{ margin:0; font-size:14.5px; font-weight:800; color:#f1f3de; }
+  .side-head em{ margin-inline-start:auto; font-style:normal; font-family:'Orbitron',sans-serif; font-size:9.5px; letter-spacing:2.5px; color:var(--stone-dim); }
+  .side-dot{ width:8px; height:8px; border-radius:50%; background:#9fd05a; box-shadow:0 0 8px #9fd05a; animation: blinkDot 1.8s ease-in-out infinite; }
+  .side-dot.warn{ background:#ff6a4d; box-shadow:0 0 8px #ff6a4d; }
+  .side-stat{
+    display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:10px;
+    padding:10px 10px; border-radius:10px; background:rgba(0,0,0,0.25); border:1px solid rgba(199,217,119,0.06);
+  }
+  .side-stat + .side-stat{ margin-top:8px; }
+  .side-ic{ width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; color:var(--stone);
+    background:linear-gradient(160deg, rgba(199,217,119,0.18), rgba(199,217,119,0.04)); }
+  .side-ic svg{ width:18px; height:18px; }
+  .side-l{ font-size:13px; color:var(--text-dim); font-weight:600; }
+  .side-stat b{ font-family:'Orbitron',sans-serif; font-size:18px; font-weight:800; color:var(--gold); direction:ltr; }
+  .side-stat.on b{ color:#9fd05a; }
+  .side-bar{ grid-column:1 / -1; height:5px; border-radius:5px; background:rgba(199,217,119,0.08); overflow:hidden; }
+  .side-bar i{ display:block; height:100%; width:0; border-radius:5px; background:linear-gradient(90deg, #6f9a2e, #9fd05a); transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
+  .side-count{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px; direction:ltr; }
+  .side-count span{ display:flex; flex-direction:column; align-items:center; padding:8px 0 6px; border-radius:8px; background:#070804; border:1px solid rgba(255,106,77,0.22);
+    font-family:'Orbitron',sans-serif; font-size:18px; font-weight:800; color:#ff6a4d; text-shadow:0 0 10px rgba(255,106,77,.35); }
+  .side-count small{ font-family:'Tajawal',sans-serif; font-size:9.5px; font-weight:600; color:var(--text-dim); text-shadow:none; margin-top:2px; }
+  .side-note{ display:block; margin-top:9px; font-size:11.5px; color:var(--text-dim); text-align:center; }
+  .side-next{ font-size:17px; font-weight:800; color:#f1f3de; text-align:center; padding:6px 0 2px; }
+  .side-next b{ font-family:'Orbitron',sans-serif; color:var(--gold); font-size:17px; margin-inline-start:6px; direction:ltr; display:inline-block; }
+  .side-next b small{ font-family:'Tajawal',sans-serif; font-size:11px; color:var(--text-dim); }
+  #side-deploy-in{ color:#9fd05a; font-weight:700; }
+  .board-main .podium{ margin-top:6px; }
+  .board-main .challenge.ch-ticket{ --stub:136px; }
+
+  @media (max-width:980px){
+    .board-layout{ grid-template-columns:1fr; }
+    .board-side{ position:static; display:grid; grid-template-columns:1fr 1fr; }
+    .board-side .side-panel:first-child{ grid-column:1 / -1; }
+    .board-side .side-panel:first-child .side-stat + .side-stat{ margin-top:0; }
+    .board-side .side-panel:first-child{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .board-side .side-panel:first-child .side-head{ grid-column:1 / -1; margin-bottom:4px; }
+  }
+  @media (max-width:560px){
+    .board-side{ grid-template-columns:1fr; }
+    .side-stat b{ font-size:16px; }
+    .side-stat{ grid-template-columns:auto 1fr; }
+    .side-stat b{ grid-column:2; justify-self:start; }
+    .side-stat .side-l{ font-size:12px; }
+    .side-ic{ grid-row:span 2; }
+  }
 </style>
 </head>
 <body>
@@ -1459,6 +1520,40 @@
 
     <div class="content">
 
+      <div class="board-layout">
+      <aside class="board-side fade-in" style="animation-delay:0.3s">
+        <div class="side-panel">
+          <div class="side-head"><span class="side-dot"></span><h4>حالة الفرقة</h4><em>LIVE</em></div>
+          <div class="side-stat">
+            <span class="side-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></span>
+            <span class="side-l">الأعضاء</span><b id="st-members">0</b>
+          </div>
+          <div class="side-stat on">
+            <span class="side-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/></svg></span>
+            <span class="side-l">متصل الحين</span><b id="st-online">0</b>
+            <div class="side-bar"><i id="st-online-bar"></i></div>
+          </div>
+          <div class="side-stat">
+            <span class="side-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+            <span class="side-l">ساعات الفرقة</span><b id="st-hours">0</b>
+          </div>
+          <div class="side-stat">
+            <span class="side-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span>
+            <span class="side-l">نقاط الفرقة</span><b id="st-points">0</b>
+          </div>
+        </div>
+        <div class="side-panel side-timer">
+          <div class="side-head"><span class="side-dot warn"></span><h4>التصفير القادم</h4><em>RESET</em></div>
+          <div class="side-count" id="side-reset">--:--:--</div>
+          <small class="side-note">كل جمعة 12:00 صباحاً</small>
+        </div>
+        <div class="side-panel side-timer">
+          <div class="side-head"><span class="side-dot"></span><h4>الاستخراج القادم</h4><em>DEPLOY</em></div>
+          <div class="side-next" id="side-deploy">—</div>
+          <small class="side-note" id="side-deploy-in"></small>
+        </div>
+      </aside>
+      <div class="board-main">
       <div class="metric-tabs fade-in" style="animation-delay:0.3s">
         <button id="btn-hours" class="active">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
@@ -1474,12 +1569,6 @@
         يعاد التصفير في يوم الجمعة 12:00 صباحاً
       </div>
 
-      <div class="stats-strip fade-in" id="stats-strip" style="animation-delay:0.38s">
-        <div class="stat-cell"><b data-count="0" id="st-members">0</b><span>عضو</span></div>
-        <div class="stat-cell"><b data-count="0" id="st-online">0</b><span>متصل الحين</span></div>
-        <div class="stat-cell"><b data-count="0" id="st-hours">0</b><span>ساعة للفرقة</span></div>
-        <div class="stat-cell"><b data-count="0" id="st-points">0</b><span>نقطة للفرقة</span></div>
-      </div>
       <div class="podium fade-in" id="podium" style="animation-delay:0.4s"></div>
 
       <div class="section-label fade-in" style="animation-delay:0.5s">باقي الترتيب <span class="line"></span></div>
@@ -1487,6 +1576,8 @@
 
       <div class="section-label fade-in" style="animation-delay:0.6s">تحدي الأسبوع <span class="line"></span></div>
       <div id="challenge-list" style="display:flex; flex-direction:column; gap:16px; margin-bottom:20px;"></div>
+      </div>
+      </div>
       <div class="wings-divider fade-in" style="animation-delay:0.7s">
         <svg viewBox="0 0 110 34" xmlns="http://www.w3.org/2000/svg">
           <polygon points="55,2 60,16 55,30 50,16" fill="var(--stone)"/>
@@ -1670,6 +1761,7 @@
     <div class="ai-body" id="ai-body" aria-live="polite"></div>
     <div class="ai-suggest" id="ai-suggest">
       <button type="button">توب الساعات</button>
+      <button type="button">توب النقاط</button>
       <button type="button">التحديات</button>
       <button type="button">المهام</button>
       <button type="button">مواعيد الاستخراج</button>
@@ -2335,6 +2427,7 @@ function initFromMembers(membersData){
     const vals = { 'st-members':currentRoster.length, 'st-online':currentRoster.filter(r=>r.status==='online').length, 'st-hours':Math.round(sum('hours')), 'st-points':Math.round(sum('points')) };
     Object.entries(vals).forEach(([id,v])=>{
       const el = document.getElementById(id); if(!el) return;
+      if(id==='st-online'){ const bar=document.getElementById('st-online-bar'); if(bar) setTimeout(()=>{ bar.style.width = (vals['st-members'] ? Math.round(v/vals['st-members']*100) : 0) + '%'; }, 200); }
       const t0 = performance.now(), D = 1400;
       (function step(t){ const k = Math.min(1,(t-t0)/D), e = 1-Math.pow(1-k,3); el.textContent = Math.round(v*e).toLocaleString('en-US'); if(k<1) requestAnimationFrame(step); })(t0);
     });
@@ -2729,11 +2822,11 @@ function answerLocal(q){
   }
   if(has('نقاط','نقطه','بوينت','points')){
     if(!d.byPoints.length) return 'ما أحد عنده نقاط لهالأسبوع للحين.';
-    return 'التوب بالنقاط:\n' + d.byPoints.slice(0,5).map((r,i)=>`${i+1}. ${r.name} — ${r.points.toLocaleString('en-US')} نقطة`).join('\n');
+    return 'التوب بالنقاط:\n' + d.byPoints.slice(0,5).map((r,i)=>`${i+1}. ${r.name} — ${r.points.toLocaleString('en-US')} نقطة`).join('\n') + '\n\nالنقاط تتصفّر كل جمعة 12:00 صباحاً.';
   }
   if(has('ساع','اول','الاول','متصدر','توب','ترتيب','افضل','اعلي')){
     if(!d.byHours.length) return 'ما أحد مسجل ساعات لهالأسبوع للحين.';
-    return 'التوب بالساعات:\n' + d.byHours.slice(0,5).map((r,i)=>`${i+1}. ${r.name} — ${r.hours.toFixed(1)} ساعة`).join('\n') + '\n\nالترتيب يتصفّر كل جمعة 3:00 الفجر.';
+    return 'التوب بالساعات:\n' + d.byHours.slice(0,5).map((r,i)=>`${i+1}. ${r.name} — ${r.hours.toFixed(1)} ساعة`).join('\n') + '\n\nالترتيب يتصفّر كل جمعة 12:00 صباحاً.';
   }
   if(has('تحدي','تحديات','challenge')){
     if(!d.challenges.length) return 'ما فيه تحدي نشط هالأسبوع.';
@@ -2745,7 +2838,8 @@ function answerLocal(q){
   }
   if(has('استخراج','موعد','مواعيد','متي')){
     const auth = [...document.querySelectorAll('#system-rules .timeline-card')].pop();
-    return 'مواعيد استخراج الفرقة: الاثنين والأربعاء والجمعة الساعة 3 مساءً.' + (auth ? '\nالمصرّح لهم بالاستخراج: ' + auth.querySelector('p').textContent : '');
+    const days = [...document.querySelectorAll('#ov-days li')].map(li => `• ${li.querySelector('.d').textContent} ${li.querySelector('.t').textContent.replace(/\s+/g,' ').trim()}${li.classList.contains('next') ? ' ← القادم' : ''}`);
+    return 'مواعيد استخراج الفرقة:\n' + days.join('\n') + (auth ? '\nالمصرّح لهم بالاستخراج: ' + auth.querySelector('p').textContent : '');
   }
   if(has('تقرير','تقارير','بلاغ')){
     return 'من صفحة القوانين ← كرت نظام التقارير ← (رفع تقرير).\nتعبي اسمك والعنوان والتفاصيل، والتقرير يوصل مباشرة لروم المسؤولين بالديسكورد.';
@@ -3197,6 +3291,32 @@ reForm.addEventListener('submit', async e => {
     tag.textContent = d >= 1 ? `القادم · بعد ${d} يوم` : `القادم · بعد ${hrs} ساعة`;
     if(d === 0 && hrs < 1) tag.textContent = 'القادم · خلال أقل من ساعة';
     best.appendChild(tag);
+  }
+})();
+</script>
+<script>
+/* ===== الشريط الجانبي: عداد التصفير + الاستخراج القادم ===== */
+(function(){
+  const rEl = document.getElementById('side-reset');
+  const p2 = n => String(n).padStart(2,'0');
+  function nextFriday(){
+    const n = new Date(), t = new Date(n); t.setHours(0,0,0,0);
+    let add = (5 - n.getDay() + 7) % 7; t.setDate(t.getDate() + add);
+    if(t <= n) t.setDate(t.getDate() + 7);
+    return t;
+  }
+  function tick(){
+    if(!rEl) return;
+    const d = nextFriday() - new Date(), s = Math.floor(d/1000);
+    const dd = Math.floor(s/86400), hh = Math.floor(s%86400/3600), mm = Math.floor(s%3600/60), ss = s%60;
+    rEl.innerHTML = `<span>${p2(dd)}<small>يوم</small></span><span>${p2(hh)}<small>ساعة</small></span><span>${p2(mm)}<small>دقيقة</small></span><span>${p2(ss)}<small>ثانية</small></span>`;
+  }
+  tick(); setInterval(tick, 1000);
+  const nx = document.querySelector('#ov-days li.next');
+  if(nx){
+    const d = nx.querySelector('.d'), t = nx.querySelector('.t'), tag = nx.querySelector('.ov-next');
+    document.getElementById('side-deploy').innerHTML = `${d ? d.textContent : ''} <b>${t ? t.innerHTML : ''}</b>`;
+    if(tag) document.getElementById('side-deploy-in').textContent = tag.textContent.replace('القادم · ','');
   }
 })();
 </script>
