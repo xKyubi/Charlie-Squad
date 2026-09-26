@@ -4089,27 +4089,48 @@ reForm.addEventListener('submit', async e => {
   const wait = RE_COOLDOWN_MS - (Date.now() - last);
   if(wait > 0){ setMsg(T('wait', Math.ceil(wait / 1000)), true); return; }
 
-  const fields = [
-    { name:T('fBy'), value:reSafe(rep.name).slice(0,256), inline:true },
-    { name:T('fType'), value:reTypeLabel(), inline:true },
-  ];
+  /* ===== شكل رسالة الديسكورد (تقدر تعدل من هنا) ===== */
+  const DC = {
+    botName:  isDisc ? 'Charlie Squad • Discipline' : 'Charlie Squad • HQ',
+    /* صورة البوت والشعار: رابط الشعار على موقعك (GitHub Pages). غيّره لرابط مباشر لو تبي صورة ثانية */
+    logo:     /^https?:/.test(location.href) ? new URL(LOGO_PATHS[0], location.href).href : '',
+    banner:   '',   /* صورة كبيرة تحت التقرير (اختياري) — حط رابط مباشر */
+  };
   const did = reDiscordId();
-  if(did) fields.splice(1, 0, { name:T('fDid'), value:`<@${did}>`, inline:true });
-  if(rep.mode === 'link') fields.push({ name:T('fLink'), value:rep.link.slice(0,1000) });
+  const EMO = { 'ملاحظة ميدانية':'📋', 'اقتراح تحسين':'💡', 'أخرى':'📝', 'رصد مخالفة':'🚨', 'شكوى':'📨' };
+  const repNo = '#' + Date.now().toString(36).slice(-5).toUpperCase();
+  const en = reLang === 'en';
+  const who = did ? `<@${did}>` : reSafe(rep.name);
+  const fields = [
+    { name: en ? '👤 Name' : '👤 الاسم', value:reSafe(rep.name).slice(0,256), inline:true },
+    { name: en ? '🏷️ Type' : '🏷️ النوع', value:`${EMO[rep.type] || '📋'} ${reTypeLabel()}`, inline:true },
+    { name: en ? '🔢 Report No.' : '🔢 رقم التقرير', value:'`' + repNo + '`', inline:true },
+  ];
+  if(did) fields.push({ name: en ? '💬 Discord' : '💬 ديسكورد', value:`<@${did}>`, inline:true });
+  fields.push({ name: en ? '📌 Status' : '📌 الحالة', value: en ? '🟡 Under review' : '🟡 قيد المراجعة', inline:true });
+  if(rep.mode === 'link') fields.push({ name: en ? '🔗 Link' : '🔗 الرابط', value:rep.link.slice(0,1000) });
+
+  const body = (function(){ const d = reSafe(rep.content || T('noDesc')); return d.length > 3700 ? d.slice(0, 3500) + '\n\n… ' + (en ? '(full report in the attached file)' : '(التقرير كامل بالملف المرفق)') : d; })();
+  const line = '━━━━━━━━━━━━━━━━━━';
+  const embed = {
+    author: { name: (en ? 'Submitted by ' : 'رافع التقرير: ') + reSafe(rep.name).slice(0,200) },
+    title: `${EMO[rep.type] || '📋'} ${reSafe(rep.title).slice(0,230)}`,
+    description: (isDisc ? (en ? '🔒 **Confidential — leaders only**\n' : '🔒 **سري — الاطلاع عليه من القادات فقط**\n') : '') + line + '\n' + body + '\n' + line,
+    color: RE_COLORS[rep.type] || 0xC7D977,
+    fields,
+    footer: { text: isDisc ? T('footD') : T('foot') },
+    timestamp: new Date().toISOString(),
+  };
+  if(DC.logo){ embed.thumbnail = { url: DC.logo }; embed.footer.icon_url = DC.logo; }
+  if(DC.banner) embed.image = { url: DC.banner };
 
   const payload = {
-    username: isDisc ? 'Charlie Discipline' : 'Charlie Reports',
-    content: did ? `<@${did}>` : undefined,
+    username: DC.botName,
+    content: (isDisc ? (en ? '🔒 New confidential report from ' : '🔒 بلاغ سري جديد من ') : (en ? '📥 New report from ' : '📥 تقرير جديد من ')) + who,
     allowed_mentions: did ? { parse:[], users:[did] } : { parse:[] },
-    embeds:[{
-      title:(isDisc ? (rep.type === 'شكوى' ? '📨 ' : '🚨 ') : '📋 ') + reSafe(rep.title).slice(0,240),
-      description: (function(){ const d = reSafe(rep.content || T('noDesc')); return d.length > 3900 ? d.slice(0, 3700) + '\n\n… ' + (reLang === 'en' ? '(full report in the attached file)' : '(التقرير كامل بالملف المرفق)') : d; })(),
-      color:RE_COLORS[rep.type] || 0xC7D977,
-      fields,
-      footer:{ text: isDisc ? T('footD') : T('foot') },
-      timestamp:new Date().toISOString(),
-    }],
+    embeds:[embed],
   };
+  if(DC.logo) payload.avatar_url = DC.logo;
 
   reSubmit.disabled = true; setMsg(T('sending'));
   try{
