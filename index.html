@@ -2120,6 +2120,18 @@
   .sys-toc button.disc{ color:#ff8a70; }
   .sys-toc button.disc.on{ background:linear-gradient(90deg, rgba(226,80,58,0.18), rgba(226,80,58,0.03)); border-color:rgba(226,80,58,0.4); }
   .site-en .sys-page.disc::after{ left:auto; right:130px; }
+
+  /* رد المساعد ينتظر الترجمة بدل ما يطلع عربي */
+  .site-en .mt-wait{ color:transparent !important; text-shadow:none !important; position:relative; }
+  .site-en .mt-wait *{ color:transparent !important; }
+  .site-en .msg.mt-wait{ min-height:38px; min-width:70px; }
+  .site-en .msg.mt-wait::after{ content:""; position:absolute; left:14px; top:50%; width:44px; height:8px; margin-top:-4px; border-radius:6px;
+    background: linear-gradient(90deg, rgba(199,217,119,0.15), rgba(199,217,119,0.5), rgba(199,217,119,0.15)); background-size:200% 100%; animation: mtShim 1s linear infinite; }
+  @keyframes mtShim{ from{ background-position:200% 0; } to{ background-position:0 0; } }
+
+  .re-opt{ font-weight:500; font-size:11px; color:var(--text-dim); opacity:.8; }
+  .re-hint{ display:block; margin-top:5px; font-size:11px; line-height:1.6; color:var(--text-dim); opacity:.75; }
+  #re-discord.ltr{ direction:ltr; text-align:left; font-family:'Orbitron',monospace; letter-spacing:1px; font-size:13px; }
 </style>
 </head>
 <body>
@@ -2529,6 +2541,11 @@
           <label class="re-field">
             <span class="re-label"><span data-i18n="title">عنوان التقرير</span> <em>*</em></span>
             <input class="re-input" id="re-title" maxlength="120" placeholder="مثال: ملاحظة على الانتشار بالمنطقة الشمالية" data-i18n-ph="titlePh" autocomplete="off">
+          </label>
+          <label class="re-field">
+            <span class="re-label"><span data-i18n="did">يوزر ايدي الديسكورد</span> <small class="re-opt" data-i18n="didOpt">(اختياري — عشان يمنشنك)</small></span>
+            <input class="re-input ltr" id="re-discord" inputmode="numeric" maxlength="20" placeholder="مثال: 123456789012345678" data-i18n-ph="didPh" autocomplete="off">
+            <small class="re-hint" data-i18n="didHint">من الديسكورد: الإعدادات ← متقدم ← فعّل وضع المطوّر، بعدين كليك يمين على اسمك ← نسخ معرّف المستخدم.</small>
           </label>
           <div class="re-field full">
             <span class="re-label" id="re-type-label" data-i18n="type">نوع التقرير</span>
@@ -3691,7 +3708,7 @@ const RE_I18N = {
     modeWrite:'اكتب التقرير', modeLink:'أرفق رابط', tpl:'قالب جاهز', editorPh:'اكتب تقريرك هنا… استخدم الأدوات فوق للتضخيم والعناوين والقوائم والفواصل، أو اضغط (قالب جاهز).',
     link:'رابط التقرير', note:'ملاحظة قصيرة (اختياري)', notePh:'وش يحتوي الرابط؟ (فيديو، صور، مستند…)', copy:'نسخ التقرير', send:'إرسال التقرير',
     newRep:'تقرير جديد', done:'تم', saved:'المسودة محفوظة', saving:'جاري الحفظ…',
-    eName:'اكتب اسمك.', eTitle:'اكتب عنوان للتقرير.', eShort:'التقرير قصير، اكتب تفاصيل أكثر.', eLong:'التقرير تعدى 4000 كلمة، اختصره شوي.', eLink:'حط رابط صحيح يبدأ بـ https://',
+    eName:'اكتب اسمك.', did:'يوزر ايدي الديسكورد', didOpt:'(اختياري — عشان يمنشنك)', didPh:'مثال: 123456789012345678', didHint:'من الديسكورد: الإعدادات ← متقدم ← فعّل وضع المطوّر، بعدين كليك يمين على اسمك ← نسخ معرّف المستخدم.', eDid:'اليوزر ايدي لازم يكون أرقام بس (17 إلى 20 رقم).', fDid:'ديسكورد', eTitle:'اكتب عنوان للتقرير.', eShort:'التقرير قصير، اكتب تفاصيل أكثر.', eLong:'التقرير تعدى 4000 كلمة، اختصره شوي.', eLink:'حط رابط صحيح يبدأ بـ https://',
     copied:'تم نسخ التقرير. تقدر تلصقه بالديسكورد مباشرة.', copyFail:'ما قدرت أنسخ، جرّب مرة ثانية.', off:'الإرسال مو مفعّل، استخدم (نسخ التقرير) وأرسله لمسؤول بالخاص.',
     wait:s=>'انتظر ' + s + ' ثانية قبل تقرير ثاني.', sending:'جاري الإرسال…', fail:'ما انرسل التقرير. تأكد من اتصالك، أو انسخه وأرسله بالخاص.', eHook:'رابط الويب هوك غلط أو انحذف من الديسكورد. سوّ ويب هوك جديد وحط رابطه بالكود.', eRate:'الديسكورد رافض الطلبات مؤقتاً، جرّب بعد دقيقة.', eBad:'الديسكورد رفض محتوى التقرير.',
     okT:'وصل تقريرك', okX:'انرسل لروم المسؤولين، ويتراجع بأقرب وقت.', okXd:'انرسل بسرية تامة، والاطلاع عليه من القادات فقط.',
@@ -3703,7 +3720,7 @@ const RE_I18N = {
     modeWrite:'Write report', modeLink:'Attach link', tpl:'Template', editorPh:'Write your report here… use the tools above for bold, headings, lists and dividers, or press (Template).',
     link:'Report link', note:'Short note (optional)', notePh:'What does the link contain? (video, images, document…)', copy:'Copy report', send:'Send report',
     newRep:'New report', done:'Done', saved:'Draft saved', saving:'Saving…',
-    eName:'Enter your name.', eTitle:'Enter a report title.', eShort:'Report is too short, add more details.', eLong:'Report is over 4,000 words, shorten it a bit.', eLink:'Enter a valid link starting with https://',
+    eName:'Enter your name.', did:'Discord user ID', didOpt:'(optional — to mention you)', didPh:'e.g. 123456789012345678', didHint:'In Discord: Settings → Advanced → enable Developer Mode, then right-click your name → Copy User ID.', eDid:'User ID must be digits only (17–20 digits).', fDid:'Discord', eTitle:'Enter a report title.', eShort:'Report is too short, add more details.', eLong:'Report is over 4,000 words, shorten it a bit.', eLink:'Enter a valid link starting with https://',
     copied:'Report copied. You can paste it in Discord directly.', copyFail:'Could not copy, try again.', off:'Sending is disabled, use (Copy report) and DM an officer.',
     wait:s=>'Wait ' + s + ' seconds before another report.', sending:'Sending…', fail:'Report not sent. Check your connection, or copy it and DM an officer.', eHook:'Webhook link is wrong or was deleted in Discord. Create a new webhook and put its link in the code.', eRate:'Discord is rate-limiting, try again in a minute.', eBad:'Discord rejected the report content.',
     okT:'Report received', okX:'Sent to the officers room, it will be reviewed soon.', okXd:'Sent in full confidence — only leaders can view it.',
@@ -3741,6 +3758,10 @@ const reEditor = document.getElementById('re-editor');
 const reEditorWrap = document.getElementById('re-editor-wrap');
 const reName = document.getElementById('re-name');
 const reTitle = document.getElementById('re-title');
+const reDiscord = document.getElementById('re-discord');
+const reDiscordId = () => (reDiscord.value || '').replace(/[^\d]/g, '');
+try{ reDiscord.value = localStorage.getItem('charlie-discord-id') || ''; }catch(e){}
+reDiscord.addEventListener('input', () => { reDiscord.classList.remove('bad'); try{ localStorage.setItem('charlie-discord-id', reDiscord.value.trim()); }catch(e){} });
 const reLink = document.getElementById('re-link');
 const reLinkNote = document.getElementById('re-link-note');
 const reMsg = document.getElementById('re-msg');
@@ -3933,7 +3954,7 @@ function buildReport(){
   const text =
     `📋 **${T('hdr')}: ${reTypeLabel()}**\n` +
     `**${T('hTitle')}:** ${reTitle.value.trim()}\n` +
-    `**${T('hBy')}:** ${reName.value.trim()}\n` +
+    `**${T('hBy')}:** ${reName.value.trim()}${reDiscordId() ? ' (<@' + reDiscordId() + '>)' : ''}\n` +
     `**${T('hDate')}:** ${date}\n` +
     `━━━━━━━━━━━━━━\n` + body;
   return {
@@ -3950,6 +3971,8 @@ function validate(){
   [reName, reTitle, reLink].forEach(i => i.classList.remove('bad')); reEditorWrap.classList.remove('bad');
   if(!reName.value.trim()){ reName.classList.add('bad'); reName.focus(); return T('eName'); }
   if(!reTitle.value.trim()){ reTitle.classList.add('bad'); reTitle.focus(); return T('eTitle'); }
+  const did = reDiscordId();
+  if(did && !/^\d{17,20}$/.test(did)){ reDiscord.classList.add('bad'); reDiscord.focus(); return T('eDid'); }
   if(reMode === 'write'){
     const n = editorPlainLength();
     if(n < 10){ reEditorWrap.classList.add('bad'); reEditor.focus(); return T('eShort'); }
@@ -4001,7 +4024,7 @@ function switchReportGroup(g){
   clearTimeout(_draftTimer); saveDraft();
   const nm = reName.value;
   reGroup = g;
-  reForm.reset(); reEditor.innerHTML = ''; reName.value = nm;
+  const dv2 = reDiscord.value; reForm.reset(); reEditor.innerHTML = ''; reName.value = nm; reDiscord.value = dv2;
   const fc = firstChip(); reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c === fc));
   _noSave = true; try{ setMode('write'); setMsg(''); } finally { _noSave = false; }
   loadDraft();
@@ -4009,9 +4032,10 @@ function switchReportGroup(g){
   reCount.textContent = reCountTxt(reWords());
 }
 function clearDraft(keepName){
-  const nm = reName.value;
+  const nm = reName.value, dv = reDiscord.value;
   reForm.reset(); reEditor.innerHTML = '';
   if(keepName) reName.value = nm;
+  reDiscord.value = dv;
   const fc = firstChip();
   reTypeWrap.querySelectorAll('.re-chip').forEach(c => c.setAttribute('aria-checked', c === fc));
   reTypeWrap.classList.toggle('is-disc', reGroup === 'disc');
@@ -4069,11 +4093,14 @@ reForm.addEventListener('submit', async e => {
     { name:T('fBy'), value:reSafe(rep.name).slice(0,256), inline:true },
     { name:T('fType'), value:reTypeLabel(), inline:true },
   ];
+  const did = reDiscordId();
+  if(did) fields.splice(1, 0, { name:T('fDid'), value:`<@${did}>`, inline:true });
   if(rep.mode === 'link') fields.push({ name:T('fLink'), value:rep.link.slice(0,1000) });
 
   const payload = {
     username: isDisc ? 'Charlie Discipline' : 'Charlie Reports',
-    allowed_mentions:{ parse:[] },
+    content: did ? `<@${did}>` : undefined,
+    allowed_mentions: did ? { parse:[], users:[did] } : { parse:[] },
     embeds:[{
       title:(isDisc ? (rep.type === 'شكوى' ? '📨 ' : '🚨 ') : '📋 ') + reSafe(rep.title).slice(0,240),
       description: (function(){ const d = reSafe(rep.content || T('noDesc')); return d.length > 3900 ? d.slice(0, 3700) + '\n\n… ' + (reLang === 'en' ? '(full report in the attached file)' : '(التقرير كامل بالملف المرفق)') : d; })(),
@@ -4582,48 +4609,55 @@ reForm.addEventListener('submit', async e => {
   /* ===== ترجمة آلية لبيانات الشيت (التحديات، المهام، القوانين، ردود المساعد) ===== */
   const MT_KEY = 'charlie-mt-v1';
   let mtCache = {}; try{ mtCache = JSON.parse(localStorage.getItem(MT_KEY) || '{}') || {}; }catch(e){ mtCache = {}; }
-  const mtWait = new Map();   /* النص العربي -> العقد اللي تنتظره */
-  let mtTimer = null, mtSaveTimer = null;
+  /* الترجمة تصير على مقاطع عربية منفصلة (عنوان، وصف، سطر) عشان ردود المساعد تستخدم نفس الترجمة المحفوظة وتطلع على طول */
+  const mtPending = new Map();   /* مقطع عربي -> Promise */
+  const RUN = /[؀-ۿ][^\n•|—A-Za-z]*/g;
+  let mtSaveTimer = null;
   function mtSave(){ clearTimeout(mtSaveTimer); mtSaveTimer = setTimeout(()=>{ try{ localStorage.setItem(MT_KEY, JSON.stringify(mtCache)); }catch(e){} }, 400); }
+  let active = 0; const queue = [];
+  function limit(fn){ return new Promise((res, rej) => { queue.push([fn, res, rej]); pump(); }); }
+  function pump(){ while(active < 5 && queue.length){ const [fn, res, rej] = queue.shift(); active++; fn().then(res, rej).finally(() => { active--; pump(); }); } }
   async function mtFetch(text){
     const url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=ar&tl=en&dt=t&q=' + encodeURIComponent(text);
     const r = await fetch(url); if(!r.ok) throw new Error('mt ' + r.status);
     const j = await r.json();
     return (j && j[0] ? j[0].map(x => x && x[0] ? x[0] : '').join('') : '').trim();
   }
-  function mtApply(src, out){
-    const list = mtWait.get(src) || []; mtWait.delete(src);
-    if(lang !== 'en') return;
-    busy = true;
-    try{
-      list.forEach(({ node, from }) => {
-        if(!node.isConnected || node.nodeValue !== from) return;
-        if(!origText.has(node)) origText.set(node, from);
-        const lead = from.match(/^\s*/)[0], trail = from.match(/\s*$/)[0];
-        node.nodeValue = lead + out + trail;
-      });
-    } finally { busy = false; }
+  function mtGet(run){
+    if(mtCache[run]) return Promise.resolve(mtCache[run]);
+    if(!mtPending.has(run)){
+      mtPending.set(run, limit(() => mtFetch(run)).then(out => { if(out){ mtCache[run] = out; mtSave(); } mtPending.delete(run); return out || null; })
+        .catch(() => { mtPending.delete(run); return null; }));
+    }
+    return mtPending.get(run);
   }
-  async function mtRun(){
-    const jobs = [...mtWait.keys()];
-    const q = jobs.slice(); const workers = [];
-    for(let w = 0; w < 4; w++) workers.push((async () => {
-      while(q.length){
-        const src = q.shift();
-        if(mtCache[src]){ mtApply(src, mtCache[src]); continue; }
-        try{ const out = await mtFetch(src); if(out){ mtCache[src] = out; mtSave(); mtApply(src, out); } else mtWait.delete(src); }
-        catch(e){ mtWait.delete(src); }
-      }
-    })());
-    await Promise.all(workers);
+  function runsOf(text){
+    const out = []; let m; RUN.lastIndex = 0;
+    while((m = RUN.exec(text))){ const r = m[0].replace(/[\s\-–:(،,]+$/,'').trim(); if(r) out.push(r); }
+    return [...new Set(out)];
+  }
+  function fill(text, map){
+    let t = text;
+    Object.keys(map).sort((a,b) => b.length - a.length).forEach(k => { if(map[k]) t = t.split(k).join(map[k]); });
+    return t;
   }
   function mtQueue(node){
-    const from = node.nodeValue, core = from.trim();
-    if(!core || !AR.test(core)) return;
-    if(mtCache[core]){ mtWait.set(core, [{ node, from }]); mtApply(core, mtCache[core]); return; }
-    if(!mtWait.has(core)) mtWait.set(core, []);
-    mtWait.get(core).push({ node, from });
-    clearTimeout(mtTimer); mtTimer = setTimeout(mtRun, 120);
+    const from = node.nodeValue;
+    const runs = runsOf(from); if(!runs.length) return;
+    const map = {}; let missing = 0;
+    runs.forEach(r => { if(mtCache[r]) map[r] = mtCache[r]; else missing++; });
+    const host = node.parentElement && node.parentElement.closest('.msg, h3, p, li, span, div');
+    const put = () => {
+      if(lang !== 'en' || !node.isConnected || node.nodeValue !== from) return;
+      busy = true;
+      try{ if(!origText.has(node)) origText.set(node, from); node.nodeValue = fill(from, map); }
+      finally{ busy = false; }
+    };
+    if(!missing){ put(); return; }
+    if(host) host.classList.add('mt-wait');
+    Promise.all(runs.filter(r => !map[r]).map(r => mtGet(r).then(o => { if(o) map[r] = o; })))
+      .then(() => { put(); if(host) host.classList.remove('mt-wait'); });
+    setTimeout(() => { if(host) host.classList.remove('mt-wait'); }, 5000);
   }
   function doNode(n){
     if(n.nodeType === 3){
@@ -4663,7 +4697,7 @@ reForm.addEventListener('submit', async e => {
     mo.observe(document.body, { subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:ATTRS });
   }
   function toAR(){
-    mo.disconnect(); mtWait.clear();
+    mo.disconnect();
     origText.forEach((v, n) => { if(n.isConnected) n.nodeValue = v; }); origText.clear();
     origAttr.forEach((o, el) => { Object.keys(o).forEach(a => el.setAttribute(a, o[a])); }); origAttr.clear();
   }
