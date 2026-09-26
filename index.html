@@ -558,6 +558,34 @@
   ::-webkit-scrollbar-button{ display:none; height:0; }
   ::-webkit-scrollbar-corner{ background:transparent; }
   .ai-body, .modal-overlay{ scrollbar-color:#3a3b41 transparent; }
+
+  /* ===== نظام التقارير (ديسكورد) ===== */
+  .rp-badge{ position:absolute; top:14px; left:14px; font-size:11px; font-weight:700; color:#161616; background:var(--stone); padding:2px 10px; border-radius:999px; }
+  .rp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .rp-field{ display:flex; flex-direction:column; gap:6px; min-width:0; }
+  .rp-field.full{ grid-column:1 / -1; }
+  .rp-label{ font-size:13px; font-weight:700; color:var(--text-dim); }
+  .rp-label em{ color:var(--stone); font-style:normal; }
+  .rp-input{ font-family:'Tajawal',sans-serif; font-size:14.5px; color:var(--text); width:100%; background:var(--k1); border:1px solid var(--line-2); border-radius:var(--radius-md); padding:10px 12px; outline:none; }
+  .rp-input:focus{ border-color:var(--stone); }
+  .rp-input.bad{ border-color:var(--alert); }
+  .rp-input.ltr{ direction:ltr; text-align:left; }
+  textarea.rp-input{ resize:vertical; min-height:170px; line-height:1.8; }
+  .rp-chips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .rp-chip{ font-family:'Tajawal',sans-serif; font-size:13px; font-weight:700; color:var(--text-dim); cursor:pointer; background:var(--k1); border:1px solid var(--line-2); padding:6px 14px; border-radius:var(--radius-sm); }
+  .rp-chip:hover{ color:var(--text); }
+  .rp-chip[aria-checked="true"]{ color:#161616; background:var(--stone); border-color:var(--stone); }
+  .rp-count{ font-size:11.5px; color:var(--text-dim); text-align:left; direction:ltr; }
+  .rp-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:18px; }
+  .rp-msg{ font-size:13px; color:var(--text-dim); }
+  .rp-msg.err{ color:#ff8a70; }
+  .rp-hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+  .rp-done{ text-align:center; padding:24px 10px 6px; }
+  .rp-done .ok{ width:62px; height:62px; margin:0 auto 12px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--stone); color:#161616; font-size:28px; }
+  .rp-done h3{ margin:0 0 6px; font-size:19px; }
+  .rp-done p{ margin:0 auto 18px; color:var(--text-dim); font-size:14px; }
+  .overview-btn:disabled{ opacity:.5; cursor:default; }
+  @media (max-width:760px){ .rp-grid{ grid-template-columns:1fr; } .rp-foot .overview-btn{ flex:1; } }
 </style>
 </head>
 <body>
@@ -688,6 +716,13 @@
           <p>تم اعداد اللائحة التالية لضمان انضباط الاعضاء وسير العمل بفعالية داخل السكواد</p>
           <button class="overview-btn" type="button" id="btn-training-system">عرض النظام</button>
         </div>
+        <div class="overview-card">
+          <span class="rp-badge">جديد</span>
+          <div class="overview-icon">📝</div>
+          <h3>نظام التقارير</h3>
+          <p>عندك ملاحظة أو موقف صار؟ ارفعه هنا ويوصل للمسؤولين مباشرة.</p>
+          <button class="overview-btn primary" type="button" id="btn-report">رفع تقرير</button>
+        </div>
       </div>
 
       <div class="fade-in" style="animation-delay:0.2s">
@@ -753,7 +788,7 @@
         <div class="timeline-item">
           <div class="timeline-card">
             <h4><span class="timeline-marker">7</span>الأشخاص المصرح لهم باستخراج الفرقة</h4>
-            <p>abadi Abdullah — Nawaf Almutiri</p>
+            <p>من هم برتبة اوفيسر 3 فما فوق</p>
           </div>
         </div>
       </div>
@@ -790,8 +825,60 @@
       <button type="button">التحديات</button>
       <button type="button">المهام</button>
       <button type="button">مواعيد الاستخراج</button>
+      <button type="button">كيف أرفع تقرير؟</button>
     </div>
   </section>
+
+  <!-- ===== مودال رفع تقرير ===== -->
+  <div class="modal-overlay" id="report-modal">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="rp-h" style="max-width:720px;">
+      <button class="modal-close" id="rp-close" type="button" aria-label="إغلاق">✕</button>
+      <h2 class="modal-title" id="rp-h">رفع تقرير</h2>
+      <p class="modal-sub">التقرير يوصل لروم المسؤولين بالديسكورد، ومحد غيرهم يشوفه.</p>
+      <form id="rp-form" novalidate>
+        <div class="rp-grid">
+          <label class="rp-field">
+            <span class="rp-label">اسمك <em>*</em></span>
+            <input class="rp-input" id="rp-name" list="rp-names" maxlength="60" placeholder="اختر اسمك" autocomplete="off">
+            <datalist id="rp-names"></datalist>
+          </label>
+          <label class="rp-field">
+            <span class="rp-label">العنوان <em>*</em></span>
+            <input class="rp-input" id="rp-title" maxlength="100" placeholder="عنوان مختصر" autocomplete="off">
+          </label>
+          <div class="rp-field full">
+            <span class="rp-label" id="rp-type-l">النوع</span>
+            <div class="rp-chips" id="rp-type" role="radiogroup" aria-labelledby="rp-type-l">
+              <button type="button" class="rp-chip" role="radio" aria-checked="true">ملاحظة</button>
+              <button type="button" class="rp-chip" role="radio" aria-checked="false">مخالفة</button>
+              <button type="button" class="rp-chip" role="radio" aria-checked="false">اقتراح</button>
+              <button type="button" class="rp-chip" role="radio" aria-checked="false">أخرى</button>
+            </div>
+          </div>
+          <label class="rp-field full">
+            <span class="rp-label">التفاصيل <em>*</em></span>
+            <textarea class="rp-input" id="rp-body" maxlength="1800" placeholder="وش صار؟ متى؟ وين؟ ومين الأطراف؟"></textarea>
+            <span class="rp-count" id="rp-count">0 / 1800</span>
+          </label>
+          <label class="rp-field full">
+            <span class="rp-label">رابط (اختياري)</span>
+            <input class="rp-input ltr" id="rp-link" type="url" maxlength="400" placeholder="https://" autocomplete="off">
+          </label>
+        </div>
+        <input class="rp-hp" id="rp-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="rp-foot">
+          <span class="rp-msg" id="rp-msg" role="status"></span>
+          <button type="submit" class="overview-btn primary" id="rp-send">إرسال</button>
+        </div>
+      </form>
+      <div class="rp-done" id="rp-done" hidden>
+        <div class="ok">✓</div>
+        <h3>وصل تقريرك</h3>
+        <p>انرسل للمسؤولين، ويتراجع بأقرب وقت.</p>
+        <button type="button" class="overview-btn primary" id="rp-done-close">تم</button>
+      </div>
+    </div>
+  </div>
 
 <script>
 const LOGO_PATHS = ["assets/logo.png", "logo.png"];
@@ -910,7 +997,7 @@ const TASKS_CSV_URL = sheetCsv(SHEET_GIDS.tasks);
 const RULES_CSV_URL = sheetCsv(SHEET_GIDS.rules);
 
 const MEMBER_PHOTOS = {
-"MAKHDUR SHICHI": "assets/members/MH.jpg",
+  "MAKHDUR SHICHI": "assets/members/MH.jpg",
 };
 
 function initials(name){ return (name||'').trim().split(' ').map(w=>w[0]).slice(0,2).join(''); }
@@ -1705,6 +1792,9 @@ function answerLocal(q){
     const auth = [...document.querySelectorAll('#system-rules .timeline-card')].pop();
     return 'مواعيد استخراج الفرقة: الاثنين والأربعاء والجمعة الساعة 3 مساءً.' + (auth ? '\nالمصرّح لهم بالاستخراج: ' + auth.querySelector('p').textContent : '');
   }
+  if(has('تقرير','تقارير','بلاغ')){
+    return 'من صفحة القوانين ← كرت نظام التقارير ← (رفع تقرير).\nتعبي اسمك والعنوان والتفاصيل، والتقرير يوصل مباشرة لروم المسؤولين بالديسكورد.';
+  }
   if(has('قائد','ليدر','هرم','قياده','مسؤول')){
     return 'هرم القيادة:\n' + HIERARCHY_ORDER.map((t,i)=>`${i+1}. ${t.join('، ')}`).join('\n');
   }
@@ -1721,6 +1811,128 @@ function answerLocal(q){
 
   return 'ما لقيت شي يطابق سؤالك. جرّب: اسم عضو، الساعات، النقاط، التحديات، المهام، الاستخراج، أو كلمة من قانون.';
 }
+
+/* =====================================================================
+   نظام التقارير → ويب هوك ديسكورد (روم المسؤولين)
+   ===================================================================== */
+const REPORT_WEBHOOK = "https://discord.com/api/webhooks/1553218796062507011/1iveu1znqlxJcnztxiy28qsEOqTM997kpuyDd6q4jVpjKeqxtn3d5mXbHNwxDcrZy9Ky"; // حط رابط الويب هوك هنا: https://discord.com/api/webhooks/...
+const RP_COOLDOWN_MS = 2 * 60 * 1000;   // دقيقتين بين كل تقرير والثاني
+const RP_DRAFT_KEY = 'charlie-rp-draft';
+const RP_LAST_KEY  = 'charlie-rp-last';
+
+const rpModal = document.getElementById('report-modal');
+const rpForm  = document.getElementById('rp-form');
+const rpDone  = document.getElementById('rp-done');
+const rpName  = document.getElementById('rp-name');
+const rpTitle = document.getElementById('rp-title');
+const rpBody  = document.getElementById('rp-body');
+const rpLink  = document.getElementById('rp-link');
+const rpType  = document.getElementById('rp-type');
+const rpMsg   = document.getElementById('rp-msg');
+const rpSend  = document.getElementById('rp-send');
+const rpCount = document.getElementById('rp-count');
+
+function rpOpen(){
+  document.getElementById('rp-names').innerHTML =
+    (currentRoster || []).map(r => `<option value="${String(r.name).replace(/"/g,'&quot;')}"></option>`).join('');
+  rpForm.hidden = false; rpDone.hidden = true; rpSetMsg('');
+  rpModal.classList.add('active'); document.body.style.overflow = 'hidden';
+  setTimeout(() => (rpName.value ? rpTitle : rpName).focus(), 80);
+}
+function rpClose(){ rpModal.classList.remove('active'); document.body.style.overflow = ''; rpSaveDraft(); }
+document.getElementById('btn-report').addEventListener('click', rpOpen);
+document.getElementById('rp-close').addEventListener('click', rpClose);
+document.getElementById('rp-done-close').addEventListener('click', rpClose);
+rpModal.addEventListener('click', e => { if(e.target === rpModal) rpClose(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && rpModal.classList.contains('active')) rpClose(); });
+
+rpType.addEventListener('click', e => {
+  const b = e.target.closest('.rp-chip'); if(!b) return;
+  rpType.querySelectorAll('.rp-chip').forEach(c => c.setAttribute('aria-checked', c === b));
+  rpSaveDraft();
+});
+const rpTypeVal = () => (rpType.querySelector('[aria-checked="true"]') || {}).textContent || 'أخرى';
+
+function rpSetMsg(t, err){ rpMsg.textContent = t || ''; rpMsg.classList.toggle('err', !!err); }
+function rpUpdateCount(){ rpCount.textContent = rpBody.value.length + ' / 1800'; }
+
+function rpSaveDraft(){
+  try{ localStorage.setItem(RP_DRAFT_KEY, JSON.stringify({ name:rpName.value, title:rpTitle.value, body:rpBody.value, link:rpLink.value, type:rpTypeVal() })); }catch(e){}
+}
+function rpLoadDraft(){
+  try{
+    const d = JSON.parse(localStorage.getItem(RP_DRAFT_KEY) || 'null'); if(!d) return;
+    rpName.value = d.name || ''; rpTitle.value = d.title || ''; rpBody.value = d.body || ''; rpLink.value = d.link || '';
+    rpType.querySelectorAll('.rp-chip').forEach(c => c.setAttribute('aria-checked', c.textContent === d.type));
+    if(!rpType.querySelector('[aria-checked="true"]')) rpType.querySelector('.rp-chip').setAttribute('aria-checked','true');
+  }catch(e){}
+  rpUpdateCount();
+}
+[rpName, rpTitle, rpBody, rpLink].forEach(i => i.addEventListener('input', () => { i.classList.remove('bad'); if(i === rpBody) rpUpdateCount(); rpSaveDraft(); }));
+rpLoadDraft();
+
+function rpValidate(){
+  [rpName, rpTitle, rpBody, rpLink].forEach(i => i.classList.remove('bad'));
+  if(!rpName.value.trim()){ rpName.classList.add('bad'); rpName.focus(); return 'اكتب اسمك.'; }
+  if(!rpTitle.value.trim()){ rpTitle.classList.add('bad'); rpTitle.focus(); return 'اكتب عنوان.'; }
+  if(rpBody.value.trim().length < 15){ rpBody.classList.add('bad'); rpBody.focus(); return 'زِد التفاصيل شوي.'; }
+  const l = rpLink.value.trim();
+  if(l){ let ok = false; try{ const u = new URL(l); ok = /^https?:$/.test(u.protocol); }catch(e){}
+    if(!ok){ rpLink.classList.add('bad'); rpLink.focus(); return 'الرابط غير صحيح، لازم يبدأ بـ https://'; } }
+  return '';
+}
+
+/* يمنع المنشن (@everyone وغيره) داخل النص */
+const rpSafe = t => String(t).replace(/@/g, '@\u200b');
+
+const RP_COLORS = { 'ملاحظة':0xD9D9DA, 'مخالفة':0xB3312A, 'اقتراح':0x6FAE6F, 'أخرى':0x8F9095 };
+
+rpForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  if(document.getElementById('rp-hp').value) return;           // فخ البوتات
+  const err = rpValidate(); if(err){ rpSetMsg(err, true); return; }
+  if(!REPORT_WEBHOOK){ rpSetMsg('نظام التقارير مو مفعّل حالياً.', true); return; }
+
+  let last = 0; try{ last = +localStorage.getItem(RP_LAST_KEY) || 0; }catch(e){}
+  const wait = RP_COOLDOWN_MS - (Date.now() - last);
+  if(wait > 0){ rpSetMsg('انتظر ' + Math.ceil(wait / 1000) + ' ثانية قبل تقرير ثاني.', true); return; }
+
+  const type = rpTypeVal();
+  const fields = [
+    { name:'رافع التقرير', value:rpSafe(rpName.value.trim()).slice(0,256), inline:true },
+    { name:'النوع', value:type, inline:true },
+  ];
+  if(rpLink.value.trim()) fields.push({ name:'الرابط', value:rpLink.value.trim().slice(0,400) });
+
+  const payload = {
+    username:'Charlie Reports',
+    allowed_mentions:{ parse:[] },
+    embeds:[{
+      title:'📋 ' + rpSafe(rpTitle.value.trim()).slice(0,240),
+      description:rpSafe(rpBody.value.trim()).slice(0,1800),
+      color:RP_COLORS[type] || 0xD9D9DA,
+      fields,
+      footer:{ text:'Charlie Squad • نظام التقارير' },
+      timestamp:new Date().toISOString(),
+    }],
+  };
+
+  rpSend.disabled = true; rpSetMsg('جاري الإرسال…');
+  try{
+    const res = await fetch(REPORT_WEBHOOK, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(payload) });
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    try{ localStorage.setItem(RP_LAST_KEY, String(Date.now())); }catch(e){}
+    const keepName = rpName.value;
+    rpForm.reset(); rpName.value = keepName;
+    rpType.querySelectorAll('.rp-chip').forEach((c,i) => c.setAttribute('aria-checked', i === 0));
+    rpUpdateCount(); rpSaveDraft();
+    rpForm.hidden = true; rpDone.hidden = false;
+  }catch(err2){
+    rpSetMsg('ما انرسل التقرير. تأكد من اتصالك وجرّب مرة ثانية.', true);
+  }finally{
+    rpSend.disabled = false;
+  }
+});
 
 </script>
 </body>
