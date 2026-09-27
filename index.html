@@ -2203,6 +2203,60 @@
     .sp-av{ width:40px; height:40px; }
     .sp-nm{ font-size:13px; }
   }
+
+  /* =====================================================
+     ===== الأعضاء: بطاقات عمودية (تصميم جديد) =====
+     ===================================================== */
+  .m2 .mb-gh{ justify-content:center; margin:6px 0 16px; }
+  .m2 .mb-gh .mb-line{ display:none; }
+  .m2 .mb-gh h4{ font-size:18px; }
+  .m2 .mb-list{ display:grid !important; gap:16px !important; justify-content:center; max-width:none !important; }
+  .m2 .mb-list.mb-xl{ grid-template-columns: 260px !important; }
+  .m2 .mb-list.mb-lg{ grid-template-columns: repeat(auto-fit, 220px) !important; }
+  .m2 .mb-list.mb-md{ grid-template-columns: repeat(auto-fit, 200px) !important; }
+  .m2 .mb-list.mb-sm{ grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)) !important; }
+  .m2 .mb-leader .mb-gh, .m2 .mb-leader .mb-list{ max-width:none !important; }
+  .m2 .mb-card{
+    --acc:#8fa048; display:flex !important; flex-direction:column; align-items:stretch; gap:0 !important; padding:0 !important;
+    border-radius:18px !important; overflow:hidden; cursor:pointer; text-align:center;
+    background: linear-gradient(180deg, rgba(22,27,11,.96), rgba(8,10,5,.97)) !important;
+    border:1px solid color-mix(in srgb, var(--acc) 30%, transparent) !important;
+    box-shadow: 0 14px 30px rgba(0,0,0,.45) !important;
+    transition: border-color .15s ease, box-shadow .15s ease !important;
+  }
+  .m2 .mb-card::before{ display:none !important; }
+  .m2 .mb-card:hover{ border-color: var(--acc) !important; box-shadow: 0 0 0 1px var(--acc), 0 0 26px color-mix(in srgb, var(--acc) 25%, transparent), 0 14px 30px rgba(0,0,0,.45) !important; }
+  .m2 .mb-card.r-leader{ --acc:#f5d76e; } .m2 .mb-card.r-co{ --acc:#c7d977; } .m2 .mb-card.r-mgmt{ --acc:#d0955a; } .m2 .mb-card.r-member{ --acc:#7f9138; }
+  .m2 .mb-card.is-off{ opacity:1 !important; }
+  .m2 .mb-card.is-off .m2-photo img{ filter:grayscale(.85) brightness(.75); }
+  .m2-photo{ position:relative; display:flex; align-items:center; justify-content:center; aspect-ratio:1/1; overflow:hidden;
+    background: radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--acc) 22%, #151a0a), #070904 75%); }
+  .m2-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform .45s ease; }
+  .m2 .mb-card:hover .m2-photo img{ transform:scale(1.06); }
+  .m2-photo::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:45%; background:linear-gradient(0deg, rgba(8,10,5,.95), transparent); pointer-events:none; }
+  .m2-ini{ font-family:'Oswald',sans-serif; font-size:44px; font-weight:700; color:color-mix(in srgb, var(--acc) 60%, transparent); }
+  .m2-status{ position:absolute; top:10px; left:10px; z-index:2; display:inline-flex; align-items:center; gap:5px; font-size:10.5px; font-weight:800;
+    padding:3px 9px; border-radius:20px; background:rgba(0,0,0,.6); backdrop-filter:blur(4px); }
+  .site-en .m2-status{ left:auto; right:10px; }
+  .m2-status i{ width:7px; height:7px; border-radius:50%; }
+  .m2-status.on{ color:#9fd05a; } .m2-status.on i{ background:#9fd05a; box-shadow:0 0 8px #9fd05a; }
+  .m2-status.off{ color:#9aa07e; } .m2-status.off i{ background:#6d7456; }
+  .m2-body{ position:relative; z-index:2; margin-top:-26px; padding:0 12px 10px; display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .m2-name{ font-size:15px; font-weight:900; color:#f4f6e2; line-height:1.25; text-shadow:0 2px 8px rgba(0,0,0,.8); word-break:break-word; }
+  .m2-nick{ font-size:11.5px; color:var(--text-dim); }
+  .m2-rank{ display:block; padding:7px 10px; font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:600;
+    color:#0e1106; background: var(--acc); }
+  .m2 .mb-xl .m2-name{ font-size:20px; } .m2 .mb-xl .m2-ini{ font-size:70px; }
+  .m2 .mb-xl .mb-card{ box-shadow: 0 0 0 1px rgba(245,215,110,.4), 0 0 44px rgba(245,215,110,.15), 0 18px 36px rgba(0,0,0,.55) !important; }
+  .m2 .mb-xl .m2-rank{ background:linear-gradient(90deg, #fff0a8, #f5d76e); font-size:12px; }
+  .m2 .mb-lg .m2-name{ font-size:16.5px; }
+  @media (max-width:600px){
+    .m2 .mb-list.mb-xl{ grid-template-columns: 200px !important; }
+    .m2 .mb-list.mb-lg, .m2 .mb-list.mb-md, .m2 .mb-list.mb-sm{ grid-template-columns: repeat(2, 1fr) !important; gap:10px !important; }
+    .m2-name{ font-size:13px; } .m2 .mb-lg .m2-name{ font-size:14px; }
+    .m2-rank{ font-size:9.5px; letter-spacing:1.2px; padding:6px; }
+    .m2-status{ font-size:9.5px; padding:2px 7px; }
+  }
 </style>
 </head>
 <body>
@@ -3217,7 +3271,7 @@ function startChallengeCountdowns(challenges){
 }
 
 function renderMembers(list){
-  membersGrid.innerHTML = '';
+  membersGrid.innerHTML = ''; membersGrid.classList.add('m2');
   if(!list.length){
     membersGrid.innerHTML = '<div class="empty-state">لا يوجد أعضاء مطابقين</div>';
     return;
@@ -3245,13 +3299,16 @@ function renderMembers(list){
       card.className = 'mb-card ' + tierOf(m.rank) + ' ' + (m.status === 'online' ? 'is-on' : 'is-off');
       card.dataset.idx = m.idx; card.tabIndex = 0; card.setAttribute('role','button');
       card.style.animationDelay = (delay++ * 0.035) + 's';
+      const nick = (m.nick && String(m.nick).toLowerCase()!=='null') ? m.nick : '';
       card.innerHTML = `
-        ${avatar(m)}
-        <div class="mb-body">
-          <div class="mb-name">${m.name}</div>
-          <div class="mb-meta"><span class="mb-rank">${m.rank}</span><span class="mb-nick">${(m.nick && String(m.nick).toLowerCase()!=='null') ? m.nick : ''}</span></div>
-        </div>
-        <span class="mb-state">${m.status === 'online' ? 'متصل' : 'غير متصل'}</span>
+        <span class="m2-photo"><span class="m2-ini">${initials(m.name)}</span>${m.photo ? `<img src="${m.photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}
+          <span class="m2-status ${m.status === 'online' ? 'on' : 'off'}"><i></i>${m.status === 'online' ? 'متصل' : 'غير متصل'}</span>
+        </span>
+        <span class="m2-body">
+          <span class="m2-name">${m.name}</span>
+          ${nick ? `<span class="m2-nick" dir="ltr">@${nick}</span>` : ''}
+        </span>
+        <span class="m2-rank">${m.rank}</span>
       `;
       wrap.appendChild(card);
     });
@@ -4001,7 +4058,7 @@ function nodeToMd(node){
     case 'BLOCKQUOTE': return '\n' + kids().trim().split('\n').map(l => '> ' + l).join('\n') + '\n';
     case 'UL': return '\n' + [...node.children].map(li => '- ' + nodeToMd(li).trim()).join('\n') + '\n';
     case 'OL': return '\n' + [...node.children].map((li, i) => (i + 1) + '. ' + nodeToMd(li).trim()).join('\n') + '\n';
-    case 'DIV': case 'P': { const c = kids(); return (c.endsWith('\n') ? c : c + '\n'); }
+    case 'DIV': case 'P': { const c = kids(); const prev = node.previousSibling; const lead = (prev && (prev.nodeType === 3 ? prev.nodeValue.trim() : !/^(DIV|P|H[1-4]|UL|OL|BLOCKQUOTE|HR)$/.test(prev.tagName || ''))) ? '\n' : ''; return lead + (c.endsWith('\n') ? c : c + '\n'); }
     case 'SPAN': {
       let c = kids(); const st = node.style || {};
       if(/bold|[6-9]00/.test(st.fontWeight)) c = wrapMd(c, '**');
@@ -4173,37 +4230,35 @@ reForm.addEventListener('submit', async e => {
     banner:   '',
   };
   const did = reDiscordId();
-  const EMO = { 'ملاحظة ميدانية':'📋', 'اقتراح تحسين':'💡', 'أخرى':'📝', 'رصد مخالفة':'🚨', 'شكوى':'📨' };
   const en = reLang === 'en';
-  const who = did ? `<@${did}>` : reSafe(rep.name);
-  const fields = [
-    { name: en ? '👤 Name' : '👤 الاسم', value:reSafe(rep.name).slice(0,256), inline:true },
-    { name: en ? '🏷️ Type' : '🏷️ النوع', value:`${EMO[rep.type] || '📋'} ${reTypeLabel()}`, inline:true },
-  ];
-  if(did) fields.push({ name: en ? '💬 Discord' : '💬 ديسكورد', value:`<@${did}>`, inline:true });
-  if(rep.mode === 'link') fields.push({ name: en ? '🔗 Link' : '🔗 الرابط', value:rep.link.slice(0,1000) });
-
-  const body = (function(){ const d = reSafe(rep.content || T('noDesc')); return d.length > 3700 ? d.slice(0, 3500) + '\n\n… ' + (en ? '(full report in the attached file)' : '(التقرير كامل بالملف المرفق)') : d; })();
-  const line = '━━━━━━━━━━━━━━━━━━';
+  const quote = t => String(t).split('\n').map(l => '> ' + l).join('\n');
+  const bodyRaw = reSafe(rep.content || T('noDesc'));
+  const body = bodyRaw.length > 3300 ? bodyRaw.slice(0, 3100) + '\n\n… ' + (en ? '(full report in the attached file)' : '(التقرير كامل بالملف المرفق)') : bodyRaw;
+  const lines = [
+    `**${en ? 'Name' : 'الاسم'}:** ${reSafe(rep.name).slice(0,200)}`,
+    did ? `**${en ? 'Discord' : 'ديسكورد'}:** <@${did}>` : '',
+    `**${en ? 'Type' : 'النوع'}:** ${reTypeLabel()}`,
+    `**${en ? 'Title' : 'العنوان'}:** ${reSafe(rep.title).slice(0,200)}`,
+    rep.mode === 'link' ? `**${en ? 'Link' : 'الرابط'}:** ${rep.link.slice(0,900)}` : '',
+  ].filter(Boolean);
   const embed = {
-    author: { name: (en ? 'Submitted by ' : 'رافع التقرير: ') + reSafe(rep.name).slice(0,200) },
-    title: `${EMO[rep.type] || '📋'} ${reSafe(rep.title).slice(0,230)}`,
-    description: (isDisc ? (en ? '🔒 **Confidential — leaders only**\n' : '🔒 **سري — الاطلاع عليه من القادات فقط**\n') : '') + line + '\n' + body + '\n' + line,
+    author: { name: 'CHARLIE SQUAD • ' + (isDisc ? (en ? 'Violations & Complaints' : 'المخالفات والشكاوى') : (en ? 'Reports System' : 'نظام التقارير')) },
+    title: isDisc ? (en ? '🔒 Confidential — leaders only' : '🔒 سري — للقادات فقط') : (en ? 'Greetings' : 'السلام عليكم'),
+    description: lines.join('\n') + '\n\n**' + (en ? 'Details' : 'التفاصيل') + '**\n' + quote(body),
     color: RE_COLORS[rep.type] || 0xC7D977,
-    fields,
-    footer: { text: isDisc ? T('footD') : T('foot') },
     timestamp: new Date().toISOString(),
   };
-  if(DC.logo){ embed.thumbnail = { url: DC.logo }; embed.footer.icon_url = DC.logo; }
   embed.image = { url: DC.banner || 'attachment://banner.jpg' };
-
   const payload = {
     username: DC.botName,
-    content: (isDisc ? (en ? '🔒 New confidential report from ' : '🔒 بلاغ سري جديد من ') : (en ? '📥 New report from ' : '📥 تقرير جديد من ')) + who,
     allowed_mentions: did ? { parse:[], users:[did] } : { parse:[] },
     embeds:[embed],
   };
+  /* الشعار: يترفع مع الرسالة ويطلع جنب العنوان وعلى اليمين */
+  let logoBlob = null;
+  try{ const lr = await fetch(LOGO_PATHS[0], { cache:'force-cache' }); if(lr.ok){ const bl = await lr.blob(); if(bl.size) logoBlob = bl; } }catch(e){}
   if(DC.logo) payload.avatar_url = DC.logo;
+  if(logoBlob){ embed.author.icon_url = 'attachment://logo.png'; embed.thumbnail = { url:'attachment://logo.png' }; }
 
   reSubmit.disabled = true; setMsg(T('sending'));
   try{
@@ -4213,6 +4268,7 @@ reForm.addEventListener('submit', async e => {
       const fd = new FormData();
       const att = [];
       if(!DC.banner){ att.push({ id:att.length, filename:'banner.jpg' }); fd.append('files[' + (att.length-1) + ']', reBannerBlob(), 'banner.jpg'); }
+      if(logoBlob){ att.push({ id:att.length, filename:'logo.png' }); fd.append('files[' + (att.length-1) + ']', logoBlob, 'logo.png'); }
       if(long){ att.push({ id:att.length, filename:'report.md' }); fd.append('files[' + (att.length-1) + ']', new Blob([rep.text], { type:'text/markdown' }), 'report.md'); }
       fd.append('payload_json', JSON.stringify(Object.assign({}, payload, { attachments:att })));
       return fd;
