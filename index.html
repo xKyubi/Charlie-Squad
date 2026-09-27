@@ -3229,22 +3229,9 @@ function resolveChallengeDeadline(raw, keyHint){
     return new Date(target);
   }
 
-  /* صيغة تاريخ/وقت مطلق — تقبل أرقام بدون أصفار: 2026-10-1 10:00 ، 2026/10/01 ، 1/10/2026 10:00 PM */
-  let m = trimmed.match(/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})(?:[ T]+(\d{1,2})(?::(\d{1,2}))?(?::(\d{1,2}))?\s*(AM|PM|ص|م)?)?$/i);
-  let Y, Mo, D;
-  if(m){ Y = +m[1]; Mo = +m[2]; D = +m[3]; }
-  else {
-    m = trimmed.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})(?:[ T]+(\d{1,2})(?::(\d{1,2}))?(?::(\d{1,2}))?\s*(AM|PM|ص|م)?)?$/i);
-    if(m){ D = +m[1]; Mo = +m[2]; Y = +m[3]; }
-  }
-  if(m){
-    let h = +(m[4] || 0); const mi = +(m[5] || 0), se = +(m[6] || 0), ap = (m[7] || '').toUpperCase();
-    if((ap === 'PM' || ap === 'م') && h < 12) h += 12;
-    if((ap === 'AM' || ap === 'ص') && h === 12) h = 0;
-    const d = new Date(Y, Mo - 1, D, h, mi, se);
-    return isNaN(d.getTime()) ? null : d;
-  }
-  const d = new Date(trimmed.replace(' ', 'T'));
+  /* صيغة تاريخ/وقت مطلق */
+  const s = trimmed.replace(' ', 'T');
+  const d = new Date(s.includes('T') ? s : s + 'T00:00:00');
   return isNaN(d.getTime()) ? null : d;
 }
 
