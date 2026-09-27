@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Charlie Squad — Leaderboard</title>
+<title>Charlie Squad</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Tajawal:wght@400;500;700;900&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 <style>
@@ -2339,6 +2341,84 @@
     .lb3-val{ font-size:14px; } .lb3-row.t1 .lb3-val{ font-size:18px; }
     .lb3-mvp{ display:none; }
   }
+
+  /* =====================================================
+     ===== لوحة المتصدرين: بطاقات لاعبين (FIFA) =====
+     ===================================================== */
+  .podium.fc-top3{ display:grid !important; grid-template-columns:repeat(3, 210px) !important; justify-content:center; align-items:end; gap:22px !important; padding:10px 0 0 !important; margin:18px 0 26px; perspective:none !important; }
+  .board.fc-rest{ display:grid !important; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:14px; background:none !important; border:0 !important; box-shadow:none !important; overflow:visible !important; perspective:none !important; }
+  .fc{
+    --c1:#1f2710; --c2:#0b0e06; --ink:#eef5c4; --sub:rgba(238,245,196,.65); --edge:#c7d977;
+    position:relative; width:100%; aspect-ratio: 0.7; padding:0; border:0; cursor:pointer; font-family:'Tajawal',sans-serif; color:var(--ink);
+    clip-path: polygon(0 7%, 14% 0, 86% 0, 100% 7%, 100% 84%, 50% 100%, 0 84%);
+    background: var(--edge);
+    filter: drop-shadow(0 16px 26px rgba(0,0,0,.55));
+    opacity:0; animation: fadeUp .5s ease forwards; transition: transform .2s ease;
+  }
+  .fc:hover{ transform: translateY(-6px); }
+  .fc-in{
+    position:absolute; inset:3px; display:flex; flex-direction:column; align-items:center; overflow:hidden;
+    clip-path: polygon(0 7%, 14% 0, 86% 0, 100% 7%, 100% 84%, 50% 100%, 0 84%);
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(255,255,255,.22), transparent 55%),
+      repeating-linear-gradient(125deg, rgba(255,255,255,.05) 0 2px, transparent 2px 9px),
+      linear-gradient(160deg, var(--c1), var(--c2));
+  }
+  .fc-in::after{ content:""; position:absolute; inset:0; pointer-events:none;
+    background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.18) 45%, transparent 55%); background-size:250% 100%; animation: fcShine 4.5s ease-in-out infinite; }
+  @keyframes fcShine{ 0%,60%{ background-position:150% 0; } 100%{ background-position:-100% 0; } }
+  .fc-top{ position:absolute; top:11%; right:9%; z-index:2; display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .site-en .fc-top{ right:auto; left:9%; }
+  .fc-rate{ display:flex; flex-direction:column; align-items:center; line-height:1; }
+  .fc-rate b{ font-family:'Orbitron',sans-serif; font-size:clamp(17px, 2.3vw, 30px); font-weight:800; color:var(--ink); }
+  .fc-rate small{ font-family:'Orbitron',sans-serif; font-size:9px; font-weight:800; letter-spacing:1.5px; color:var(--sub); margin-top:3px; }
+  .fc-pos{ font-family:'Oswald',sans-serif; font-size:13px; font-weight:700; color:var(--ink); }
+  .fc-badge{ width:22px; height:24px; display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-size:12px; font-weight:700;
+    color:var(--c2); background:var(--ink); clip-path: polygon(50% 0,100% 20%,100% 70%,50% 100%,0 70%,0 20%); }
+  .fc-photo{ position:relative; margin-top:14%; width:66%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; overflow:hidden; z-index:1;
+    -webkit-mask: linear-gradient(180deg, #000 72%, transparent); mask: linear-gradient(180deg, #000 72%, transparent); }
+  .fc-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .fc-ini{ font-family:'Oswald',sans-serif; font-size:clamp(24px, 3vw, 40px); font-weight:700; color:var(--sub); }
+  .fc-name{ position:relative; z-index:2; margin-top:-4%; max-width:88%; font-family:'Oswald','Tajawal',sans-serif; font-size:clamp(11px, 1.25vw, 15px); font-weight:700; letter-spacing:.5px;
+    text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--ink); }
+  .fc-line{ width:70%; height:1px; margin:5% 0 4%; background:linear-gradient(90deg, transparent, var(--sub), transparent); }
+  .fc-stats{ display:flex; gap:10%; justify-content:center; width:86%; }
+  .fc-stats span{ display:flex; flex-direction:column; align-items:center; line-height:1.05; }
+  .fc-stats b{ font-family:'Orbitron',sans-serif; font-size:clamp(9px, 1vw, 12.5px); font-weight:800; color:var(--ink); }
+  .fc-stats small{ font-family:'Orbitron',sans-serif; font-size:7.5px; letter-spacing:1px; color:var(--sub); margin-top:2px; }
+
+  .fc-gold{ --c1:#f9e59a; --c2:#a8801f; --ink:#2c2006; --sub:rgba(44,32,6,.65); --edge:#fff3b8; }
+  .fc-silver{ --c1:#eef1f4; --c2:#8f979f; --ink:#1d2227; --sub:rgba(29,34,39,.6); --edge:#ffffff; }
+  .fc-bronze{ --c1:#f0b37a; --c2:#7d4520; --ink:#2a1407; --sub:rgba(42,20,7,.6); --edge:#ffd2a6; }
+  .fc-green{ --c1:#243010; --c2:#070904; --ink:#e2f0a0; --sub:rgba(226,240,160,.55); --edge:#6f8030; }
+  .fc-gold{ transform: translateY(-18px) scale(1.08); animation-name: fcGoldIn; filter: drop-shadow(0 0 22px rgba(245,215,110,.35)) drop-shadow(0 18px 28px rgba(0,0,0,.6)); }
+  .fc-gold:hover{ transform: translateY(-24px) scale(1.08); }
+  @keyframes fcGoldIn{ from{ opacity:0; translate:0 20px; } to{ opacity:1; translate:0 0; } }
+  .fc-gold .fc-photo{ width:70%; }
+
+  @media (max-width:760px){
+    .podium.fc-top3{ grid-template-columns:repeat(3, 1fr) !important; gap:8px !important; padding-top:18px !important; }
+    .fc-gold{ transform: translateY(-10px) scale(1.06); }
+    .board.fc-rest{ grid-template-columns:repeat(3, 1fr); gap:8px; }
+    .fc-rate b{ font-size:15px; } .fc-rate small{ font-size:7px; }
+    .fc-pos{ font-size:10px; } .fc-badge{ width:16px; height:18px; font-size:9px; }
+    .fc-name{ font-size:9.5px; }
+    .fc-stats b{ font-size:8px; } .fc-stats small{ font-size:6px; }
+  }
+
+  .fc-head{ position:relative; z-index:1; display:flex; align-items:flex-start; width:84%; margin-top:12%; gap:4%; }
+  .fc-top{ position:static !important; flex:0 0 26%; min-width:0; padding-top:6%; }
+  .fc-photo{ margin-top:0 !important; flex:1; width:auto !important; aspect-ratio:.78 !important; }
+  .fc-head{ margin-top:10% !important; }
+  .fc-name{ margin-top:2%; }
+  .board.fc-rest{ display:flex !important; flex-wrap:wrap; justify-content:center; }
+  .board.fc-rest .fc{ width:158px; }
+  .board.fc-rest .fc-name{ font-size:12px; }
+  @media (max-width:760px){
+    .board.fc-rest .fc{ width:calc(33.3% - 6px); }
+    .fc-name{ white-space:normal; line-height:1.15; font-size:9px; text-align:center; max-height:2.4em; }
+    .fc-head{ width:90%; }
+  }
 </style>
 </head>
 <body>
@@ -3157,35 +3237,39 @@ function lbFmt(v, unit){ return unit==='h' ? (Number(v)||0).toFixed(1) : (Number
 function lbUnit(unit){ return unit==='h' ? 'ساعة' : 'نقطة'; }
 function lbAvatar(o, cls){ return `<span class="${cls}"><span class="lb-ini">${initials(o.name)}</span>${o.photo ? `<img src="${o.photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}</span>`; }
 
+function fcCard(o, rank, unit, tier){
+  const m = (currentRoster || []).find(r => r.idx === o.idx) || {};
+  const h = Number(m.hours)||0, p = Number(m.points)||0;
+  const big = unit==='h' ? Math.round(h) : p;
+  return `
+    <button type="button" class="fc ${tier}" data-idx="${o.idx}" style="animation-delay:${rank*0.05}s">
+      <span class="fc-in">
+        <span class="fc-head"><span class="fc-top">
+          <span class="fc-rate"><b>${big >= 1000 ? (big/1000).toFixed(big >= 10000 ? 0 : 1).replace(/\.0$/,'') + 'K' : big}</b><small>${unit==='h'?'HRS':'PTS'}</small></span>
+          <span class="fc-pos">#${rank}</span>
+          <span class="fc-badge">C</span>
+        </span>
+        <span class="fc-photo"><span class="fc-ini">${initials(o.name)}</span>${o.photo ? `<img src="${o.photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}</span></span>
+        <span class="fc-name">${o.name}</span>
+        <span class="fc-line"></span>
+        <span class="fc-stats">
+          <span><b>${h.toFixed(1)}</b><small>HRS</small></span>
+          <span><b>${p.toLocaleString('en-US')}</b><small>PTS</small></span>
+          <span><b>${rank}</b><small>RANK</small></span>
+        </span>
+      </span>
+    </button>`;
+}
 function renderPodium(data, unit){
-  podiumEl.className = 'podium lb3-hide';
-  podiumEl.innerHTML = '';
+  podiumEl.className = 'podium fc-top3';
+  const t = data.slice(0,3);
+  const order = [[t[1],2,'fc-silver'],[t[0],1,'fc-gold'],[t[2],3,'fc-bronze']];
+  podiumEl.innerHTML = order.map(([o,r,tier]) => o ? fcCard(o, r, unit, tier) : '<span></span>').join('');
 }
 
 function renderBoard(data, unit){
-  boardEl.className = 'board lb3';
-  const list = data.slice(0, 10);
-  const max = Math.max(1, ...list.map(o=>o.value));
-  const total = list.reduce((t,o)=>t+(Number(o.value)||0),0) || 1;
-  boardEl.innerHTML = `<div class="lb3-head"><span>RANK</span><span>${'اللاعب'}</span><span class="h-sh">${'النسبة'}</span><span class="h-v">${unit==='h' ? 'الساعات' : 'النقاط'}</span></div>`;
-  list.forEach((o,i)=>{
-    const rank = i + 1;
-    const row = document.createElement('button');
-    row.type = 'button';
-    row.className = 'lb3-row' + (rank <= 3 ? ' top t' + rank : '');
-    row.dataset.idx = o.idx;
-    row.style.animationDelay = (i*0.05) + 's';
-    const share = (o.value/total*100);
-    row.innerHTML = `
-      <span class="lb3-fill" style="width:0%"></span>
-      <span class="lb3-rank">${String(rank).padStart(2,'0')}</span>
-      <span class="lb3-player">${lbAvatar(o,'lb3-av')}<span class="lb3-name">${o.name}</span>${rank===1?'<span class="lb3-mvp">MVP</span>':''}</span>
-      <span class="lb3-share"><span class="lb3-seg">${Array.from({length:10},(_,k)=>`<i class="${k < Math.round(o.value/max*10) ? 'on' : ''}"></i>`).join('')}</span><small dir="ltr">${share.toFixed(0)}%</small></span>
-      <span class="lb3-val" dir="ltr">${lbFmt(o.value, unit)}<small>${unit==='h'?' h':' pts'}</small></span>`;
-    boardEl.appendChild(row);
-    const f = row.querySelector('.lb3-fill');
-    setTimeout(()=>{ f.style.width = (o.value/max*100).toFixed(1) + '%'; }, i*60 + 150);
-  });
+  boardEl.className = 'board fc-rest';
+  boardEl.innerHTML = data.slice(3, 10).map((o,i) => fcCard(o, i+4, unit, 'fc-green')).join('');
 }
 
 function renderChallenge(challenges){
@@ -4611,7 +4695,7 @@ reForm.addEventListener('submit', async e => {
     setTimeout(()=>{ $('mi-hbar').style.width = (maxH ? m.hours/maxH*100 : 0) + '%'; $('mi-pbar').style.width = (maxP ? m.points/maxP*100 : 0) + '%'; }, 120);
   }
   function close(){ modal.classList.remove('active'); document.body.style.overflow = ''; }
-  document.addEventListener('click', e => { const c = e.target.closest && e.target.closest('.mb-card, .hc-card, .lb3-row'); if(!c) return; const hm = document.getElementById('hierarchy-modal'); if(c.classList.contains('hc-card') && hm) hm.classList.remove('active'); open(c.dataset.idx); });
+  document.addEventListener('click', e => { const c = e.target.closest && e.target.closest('.mb-card, .hc-card, .fc'); if(!c) return; const hm = document.getElementById('hierarchy-modal'); if(c.classList.contains('hc-card') && hm) hm.classList.remove('active'); open(c.dataset.idx); });
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape' && modal.classList.contains('active')) close();
     if((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('mb-card')){ e.preventDefault(); open(document.activeElement.dataset.idx); }
