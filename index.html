@@ -2132,6 +2132,153 @@
   .re-opt{ font-weight:500; font-size:11px; color:var(--text-dim); opacity:.8; }
   .re-hint{ display:block; margin-top:5px; font-size:11px; line-height:1.6; color:var(--text-dim); opacity:.75; }
   #re-discord.ltr{ direction:ltr; text-align:left; font-family:'Orbitron',monospace; letter-spacing:1px; font-size:13px; }
+
+  /* =====================================================
+     ===== لوحة المتصدرين: تصميم جديد =====
+     ===================================================== */
+  .podium.lb-podium{ display:grid !important; grid-template-columns:1fr 1.18fr 1fr !important; align-items:end; gap:16px !important; padding:0 !important; perspective:none !important; margin:18px 0 30px; }
+  .lb-champ{
+    --acc:#c7d977; position:relative; overflow:hidden; cursor:pointer; font-family:'Tajawal',sans-serif; color:var(--text);
+    display:flex; flex-direction:column; align-items:center; gap:6px; padding:22px 14px 18px; border-radius:20px;
+    background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--acc) 22%, transparent), transparent 65%), linear-gradient(180deg, rgba(24,29,12,0.95), rgba(8,10,5,0.96));
+    border:1px solid color-mix(in srgb, var(--acc) 35%, transparent);
+    box-shadow: 0 18px 40px rgba(0,0,0,.5);
+    opacity:0; animation: fadeUp .5s ease forwards;
+  }
+  .lb-champ.r1{ --acc:#f5d76e; padding-top:28px; padding-bottom:24px; box-shadow: 0 0 0 1px rgba(245,215,110,.25), 0 0 50px rgba(245,215,110,.14), 0 22px 44px rgba(0,0,0,.55); }
+  .lb-champ.r2{ --acc:#cfd6b4; }
+  .lb-champ.r3{ --acc:#d0955a; }
+  .lb-champ:hover{ border-color: var(--acc); }
+  .lb-rk{ display:flex; flex-direction:column; align-items:center; gap:2px; }
+  .lb-rk b{ font-family:'Orbitron',sans-serif; font-size:12px; font-weight:800; letter-spacing:2px; color:#10130a; background:var(--acc); padding:2px 10px; border-radius:20px; }
+  .lb-crown{ width:30px; height:30px; color:#f5d76e; filter: drop-shadow(0 0 10px rgba(245,215,110,.7)); animation: float3d 3s ease-in-out infinite; }
+  .lb-ring{ position:relative; padding:4px; border-radius:50%; margin:6px 0 4px;
+    background: conic-gradient(from 200deg, var(--acc), transparent 40%, var(--acc) 60%, transparent 90%, var(--acc)); }
+  .lb-ph, .lb-av{ position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #262e11, #0a0c05 80%); font-family:'Oswald',sans-serif; font-weight:700; color:var(--acc, var(--stone)); }
+  .lb-ph{ width:92px; height:92px; font-size:28px; box-shadow: 0 0 0 3px #0b0d06; }
+  .lb-champ.r1 .lb-ph{ width:120px; height:120px; font-size:36px; }
+  .lb-ph img, .lb-av img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .lb-cname{ font-size:15px; font-weight:800; color:#f4f6e2; max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .lb-champ.r1 .lb-cname{ font-size:18px; }
+  .lb-cval{ display:flex; align-items:baseline; gap:5px; direction:ltr; }
+  .lb-cval b{ font-family:'Orbitron',sans-serif; font-size:24px; font-weight:800; color:var(--acc); text-shadow:0 0 16px color-mix(in srgb, var(--acc) 40%, transparent); }
+  .lb-champ.r1 .lb-cval b{ font-size:30px; }
+  .lb-cval small{ font-size:11.5px; color:var(--text-dim); }
+  .lb-gap{ font-size:11.5px; font-weight:700; color:var(--text-dim); padding:3px 10px; border-radius:20px; background:rgba(0,0,0,.3); border:1px solid rgba(199,217,119,.1); }
+  .lb-champ.r1 .lb-gap{ color:#f5d76e; border-color:rgba(245,215,110,.3); }
+  .lb-base{ position:absolute; left:0; right:0; bottom:0; height:4px; background:linear-gradient(90deg, transparent, var(--acc), transparent); }
+
+  .board.lb-board{ background:none !important; border:0 !important; box-shadow:none !important; overflow:visible !important; display:flex; flex-direction:column; gap:8px; perspective:none !important; }
+  .lb-row{
+    display:grid !important; grid-template-columns: 44px 46px 1fr auto !important; align-items:center; gap:14px !important; width:100%;
+    padding:10px 16px !important; border-radius:14px; cursor:pointer; text-align:right; font-family:'Tajawal',sans-serif; color:var(--text);
+    background: linear-gradient(90deg, rgba(26,31,13,0.95), rgba(10,12,6,0.92)) !important;
+    border:1px solid rgba(199,217,119,0.1) !important; border-bottom:1px solid rgba(199,217,119,0.1) !important;
+    transition: border-color .15s ease, background .15s ease !important;
+  }
+  .lb-row:hover{ border-color: rgba(199,217,119,0.35) !important; background: linear-gradient(90deg, rgba(34,41,17,0.97), rgba(12,15,7,0.95)) !important; }
+  .lb-num{ font-family:'Orbitron',sans-serif; font-size:15px; font-weight:800; color:rgba(199,217,119,0.55); text-align:center; }
+  .lb-av{ width:44px; height:44px; font-size:14px; box-shadow: 0 0 0 2px rgba(199,217,119,0.25); }
+  .lb-mid{ display:flex; flex-direction:column; gap:7px; min-width:0; }
+  .lb-name{ font-size:14.5px; font-weight:800; color:#eef1d8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .lb-track{ display:block; height:5px; border-radius:5px; background:rgba(199,217,119,0.08); overflow:hidden; }
+  .lb-track i{ display:block; height:100%; border-radius:5px; background:linear-gradient(90deg, #5c6b12, #c7d977); transition: width .9s cubic-bezier(.2,.8,.2,1); }
+  .lb-right{ display:flex; flex-direction:column; align-items:flex-end; gap:3px; min-width:84px; }
+  .lb-right b{ font-family:'Orbitron',sans-serif; font-size:17px; font-weight:800; color:var(--gold); direction:ltr; }
+  .lb-right b small{ font-size:11px; color:var(--text-dim); margin-left:2px; }
+  .lb-right em{ font-style:normal; font-size:10.5px; font-weight:700; color:var(--text-dim); }
+  .site-en .lb-row{ text-align:left; }
+  @media (max-width:600px){
+    .podium.lb-podium{ gap:8px !important; }
+    .lb-champ{ padding:16px 6px 14px; border-radius:16px; }
+    .lb-ph{ width:62px; height:62px; font-size:20px; }
+    .lb-champ.r1 .lb-ph{ width:80px; height:80px; }
+    .lb-cname{ font-size:11.5px; white-space:normal; line-height:1.25; text-align:center; } .lb-champ.r1 .lb-cname{ font-size:13px; }
+    .lb-cval b{ font-size:17px; } .lb-champ.r1 .lb-cval b{ font-size:20px; }
+    .lb-gap{ font-size:9.5px; padding:2px 6px; white-space:nowrap; }
+    .lb-row{ grid-template-columns: 30px 38px 1fr auto !important; gap:10px !important; padding:9px 10px !important; }
+    .lb-av{ width:38px; height:38px; }
+    .lb-name{ font-size:13px; }
+    .lb-right b{ font-size:14px; }
+  }
+
+  /* =====================================================
+     ===== لوحة المتصدرين v2 =====
+     ===================================================== */
+  .podium.lb2-top{ display:flex !important; flex-direction:column; gap:12px; padding:0 !important; margin:18px 0 28px; perspective:none !important; }
+  .lb2-top button{ font-family:'Tajawal',sans-serif; color:var(--text); cursor:pointer; text-align:right; border:0; }
+  .site-en .lb2-top button, .site-en .lb2-tile{ text-align:left; }
+  .lb2-mvp{
+    position:relative; overflow:hidden; display:flex; align-items:center; gap:24px; padding:22px 26px; border-radius:18px;
+    background:
+      radial-gradient(ellipse at 90% 50%, rgba(245,215,110,0.22), transparent 55%),
+      linear-gradient(100deg, rgba(40,36,12,0.96), rgba(12,12,5,0.96) 70%);
+    box-shadow: 0 0 0 1.5px rgba(245,215,110,0.45), 0 0 50px rgba(245,215,110,0.12), 0 20px 44px rgba(0,0,0,.55) !important;
+    opacity:0; animation: fadeUp .5s ease forwards;
+  }
+  .lb2-stripes{ position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background: repeating-linear-gradient(115deg, transparent 0 22px, rgba(245,215,110,0.05) 22px 24px); }
+  .lb2-mph, .lb2-sph, .lb2-tav{ position:relative; flex-shrink:0; display:flex; align-items:center; justify-content:center; overflow:hidden;
+    font-family:'Oswald',sans-serif; font-weight:700; background: radial-gradient(circle at 35% 30%, #2a2a10, #0a0a05 80%); }
+  .lb2-mph img, .lb2-sph img, .lb2-tav img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .lb2-mph{ width:128px; height:128px; border-radius:22px; font-size:40px; color:#f5d76e; z-index:1;
+    box-shadow: 0 0 0 3px #f5d76e, 0 0 30px rgba(245,215,110,.35); transform: rotate(-3deg); }
+  .lb2-minfo{ position:relative; z-index:1; display:flex; flex-direction:column; gap:6px; min-width:0; }
+  .lb2-kicker{ display:inline-flex; align-items:center; gap:6px; align-self:flex-start; font-family:'Orbitron','Tajawal',sans-serif; font-size:11px; font-weight:800; letter-spacing:2px;
+    color:#1a1606; background:linear-gradient(90deg, #fff0a8, #f5d76e); padding:4px 12px; border-radius:20px; }
+  .lb2-kicker svg{ width:14px; height:14px; }
+  .lb2-mname{ font-size:28px; font-weight:900; color:#fff8dc; line-height:1.2; text-shadow:0 2px 0 rgba(0,0,0,.5); }
+  .lb2-mval{ display:flex; align-items:baseline; gap:8px; }
+  .lb2-mval b{ font-family:'Orbitron',sans-serif; font-size:38px; font-weight:800; color:#f5d76e; text-shadow: 0 0 20px rgba(245,215,110,.45); }
+  .lb2-mval small, .lb2-sval small{ font-size:12px; color:var(--text-dim); }
+  .lb2-big{ position:absolute; left:18px; top:50%; transform:translateY(-50%); font-family:'Orbitron',sans-serif; font-size:130px; font-weight:800; line-height:1;
+    color:transparent; -webkit-text-stroke:2px rgba(245,215,110,0.18); pointer-events:none; }
+  .site-en .lb2-big{ left:auto; right:18px; }
+
+  .lb2-sides{ display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; }
+  .lb2-side{ --acc:#cfd6b4; position:relative; overflow:hidden; display:flex; align-items:center; gap:14px; padding:14px 16px; border-radius:16px;
+    background: linear-gradient(100deg, color-mix(in srgb, var(--acc) 12%, rgba(18,22,9,.95)), rgba(9,11,5,.95));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--acc) 35%, transparent), 0 14px 30px rgba(0,0,0,.45) !important;
+    opacity:0; animation: fadeUp .5s ease .12s forwards; }
+  .lb2-side.r3{ --acc:#d0955a; animation-delay:.2s; }
+  .lb2-side::before{ content:""; position:absolute; top:0; bottom:0; right:0; width:4px; background:var(--acc); }
+  .site-en .lb2-side::before{ right:auto; left:0; }
+  .lb2-sph{ width:64px; height:64px; border-radius:16px; font-size:20px; color:var(--acc); box-shadow:0 0 0 2px var(--acc); }
+  .lb2-sinfo{ flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
+  .lb2-tag{ align-self:flex-start; font-family:'Orbitron',sans-serif; font-size:10.5px; font-weight:800; color:#10130a; background:var(--acc); padding:1px 8px; border-radius:6px; }
+  .lb2-sname{ font-size:16px; font-weight:800; color:#f1f3de; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .lb2-sgap{ font-size:11.5px; color:var(--text-dim); }
+  .lb2-sgap b{ color:var(--acc); font-family:'Orbitron',sans-serif; font-size:11px; }
+  .lb2-sval{ display:flex; flex-direction:column; align-items:flex-end; }
+  .lb2-sval b{ font-family:'Orbitron',sans-serif; font-size:24px; font-weight:800; color:var(--acc); }
+
+  .board.lb2-grid{ display:grid !important; grid-template-columns:1fr 1fr; gap:10px; background:none !important; border:0 !important; box-shadow:none !important; overflow:visible !important; perspective:none !important; }
+  .lb2-tile{ position:relative; overflow:hidden; display:grid; grid-template-columns:auto auto 1fr auto; align-items:center; gap:12px;
+    padding:12px 14px 16px; border-radius:14px; cursor:pointer; text-align:right; border:0; font-family:'Tajawal',sans-serif; color:var(--text);
+    background: linear-gradient(135deg, rgba(26,31,13,0.95), rgba(9,11,5,0.95)); box-shadow: 0 0 0 1px rgba(199,217,119,0.1);
+    opacity:0; animation: fadeUp .4s ease forwards; transition: box-shadow .15s ease; }
+  .lb2-tile:hover{ box-shadow: 0 0 0 1px rgba(199,217,119,0.4), 0 10px 24px rgba(0,0,0,.4); }
+  .lb2-hex{ width:34px; height:38px; display:flex; align-items:center; justify-content:center; font-family:'Orbitron',sans-serif; font-size:13px; font-weight:800;
+    color:var(--stone); background:rgba(199,217,119,0.1); clip-path: polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%); }
+  .lb2-tav{ width:40px; height:40px; border-radius:11px; font-size:13px; color:var(--stone); box-shadow:0 0 0 1.5px rgba(199,217,119,0.25); }
+  .lb2-tname{ font-size:14px; font-weight:800; color:#eef1d8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+  .lb2-tval{ font-family:'Orbitron',sans-serif; font-size:16px; font-weight:800; color:var(--gold); }
+  .lb2-tval small{ font-size:10.5px; color:var(--text-dim); margin-left:2px; }
+  .lb2-tbar{ position:absolute; left:14px; right:14px; bottom:7px; height:3px; border-radius:3px; background:rgba(199,217,119,0.07); overflow:hidden; }
+  .lb2-tbar i{ display:block; height:100%; background:linear-gradient(270deg, #c7d977, #5c6b12); transition: width .9s cubic-bezier(.2,.8,.2,1); }
+  .site-en .lb2-tbar i{ background:linear-gradient(90deg, #c7d977, #5c6b12); }
+  .lb2-mvp, .lb2-side, .lb2-tile{ width:100%; }
+  .lb2-tbar{ direction:inherit; }
+  @media (max-width:700px){
+    .lb2-mvp{ padding:18px; gap:14px; }
+    .lb2-mph{ width:86px; height:86px; font-size:28px; border-radius:18px; }
+    .lb2-mname{ font-size:19px; }
+    .lb2-mval b{ font-size:26px; }
+    .lb2-big{ font-size:80px; }
+    .lb2-sides{ grid-template-columns:1fr; }
+    .board.lb2-grid{ grid-template-columns:1fr; }
+  }
 </style>
 </head>
 <body>
@@ -2355,7 +2502,7 @@
 
   <footer class="footer">
     <span>CHARLIE SQUAD</span>
-    <span>Made By : SHOKMAN</span>
+    <span>Made By : SHOKMAN.Kyubi</span>
   </footer>
 
 
@@ -2946,46 +3093,59 @@ function avatarStyle(photo){
   return photo ? ` style="background-image:url('${photo}');background-size:cover;background-position:center;"` : '';
 }
 
+function lbFmt(v, unit){ return unit==='h' ? (Number(v)||0).toFixed(1) : (Number(v)||0).toLocaleString('en-US'); }
+function lbUnit(unit){ return unit==='h' ? 'ساعة' : 'نقطة'; }
+function lbAvatar(o, cls){ return `<span class="${cls}"><span class="lb-ini">${initials(o.name)}</span>${o.photo ? `<img src="${o.photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}</span>`; }
+
 function renderPodium(data, unit){
-  const top3 = data.slice(0,3);
-  const order = [top3[1], top3[0], top3[2]];
-  const classes = ['second','first','third'];
-  podiumEl.innerHTML = order.map((o,i)=>{
-    if(!o) return '<div></div>';
-    const cls = classes[i];
-    const medalColor = cls==='first'?'#c7d977':cls==='second'?'#9aa079':'#6b5a1e';
-    return `
-      <div class="pod-slot ${cls}">
-        <div class="pod-avatar"${avatarStyle(o.photo)}>${o.photo ? '' : initials(o.name)}${medalSVG(medalColor)}</div>
-        <p class="pod-name">${o.name}</p>
-        <p class="pod-value">${unit==='h' ? o.value.toFixed(1)+'h' : o.value.toLocaleString()+' pts'}</p>
-        <div class="pod-bar"><span class="pod-rank">${cls==='first'?1:cls==='second'?2:3}</span></div>
-      </div>`;
-  }).join('');
+  podiumEl.className = 'podium fade-in lb2-top';
+  const [a, b2, c] = data;
+  const gapTxt = (o, r) => { const up = data[r-2]; if(!up) return ''; const g = up.value - o.value; return g > 0 ? `باقي <b dir="ltr">${lbFmt(g, unit)}</b> للمركز ${r-1}` : `متعادل مع المركز ${r-1}`; };
+  const side = (o, r) => !o ? '' : `
+    <button type="button" class="lb2-side r${r}" data-idx="${o.idx}">
+      ${lbAvatar(o,'lb2-sph')}
+      <span class="lb2-sinfo">
+        <span class="lb2-tag">#${r}</span>
+        <span class="lb2-sname">${o.name}</span>
+        <span class="lb2-sgap">${gapTxt(o, r)}</span>
+      </span>
+      <span class="lb2-sval"><b dir="ltr">${lbFmt(o.value, unit)}</b><small>${lbUnit(unit)}</small></span>
+    </button>`;
+  podiumEl.innerHTML = !a ? '' : `
+    <button type="button" class="lb2-mvp" data-idx="${a.idx}">
+      <span class="lb2-stripes"></span>
+      ${lbAvatar(a,'lb2-mph')}
+      <span class="lb2-minfo">
+        <span class="lb2-kicker"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4.5 3.5L12 5l4.5 6.5L21 8l-2 10H5z"/></svg>MVP · المتصدر</span>
+        <span class="lb2-mname">${a.name}</span>
+        <span class="lb2-mval"><b dir="ltr">${lbFmt(a.value, unit)}</b><small>${lbUnit(unit)}</small></span>
+      </span>
+      <span class="lb2-big">01</span>
+    </button>
+    <div class="lb2-sides">${side(b2, 2)}${side(c, 3)}</div>`;
 }
 
 function renderBoard(data, unit){
+  boardEl.className = 'board lb2-grid';
   const rest = data.slice(3);
   const max = Math.max(1, ...data.map(o=>o.value));
   boardEl.innerHTML = '';
   rest.forEach((o,i)=>{
-    const row = document.createElement('div');
-    row.className = 'row';
-    row.style.animationDelay = (i*0.06) + 's';
+    const rank = i + 4;
+    const row = document.createElement('button');
+    row.type = 'button';
+    row.className = 'lb2-tile';
+    row.dataset.idx = o.idx;
+    row.style.animationDelay = (i*0.05) + 's';
     row.innerHTML = `
-      <div class="rank">${i+4}</div>
-      <div class="officer">
-        <div class="av"${avatarStyle(o.photo)}>${o.photo ? '' : initials(o.name)}</div>
-        <div>
-          <div class="name">${o.name}</div>
-        </div>
-      </div>
-      <div class="val">${unit==='h' ? o.value.toFixed(1)+'h' : o.value.toLocaleString()+' pts'}</div>
-      <div class="bar-wrap"><div class="bar-fill" style="width:0%"></div></div>
-    `;
+      <span class="lb2-hex">${rank}</span>
+      ${lbAvatar(o,'lb2-tav')}
+      <span class="lb2-tname">${o.name}</span>
+      <span class="lb2-tval" dir="ltr">${lbFmt(o.value, unit)}<small>${unit==='h'?'h':' pts'}</small></span>
+      <span class="lb2-tbar"><i style="width:0%"></i></span>`;
     boardEl.appendChild(row);
-    const fill = row.querySelector('.bar-fill');
-    setTimeout(()=>{ fill.style.width = (o.value/max*100).toFixed(0) + '%'; }, i*60 + 150);
+    const fill = row.querySelector('.lb2-tbar i');
+    setTimeout(()=>{ fill.style.width = (o.value/max*100).toFixed(1) + '%'; }, i*50 + 150);
   });
 }
 
@@ -4412,7 +4572,7 @@ reForm.addEventListener('submit', async e => {
     setTimeout(()=>{ $('mi-hbar').style.width = (maxH ? m.hours/maxH*100 : 0) + '%'; $('mi-pbar').style.width = (maxP ? m.points/maxP*100 : 0) + '%'; }, 120);
   }
   function close(){ modal.classList.remove('active'); document.body.style.overflow = ''; }
-  document.addEventListener('click', e => { const c = e.target.closest && e.target.closest('.mb-card, .hc-card'); if(!c) return; const hm = document.getElementById('hierarchy-modal'); if(c.classList.contains('hc-card') && hm) hm.classList.remove('active'); open(c.dataset.idx); });
+  document.addEventListener('click', e => { const c = e.target.closest && e.target.closest('.mb-card, .hc-card, .lb-champ, .lb-row, .lb2-mvp, .lb2-side, .lb2-tile'); if(!c) return; const hm = document.getElementById('hierarchy-modal'); if(c.classList.contains('hc-card') && hm) hm.classList.remove('active'); open(c.dataset.idx); });
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape' && modal.classList.contains('active')) close();
     if((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('mb-card')){ e.preventDefault(); open(document.activeElement.dataset.idx); }
@@ -4586,6 +4746,7 @@ reForm.addEventListener('submit', async e => {
     'ما فيه تحدي نشط هالأسبوع.':'No active challenge this week.','ما فيه مهام حالياً.':'No tasks right now.',
     'افتح مساعد السكواد':'Open squad assistant','إغلاق المساعد':'Close assistant','إغلاق':'Close',
     'SQUAD LEADER':'SQUAD LEADER',
+    'المتصدر':'Top of the board','MVP · المتصدر':'MVP · Top of the board','متعادل':'Tied',
     'خاص وسري · الاطلاع عليه من القادات فقط':'Private & confidential · leaders only',
     'المقدمة':'Introduction','سرية المخالفات والشكاوى':'Confidential violations & complaints',
     'تقارير رصد المخالفات والشكاوى خاصة وسرية، وما يطلع عليها إلا القادات فقط. اسمك وتفاصيل تقريرك ما تنعرض لأي عضو ثاني.':'Violation and complaint reports are private and confidential — only leaders can see them. Your name and report details are never shown to other members.',
@@ -4611,7 +4772,7 @@ reForm.addEventListener('submit', async e => {
     [/التقدم:/g,'Progress:'],[/المكافأة:/g,'Reward:'],[/المتبقي:/g,'Time left:'],[/(Time left: )انتهى/g,'$1ended'],
     [/قيد التنفيذ/g,'in progress'],[/قيد الانتظار/g,'pending'],[/مكتملة/g,'completed'],
     [/(\d[\d.,]*) ساعة/g,'$1 hrs'],[/(\d[\d.,]*) نقطة/g,'$1 pts'],[/(\d+) يوم/g,'$1d'],[/(\d+) دقيقة/g,'$1m'],
-    [/^صفحة (\d+)$/,'Page $1'],[/^باقي (\d+)%$/,'$1% to go'],[/^القوانين \/ (.+)$/,'Rules / $1'],
+    [/^صفحة (\d+)$/,'Page $1'],[/^باقي ([\d.,]+) للمركز (\d+)$/,'$1 behind #$2'],[/^باقي$/,''],[/^للمركز (\d+)$/,'behind #$1'],[/^متعادل مع المركز (\d+)$/,'Tied with #$1'],[/^عن$/,'vs'],[/^باقي (\d+)%$/,'$1% to go'],[/^القوانين \/ (.+)$/,'Rules / $1'],
   ];
   const ATTRS = ['placeholder','aria-label','title','data-placeholder'];
   const AR = /[؀-ۿ]/;
