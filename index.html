@@ -2279,6 +2279,66 @@
     .lb2-sides{ grid-template-columns:1fr; }
     .board.lb2-grid{ grid-template-columns:1fr; }
   }
+
+  /* =====================================================
+     ===== لوحة المتصدرين v3 (سكوربورد) =====
+     ===================================================== */
+  .podium.lb3-hide{ display:none !important; }
+  .board.lb3{ display:flex !important; flex-direction:column; gap:6px; background:none !important; border:0 !important; box-shadow:none !important; overflow:visible !important; perspective:none !important; margin-top:14px; }
+  .lb3-head, .lb3-row{ display:grid; grid-template-columns: 64px 1fr 190px 120px; align-items:center; gap:14px; }
+  .lb3-head{ padding:0 18px 6px; font-family:'Orbitron','Tajawal',sans-serif; font-size:10px; letter-spacing:2.5px; color:var(--stone-dim); border-bottom:1px solid rgba(199,217,119,0.15); }
+  .lb3-head .h-v{ text-align:left; } .site-en .lb3-head .h-v{ text-align:right; }
+  .lb3-row{
+    --acc:#8fa048; position:relative; overflow:hidden; width:100%; padding:10px 18px; border:0; cursor:pointer; text-align:right;
+    font-family:'Tajawal',sans-serif; color:var(--text); border-radius:6px;
+    background: rgba(12,14,7,0.88); box-shadow: inset 0 0 0 1px rgba(199,217,119,0.08);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+    opacity:0; animation: fadeUp .4s ease forwards; transition: background .15s ease;
+  }
+  .site-en .lb3-row{ text-align:left; clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%); }
+  .lb3-row:hover{ background: rgba(22,26,12,0.95); }
+  .lb3-fill{ position:absolute; top:0; bottom:0; right:0; z-index:0; pointer-events:none;
+    background: linear-gradient(270deg, color-mix(in srgb, var(--acc) 26%, transparent), color-mix(in srgb, var(--acc) 4%, transparent));
+    transition: width 1s cubic-bezier(.2,.8,.2,1); }
+  .site-en .lb3-fill{ right:auto; left:0; background: linear-gradient(90deg, color-mix(in srgb, var(--acc) 26%, transparent), color-mix(in srgb, var(--acc) 4%, transparent)); }
+  .lb3-row > *:not(.lb3-fill){ position:relative; z-index:1; }
+  .lb3-rank{ font-family:'Orbitron',sans-serif; font-size:20px; font-weight:800; color:rgba(199,217,119,0.45); font-style:italic; }
+  .lb3-player{ display:flex; align-items:center; gap:12px; min-width:0; }
+  .lb3-av{ position:relative; flex-shrink:0; width:40px; height:40px; border-radius:8px; overflow:hidden; display:flex; align-items:center; justify-content:center;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:13px; color:var(--acc); background:#0a0c05; box-shadow:0 0 0 1.5px color-mix(in srgb, var(--acc) 50%, transparent); }
+  .lb3-av img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .lb3-name{ font-size:15px; font-weight:800; color:#eef1d8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .lb3-mvp{ font-family:'Orbitron',sans-serif; font-size:9.5px; font-weight:800; letter-spacing:2px; color:#1a1606; background:linear-gradient(90deg,#fff0a8,#f5d76e); padding:2px 8px; border-radius:4px; }
+  .lb3-share{ display:flex; align-items:center; gap:8px; }
+  .lb3-seg{ display:flex; gap:3px; flex:1; }
+  .lb3-seg i{ flex:1; height:8px; border-radius:1px; background:rgba(199,217,119,0.08); transform:skewX(-20deg); }
+  .lb3-seg i.on{ background: var(--acc); box-shadow:0 0 6px color-mix(in srgb, var(--acc) 50%, transparent); }
+  .lb3-share small{ font-family:'Orbitron',sans-serif; font-size:10.5px; color:var(--text-dim); min-width:32px; }
+  .lb3-val{ font-family:'Orbitron',sans-serif; font-size:18px; font-weight:800; color:var(--acc); text-align:left; }
+  .site-en .lb3-val{ text-align:right; }
+  .lb3-val small{ font-size:10.5px; color:var(--text-dim); }
+  .lb3-row.top{ padding:16px 18px; }
+  .lb3-row.top .lb3-rank{ font-size:30px; color:var(--acc); text-shadow:0 0 14px color-mix(in srgb, var(--acc) 50%, transparent); }
+  .lb3-row.top .lb3-av{ width:54px; height:54px; border-radius:10px; font-size:17px; box-shadow:0 0 0 2px var(--acc); }
+  .lb3-row.top .lb3-name{ font-size:17px; }
+  .lb3-row.top .lb3-val{ font-size:22px; }
+  .lb3-row.t1{ --acc:#f5d76e; padding:20px 18px; background: rgba(24,21,6,0.92); box-shadow: inset 0 0 0 1px rgba(245,215,110,0.35); }
+  .lb3-row.t1 .lb3-av{ width:64px; height:64px; }
+  .lb3-row.t1 .lb3-name{ font-size:20px; color:#fff8dc; }
+  .lb3-row.t1 .lb3-val{ font-size:26px; text-shadow:0 0 16px rgba(245,215,110,.4); }
+  .lb3-row.t2{ --acc:#d6ddbc; }
+  .lb3-row.t3{ --acc:#d0955a; }
+  @media (max-width:700px){
+    .lb3-head, .lb3-row{ grid-template-columns: 34px 1fr auto; gap:8px; }
+    .lb3-player{ gap:8px; }
+    .lb3-head .h-sh, .lb3-share{ display:none; }
+    .lb3-row{ padding:9px 12px; }
+    .lb3-rank{ font-size:15px; } .lb3-row.top .lb3-rank{ font-size:22px; }
+    .lb3-av{ width:34px; height:34px; } .lb3-row.top .lb3-av{ width:44px; height:44px; } .lb3-row.t1 .lb3-av{ width:52px; height:52px; }
+    .lb3-name{ font-size:13px; white-space:normal; line-height:1.25; } .lb3-row.t1 .lb3-name, .lb3-row.top .lb3-name{ font-size:14px; }
+    .lb3-val{ font-size:14px; } .lb3-row.t1 .lb3-val{ font-size:18px; }
+    .lb3-mvp{ display:none; }
+  }
 </style>
 </head>
 <body>
@@ -2367,7 +2427,7 @@
 
       <div class="podium fade-in" id="podium" style="animation-delay:0.4s"></div>
 
-      <div class="section-label fade-in" style="animation-delay:0.5s">باقي الترتيب <span class="line"></span></div>
+      <div class="section-label fade-in" style="animation-delay:0.5s">الترتيب <span class="line"></span></div>
       <div class="board" id="board"></div>
 
       </div>
@@ -3098,54 +3158,33 @@ function lbUnit(unit){ return unit==='h' ? 'ساعة' : 'نقطة'; }
 function lbAvatar(o, cls){ return `<span class="${cls}"><span class="lb-ini">${initials(o.name)}</span>${o.photo ? `<img src="${o.photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}</span>`; }
 
 function renderPodium(data, unit){
-  podiumEl.className = 'podium fade-in lb2-top';
-  const [a, b2, c] = data;
-  const gapTxt = (o, r) => { const up = data[r-2]; if(!up) return ''; const g = up.value - o.value; return g > 0 ? `باقي <b dir="ltr">${lbFmt(g, unit)}</b> للمركز ${r-1}` : `متعادل مع المركز ${r-1}`; };
-  const side = (o, r) => !o ? '' : `
-    <button type="button" class="lb2-side r${r}" data-idx="${o.idx}">
-      ${lbAvatar(o,'lb2-sph')}
-      <span class="lb2-sinfo">
-        <span class="lb2-tag">#${r}</span>
-        <span class="lb2-sname">${o.name}</span>
-        <span class="lb2-sgap">${gapTxt(o, r)}</span>
-      </span>
-      <span class="lb2-sval"><b dir="ltr">${lbFmt(o.value, unit)}</b><small>${lbUnit(unit)}</small></span>
-    </button>`;
-  podiumEl.innerHTML = !a ? '' : `
-    <button type="button" class="lb2-mvp" data-idx="${a.idx}">
-      <span class="lb2-stripes"></span>
-      ${lbAvatar(a,'lb2-mph')}
-      <span class="lb2-minfo">
-        <span class="lb2-kicker"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4.5 3.5L12 5l4.5 6.5L21 8l-2 10H5z"/></svg>MVP · المتصدر</span>
-        <span class="lb2-mname">${a.name}</span>
-        <span class="lb2-mval"><b dir="ltr">${lbFmt(a.value, unit)}</b><small>${lbUnit(unit)}</small></span>
-      </span>
-      <span class="lb2-big">01</span>
-    </button>
-    <div class="lb2-sides">${side(b2, 2)}${side(c, 3)}</div>`;
+  podiumEl.className = 'podium lb3-hide';
+  podiumEl.innerHTML = '';
 }
 
 function renderBoard(data, unit){
-  boardEl.className = 'board lb2-grid';
-  const rest = data.slice(3);
-  const max = Math.max(1, ...data.map(o=>o.value));
-  boardEl.innerHTML = '';
-  rest.forEach((o,i)=>{
-    const rank = i + 4;
+  boardEl.className = 'board lb3';
+  const list = data.slice(0, 10);
+  const max = Math.max(1, ...list.map(o=>o.value));
+  const total = list.reduce((t,o)=>t+(Number(o.value)||0),0) || 1;
+  boardEl.innerHTML = `<div class="lb3-head"><span>RANK</span><span>${'اللاعب'}</span><span class="h-sh">${'النسبة'}</span><span class="h-v">${unit==='h' ? 'الساعات' : 'النقاط'}</span></div>`;
+  list.forEach((o,i)=>{
+    const rank = i + 1;
     const row = document.createElement('button');
     row.type = 'button';
-    row.className = 'lb2-tile';
+    row.className = 'lb3-row' + (rank <= 3 ? ' top t' + rank : '');
     row.dataset.idx = o.idx;
     row.style.animationDelay = (i*0.05) + 's';
+    const share = (o.value/total*100);
     row.innerHTML = `
-      <span class="lb2-hex">${rank}</span>
-      ${lbAvatar(o,'lb2-tav')}
-      <span class="lb2-tname">${o.name}</span>
-      <span class="lb2-tval" dir="ltr">${lbFmt(o.value, unit)}<small>${unit==='h'?'h':' pts'}</small></span>
-      <span class="lb2-tbar"><i style="width:0%"></i></span>`;
+      <span class="lb3-fill" style="width:0%"></span>
+      <span class="lb3-rank">${String(rank).padStart(2,'0')}</span>
+      <span class="lb3-player">${lbAvatar(o,'lb3-av')}<span class="lb3-name">${o.name}</span>${rank===1?'<span class="lb3-mvp">MVP</span>':''}</span>
+      <span class="lb3-share"><span class="lb3-seg">${Array.from({length:10},(_,k)=>`<i class="${k < Math.round(o.value/max*10) ? 'on' : ''}"></i>`).join('')}</span><small dir="ltr">${share.toFixed(0)}%</small></span>
+      <span class="lb3-val" dir="ltr">${lbFmt(o.value, unit)}<small>${unit==='h'?' h':' pts'}</small></span>`;
     boardEl.appendChild(row);
-    const fill = row.querySelector('.lb2-tbar i');
-    setTimeout(()=>{ fill.style.width = (o.value/max*100).toFixed(1) + '%'; }, i*50 + 150);
+    const f = row.querySelector('.lb3-fill');
+    setTimeout(()=>{ f.style.width = (o.value/max*100).toFixed(1) + '%'; }, i*60 + 150);
   });
 }
 
@@ -4572,7 +4611,7 @@ reForm.addEventListener('submit', async e => {
     setTimeout(()=>{ $('mi-hbar').style.width = (maxH ? m.hours/maxH*100 : 0) + '%'; $('mi-pbar').style.width = (maxP ? m.points/maxP*100 : 0) + '%'; }, 120);
   }
   function close(){ modal.classList.remove('active'); document.body.style.overflow = ''; }
-  document.addEventListener('click', e => { const c = e.target.closest && e.target.closest('.mb-card, .hc-card, .lb-champ, .lb-row, .lb2-mvp, .lb2-side, .lb2-tile'); if(!c) return; const hm = document.getElementById('hierarchy-modal'); if(c.classList.contains('hc-card') && hm) hm.classList.remove('active'); open(c.dataset.idx); });
+  document.addEventListener('click', e => { const c = e.target.closest && e.target.closest('.mb-card, .hc-card, .lb3-row'); if(!c) return; const hm = document.getElementById('hierarchy-modal'); if(c.classList.contains('hc-card') && hm) hm.classList.remove('active'); open(c.dataset.idx); });
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape' && modal.classList.contains('active')) close();
     if((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('mb-card')){ e.preventDefault(); open(document.activeElement.dataset.idx); }
@@ -4746,7 +4785,7 @@ reForm.addEventListener('submit', async e => {
     'ما فيه تحدي نشط هالأسبوع.':'No active challenge this week.','ما فيه مهام حالياً.':'No tasks right now.',
     'افتح مساعد السكواد':'Open squad assistant','إغلاق المساعد':'Close assistant','إغلاق':'Close',
     'SQUAD LEADER':'SQUAD LEADER',
-    'المتصدر':'Top of the board','MVP · المتصدر':'MVP · Top of the board','متعادل':'Tied',
+    'المتصدر':'Top of the board','اللاعب':'PLAYER','النسبة':'SHARE','الساعات':'HOURS','MVP · المتصدر':'MVP · Top of the board','متعادل':'Tied',
     'خاص وسري · الاطلاع عليه من القادات فقط':'Private & confidential · leaders only',
     'المقدمة':'Introduction','سرية المخالفات والشكاوى':'Confidential violations & complaints',
     'تقارير رصد المخالفات والشكاوى خاصة وسرية، وما يطلع عليها إلا القادات فقط. اسمك وتفاصيل تقريرك ما تنعرض لأي عضو ثاني.':'Violation and complaint reports are private and confidential — only leaders can see them. Your name and report details are never shown to other members.',
