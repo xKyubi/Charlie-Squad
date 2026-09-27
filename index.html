@@ -2126,75 +2126,89 @@
   #re-discord.ltr{ direction:ltr; text-align:left; font-family:'Orbitron',monospace; letter-spacing:1px; font-size:13px; }
 
 
-  /* =====================================================
-     ===== لوحة المتصدرين: بوسترات =====
-     ===================================================== */
-  .podium.pv-top{ display:grid !important; grid-template-columns: 1fr 1.25fr 1fr !important; align-items:end; gap:16px !important; padding:0 !important; margin:18px 0 26px; perspective:none !important; }
-  .pv-poster{
-    --acc:#c7d977; position:relative; overflow:hidden; width:100%; aspect-ratio:3/4; padding:0; border:0; cursor:pointer; border-radius:18px;
-    font-family:'Tajawal',sans-serif; color:#fff; text-align:right; background:#0b0d06;
-    box-shadow: 0 0 0 2px var(--acc), 0 20px 40px rgba(0,0,0,.6);
-    opacity:0; animation: fadeUp .5s ease forwards;
-  }
-  .pv-poster.p1{ --acc:#f5d76e; aspect-ratio:3/4.2; box-shadow: 0 0 0 2px var(--acc), 0 0 40px rgba(245,215,110,.3), 0 24px 44px rgba(0,0,0,.6); }
-  .pv-poster.p2{ --acc:#d9dfc4; }
-  .pv-poster.p3{ --acc:#d0955a; }
-  .pv-bg{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background: radial-gradient(circle at 50% 35%, #2a3312, #080a04 75%); }
-  .pv-bg img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform .5s ease; }
-  .pv-poster:hover .pv-bg img{ transform: scale(1.06); }
-  .pv-ini{ font-family:'Oswald',sans-serif; font-size:56px; font-weight:700; color:rgba(199,217,119,.35); }
-  .pv-shade{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 30%, transparent 45%, rgba(4,5,2,.92) 85%); }
-  .pv-num{ position:absolute; top:10px; left:14px; font-family:'Orbitron',sans-serif; font-size:64px; font-weight:800; line-height:1; color:transparent;
-    -webkit-text-stroke:2px var(--acc); text-shadow: 0 0 18px color-mix(in srgb, var(--acc) 40%, transparent); }
-  .pv-poster.p1 .pv-num{ font-size:80px; }
-  .pv-crown{ position:absolute; top:14px; right:14px; width:34px; height:34px; color:#f5d76e; filter: drop-shadow(0 0 10px rgba(245,215,110,.8)); animation: float3d 3s ease-in-out infinite; }
-  .pv-info{ position:absolute; left:0; right:0; bottom:0; padding:16px 16px 18px; display:flex; flex-direction:column; gap:4px; }
-  .pv-info::before{ content:""; display:block; width:40px; height:3px; border-radius:3px; background:var(--acc); margin-bottom:6px; }
-  .pv-name{ font-size:17px; font-weight:900; line-height:1.25; text-shadow:0 2px 8px rgba(0,0,0,.8); }
-  .pv-poster.p1 .pv-name{ font-size:21px; }
-  .pv-val{ display:flex; align-items:baseline; gap:6px; }
-  .pv-val b{ font-family:'Orbitron',sans-serif; font-size:24px; font-weight:800; color:var(--acc); }
-  .pv-poster.p1 .pv-val b{ font-size:30px; }
-  .pv-val small{ font-size:12px; color:rgba(255,255,255,.7); }
-  .site-en .pv-poster, .site-en .pv-row{ text-align:left; }
-  .site-en .pv-num{ left:auto; right:14px; } .site-en .pv-crown{ right:auto; left:14px; }
 
-  .board.pv-list{ display:flex !important; flex-direction:column; gap:8px; background:none !important; border:0 !important; box-shadow:none !important; overflow:visible !important; perspective:none !important; }
-  .pv-row{ position:relative; overflow:hidden; display:grid; grid-template-columns: 34px 52px 1fr auto; align-items:center; gap:14px; width:100%;
-    padding:8px 16px 8px 18px; border:0; border-radius:14px; cursor:pointer; text-align:right; font-family:'Tajawal',sans-serif; color:var(--text);
-    background: linear-gradient(90deg, rgba(22,27,11,0.94), rgba(9,11,5,0.94)); box-shadow: 0 0 0 1px rgba(199,217,119,0.1);
-    opacity:0; animation: fadeUp .4s ease forwards; transition: box-shadow .15s ease; }
-  .pv-row:hover{ box-shadow: 0 0 0 1px rgba(199,217,119,0.4); }
-  .pv-rank{ font-family:'Orbitron',sans-serif; font-size:16px; font-weight:800; color:rgba(199,217,119,.5); text-align:center; }
-  .pv-thumb{ position:relative; width:52px; height:52px; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#0b0d06; }
-  .pv-thumb img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .pv-thumb .pv-ini{ font-size:16px; }
-  .pv-mid{ display:flex; flex-direction:column; gap:8px; min-width:0; }
-  .pv-rname{ font-size:15px; font-weight:800; color:#eef1d8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .pv-bar{ height:4px; border-radius:4px; background:rgba(199,217,119,.08); overflow:hidden; }
-  .pv-bar i{ display:block; height:100%; width:var(--w); border-radius:4px; background:linear-gradient(270deg, #c7d977, #4f5c10); animation: pvGrow 1s cubic-bezier(.2,.8,.2,1) both; }
-  .site-en .pv-bar i{ background:linear-gradient(90deg, #c7d977, #4f5c10); }
+  /* ===== شعار فوق يمين ===== */
+  .nav-brand{ position:absolute; right:26px; top:50%; transform:translateY(-50%); display:flex; flex-direction:row-reverse; align-items:center; gap:14px; z-index:5; }
+  .nb-txt{ display:flex; flex-direction:column; align-items:flex-end; line-height:1.1; direction:ltr; }
+  .nb-txt b{ font-family:'Oswald',sans-serif; font-size:19px; font-weight:600; letter-spacing:5px; color:#e8ecd8; text-shadow:0 0 12px rgba(199,217,119,.18); }
+  .nb-txt small{ font-family:'Oswald',sans-serif; font-size:9.5px; letter-spacing:3.2px; color:#8d9474; margin-top:3px; }
+  .nb-logo{ width:46px; height:46px; display:flex; align-items:center; justify-content:center; }
+  .nb-logo img{ width:46px; height:46px; object-fit:contain; filter: drop-shadow(0 0 8px rgba(199,217,119,.25)); font-size:0; color:transparent; }
+  .site-en .nav-brand{ right:auto; left:26px; flex-direction:row-reverse; }
+  .site-en .nb-txt{ align-items:flex-end; }
+  .site-en .nb-txt{ align-items:flex-start; }
+  .site-en .lang-sw{ left:auto; right:24px; }
+  @media (max-width:1250px){ .nb-txt{ display:none; } }
+  @media (max-width:900px){
+    .nav-brand{ position:fixed; top:calc(8px + env(safe-area-inset-top,0px)); right:10px; transform:none; }
+    .nb-txt{ display:flex; } .nb-txt b{ font-size:13px; letter-spacing:3px; } .nb-txt small{ font-size:7px; letter-spacing:2px; }
+    .nb-logo, .nb-logo img{ width:34px; height:34px; }
+    .nav-brand{ padding:4px 6px 4px 10px; border-radius:12px; background:rgba(6,7,0,.7); backdrop-filter:blur(6px); }
+    .hero .emblem-stage{ display:none !important; }
+    .hero-text{ padding-top:30px !important; }
+    .site-en .nav-brand{ left:10px; right:auto; } .site-en .lang-sw{ right:10px; left:auto; }
+  }
+
+  /* =====================================================
+     ===== لوحة المتصدرين: سبوتلايت =====
+     ===================================================== */
+  .podium.sp-hide{ display:none !important; }
+  .board.sp-wrap{ display:grid !important; grid-template-columns: 1fr 1.15fr; gap:16px; align-items:stretch; margin-top:18px;
+    background:none !important; border:0 !important; box-shadow:none !important; overflow:visible !important; perspective:none !important; }
+  .sp-hero{ position:relative; overflow:hidden; min-height:520px; border:0; padding:0; cursor:pointer; border-radius:20px; text-align:right; color:#fff; font-family:'Tajawal',sans-serif;
+    background:#0b0d06; box-shadow: 0 0 0 1.5px rgba(245,215,110,.5), 0 0 60px rgba(245,215,110,.12), 0 24px 50px rgba(0,0,0,.6); opacity:0; animation: fadeUp .5s ease forwards; }
+  .sp-hbg{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background: radial-gradient(circle at 50% 35%, #2e3514, #070804 75%); }
+  .sp-hbg img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition: transform .6s ease; }
+  .sp-hero:hover .sp-hbg img{ transform:scale(1.05); }
+  .sp-ini{ font-family:'Oswald',sans-serif; font-size:90px; font-weight:700; color:rgba(245,215,110,.3); }
+  .sp-hshade{ position:absolute; inset:0; background:
+      linear-gradient(180deg, rgba(0,0,0,.45), transparent 28%, transparent 45%, rgba(5,5,2,.95) 88%),
+      linear-gradient(0deg, rgba(245,215,110,.12), transparent 40%); }
+  .sp-hbadge{ position:absolute; top:18px; right:18px; display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:800; color:#1a1606;
+    background:linear-gradient(90deg,#fff0a8,#f5d76e); padding:6px 14px; border-radius:30px; box-shadow:0 0 20px rgba(245,215,110,.45); }
+  .sp-hbadge svg{ width:16px; height:16px; }
+  .site-en .sp-hbadge{ right:auto; left:18px; } .site-en .sp-hero, .site-en .sp-item{ text-align:left; }
+  .sp-hbody{ position:absolute; left:0; right:0; bottom:0; padding:24px; display:flex; flex-direction:column; gap:6px; }
+  .sp-hname{ font-size:30px; font-weight:900; line-height:1.15; text-shadow:0 3px 14px rgba(0,0,0,.8); }
+  .sp-hrank{ font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:3px; color:#f5d76e; text-transform:uppercase; }
+  .sp-hstats{ display:flex; gap:22px; margin-top:10px; padding-top:14px; border-top:1px solid rgba(245,215,110,.25); }
+  .sp-hstats span{ display:flex; flex-direction:column; }
+  .sp-hstats b{ font-family:'Orbitron',sans-serif; font-size:34px; font-weight:800; color:#f5d76e; text-shadow:0 0 20px rgba(245,215,110,.4); line-height:1.1; }
+  .sp-hstats span + span b{ font-size:20px; color:#fff; text-shadow:none; }
+  .sp-hstats small{ font-size:12px; color:rgba(255,255,255,.7); }
+
+  .sp-list{ display:flex; flex-direction:column; gap:7px; }
+  .sp-item{ --acc:#c7d977; position:relative; overflow:hidden; flex:1; display:grid; grid-template-columns: 34px 44px 1fr auto; align-items:center; gap:12px;
+    padding:8px 14px; border:0; border-radius:12px; cursor:pointer; text-align:right; font-family:'Tajawal',sans-serif; color:var(--text);
+    background: rgba(14,17,8,.9); box-shadow: 0 0 0 1px rgba(199,217,119,.1); opacity:0; animation: fadeUp .4s ease forwards; transition: box-shadow .15s ease; }
+  .sp-item:hover{ box-shadow: 0 0 0 1px var(--acc); }
+  .sp-item.m2{ --acc:#dde3c8; box-shadow: 0 0 0 1px rgba(221,227,200,.35); }
+  .sp-item.m3{ --acc:#d0955a; box-shadow: 0 0 0 1px rgba(208,149,90,.35); }
+  .sp-pos{ font-family:'Orbitron',sans-serif; font-size:18px; font-weight:800; color:var(--acc); opacity:.7; text-align:center; }
+  .sp-item.m2 .sp-pos, .sp-item.m3 .sp-pos{ opacity:1; }
+  .sp-av{ position:relative; width:44px; height:44px; border-radius:50%; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#0a0c05;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--acc) 45%, transparent); }
+  .sp-av img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .sp-av .sp-ini{ font-size:14px; color:var(--acc); }
+  .sp-nm{ font-size:14.5px; font-weight:800; color:#eef1d8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .sp-v{ font-family:'Orbitron',sans-serif; font-size:16px; font-weight:800; color:var(--acc); }
+  .sp-meter{ position:absolute; left:0; right:0; bottom:0; height:2px; background:rgba(199,217,119,.05); }
+  .sp-meter i{ display:block; height:100%; width:var(--w); background:var(--acc); opacity:.7; animation: pvGrow 1s cubic-bezier(.2,.8,.2,1) both; }
   @keyframes pvGrow{ from{ width:0; } }
-  .pv-rval{ font-family:'Orbitron',sans-serif; font-size:17px; font-weight:800; color:var(--gold); }
-  .pv-rval small{ font-size:10.5px; color:var(--text-dim); }
-  @media (max-width:700px){
-    .podium.pv-top{ gap:8px !important; }
-    .pv-poster{ border-radius:12px; }
-    .pv-num{ font-size:34px; top:6px; left:8px; } .pv-poster.p1 .pv-num{ font-size:42px; }
-    .pv-crown{ width:22px; height:22px; top:8px; right:8px; }
-    .pv-info{ padding:8px 8px 10px; } .pv-info::before{ width:24px; margin-bottom:3px; }
-    .pv-name{ font-size:11.5px; } .pv-poster.p1 .pv-name{ font-size:13px; }
-    .pv-val b{ font-size:14px; } .pv-poster.p1 .pv-val b{ font-size:17px; } .pv-val small{ font-size:9px; }
-    .pv-ini{ font-size:30px; }
-    .pv-row{ grid-template-columns: 26px 42px 1fr auto; gap:10px; padding:7px 10px; }
-    .pv-thumb{ width:42px; height:42px; }
-    .pv-rname{ font-size:13px; } .pv-rval{ font-size:14px; }
+  @media (max-width:900px){
+    .board.sp-wrap{ grid-template-columns:1fr; }
+    .sp-hero{ min-height:380px; }
+    .sp-hname{ font-size:22px; } .sp-hstats b{ font-size:26px; }
+    .sp-item{ padding:8px 10px; gap:10px; grid-template-columns: 28px 40px 1fr auto; }
+    .sp-av{ width:40px; height:40px; }
+    .sp-nm{ font-size:13px; }
   }
 </style>
 </head>
 <body>
 
   <nav class="nav nav2 fade-in">
+    <div class="nav-brand"><div class="nb-txt"><b>CHARLIE SQUAD</b><small>SPECIAL OPERATIONS UNIT</small></div><span class="nb-logo"><img class="logo-img" alt="Charlie Squad"></span></div>
     <div class="lang-sw" role="group" aria-label="Language"><button type="button" data-lang="ar" aria-pressed="true">عربي</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
     <div class="nav-links">
       <span class="nav-ind" aria-hidden="true"></span>
@@ -3007,35 +3021,44 @@ function lbFmt(v, unit){ return unit==='h' ? (Number(v)||0).toFixed(1) : (Number
 function lbUnit(unit){ return unit==='h' ? 'ساعة' : 'نقطة'; }
 function lbAvatar(o, cls){ return `<span class="${cls}"><span class="lb-ini">${initials(o.name)}</span>${o.photo ? `<img src="${o.photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}</span>`; }
 
-function pvPhoto(o, cls){ return `<span class="${cls}"><span class="pv-ini">${initials(o.name)}</span>${o.photo ? `<img src="${o.photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}</span>`; }
-function pvVal(v, unit){ return unit==='h' ? (Number(v)||0).toFixed(1) : (Number(v)||0).toLocaleString('en-US'); }
+function spPhoto(o, cls){ return `<span class="${cls}"><span class="sp-ini">${initials(o.name)}</span>${o.photo ? `<img src="${o.photo}" alt="" loading="lazy" onerror="this.remove()">` : ''}</span>`; }
+function spVal(v, unit){ return unit==='h' ? (Number(v)||0).toFixed(1) : (Number(v)||0).toLocaleString('en-US'); }
 function renderPodium(data, unit){
-  podiumEl.className = 'podium pv-top';
-  const t = data.slice(0,3);
-  const order = [[t[1],2],[t[0],1],[t[2],3]];
-  podiumEl.innerHTML = order.map(([o,r]) => !o ? '<span></span>' : `
-    <button type="button" class="pv-poster p${r}" data-idx="${o.idx}" style="animation-delay:${[.12,0,.24][r-1]}s">
-      ${pvPhoto(o,'pv-bg')}
-      <span class="pv-shade"></span>
-      <span class="pv-num">${r}</span>
-      ${r===1 ? '<span class="pv-crown"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4.5 3.5L12 5l4.5 6.5L21 8l-2 10H5z"/></svg></span>' : ''}
-      <span class="pv-info">
-        <span class="pv-name">${o.name}</span>
-        <span class="pv-val"><b dir="ltr">${pvVal(o.value, unit)}</b><small>${unit==='h'?'ساعة':'نقطة'}</small></span>
-      </span>
-    </button>`).join('');
+  podiumEl.className = 'podium sp-hide'; podiumEl.innerHTML = '';
 }
-
 function renderBoard(data, unit){
-  boardEl.className = 'board pv-list';
+  boardEl.className = 'board sp-wrap';
+  const top = data[0];
+  const rest = data.slice(1, 10);
   const max = Math.max(1, ...data.map(o=>o.value));
-  boardEl.innerHTML = data.slice(3,10).map((o,i) => `
-    <button type="button" class="pv-row" data-idx="${o.idx}" style="animation-delay:${i*0.05}s">
-      <span class="pv-rank">${i+4}</span>
-      ${pvPhoto(o,'pv-thumb')}
-      <span class="pv-mid"><span class="pv-rname">${o.name}</span><span class="pv-bar"><i style="--w:${(o.value/max*100).toFixed(1)}%"></i></span></span>
-      <span class="pv-rval" dir="ltr">${pvVal(o.value, unit)}<small>${unit==='h'?' h':' pts'}</small></span>
-    </button>`).join('');
+  const m = top ? ((currentRoster||[]).find(r => r.idx === top.idx) || {}) : {};
+  const second = data[1];
+  const lead = top && second ? top.value - second.value : 0;
+  const U = unit==='h' ? 'ساعة' : 'نقطة';
+  boardEl.innerHTML = !top ? '' : `
+    <button type="button" class="sp-hero" data-idx="${top.idx}">
+      ${spPhoto(top,'sp-hbg')}
+      <span class="sp-hshade"></span>
+      <span class="sp-hbadge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4.5 3.5L12 5l4.5 6.5L21 8l-2 10H5z"/></svg>المركز الأول</span>
+      <span class="sp-hbody">
+        <span class="sp-hname">${top.name}</span>
+        <span class="sp-hrank">${m.rank || ''}</span>
+        <span class="sp-hstats">
+          <span><b dir="ltr">${spVal(top.value, unit)}</b><small>${U}</small></span>
+          ${second ? `<span><b dir="ltr">+${spVal(lead, unit)}</b><small>فرق عن الثاني</small></span>` : ''}
+        </span>
+      </span>
+    </button>
+    <div class="sp-list">
+      ${rest.map((o,i) => { const r = i + 2; return `
+        <button type="button" class="sp-item${r<=3?' m'+r:''}" data-idx="${o.idx}" style="animation-delay:${i*0.04}s">
+          <span class="sp-pos">${r}</span>
+          ${spPhoto(o,'sp-av')}
+          <span class="sp-nm">${o.name}</span>
+          <span class="sp-v" dir="ltr">${spVal(o.value, unit)}</span>
+          <span class="sp-meter"><i style="--w:${(o.value/max*100).toFixed(1)}%"></i></span>
+        </button>`; }).join('')}
+    </div>`;
 }
 
 function renderChallenge(challenges){
@@ -4458,7 +4481,7 @@ reForm.addEventListener('submit', async e => {
     setTimeout(()=>{ $('mi-hbar').style.width = (maxH ? m.hours/maxH*100 : 0) + '%'; $('mi-pbar').style.width = (maxP ? m.points/maxP*100 : 0) + '%'; }, 120);
   }
   function close(){ modal.classList.remove('active'); document.body.style.overflow = ''; }
-  document.addEventListener('click', e => { const c = e.target.closest && e.target.closest('.mb-card, .hc-card, .pv-poster, .pv-row'); if(!c) return; const hm = document.getElementById('hierarchy-modal'); if(c.classList.contains('hc-card') && hm) hm.classList.remove('active'); open(c.dataset.idx); });
+  document.addEventListener('click', e => { const c = e.target.closest && e.target.closest('.mb-card, .hc-card, .sp-hero, .sp-item'); if(!c) return; const hm = document.getElementById('hierarchy-modal'); if(c.classList.contains('hc-card') && hm) hm.classList.remove('active'); open(c.dataset.idx); });
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape' && modal.classList.contains('active')) close();
     if((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('mb-card')){ e.preventDefault(); open(document.activeElement.dataset.idx); }
@@ -4632,7 +4655,7 @@ reForm.addEventListener('submit', async e => {
     'ما فيه تحدي نشط هالأسبوع.':'No active challenge this week.','ما فيه مهام حالياً.':'No tasks right now.',
     'افتح مساعد السكواد':'Open squad assistant','إغلاق المساعد':'Close assistant','إغلاق':'Close',
     'SQUAD LEADER':'SQUAD LEADER',
-    'المتصدر':'Top of the board','اللاعب':'PLAYER','النسبة':'SHARE','الساعات':'HOURS','MVP · المتصدر':'MVP · Top of the board','متعادل':'Tied',
+    'المتصدر':'Top of the board','المركز الأول':'First place','فرق عن الثاني':'lead over #2','اللاعب':'PLAYER','النسبة':'SHARE','الساعات':'HOURS','MVP · المتصدر':'MVP · Top of the board','متعادل':'Tied',
     'خاص وسري · الاطلاع عليه من القادات فقط':'Private & confidential · leaders only',
     'المقدمة':'Introduction','سرية المخالفات والشكاوى':'Confidential violations & complaints',
     'تقارير رصد المخالفات والشكاوى خاصة وسرية، وما يطلع عليها إلا القادات فقط. اسمك وتفاصيل تقريرك ما تنعرض لأي عضو ثاني.':'Violation and complaint reports are private and confidential — only leaders can see them. Your name and report details are never shown to other members.',
